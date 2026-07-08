@@ -8,8 +8,20 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
-    '@prisma/nuxt',
     'nuxt-auth-utils',
     'vuetify-nuxt-module'
-  ]
+  ],
+
+  googleFonts: {
+    families: {
+      "Cinzel Decorative": true
+    }
+  },
+
+  i18n: {
+    defaultLocale: 'ja',
+    locales: [
+      { code: 'ja', name: '日本語', file: 'ja.json' }
+    ]
+  }
 })
