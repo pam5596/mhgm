@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     'nuxt-auth-utils',
-    'vuetify-nuxt-module'
+    'vuetify-nuxt-module',
+    '@nuxt/test-utils/module',
   ],
 
   googleFonts: {
