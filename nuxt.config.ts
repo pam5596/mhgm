@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     'vuetify-nuxt-module',
     '@nuxt/test-utils/module',
+    '@nuxt/eslint'
   ],
 
   googleFonts: {
