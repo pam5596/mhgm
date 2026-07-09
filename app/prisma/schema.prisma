@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id BigInt @id @default(autoincrement())
+  channel_id String @db.Char(24) @unique
+  name String
+  avatar String
+  created_at DateTime @db.Timestamptz() @default(now())
+
+  setting Setting?
+  keywords Keyword[]
+  broadcasts Broadcast[]
+  action_logs ActionLog[]
+
+  @@map("users")
+}
+
+model Setting {
+  user_id BigInt @id
+  quest_limit Int @default(2)
+  updated_at DateTime @db.Timestamptz() @updatedAt
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("settings")
+}
+
+model Keyword {
+  id BigInt @id @default(autoincrement())
+  keyword String @db.VarChar(10)
+  action Action
+  created_at DateTime @db.Timestamptz() @default(now())
+  user_id BigInt
+
+  user User @relation(fields: [user_id], references: [id])
+  action_logs ActionLog[]
+
+  @@map("keywords")
+}
+
+enum Action {
+  ENTRY
+  CANCEL
+}
+
+model Broadcast {
+  id BigInt @id @default(autoincrement())
+  stream_id String @db.Char(11)
+  title String @db.VarChar(100)
+  thumbnail String
+  begin_at DateTime @db.Timestamptz() @default(now())
+  end_at DateTime? @db.Timestamptz()
+  user_id BigInt 
+
+  user User @relation(fields: [user_id], references: [id])
+  action_logs ActionLog[]
+
+  @@map("broadcasts")
+}
+
+model ActionLog {
+  id BigInt @id @default(autoincrement())
+  message String @db.VarChar(200)
+  created_at DateTime @db.Timestamptz() @default(now())
+  user_id BigInt
+  broadcast_id BigInt
+  keyword_id BigInt
+
+  user User @relation(fields: [user_id], references: [id])
+  broadcase Broadcast @relation(fields: [broadcast_id], references: [id])
+  keyword Keyword @relation(fields: [keyword_id], references: [id])
+
+  @@map("action_logs")
+}
