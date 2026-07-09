@@ -5,8 +5,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    command: npm run dev
     ports:
       - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  prisma-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: npm run db:studio
+    ports:
+      - 51212:51212
     volumes:
       - .:/app
     depends_on:

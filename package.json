@@ -7,6 +7,7 @@
     "dev": "nuxt dev",
     "test": "vitest",
     "lint": "eslint",
+    "db:studio": "prisma studio --browser none",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -22,6 +23,7 @@
     "eslint": "^10.6.0",
     "nuxt": "^4.4.8",
     "nuxt-auth-utils": "^0.5.29",
+    "pg": "^8.22.0",
     "vue": "^3.5.39",
     "vue-router": "^5.1.0",
     "vuetify": "^4.1.3",
