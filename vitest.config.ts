@@ -2,7 +2,11 @@ import { defineConfig } from 'vitest/config'
 import { defineVitestProject } from '@nuxt/test-utils/config'
 
 export default defineConfig({
+    resolve: {
+        tsconfigPaths: true
+    },
     test: {
+        globals: true,
         projects: [
         {
             test: {

@@ -16,7 +16,7 @@
     }
   ],
   "include": [
-    "test/unit/**/*",
-    "app/prisma/generated/*"
+    "test/**/*",
+    "prisma/generated/*"
   ]
 }
