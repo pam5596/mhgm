@@ -3,7 +3,7 @@ CREATE TYPE "Action" AS ENUM ('ENTRY', 'CANCEL');
 
 -- CreateTable
 CREATE TABLE "users" (
-    "id" BIGSERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "channel_id" CHAR(24) NOT NULL,
     "name" TEXT NOT NULL,
     "avatar" TEXT NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "settings" (
-    "user_id" BIGINT NOT NULL,
+    "user_id" INTEGER NOT NULL,
     "quest_limit" INTEGER NOT NULL DEFAULT 2,
     "updated_at" TIMESTAMPTZ NOT NULL,
 
@@ -23,36 +23,36 @@ CREATE TABLE "settings" (
 
 -- CreateTable
 CREATE TABLE "keywords" (
-    "id" BIGSERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "keyword" VARCHAR(10) NOT NULL,
     "action" "Action" NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "user_id" BIGINT NOT NULL,
+    "user_id" INTEGER NOT NULL,
 
     CONSTRAINT "keywords_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "broadcasts" (
-    "id" BIGSERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "stream_id" CHAR(11) NOT NULL,
     "title" VARCHAR(100) NOT NULL,
     "thumbnail" TEXT NOT NULL,
     "begin_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "end_at" TIMESTAMPTZ,
-    "user_id" BIGINT NOT NULL,
+    "user_id" INTEGER NOT NULL,
 
     CONSTRAINT "broadcasts_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "action_logs" (
-    "id" BIGSERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "message" VARCHAR(200) NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "user_id" BIGINT NOT NULL,
-    "broadcast_id" BIGINT NOT NULL,
-    "keyword_id" BIGINT NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "broadcast_id" INTEGER NOT NULL,
+    "keyword_id" INTEGER NOT NULL,
 
     CONSTRAINT "action_logs_pkey" PRIMARY KEY ("id")
 );
