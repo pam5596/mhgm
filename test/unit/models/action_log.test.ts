@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ActionLogModel } from "@models/action_log.model";
+import { ActionLogModel } from "../../../shared/models/action_log.model";
 
 describe("ActionLogModelの単体テスト", () => {
   const values = {

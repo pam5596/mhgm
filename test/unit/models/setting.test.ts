@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SettingModel } from "@models/index";
+import { SettingModel } from "../../../shared/models/setting.model";
 
 describe("SettingModelの単体テスト", () => {
   const values = {

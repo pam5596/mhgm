@@ -14,24 +14,5 @@
     {
       "path": "./.nuxt/tsconfig.node.json"
     }
-  ],
-  "compilerOptions": {
-    "baseUrl": "./",
-    "ignoreDeprecations": "6.0",
-    "types": ["vitest/globals"],
-    "paths": {
-      "@prisma/generated": ["prisma/generated/client"],
-      "@models/*": ["shared/models/*"],
-      "@interfaces/*": ["shared/models/interfaces/*"],
-      "@errors/*": ["shared/errors/*"],
-      "@enums/*": ["shared/enums/*"],
-      "@dtos/*": ["shared/dtos/*"],
-      "@repos/*": ["server/repositories/*"],
-      "@utils/*": ["shared/utils/*"]
-    }
-  },
-  "include": [
-    "test/**/*",
-    "prisma/generated/*"
   ]
 }

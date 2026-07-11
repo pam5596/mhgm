@@ -4,9 +4,6 @@ import { defineVitestProject } from '@nuxt/test-utils/config'
 export default defineConfig({
     resolve: {
         tsconfigPaths: true,
-        alias: {
-            "@models": "./shared/models"
-        }
     },
     test: {
         globals: true,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BroadcastModel } from "@models/index";
+import { BroadcastModel } from "../../../shared/models/broadcast.model";
 
 describe("BroadcastModelの単体テスト", () => {
   const values = {
