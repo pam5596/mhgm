@@ -1,9 +1,8 @@
 import z from "zod";
 import { BaseModel } from "./_base";
-import type { Setting } from "./setting.interface";
+import type { Setting } from "./interfaces/setting.interface";
 
 export class SettingModel extends BaseModel<Setting> implements Setting {
-  // [!] ロジック次第でreadonlyは外してOK
   readonly user_id?: number;
   readonly quest_limit!: number;
   readonly updated_at?: Date;

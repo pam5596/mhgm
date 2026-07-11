@@ -1,9 +1,8 @@
 import z from "zod";
 import { BaseModel } from "./_base";
-import type { User } from "./user.interface";
+import type { User } from "./interfaces/user.interface";
 
 export class UserModel extends BaseModel<User> implements User {
-  // [!] ロジック次第でreadonlyは外してOK
   readonly id?: number;
   readonly channel_id!: string;
   readonly name!: string;

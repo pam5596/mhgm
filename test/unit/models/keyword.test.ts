@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { KeywordModel } from "../../../../shared/models/interface/keyword.model";
+import { KeywordModel } from "@models/index";
+import { ActionUnion } from "@enums/index";
 
 describe("KeywordModelの単体テスト", () => {
   const values = {
     id: 1,
     keyword: "string",
-    action: "ENTRY",
+    action: "ENTRY" as ActionUnion,
     created_at: new Date(),
     user_id: 1
   }
@@ -22,7 +23,7 @@ describe("KeywordModelの単体テスト", () => {
   })
 
   it("actionでエラーになる", () => {
-    expect(() => new KeywordModel({ ...values, action: "NO_ENUM"})).toThrow()
+    expect(() => new KeywordModel({ ...values, action: "NO_ENUM" as ActionUnion})).toThrow()
   })
 
   it("keywordを更新できる", () => {

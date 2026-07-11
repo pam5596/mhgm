@@ -1,9 +1,9 @@
-import type { ActionEnum } from "./action.enum";
+import { ActionEnum } from "../../enums/action.enum";
 
 export interface Keyword {
   id?: number;
   keyword: string;
-  action: ActionEnum;
+  action: "ENTRY" | "CANCEL";
   created_at?: Date;
   user_id: number;
 }

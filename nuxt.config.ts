@@ -4,10 +4,6 @@ import { resolveAlias } from "nuxt/kit";
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  alias: {
-    "models": resolveAlias('/shared/models'),
-    "errors": resolveAlias('/shared/errors')
-  },
 
   modules: [
     '@nuxt/icon',

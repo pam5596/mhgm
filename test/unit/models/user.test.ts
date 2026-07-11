@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { UserModel } from "../../../../shared/models/interface/user.model";
+import { UserModel } from "@models/index";
 
 describe("UserModelの単体テスト", () => {
   const values = {

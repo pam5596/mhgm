@@ -1,9 +1,8 @@
 import z from "zod";
 import { BaseModel } from "./_base";
-import type { Broadcast } from "./broadcast.interface";
+import type { Broadcast } from "./interfaces/broadcast.interface";
 
 export class BroadcastModel extends BaseModel<Broadcast> implements Broadcast {
-  // [!] ロジック次第でreadonlyは外してOK
   readonly id?: number;
   readonly title!: string;
   readonly thumbnail!: string;

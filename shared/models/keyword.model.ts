@@ -1,10 +1,9 @@
 import z from "zod";
 import { BaseModel } from "./_base";
-import type { Keyword } from "./keyword.interface";
-import { ActionEnum } from "./action.enum";
+import type { Keyword } from "./interfaces/keyword.interface";
+import { ActionEnum } from "../enums/action.enum";
 
 export class KeywordModel extends BaseModel<Keyword> implements Keyword {
-  // [!] ロジック次第でreadonlyは外してOK
   readonly id?: number;
   readonly keyword!: string;
   readonly action!: typeof ActionEnum[keyof typeof ActionEnum];

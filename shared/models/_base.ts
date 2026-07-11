@@ -1,5 +1,5 @@
 import { ZodObject } from 'zod'
-import { ZodValidateError } from '../../errors/zod'
+import { ZodValidateError } from '../errors/zod'
 
 export abstract class BaseModel<I extends Record<string, any>> {
   constructor(values: I, schema: ZodObject) {

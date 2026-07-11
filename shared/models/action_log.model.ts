@@ -1,6 +1,6 @@
 import z from "zod";
 import { BaseModel } from "./_base";
-import type { ActionLog } from "./action_log.interface";
+import type { ActionLog } from "./interfaces/action_log.interface";
 
 export class ActionLogModel extends BaseModel<ActionLog> implements ActionLog {
   readonly id?: number;
