@@ -14,9 +14,5 @@
     {
       "path": "./.nuxt/tsconfig.node.json"
     }
-  ],
-  "include": [
-    "test/unit/**/*",
-    "app/prisma/generated/*"
   ]
 }

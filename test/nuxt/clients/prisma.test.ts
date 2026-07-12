@@ -1,5 +1,5 @@
 import { test } from "vitest";
-import { PrismaClient } from "../../../app/prisma/generated/client";
+import { PrismaClient } from "../../../prisma/generated/client";
 import { PrismaPg } from "@prisma/adapter-pg"
 
 test("PrismaClient動作確認", async () => {

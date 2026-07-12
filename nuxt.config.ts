@@ -2,12 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  imports: {
-    global: true,
-    dirs: [
-
-    ]
-  },
 
   modules: [
     '@nuxt/icon',
