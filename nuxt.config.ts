@@ -9,7 +9,6 @@ export default defineNuxtConfig({
   nitro: {
     imports: {
       dirs: [
-        resolve(__dirname, './prisma/generated'),
         resolve(__dirname, './shared/models'),
         resolve(__dirname, './shared/models/interfaces'),
         resolve(__dirname, './shared/errors'),
