@@ -1,5 +1,3 @@
-import { ActionEnum } from "../../enums/action.enum";
-
 export interface Keyword {
   id?: number;
   keyword: string;

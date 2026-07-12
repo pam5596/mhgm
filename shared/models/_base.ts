@@ -1,6 +1,7 @@
-import { ZodObject } from 'zod'
+import type { ZodObject } from 'zod'
 import { ZodValidateError } from '../errors/zod'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export abstract class BaseModel<I extends Record<string, any>> {
   constructor(values: I, schema: ZodObject) {
     const parsed_values = schema.safeParse(values, { reportInput: true })

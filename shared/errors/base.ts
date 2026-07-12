@@ -5,7 +5,7 @@ export class BaseError extends Error {
     readonly detail: string,
     readonly instance: string,
     override readonly stack?: string,
-    readonly report?: any,
+    readonly report?: unknown,
   ){
     super(message)
   }

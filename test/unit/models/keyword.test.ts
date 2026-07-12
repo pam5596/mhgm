@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { KeywordModel } from "../../../shared/models/keyword.model";
-import { ActionUnion } from "../../../shared/enums/action.enum";
+import type { ActionUnion } from "../../../shared/enums/action.enum";
 
 describe("KeywordModelの単体テスト", () => {
   const values = {
