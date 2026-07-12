@@ -1,8 +1,33 @@
+import { resolve } from 'path'
+import { searchForWorkspaceRoot } from 'vite'
+
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-
+  nitro: {
+    imports: {
+      dirs: [
+        resolve(__dirname, './prisma/generated'),
+        resolve(__dirname, './shared/models'),
+        resolve(__dirname, './shared/models/interfaces'),
+        resolve(__dirname, './shared/errors'),
+        resolve(__dirname, './shared/enums'),
+        resolve(__dirname, './server/repositories'),
+      ],
+    }
+  },
+  vite: {
+    server: {
+      fs: {
+        allow: [
+          searchForWorkspaceRoot(process.cwd()),
+          '/prisma/generated'
+        ]
+      }
+    }
+  },
   modules: [
     '@nuxt/icon',
     '@nuxtjs/google-fonts',
