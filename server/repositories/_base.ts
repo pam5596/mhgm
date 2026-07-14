@@ -4,7 +4,7 @@ import type { PrismaORMClient } from "../clients/prisma"
 import { CRUDFailedError } from "../../shared/errors/crud_failed"
 import { UnknownError } from "../../shared/errors/unknown"
 
-export abstract class BaseRepository<Model extends BaseModel<any>> {
+export abstract class BaseRepository {
   readonly client: PrismaORMClient
 
   constructor(
@@ -14,17 +14,16 @@ export abstract class BaseRepository<Model extends BaseModel<any>> {
   }
 
   protected async prismaErrorHandler<Response = unknown>(
-    detail: string,
-    query_method?: () => Promise<Response> | undefined,
+    crud: 'create'|'read'|'update'|'delete',
+    query_method: () => Promise<Response>,
   ) {
     try {
-      if (!query_method) return undefined
       return await query_method()
     } catch (e) {
       if (e instanceof PrismaClientKnownRequestError) {
         throw new CRUDFailedError(
           e,
-          detail,
+          `errors.crud.${crud}`,
           this.constructor.name,
           query_method
         )
@@ -36,39 +35,5 @@ export abstract class BaseRepository<Model extends BaseModel<any>> {
         )
       }
     }
-  }
-
-
-  // [!] innerメソッドは必ずアロー関数で記述すること
-  innerUpsert?(data: Model): Promise<Model>
-  async upsert(data: Model) {
-    return await this.prismaErrorHandler(
-      'errors.crud.create',
-      () => this.innerUpsert && this.innerUpsert(data)
-    )
-  }
-
-  innnerAll?(): Promise<Model[]>
-  async all() {
-    return await this.prismaErrorHandler(
-      'errors.crud.read',
-      () => this.innnerAll && this.innnerAll()
-    )
-  }
-
-  innerUpdate?(data: Model): Promise<void>
-  async update(data: Model) {
-    return await this.prismaErrorHandler(
-      'errors.crud.update',
-      () => this.innerUpdate && this.innerUpdate(data)
-    )
-  }
-  
-  innerDestroy?(id: number): Promise<void>
-  async destroy(id: number) {
-    return await this.prismaErrorHandler(
-      'errors.crud.delete',
-      () => this.innerDestroy && this.innerDestroy(id)
-    )
   }
 }
