@@ -57,7 +57,7 @@ enum Action {
 
 model Broadcast {
   id Int @id @default(autoincrement())
-  stream_id String @db.Char(11)
+  stream_id String @db.Char(11) @unique
   title String @db.VarChar(100)
   thumbnail String
   begin_at DateTime @db.Timestamptz() @default(now())
