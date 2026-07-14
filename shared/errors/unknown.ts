@@ -11,7 +11,7 @@ export class UnknownError extends BaseError {
       'errors.unknown',
       String(catched),
       instance,
-      undefined,
+      catched instanceof Error ? catched.stack : undefined,
       report
     )
   }
