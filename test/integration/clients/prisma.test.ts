@@ -1,19 +1,26 @@
-import { test } from "vitest";
-import { PrismaClient } from "../../../prisma/generated/client";
-import { PrismaPg } from "@prisma/adapter-pg"
+import { afterAll, describe, expect, it, test } from "vitest";
+import { PrismaORMClient } from "../../../server/clients/prisma"
 
-test("PrismaClient動作確認", async () => {
-  console.log(process.env.DATABASE_URL)
-  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
-  const client = new PrismaClient({ adapter })
+describe("PrismaORMClient動作確認", async () => {
+  it('環境変数からデータベースURLを取得できる', () => {
+    console.log(process.env.DATABASE_URL)
+    console.log(process.env.NODE_ENV)
+    expect(process.env.DATABASE_URL).toBeTruthy()
+    expect(process.env.NODE_ENV).toBeTruthy()
+  })
 
-  const tables = await client.$executeRaw`
-    SELECT table_name
-    FROM information_schema.tables
-    WHERE table_type = 'BASE TABLE'
-    AND table_schema = 'develop'
-    ORDER BY table_name;
-  `
+  const client = new PrismaORMClient(
+    process.env.DATABASE_URL,
+    process.env.NODE_ENV
+  )
 
-  console.log(tables)
+  it('データベースに正常に接続できる', async () => {
+    await expect(client.$connect()).resolves.not.toThrow();
+  });
+
+  it('生クエリを実行して疎通確認ができる', async () => {
+    const result = await client.$queryRaw`SELECT 1`;
+    expect(result).toBeDefined();
+  });
+  afterAll(async () => await client.$disconnect())
 })

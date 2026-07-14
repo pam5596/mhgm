@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         resolve(__dirname, './shared/errors'),
         resolve(__dirname, './shared/enums'),
         resolve(__dirname, './server/repositories'),
+        resolve(__dirname, './server/clients'),
       ],
     }
   },
