@@ -3,7 +3,7 @@ import { BaseModel } from "./_base";
 import type { Setting } from "./interfaces/setting.interface";
 
 export class SettingModel extends BaseModel<Setting> implements Setting {
-  readonly user_id?: number;
+  readonly user_id!: number;
   readonly quest_limit!: number;
   readonly updated_at?: Date;
 
@@ -14,7 +14,7 @@ export class SettingModel extends BaseModel<Setting> implements Setting {
 
   private static schema() {
     return z.object({
-      user_id: z.int().optional(),
+      user_id: z.int(),
       quest_limit: z.int().min(1),
       updated_at: z.date().optional()
     })
@@ -22,9 +22,8 @@ export class SettingModel extends BaseModel<Setting> implements Setting {
 
   updateQuestLimit(quest_limit: number) {
     return new SettingModel({
-      user_id: this.user_id,
+      ...this.toObject(),
       quest_limit,
-      updated_at: this.updated_at
     })
   }
 
