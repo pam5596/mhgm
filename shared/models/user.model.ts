@@ -24,6 +24,13 @@ export class UserModel extends BaseModel<User> implements User {
     })
   }
 
+  update(new_values: Pick<User,"name"|"avatar">) {
+    return new UserModel({
+      ...this.toObject(),
+      ...new_values
+    })
+  }
+
   override toObject(): User {
     return {
       id: this.id,
