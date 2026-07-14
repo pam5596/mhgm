@@ -6,8 +6,8 @@ echo "🚀 Starting entrypoint script..."
 
 npm install
 
-npx dotenv -e .env -- npx prisma migrate dev
-npx dotenv -e .env.test -- npx prisma migrate dev
+npm run db:migrate:dev
+npm run db:migrate:test
 
 npx prisma generate
 

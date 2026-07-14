@@ -8,6 +8,8 @@
     "test": "vitest",
     "lint": "eslint",
     "db:studio": "prisma studio --browser none",
+    "db:migrate:dev": "dotenv -e .env -- npx prisma migrate dev",
+    "db:migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"

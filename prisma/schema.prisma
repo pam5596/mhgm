@@ -32,7 +32,7 @@ model Setting {
   quest_limit Int @default(2)
   updated_at DateTime @db.Timestamptz() @updatedAt
 
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("settings")
 }
@@ -44,7 +44,7 @@ model Keyword {
   created_at DateTime @db.Timestamptz() @default(now())
   user_id Int
 
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
   action_logs ActionLog[]
 
   @@map("keywords")
@@ -64,7 +64,7 @@ model Broadcast {
   end_at DateTime? @db.Timestamptz()
   user_id Int 
 
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
   action_logs ActionLog[]
 
   @@map("broadcasts")
@@ -78,9 +78,9 @@ model ActionLog {
   broadcast_id Int
   keyword_id Int
 
-  user User @relation(fields: [user_id], references: [id])
-  broadcase Broadcast @relation(fields: [broadcast_id], references: [id])
-  keyword Keyword @relation(fields: [keyword_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  broadcase Broadcast @relation(fields: [broadcast_id], references: [id], onDelete: Cascade)
+  keyword Keyword @relation(fields: [keyword_id], references: [id], onDelete: Cascade)
 
   @@map("action_logs")
 }
