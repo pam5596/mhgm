@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "title",
+    "thumbnail": "https://thumbnail.com", 
+    "stream_id": "stream_id_1",
+    "end_at": null,
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "title": "title",
+    "thumbnail": "https://thumbnail.com", 
+    "stream_id": "stream_id_2",
+    "end_at": null,
+    "user_id": 2
+  }
+]

@@ -8,14 +8,14 @@ describe("BroadcastModelの単体テスト", () => {
     thumbnail: 'https://example.com',
     stream_id: 'stringstrin',
     begin_at: new Date(),
-    end_at: new Date(),
+    end_at: null,
     user_id: 1
   }
 
   it("モデルが作成できる", () => {
     expect(() => new BroadcastModel(values)).not.toThrow()
 
-    const { id, end_at, ...require_params} = values
+    const { id, ...require_params} = values
     expect(() => new BroadcastModel(require_params)).not.toThrow()
   })
 

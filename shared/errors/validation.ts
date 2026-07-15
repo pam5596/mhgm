@@ -1,7 +1,7 @@
 import { BaseError } from "./base";
 import type { $ZodIssue } from "zod/v4/core";
 
-export class ZodValidateError extends BaseError {
+export class ValidateError extends BaseError {
   constructor(
     issue: $ZodIssue,
     instance: string,
@@ -9,7 +9,7 @@ export class ZodValidateError extends BaseError {
   ) {
     super(
       422,
-      `errors.zod.invalid_${issue.path}`,
+      `errors.validate.invalid_${issue.path}`,
       issue.message,
       instance,
       stack,

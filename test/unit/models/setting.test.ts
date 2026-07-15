@@ -11,7 +11,7 @@ describe("SettingModelの単体テスト", () => {
   it("モデルが作成できる", () => {
     expect(() => new SettingModel(values)).not.toThrow()
 
-    const { user_id, updated_at, ...require_params} = values
+    const {  updated_at, ...require_params} = values
     expect(() => new SettingModel(require_params)).not.toThrow()
   })
 

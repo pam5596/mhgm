@@ -1,5 +1,0 @@
-export type { User } from "./user.interface.d"
-export type { Setting } from "./setting.interface"
-export type { Keyword } from "./keyword.interface"
-export type { Broadcast } from "./broadcast.interface"
-export type { ActionLog } from "./action_log.interface"
