@@ -11,10 +11,10 @@ export class KeywordRepository extends BaseRepository {
   create = async (model: KeywordModel) => await this.prismaErrorHandler(
     'create',
     async () => {
-      const created_setting = await this.client.keyword.create({
+      const created_keyword = await this.client.keyword.create({
         data: model.toIgnoreUndefinedObject()
       })
-      return new KeywordModel(created_setting)
+      return new KeywordModel(created_keyword)
     }
   )
 

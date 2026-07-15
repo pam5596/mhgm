@@ -1,5 +1,4 @@
 import { UserModel } from "../../shared/models/user.model";
-import { PrismaORMClient } from "../clients/prisma";
 import { BaseRepository } from "./_base";
 
 export class UserRepository extends BaseRepository {
