@@ -2,9 +2,11 @@ import { UserModel } from "../../shared/models/user.model"
 import { SettingModel } from "../../shared/models/setting.model"
 import { KeywordModel } from "../../shared/models/keyword.model"
 import { Keyword } from "../../shared/models/interfaces/keyword.interface"
+import { BroadcastModel } from "../../shared/models/broadcast.model"
 import user_fixtures from "./fixtures/user.fixtures.json"
 import setting_fixtures from "./fixtures/setting.fixtures.json"
 import keyword_fixtures from "./fixtures/keyword.fixtures.json"
+import broadcast_fixtures from "./fixtures/broadcast.fixtures.json"
 
 export const users = (id: number) => {
   const user = user_fixtures.find((user) => user.id === id);
@@ -19,4 +21,9 @@ export const settings = (user_id: number) => {
 export const keywords = (id: number) => {
   const keyword = keyword_fixtures.find((keyword) => keyword.id === id) as Keyword
   return keyword && new KeywordModel(keyword)
+}
+
+export const broadcast = (id: number) => {
+  const broadcast = broadcast_fixtures.find(broadcast => broadcast.id === id)
+  return broadcast && new BroadcastModel(broadcast)
 }

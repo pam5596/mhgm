@@ -7,8 +7,8 @@ export class BroadcastModel extends BaseModel<Broadcast> implements Broadcast {
   readonly title!: string;
   readonly thumbnail!: string;
   readonly stream_id!: string;
-  readonly begin_at!: Date;
-  readonly end_at?: Date;
+  readonly begin_at?: Date;
+  readonly end_at!: Date | null;
   readonly user_id!: number;
 
   constructor(broadcast: Broadcast) {
@@ -22,8 +22,8 @@ export class BroadcastModel extends BaseModel<Broadcast> implements Broadcast {
       title: z.string().min(1).max(100),
       thumbnail: z.url({ protocol: /^https?$/ }),
       stream_id: z.string().length(11),
-      begin_at: z.date(),
-      end_at: z.date().optional(),
+      begin_at: z.date().optional(),
+      end_at: z.date().nullable(),
       user_id: z.int(),
     })
   }
