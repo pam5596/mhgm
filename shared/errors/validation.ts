@@ -1,19 +1,19 @@
+import { z, type ZodError } from "zod";
 import { BaseError } from "./base";
-import type { $ZodIssue } from "zod/v4/core";
 
-export class ValidateError extends BaseError {
+export class ValidateError<I> extends BaseError {
   constructor(
-    issue: $ZodIssue,
+    error: ZodError,
     instance: string,
-    stack?: string 
+    input: I
   ) {
     super(
       422,
-      `errors.validate.invalid_${issue.path}`,
-      issue.message,
+      `errors.validate.invalid_${error.issues[0]?.path}`,
+      z.prettifyError(error),
       instance,
-      stack,
-      issue.input
+      error.stack,
+      input
     )
   }
 }
