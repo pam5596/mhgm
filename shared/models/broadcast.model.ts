@@ -17,7 +17,7 @@ export class BroadcastModel extends BaseModel<Broadcast> implements Broadcast {
   }
 
   private static schema() {
-    return z.object({
+    return z.strictObject({
       id: z.int().optional(),
       title: z.string().min(1).max(100),
       thumbnail: z.url({ protocol: /^https?$/ }),

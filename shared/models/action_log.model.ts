@@ -16,7 +16,7 @@ export class ActionLogModel extends BaseModel<ActionLog> implements ActionLog {
   }
 
   private static schema() {
-    return z.object({
+    return z.strictObject({
       id: z.int().optional(),
       message: z.string().min(1).max(200),
       created_at: z.date().optional(),
