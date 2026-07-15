@@ -2,12 +2,6 @@ import { ActionLogModel } from "../../shared/models/action_log.model";
 import { BaseRepository } from "./_base";
 
 export class ActionLogRepository extends BaseRepository {
-  constructor(
-    client: PrismaORMClient
-  ){
-    super(client)
-  }
-
   create = async (model: ActionLogModel) => await this.prismaErrorHandler(
     'create',
     async () => {

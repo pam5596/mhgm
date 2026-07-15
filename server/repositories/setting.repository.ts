@@ -2,12 +2,6 @@ import { SettingModel } from "../../shared/models/setting.model";
 import { BaseRepository } from "./_base";
 
 export class SettingRepository extends BaseRepository {
-  constructor(
-    client: PrismaORMClient
-  ){
-    super(client)
-  }
-
   create = async (model: SettingModel) => await this.prismaErrorHandler(
     'create',
     async () => {

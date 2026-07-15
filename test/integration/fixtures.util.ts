@@ -1,7 +1,7 @@
 import { UserModel } from "../../shared/models/user.model"
 import { SettingModel } from "../../shared/models/setting.model"
 import { KeywordModel } from "../../shared/models/keyword.model"
-import { Keyword } from "../../shared/models/interfaces/keyword.interface"
+import type { Keyword } from "../../shared/models/interfaces/keyword.interface"
 import { BroadcastModel } from "../../shared/models/broadcast.model"
 import { ActionLogModel } from "../../shared/models/action_log.model"
 import user_fixtures from "./fixtures/user.fixtures.json"

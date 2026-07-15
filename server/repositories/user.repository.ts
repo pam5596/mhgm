@@ -2,12 +2,6 @@ import { UserModel } from "../../shared/models/user.model";
 import { BaseRepository } from "./_base";
 
 export class UserRepository extends BaseRepository {
-  constructor(
-    client: PrismaORMClient
-  ){
-    super(client)
-  }
-  
   upsert = async (model: UserModel) => await this.prismaErrorHandler(
     'create',
     async () => {

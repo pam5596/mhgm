@@ -1,14 +1,8 @@
-import { Broadcast } from "~~/shared/models/interfaces/broadcast.interface";
+import type { Broadcast } from "~~/shared/models/interfaces/broadcast.interface";
 import { BroadcastModel } from "../../shared/models/broadcast.model";
 import { BaseRepository } from "./_base";
 
 export class BroadcastRepository extends BaseRepository {
-  constructor(
-    client: PrismaORMClient
-  ){
-    super(client)
-  }
-
   upsert = async(model: BroadcastModel) => await this.prismaErrorHandler(
     'create',
     async () => {

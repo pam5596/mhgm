@@ -1,5 +1,4 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/client"
-import { BaseModel } from "../../shared/models/_base"
 import type { PrismaORMClient } from "../clients/prisma"
 import { CRUDFailedError } from "../../shared/errors/crud_failed"
 import { UnknownError } from "../../shared/errors/unknown"

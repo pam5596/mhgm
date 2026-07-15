@@ -1,7 +1,5 @@
 import { afterAll, afterEach, beforeAll, beforeEach } from "vitest";
-import { PrismaORMClient } from "../../server/clients/prisma";
-
-import users_fixture from "./fixtures/user.fixtures.json"
+import type { PrismaORMClient } from "../../server/clients/prisma";
 
 export function withSetupDB(client :PrismaORMClient) {
   beforeAll(async() => {

@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, test } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 import { PrismaORMClient } from "../../../server/clients/prisma"
 
 describe("PrismaORMClient動作確認", async () => {

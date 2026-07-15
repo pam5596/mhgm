@@ -2,12 +2,6 @@ import { KeywordModel } from "../../shared/models/keyword.model";
 import { BaseRepository } from "./_base";
 
 export class KeywordRepository extends BaseRepository {
-  constructor(
-    client: PrismaORMClient
-  ){
-    super(client)
-  }
-
   create = async (model: KeywordModel) => await this.prismaErrorHandler(
     'create',
     async () => {
