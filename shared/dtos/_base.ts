@@ -6,7 +6,7 @@ export abstract class BaseDTO<I extends BaseDTOInterface>{
   readonly values: I
 
   constructor(values: I, schema: z.ZodType<I>) {
-    const parsed_values = schema.safeParse(values, { reportInput: true })
+    const parsed_values = schema.safeParse(values)
     
     if (!parsed_values.success) throw new ParameterMissingError<I>(
       parsed_values.error,
@@ -15,5 +15,21 @@ export abstract class BaseDTO<I extends BaseDTOInterface>{
     )
 
     this.values = parsed_values.data
+  }
+
+  get cookies() {
+    return this.values.cookies
+  }
+
+  get params() {
+    return this.values.params
+  }
+
+  get query() {
+    return this.values.query
+  }
+
+  get body() {
+    return this.values.body
   }
 }
