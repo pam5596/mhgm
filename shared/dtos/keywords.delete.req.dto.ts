@@ -1,0 +1,17 @@
+import z from "zod";
+import { BaseDTO } from "./_base";
+import type { KeywordsDELETERequest } from "./interfaces/keywords.delete.req"
+
+export class KeywordsDELETERequestDTO extends BaseDTO<KeywordsDELETERequest> {
+  constructor(values: KeywordsDELETERequest) {
+    super(values, KeywordsDELETERequestDTO.schema())
+  }
+
+  private static schema() {
+    return z.strictObject({
+      params: z.strictObject({
+        id: z.coerce.number()
+      }),
+    })
+  }
+} 
