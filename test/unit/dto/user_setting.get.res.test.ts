@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { UserSettingsGETResponseDTO } from "../../../shared/dtos/users_settings.get.res.dto"
+import { UsersSettingsGETResponseDTO } from "../../../shared/dtos/users_settings.get.res.dto"
 
 describe("UsersSettingsGETResponseDTOの単体テスト", () => {
   const values = {
@@ -23,6 +23,6 @@ describe("UsersSettingsGETResponseDTOの単体テスト", () => {
   }
 
   it("DTOが作成できる", () => {
-    expect(() => new UserSettingsGETResponseDTO(values) ).not.toThrow()
+    expect(() => new UsersSettingsGETResponseDTO(values) ).not.toThrow()
   })
 })

@@ -2,9 +2,9 @@ import z from "zod";
 import { BaseDTO } from "./_base";
 import type { UsersSettingsGETResponse } from "./interfaces/users_settings.get.res"
 
-export class UserSettingsGETResponseDTO extends BaseDTO<UsersSettingsGETResponse> {
+export class UsersSettingsGETResponseDTO extends BaseDTO<UsersSettingsGETResponse> {
   constructor(values: UsersSettingsGETResponse) {
-    super(values, UserSettingsGETResponseDTO.schema())
+    super(values, UsersSettingsGETResponseDTO.schema())
   }
 
   private static schema() {

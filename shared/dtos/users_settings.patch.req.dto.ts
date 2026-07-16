@@ -2,9 +2,9 @@ import z from "zod";
 import { BaseDTO } from "./_base";
 import type { UsersSettingsPATCHRequest } from "./interfaces/users_settings.patch.req"
 
-export class UserSettingsPATCHRequestDTO extends BaseDTO<UsersSettingsPATCHRequest> {
+export class UsersSettingsPATCHRequestDTO extends BaseDTO<UsersSettingsPATCHRequest> {
   constructor(values: UsersSettingsPATCHRequest) {
-    super(values, UserSettingsPATCHRequestDTO.schema())
+    super(values, UsersSettingsPATCHRequestDTO.schema())
   }
 
   private static schema() {
