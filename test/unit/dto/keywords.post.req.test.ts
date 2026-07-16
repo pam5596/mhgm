@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { KeywordsPOSTRequestDTO } from "../../../shared/dtos/keywords.post.req.dto"
 
-describe("KeywordPOSTRequestDTOの単体テスト", () => {
+describe("KeywordsPOSTRequestDTOの単体テスト", () => {
   const values = {
     body: {
       keyword: "string",

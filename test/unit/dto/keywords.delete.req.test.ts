@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { KeywordsDELETERequestDTO } from "../../../shared/dtos/keywords.delete.req.dto"
 
-describe("KeywordDELETERequestDTOの単体テスト", () => {
+describe("KeywordsDELETERequestDTOの単体テスト", () => {
   const values = {
     params: {
       id: "1"
