@@ -1,6 +1,6 @@
 import z from "zod";
 import { BaseDTO } from "./_base";
-import type { UsersSettingsGETResponse } from "./interfaces/users_settings.get"
+import type { UsersSettingsGETResponse } from "./interfaces/users_settings.get.res"
 
 export class UserSettingsGETResponseDTO extends BaseDTO<UsersSettingsGETResponse> {
   constructor(values: UsersSettingsGETResponse) {

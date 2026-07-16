@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { UserSettingsGETResponseDTO } from "../../../shared/dtos/users_settings.get.dto"
+import { UserSettingsGETResponseDTO } from "../../../shared/dtos/users_settings.get.res.dto"
 
 describe("UsersSettingsGETResponseDTOの単体テスト", () => {
   const values = {
