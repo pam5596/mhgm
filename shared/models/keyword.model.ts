@@ -16,7 +16,7 @@ export class KeywordModel extends BaseModel<Keyword> implements Keyword {
   }
 
   private static schema() {
-    return z.object({
+    return z.strictObject({
       id: z.int().optional(),
       keyword: z.string().min(1).max(10),
       action: z.enum(ActionEnum),

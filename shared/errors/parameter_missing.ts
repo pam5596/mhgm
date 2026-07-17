@@ -1,15 +1,15 @@
-import { z, type ZodError } from "zod";
+import z, { type ZodError } from "zod";
 import { BaseError } from "./base";
 
-export class ValidateError<I> extends BaseError {
+export class ParameterMissingError<I> extends BaseError {
   constructor(
     error: ZodError,
     instance: string,
     input: I
   ) {
     super(
-      422,
-      `errors.validate.invalid_${error.issues[0]?.path}`,
+      400,
+      'errors.parameter_missing',
       z.prettifyError(error),
       instance,
       error.stack,

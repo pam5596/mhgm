@@ -15,7 +15,7 @@ export class UserModel extends BaseModel<User> implements User {
   }
 
   private static schema() {
-    return z.object({
+    return z.strictObject({
       id: z.int().optional(),
       channel_id: z.string().length(24),
       name: z.string().min(1),

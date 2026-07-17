@@ -13,7 +13,7 @@ export class SettingModel extends BaseModel<Setting> implements Setting {
   }
 
   private static schema() {
-    return z.object({
+    return z.strictObject({
       user_id: z.int(),
       quest_limit: z.int().min(1),
       updated_at: z.date().optional()

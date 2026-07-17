@@ -1,7 +1,6 @@
 import { resolve } from 'path'
 import { searchForWorkspaceRoot } from 'vite'
 
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -13,6 +12,7 @@ export default defineNuxtConfig({
         resolve(__dirname, './shared/models/interfaces'),
         resolve(__dirname, './shared/errors'),
         resolve(__dirname, './shared/enums'),
+        resolve(__dirname, './shared/dtos'),
         resolve(__dirname, './server/repositories'),
         resolve(__dirname, './server/clients'),
       ],
