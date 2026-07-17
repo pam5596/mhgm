@@ -15,6 +15,7 @@ export default defineNuxtConfig({
         resolve(__dirname, './shared/dtos'),
         resolve(__dirname, './server/repositories'),
         resolve(__dirname, './server/clients'),
+        resolve(__dirname, './server/services'),
       ],
     }
   },
