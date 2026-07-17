@@ -1,7 +1,7 @@
 export interface BaseDTOInterface {
   cookies?: Record<string,string>;
-  params?: Record<string, any>
-  query?: Record<string, any>
-  body?: Record<string, any>
-  socket?: Record<string, any>
+  params?: Record<string, unknown>
+  query?: Record<string, unknown>
+  body?: Record<string, unknown>
+  socket?: Record<string, unknown>
 }

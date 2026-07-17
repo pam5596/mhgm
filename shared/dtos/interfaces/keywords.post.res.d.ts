@@ -1,7 +1,6 @@
-import type { BaseDTOInterface } from "./_base";
 import type { Keyword } from "../../shared/models/interfaces/keyword.interface";
 
-export interface KeywordsPOSTResponse implements BaseDTOInterface {
+export interface KeywordsPOSTResponse {
   body: {
     id: Keyword["id"]
   }

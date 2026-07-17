@@ -1,6 +1,4 @@
-import type { BaseDTOInterface } from "./_base";
-
-export interface BroadcastsPATCHRequest implements BaseDTOInterface {
+export interface BroadcastsPATCHRequest {
   body: {
     end_at: Date;
   }

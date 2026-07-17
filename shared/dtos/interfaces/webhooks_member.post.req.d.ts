@@ -1,7 +1,6 @@
 import type { User } from "~~/shared/models/interfaces/user.interface";
-import type { BaseDTOInterface } from "./_base";
 
-export interface WebhooksMemberPOSTRequest implements BaseDTOInterface {
+export interface WebhooksMemberPOSTRequest {
   query: {
     channel_id: User["channel_id"]
   },

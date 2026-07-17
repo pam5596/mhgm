@@ -1,4 +1,4 @@
-import z from "zod";
+import type z from "zod";
 import { ParameterMissingError } from "../errors/parameter_missing"
 import type { BaseDTOInterface } from "./interfaces/_base"
 
