@@ -3,4 +3,5 @@ export interface BaseDTOInterface {
   params?: Record<string, any>
   query?: Record<string, any>
   body?: Record<string, any>
+  socket?: Record<string, any>
 }

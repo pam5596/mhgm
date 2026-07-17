@@ -32,4 +32,8 @@ export abstract class BaseDTO<I extends BaseDTOInterface>{
   get body() {
     return this.values.body
   }
+
+  get socket() {
+    return this.values.socket
+  }
 }

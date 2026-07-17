@@ -1,6 +1,5 @@
 import type { User } from "~~/shared/models/interfaces/user.interface";
 import type { BaseDTOInterface } from "./_base";
-import type { StatusUnion } from "../../enums/status.enum"
 
 export interface WebhooksMemberPOSTRequest implements BaseDTOInterface {
   query: {
