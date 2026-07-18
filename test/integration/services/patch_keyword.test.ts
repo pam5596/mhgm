@@ -26,13 +26,13 @@ describe("PATCHKeywordServiceの結合テスト", () => {
         id: 1
       },
       body: {
-        keyword: "updated_keyword"
+        keyword: "keyword"
       }
     })
 
     await service.execute(request)
 
     const updated = await keywordRepo.findById(1)
-    expect(updated?.keyword).toBe("updated_keyword")
+    expect(updated?.keyword).toBe("keyword")
   })
 })

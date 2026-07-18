@@ -9,6 +9,11 @@ export class KeywordsDELETERequestDTO extends BaseDTO<KeywordsDELETERequest> {
 
   private static schema() {
     return z.strictObject({
+      sessions: z.strictObject({
+        user: z.strictObject({
+          user_id: z.number()
+        })
+      }),
       params: z.strictObject({
         id: z.coerce.number()
       }),

@@ -3,6 +3,11 @@ import { KeywordsDELETERequestDTO } from "../../../shared/dtos/keywords.delete.r
 
 describe("KeywordsDELETERequestDTOの単体テスト", () => {
   const values = {
+    sessions: {
+      user: {
+        user_id: 1
+      }
+    },
     params: {
       id: "1"
     },
