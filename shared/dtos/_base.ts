@@ -17,23 +17,5 @@ export abstract class BaseDTO<I extends BaseDTOInterface>{
     this.values = parsed_values.data
   }
 
-  get cookies() {
-    return this.values.cookies
-  }
-
-  get params() {
-    return this.values.params
-  }
-
-  get query() {
-    return this.values.query
-  }
-
-  get body() {
-    return this.values.body
-  }
-
-  get socket() {
-    return this.values.socket
-  }
+  
 }
