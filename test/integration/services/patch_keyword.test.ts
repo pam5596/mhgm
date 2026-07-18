@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
-import { PATCHKeyword } from "../../../server/services/patch_keyword.service";
+import { PATCHKeywordService } from "../../../server/services/patch_keyword.service";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { KeywordsPATCHRequestDTO } from "../../../shared/dtos/keywords.patch.req.dto";
 import { create } from "../crud.util";
@@ -8,7 +8,7 @@ import { prisma } from "../prisma.client";
 
 describe("PATCHKeywordServiceの結合テスト", () => {
   const keywordRepo = new KeywordRepository(prisma)
-  const service = new PATCHKeyword(keywordRepo)
+  const service = new PATCHKeywordService(keywordRepo)
 
   withSetupDB()
 

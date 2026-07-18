@@ -1,11 +1,10 @@
 import { KeywordsPATCHRequestDTO } from "../../shared/dtos/keywords.patch.req.dto";
 import { BaseService } from "./_base";
 import { KeywordRepository } from "../repositories/keyword.repository";
-import { KeywordModel } from "../../shared/models/keyword.model";
 import { RecordNotFoundError } from "../../shared/errors/record_not_found";
 import { ForbiddenError } from "../../shared/errors/forbidden";
 
-export class PATCHKeyword implements BaseService<
+export class PATCHKeywordService implements BaseService<
   KeywordsPATCHRequestDTO,
   void
 >{

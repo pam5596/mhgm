@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
-import { POSTKeyword } from "../../../server/services/post_keyword.service";
+import { POSTKeywordService } from "../../../server/services/post_keyword.service";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { KeywordsPOSTRequestDTO } from "../../../shared/dtos/keywords.post.req.dto";
 import { create } from "../crud.util";
 import { prisma } from "../prisma.client";
 
-describe("POSTKeywordServiceの結合テスト", () => {
+describe("POSTKeywordServiceServiceの結合テスト", () => {
   const keywordRepo = new KeywordRepository(prisma)
-  const service = new POSTKeyword(keywordRepo)
+  const service = new POSTKeywordService(keywordRepo)
 
   withSetupDB()
 

@@ -2,7 +2,7 @@ import { KeywordsDELETERequestDTO } from "../../shared/dtos/keywords.delete.req.
 import { BaseService } from "./_base";
 import { KeywordRepository } from "../repositories/keyword.repository";
 
-export class DELETEKeyword implements BaseService<
+export class DELETEKeywordService implements BaseService<
   KeywordsDELETERequestDTO,
   void
 >{

@@ -4,7 +4,7 @@ import { KeywordsPOSTResponseDTO } from "../../shared/dtos/keywords.post.res.dto
 import { KeywordRepository } from "../repositories/keyword.repository";
 import { KeywordModel } from "../../shared/models/keyword.model";
 
-export class POSTKeyword implements BaseService<
+export class POSTKeywordService implements BaseService<
   KeywordsPOSTRequestDTO,
   KeywordsPOSTResponseDTO
 >{
