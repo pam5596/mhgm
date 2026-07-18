@@ -3,6 +3,11 @@ import { KeywordsPOSTRequestDTO } from "../../../shared/dtos/keywords.post.req.d
 
 describe("KeywordsPOSTRequestDTOの単体テスト", () => {
   const values = {
+    sessions: {
+      user: {
+        user_id: 1
+      }
+    },
     body: {
       keyword: "string",
       action: "CANCEL"

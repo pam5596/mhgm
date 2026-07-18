@@ -9,6 +9,11 @@ export class KeywordsPOSTRequestDTO extends BaseDTO<KeywordsPOSTRequest> {
 
   private static schema() {
     return z.strictObject({
+      sessions: z.strictObject({
+        user: z.strictObject({
+          user_id: z.number()
+        })
+      }),
       body: z.strictObject({
         keyword: z.string(),
         action: z.string()
