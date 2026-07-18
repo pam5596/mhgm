@@ -20,12 +20,12 @@ export class SettingModel extends BaseModel<Setting> implements Setting {
     })
   }
 
-  updateQuestLimit(quest_limit: number) {
-    return new SettingModel({
-      ...this.toObject(),
-      quest_limit,
-    })
-  }
+  update(new_values: Omit<Setting,"user_id">) {
+      return new SettingModel({
+        ...this.toObject(),
+        ...new_values
+      })
+    }
 
   override toObject(): Setting {
     return {

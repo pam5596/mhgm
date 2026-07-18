@@ -19,9 +19,9 @@ describe("SettingModelの単体テスト", () => {
     expect(() => new SettingModel({ ...values, quest_limit: -1})).toThrow()
   })
 
-  it("quest_limitを更新できる", () => {
+  it("モデルを更新できる", () => {
     const model = new SettingModel(values)
-    expect(model.updateQuestLimit(3).quest_limit).toBe(3)
+    expect(model.update({quest_limit: 3}).quest_limit).toBe(3)
   })
 
   it("toObjectメソッドがobjectを返す", () => {
