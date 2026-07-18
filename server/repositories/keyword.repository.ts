@@ -12,6 +12,16 @@ export class KeywordRepository extends BaseRepository {
     }
   )
 
+  findById = async (id: number) => await this.prismaErrorHandler(
+    'read',
+    async () => {
+      const finded_keyword = await this.client.keyword.findUnique({
+        where: { id }
+      })
+      return finded_keyword && new KeywordModel(finded_keyword)
+    }
+  )
+
   findManyByUserId = async (user_id: number) => await this.prismaErrorHandler(
     'read',
     async () => {

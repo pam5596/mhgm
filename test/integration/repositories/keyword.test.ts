@@ -21,6 +21,17 @@ describe('KeywordRepositoryの結合テスト', () => {
     expect(created?.keyword).toBe("keyword")
   })
 
+  it("キーワードをidで取得できる", async () => {
+    const user = users(1)
+    await userRepo.upsert(user!)
+
+    const keyword = keywords(1)
+    await repo.create(keyword!)
+
+    const finded = await repo.findById(1)
+    expect(finded?.id).toBe(1)
+  })
+
   it("キーワードをuser_idで取得できる", async () => {
     const user = users(1)
     await userRepo.upsert(user!)
