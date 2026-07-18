@@ -3,11 +3,6 @@ import { YoutubeBroadcastsGETResponseDTO } from "../../../shared/dtos/youtube_br
 
 describe("YoutubeBroadcastsGETResponseDTOの単体テスト", () => {
   const values = {
-    sessions: {
-      secure: {
-        access_token: "string"
-      }
-    },
     body: {
       title: "title",
       thumbnail: "https://thumbnail.com", 

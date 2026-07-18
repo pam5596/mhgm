@@ -9,11 +9,6 @@ export class YoutubeBroadcastsGETResponseDTO extends BaseDTO<YoutubeBroadcastsGE
 
   private static schema() {
     return z.strictObject({
-      sessions: z.strictObject({
-        secure: z.strictObject({
-          access_token: z.string()
-        })
-      }),
       body: z.strictObject({
         stream_id: z.string(),
         title: z.string(),
