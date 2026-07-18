@@ -3,6 +3,11 @@ import { UsersSettingsPATCHRequestDTO } from "../../../shared/dtos/users_setting
 
 describe("UsersSettingsPATCHRequestDTOの単体テスト", () => {
   const values = {
+    sessions: {
+      user: {
+        user_id: 1
+      }
+    },
     body: {
       quest_limit: 2
     }

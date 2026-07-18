@@ -9,6 +9,11 @@ export class UsersSettingsPATCHRequestDTO extends BaseDTO<UsersSettingsPATCHRequ
 
   private static schema() {
     return z.strictObject({
+      sessions: z.strictObject({
+        user: z.strictObject({
+          user_id: z.number()
+        })
+      }),
       body: z.strictObject({
         quest_limit: z.number()
       })
