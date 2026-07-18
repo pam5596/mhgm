@@ -3,6 +3,14 @@ import { BroadcastsPATCHRequestDTO } from "../../../shared/dtos/broadcasts.patch
 
 describe("BroadcastsPATCHRequestDTOの単体テスト", () => {
   const values = {
+    sessions: {
+      user: {
+        user_id: 1
+      }
+    },
+    params: {
+      id: 1
+    },
     body: {
       end_at: new Date()
     }
