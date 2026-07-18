@@ -20,6 +20,6 @@ export class PATCHKeywordService implements BaseService<
     if (!keyword) throw new RecordNotFoundError(this.constructor.name, request.values)
     if (keyword.user_id !== user_id) throw new ForbiddenError(this.constructor.name, request.values)
 
-    await this.keywordRepository.update(keyword)
+    await this.keywordRepository.update(keyword.updateKeyword(request.values.body.keyword))
   }
 }
