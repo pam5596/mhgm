@@ -6,7 +6,7 @@ export class ForbiddenError<I> extends BaseError {
     input: unknown
   ) {
     super(
-      404,
+      403,
       'errors.forbidden',
       "Forbidden",
       instance,

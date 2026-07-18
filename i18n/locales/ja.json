@@ -24,6 +24,7 @@
       "delete": "データの削除に失敗しました。"
     },
     "parameter_missing": "データの受信に失敗しました。",
-    "record_not_found": "データが見つかりませんでした。"
+    "record_not_found": "データが見つかりませんでした。",
+    "forbidden": "データへのアクセス権限がありません。"
   }
 }
