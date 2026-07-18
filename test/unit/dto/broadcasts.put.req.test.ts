@@ -3,6 +3,11 @@ import { BroadcastsPUTRequestDTO } from "../../../shared/dtos/broadcasts.put.req
 
 describe("BroadcastsPUTRequestDTOの単体テスト", () => {
   const values = {
+    sessions: {
+      user: {
+        user_id: 1
+      }
+    },
     body: {
       title: "title",
       thumbnail: "https://thumbnail.com", 
