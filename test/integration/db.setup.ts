@@ -1,9 +1,9 @@
 import { afterAll, afterEach, beforeAll, beforeEach } from "vitest";
-import type { PrismaORMClient } from "../../server/clients/prisma";
+import { prisma } from "./prisma.client"
 
-export function withSetupDB(client :PrismaORMClient) {
+export function withSetupDB() {
   beforeAll(async() => {
-    await client.$executeRawUnsafe(`
+    await prisma.$executeRawUnsafe(`
       TRUNCATE TABLE
         "test"."users",
         "test"."settings",
@@ -15,15 +15,15 @@ export function withSetupDB(client :PrismaORMClient) {
   })
 
   beforeEach(async () => {
-    await client.$executeRaw`BEGIN`;
+    await prisma.$executeRaw`BEGIN`;
   });
 
   afterEach(async () => {
-    await client.$executeRaw`ROLLBACK`;
+    await prisma.$executeRaw`ROLLBACK`;
   })
 
   afterAll(async () => {
-    await client.$executeRawUnsafe(`
+    await prisma.$executeRawUnsafe(`
       TRUNCATE TABLE
         "test"."users",
         "test"."settings",
@@ -32,6 +32,6 @@ export function withSetupDB(client :PrismaORMClient) {
         "test"."action_logs"
       RESTART IDENTITY;
     `)
-    await client.$disconnect()
+    await prisma.$disconnect()
   })
 }

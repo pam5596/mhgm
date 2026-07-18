@@ -2,16 +2,12 @@ import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
 import { PrismaORMClient } from "../../../server/clients/prisma";
 import { UserRepository } from "../../../server/repositories/user.repository"
-
+import { prisma } from "../prisma.client";
 import { users } from "../fixtures.util";
 
 describe('UserRepositoryの結合テスト', () => {
-  const client = new PrismaORMClient(
-    process.env.DATABASE_URL,
-    process.env.NODE_ENV
-  )
-  const repo = new UserRepository(client)
-  withSetupDB(client)
+  const repo = new UserRepository(prisma)
+  withSetupDB()
 
   it("ユーザーをupsertできる", async () => {
     const user = users(1)

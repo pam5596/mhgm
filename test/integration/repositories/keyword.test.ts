@@ -1,19 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
-import { PrismaORMClient } from "../../../server/clients/prisma";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-
+import { prisma } from "../prisma.client";
 import { users, keywords } from "../fixtures.util";
 
 describe('KeywordRepositoryの結合テスト', () => {
-  const client = new PrismaORMClient(
-    process.env.DATABASE_URL,
-    process.env.NODE_ENV
-  )
-  const userRepo = new UserRepository(client)
-  const repo = new KeywordRepository(client)
-  withSetupDB(client)
+  const userRepo = new UserRepository(prisma)
+  const repo = new KeywordRepository(prisma)
+  withSetupDB()
 
   it("キーワードを作成できる", async () => {
     const user = users(1)

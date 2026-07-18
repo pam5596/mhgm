@@ -1,22 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
-import { GetUserSettingsService } from "../../../server/services/get_users_settings.service";
+import { GetUserSettingsService } from "../../../server/services/get_user_settings.service";
 import { SettingRepository } from "../../../server/repositories/setting.repository";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { UsersSettingsGETRequestDTO } from "../../../shared/dtos/users_settings.get.req.dto";
 import { create } from "../crud.util";
-import { PrismaORMClient } from "../../../server/clients/prisma";
+import { prisma } from "../prisma.client"
 
-describe("GetUserSettingsService", () => {
-  const client = new PrismaORMClient(
-    process.env.DATABASE_URL,
-    process.env.NODE_ENV
-  )
-  const settingRepo = new SettingRepository(client)
-  const keywordRepo = new KeywordRepository(client)
+describe("GetUserSettingsServiceの結合テスト", () => {
+  const settingRepo = new SettingRepository(prisma)
+  const keywordRepo = new KeywordRepository(prisma)
   const service = new GetUserSettingsService(settingRepo, keywordRepo)
 
-  withSetupDB(client)
+  withSetupDB()
 
   it("設定とキーワードをDBから取得してDTOを返す", async () => {
     await create("user", 1)

@@ -1,23 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
-import { PrismaORMClient } from "../../../server/clients/prisma";
 import { ActionLogRepository } from "../../../server/repositories/action_log.repository";
 import { BroadcastRepository } from "../../../server/repositories/broadcast.repository";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-
+import { prisma } from "../prisma.client";
 import { users, broadcast, keywords, action_log } from "../fixtures.util";
 
 describe('ActionLogRepositoryの結合テスト', () => {
-  const client = new PrismaORMClient(
-    process.env.DATABASE_URL,
-    process.env.NODE_ENV
-  )
-  const userRepo = new UserRepository(client)
-  const broadcastRepo = new BroadcastRepository(client)
-  const keywordRepo = new KeywordRepository(client)
-  const repo = new ActionLogRepository(client)
-  withSetupDB(client)
+  const userRepo = new UserRepository(prisma)
+  const broadcastRepo = new BroadcastRepository(prisma)
+  const keywordRepo = new KeywordRepository(prisma)
+  const repo = new ActionLogRepository(prisma)
+  withSetupDB()
 
   it("アクションログを作成できる", async () => {
     const user = users(1)
@@ -51,7 +46,7 @@ describe('ActionLogRepositoryの結合テスト', () => {
     const created = action_log_model && await repo.create(action_log_model)
     await repo.destroyById(created!.id!)
 
-    const deleted = created?.id && await client.actionLog.findUnique({ 
+    const deleted = created?.id && await prisma.actionLog.findUnique({ 
       where: { id: created.id }
     })
     expect(deleted).toBeNull()

@@ -1,19 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { withSetupDB } from "../db.setup";
-import { PrismaORMClient } from "../../../server/clients/prisma";
 import { BroadcastRepository } from "../../../server/repositories/broadcast.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-
+import { prisma } from "../prisma.client";
 import { users, broadcast } from "../fixtures.util";
 
 describe('BroadcastRepositoryの結合テスト', () => {
-  const client = new PrismaORMClient(
-    process.env.DATABASE_URL,
-    process.env.NODE_ENV
-  )
-  const userRepo = new UserRepository(client)
-  const repo = new BroadcastRepository(client)
-  withSetupDB(client)
+  const userRepo = new UserRepository(prisma)
+  const repo = new BroadcastRepository(prisma)
+  withSetupDB()
 
   it("ブロードキャストをupsertできる", async () => {
     const user = users(1)
