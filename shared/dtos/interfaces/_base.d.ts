@@ -1,7 +1,16 @@
+import type { SecureSessionData, User } from "#auth-utils"
+
 export interface BaseDTOInterface {
-  cookies?: Record<string,string>;
-  params?: Record<string, unknown>
-  query?: Record<string, unknown>
-  body?: Record<string, unknown>
-  socket?: Record<string, unknown>
+  sessions?: {
+    user?: Partial<User>,
+    secure?: Partial<SecureSessionData>
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  params?: Record<string, any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  query?: Record<string, any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?: Record<string, any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  socket?: Record<string, any>
 }
