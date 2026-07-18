@@ -26,7 +26,8 @@
     "parameter_missing": "データの受信に失敗しました。",
     "not_found": {
       "record": "データが見つかりませんでした。",
-      "youtube_broadcast": "配信中のライブ配信が見つかりませんでした。ライブ配信を開始してください。"
+      "youtube_broadcast": "配信中のライブ配信が見つかりませんでした。ライブ配信を開始してください。",
+      "youtube_channel": "Youtubeチャンネルが見つかりませんでした。Youtubeアカウントを作成してください。"
     },
     "forbidden": "データへのアクセス権限がありません。"
   }
