@@ -19,6 +19,16 @@ export class BroadcastRepository extends BaseRepository {
     }
   )
 
+  findById = async(id: number) => await this.prismaErrorHandler(
+    'read',
+    async () => {
+      const finded_broadcast = await this.client.broadcast.findUnique({
+        where: { id }
+      })
+      return finded_broadcast && new BroadcastModel(finded_broadcast)
+    }
+  )
+
   findByStreamId = async(stream_id: Broadcast["stream_id"]) => await this.prismaErrorHandler(
     'read',
     async () => {

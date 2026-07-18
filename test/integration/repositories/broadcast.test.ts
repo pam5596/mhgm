@@ -38,6 +38,17 @@ describe('BroadcastRepositoryの結合テスト', () => {
     expect(finded?.stream_id).toBe("stream_id_1")
   })
 
+  it("ブロードキャストをidで取得できる", async () => {
+    const user = users(1)
+    await userRepo.upsert(user!)
+
+    const broadcast_model = broadcast(1)
+    await repo.upsert(broadcast_model!)
+
+    const finded = await repo.findById(1)
+    expect(finded?.id).toBe(1)
+  })
+
   it("ブロードキャストをuser_idで取得できる", async () => {
     const user = users(1)
     await userRepo.upsert(user!)
