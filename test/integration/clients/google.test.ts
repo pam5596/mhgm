@@ -7,13 +7,10 @@ describe("PrismaORMClient動作確認", async () => {
     expect(process.env.GOOGLE_ACCESS_TOKEN).toBeTruthy()
   })
 
-  const client = new GoogleClient(
-    process.env.GOOGLE_ACCESS_TOKEN!
-  )
-
+  const client = new GoogleClient()
 
   it('Youtubeアカウントのプロフィールを取得できる', async () => {
-    const response = await client.youtube().channels.list({
+    const response = await client.youtube(process.env.GOOGLE_ACCESS_TOKEN!).channels.list({
       mine: true,
       part: ["id", "snippet"]
     })
