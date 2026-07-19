@@ -9,8 +9,10 @@ export class WebhooksMemberPOSTRequestDTO extends BaseDTO<WebhooksMemberPOSTRequ
 
   private static schema() {
     return z.strictObject({
-      query: z.strictObject({
-        channel_id: z.string()
+      sessions: z.strictObject({
+        user: z.strictObject({
+          channel_id: z.string()
+        })
       }),
       body: z.strictObject({
         users: z.array(

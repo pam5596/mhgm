@@ -1,8 +1,10 @@
 import type { User } from "~~/shared/models/interfaces/user.interface";
 
 export interface WebhooksMemberPOSTRequest {
-  query: {
-    channel_id: User["channel_id"]
+  sessions: {
+    user: {
+      channel_id: User["channel_id"]
+    }
   },
   body: {
     users: {

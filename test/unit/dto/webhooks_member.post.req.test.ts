@@ -3,8 +3,10 @@ import { WebhooksMemberPOSTRequestDTO } from "../../../shared/dtos/webhooks_memb
 
 describe("WebhooksMemberPOSTRequestDTOの単体テスト", () => {
   const values = {
-    query: {
-      channel_id: "string"
+    sessions: {
+      user: {
+        channel_id: "string"
+      }
     },
     body: {
       users: [
