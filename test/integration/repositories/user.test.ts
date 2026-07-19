@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { PrismaORMClient } from "../../../server/clients/prisma";
 import { UserRepository } from "../../../server/repositories/user.repository";
 import { withSetupDB } from "../db.setup";
 import { users } from "../fixtures.util";

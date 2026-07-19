@@ -1,7 +1,6 @@
 import { NotFoundError } from "~~/shared/errors/not_found";
 import type { BroadcastsPATCHRequestDTO } from "../../shared/dtos/broadcasts.patch.req.dto";
 import { ForbiddenError } from "../../shared/errors/forbidden";
-import { BroadcastModel } from "../../shared/models/broadcast.model";
 import type { BroadcastRepository } from "../repositories/broadcast.repository";
 import type { BaseService } from "./_base";
 

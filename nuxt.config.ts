@@ -60,7 +60,7 @@ export default defineNuxtConfig({
 	hooks: {
 		listen(server) {
 			initSocketIOAsHooks(server);
-			socketIOClient && attachSocketIoEvent(socketIOClient);
+			if(socketIOClient) attachSocketIoEvent(socketIOClient);
 		},
 	},
 });

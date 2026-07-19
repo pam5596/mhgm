@@ -7,10 +7,6 @@ declare module "#auth-utils" {
 		avatar: string;
 	}
 
-	interface UserSession {
-		// Add your own fields
-	}
-
 	interface SecureSessionData {
 		access_token: string;
 	}

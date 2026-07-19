@@ -29,7 +29,7 @@ export class SocketLiveChatConnectionService
 					user: {
 						channel_id: chat.author.channelId,
 						name: chat.author.name,
-						avatar: chat.author.thumbnail?.url!,
+						avatar: chat.author.thumbnail!.url,
 					},
 					chat: {
 						message: messageText!,
@@ -43,7 +43,7 @@ export class SocketLiveChatConnectionService
 						new UserModel({
 							channel_id: chat.author.channelId,
 							name: chat.author.name,
-							avatar: chat.author.thumbnail?.url!,
+							avatar: chat.author.thumbnail!.url,
 						}),
 					);
 
