@@ -1,10 +1,11 @@
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/client"
+import { DefaultArgs, PrismaClientKnownRequestError } from "@prisma/client/runtime/client"
 import type { PrismaORMClient } from "../clients/prisma"
 import { CRUDFailedError } from "../../shared/errors/crud_failed"
 import { UnknownError } from "../../shared/errors/unknown"
+import { PrismaClient } from "../../prisma/generated/client"
 
 export abstract class BaseRepository {
-  readonly client: PrismaORMClient
+  client: PrismaORMClient | Omit<PrismaClient<never, undefined, DefaultArgs>, "$connect" | "$disconnect" | "$on" | "$use" | "$extends">
 
   constructor(
     client: PrismaORMClient

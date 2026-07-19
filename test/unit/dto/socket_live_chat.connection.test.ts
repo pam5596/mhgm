@@ -5,7 +5,8 @@ describe("SocketLiveChatConnectionDTOの単体テスト", () => {
   const values = {
     socket_auth: {
       channel_id: "string",
-      strema_id: "string"
+      stream_id: "string",
+      broadcast_id: 1
     }
   }
 
