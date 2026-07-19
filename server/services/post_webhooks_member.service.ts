@@ -1,6 +1,3 @@
-import { WebhooksMemberPOSTRequestDTO } from "~~/shared/dtos/webhooks_member.post.req.dto";
-import { BaseService } from "./_base";
-
 export class POSTWebhooksMemberService implements BaseService<
   WebhooksMemberPOSTRequestDTO,
   void
