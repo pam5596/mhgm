@@ -1,9 +1,9 @@
 import { afterAll, afterEach, beforeAll, beforeEach } from "vitest";
-import type { PrismaORMClient } from "../../server/clients/prisma";
+import { prisma } from "./prisma.client";
 
-export function withSetupDB(client :PrismaORMClient) {
-  beforeAll(async() => {
-    await client.$executeRawUnsafe(`
+export function withSetupDB() {
+	beforeAll(async () => {
+		await prisma.$executeRawUnsafe(`
       TRUNCATE TABLE
         "test"."users",
         "test"."settings",
@@ -11,19 +11,19 @@ export function withSetupDB(client :PrismaORMClient) {
         "test"."broadcasts",
         "test"."action_logs"
       RESTART IDENTITY;
-    `)
-  })
+    `);
+	});
 
-  beforeEach(async () => {
-    await client.$executeRaw`BEGIN`;
-  });
+	beforeEach(async () => {
+		await prisma.$executeRaw`BEGIN`;
+	});
 
-  afterEach(async () => {
-    await client.$executeRaw`ROLLBACK`;
-  })
+	afterEach(async () => {
+		await prisma.$executeRaw`ROLLBACK`;
+	});
 
-  afterAll(async () => {
-    await client.$executeRawUnsafe(`
+	afterAll(async () => {
+		await prisma.$executeRawUnsafe(`
       TRUNCATE TABLE
         "test"."users",
         "test"."settings",
@@ -31,7 +31,7 @@ export function withSetupDB(client :PrismaORMClient) {
         "test"."broadcasts",
         "test"."action_logs"
       RESTART IDENTITY;
-    `)
-    await client.$disconnect()
-  })
+    `);
+		await prisma.$disconnect();
+	});
 }

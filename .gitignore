@@ -25,3 +25,6 @@ logs
 
 prisma/generated
 .vscode
+
+# Lint
+.lint/tmp/

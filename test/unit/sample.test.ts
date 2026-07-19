@@ -1,5 +1,5 @@
-import { test } from 'vitest'
+import { test } from "vitest";
 
-test('動作確認', () => {
-  console.log("動作確認用のテストです")
-})
+test("動作確認", () => {
+	console.log("動作確認用のテストです");
+});

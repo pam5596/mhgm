@@ -2,43 +2,43 @@ import { KeywordModel } from "../../shared/models/keyword.model";
 import { BaseRepository } from "./_base";
 
 export class KeywordRepository extends BaseRepository {
-  create = async (model: KeywordModel) => await this.prismaErrorHandler(
-    'create',
-    async () => {
-      const created_keyword = await this.client.keyword.create({
-        data: model.toIgnoreUndefinedObject()
-      })
-      return new KeywordModel(created_keyword)
-    }
-  )
+	create = async (model: KeywordModel) =>
+		await this.prismaErrorHandler("create", async () => {
+			const created_keyword = await this.client.keyword.create({
+				data: model.toIgnoreUndefinedObject(),
+			});
+			return new KeywordModel(created_keyword);
+		});
 
-  findManyByUserId = async (user_id: number) => await this.prismaErrorHandler(
-    'read',
-    async () => {
-      const finded_keywords = await this.client.keyword.findMany({
-        where: { user_id }
-      })
-      return finded_keywords.map(keyword => new KeywordModel(keyword))
-    }
-  )
+	findById = async (id: number) =>
+		await this.prismaErrorHandler("read", async () => {
+			const finded_keyword = await this.client.keyword.findUnique({
+				where: { id },
+			});
+			return finded_keyword && new KeywordModel(finded_keyword);
+		});
 
-  update = async (model: KeywordModel) => await this.prismaErrorHandler(
-    'update',
-    async () => {
-      const updated_keyword = await this.client.keyword.update({
-        where: { id: model.id },
-        data: model.toIgnoreUndefinedObject()
-      })
-      return new KeywordModel(updated_keyword)
-    }
-  )
+	findManyByUserId = async (user_id: number) =>
+		await this.prismaErrorHandler("read", async () => {
+			const finded_keywords = await this.client.keyword.findMany({
+				where: { user_id },
+			});
+			return finded_keywords.map((keyword) => new KeywordModel(keyword));
+		});
 
-  destroyById = async(id: number) => await this.prismaErrorHandler(
-    'delete',
-    async () => {
-      await this.client.keyword.delete({
-        where: { id }
-      })
-    }
-  )
+	update = async (model: KeywordModel) =>
+		await this.prismaErrorHandler("update", async () => {
+			const updated_keyword = await this.client.keyword.update({
+				where: { id: model.id },
+				data: model.toIgnoreUndefinedObject(),
+			});
+			return new KeywordModel(updated_keyword);
+		});
+
+	destroyById = async (id: number) =>
+		await this.prismaErrorHandler("delete", async () => {
+			await this.client.keyword.delete({
+				where: { id },
+			});
+		});
 }
