@@ -1,6 +1,6 @@
 export const StatusEnum = {
-  join: "JOIN",
-  wait: "WAIT"
-} as const
+	join: "JOIN",
+	wait: "WAIT",
+} as const;
 
-export type StatusUnion = typeof StatusEnum[keyof typeof StatusEnum];
+export type StatusUnion = (typeof StatusEnum)[keyof typeof StatusEnum];

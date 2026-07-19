@@ -1,5 +1,5 @@
-import { Socket } from "socket.io";
+import type { Socket } from "socket.io";
 
 export const disconnectionLister = (socket: Socket) => {
-  console.log(`Disconnected: ${socket.id}`)
-}
+	console.log(`Disconnected: ${socket.id}`);
+};

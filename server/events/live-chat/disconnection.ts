@@ -1,5 +1,5 @@
-import { Socket } from "socket.io";
+import type { Socket } from "socket.io";
 
 export const liveChatDisconnectionLister = (socket: Socket) => {
-  console.log(`Live Chat Disconnected: ${socket.id}`)
-}
+	console.log(`Live Chat Disconnected: ${socket.id}`);
+};

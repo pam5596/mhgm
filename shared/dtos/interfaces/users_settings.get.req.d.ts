@@ -1,7 +1,7 @@
 export interface UsersSettingsGETRequest {
-  sessions: {
-    user: {
-      user_id: number
-    }
-  }
+	sessions: {
+		user: {
+			user_id: number;
+		};
+	};
 }

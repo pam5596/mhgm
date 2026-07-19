@@ -1,14 +1,14 @@
 [
-  {
-    "id": 1,
-    "user_id": 1,
-    "keyword": "keyword",
-    "action": "ENTRY"
-  },
-  {
-    "id": 2,
-    "user_id": 1,
-    "keyword": "keyword2",
-    "action": "CANCEL"
-  }
+	{
+		"id": 1,
+		"user_id": 1,
+		"keyword": "keyword",
+		"action": "ENTRY"
+	},
+	{
+		"id": 2,
+		"user_id": 1,
+		"keyword": "keyword2",
+		"action": "CANCEL"
+	}
 ]

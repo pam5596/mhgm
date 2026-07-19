@@ -1,14 +1,14 @@
 [
-  {
-    "id": 1,
-    "channel_id": "channel_id_of_user_id=01",
-    "name": "user_1",
-    "avatar": "https://picsum.photos/seed/picsum/200/300"
-  },
-  {
-    "id": 2,
-    "channel_id": "channel_id_of_user_id=02",
-    "name": "user_2",
-    "avatar": "https://picsum.photos/id/237/200/300"
-  }
+	{
+		"id": 1,
+		"channel_id": "channel_id_of_user_id=01",
+		"name": "user_1",
+		"avatar": "https://picsum.photos/seed/picsum/200/300"
+	},
+	{
+		"id": 2,
+		"channel_id": "channel_id_of_user_id=02",
+		"name": "user_2",
+		"avatar": "https://picsum.photos/id/237/200/300"
+	}
 ]
