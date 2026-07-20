@@ -1,0 +1,1 @@
+export const googleClient = new GoogleClient()

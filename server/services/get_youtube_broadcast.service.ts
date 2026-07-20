@@ -16,8 +16,8 @@ export class GetYoutubeBroadcastService
 		const google_response = await this.googleClient
 			.youtube(access_token)
 			.liveBroadcasts.list({
-				mine: true,
 				maxResults: 1,
+				broadcastStatus: "active",
 				part: ["snippet"],
 			});
 

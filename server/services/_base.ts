@@ -6,5 +6,5 @@ export interface BaseService<
 	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	Res extends BaseDTO<BaseDTOInterface> | void,
 > {
-	execute: (request: Req) => Promise<Res>;
+	execute: (request: Req, ...args: never[]) => Promise<Res>;
 }

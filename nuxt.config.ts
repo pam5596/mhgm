@@ -4,7 +4,7 @@ import attachSocketIoEvent from "./server/utils/attach-socket-io-events";
 import {
 	initSocketIOAsHooks,
 	socketIOClient,
-} from "./server/utils/socket-io-client";
+} from "./server/instances/socket.io.client";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -25,6 +25,7 @@ export default defineNuxtConfig({
 				resolve(__dirname, "./server/clients"),
 				resolve(__dirname, "./server/services"),
 				resolve(__dirname, "./server/events"),
+				resolve(__dirname, "./server/instances"),
 			],
 		},
 	},
@@ -63,4 +64,9 @@ export default defineNuxtConfig({
 			if(socketIOClient) attachSocketIoEvent(socketIOClient);
 		},
 	},
+
+	runtimeConfig: {
+		nodeEnv: process.env.NODE_ENV,
+		databaseUrl: process.env.DATABASE_URL
+	}
 });

@@ -1,0 +1,1 @@
+export const settingRepository = new SettingRepository(prismaClient)

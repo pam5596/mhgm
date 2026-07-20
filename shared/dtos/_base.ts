@@ -1,4 +1,4 @@
-import type z from "zod";
+import { z } from "zod";
 import { ParameterMissingError } from "../errors/parameter_missing";
 import type { BaseDTOInterface } from "./interfaces/_base";
 
@@ -10,8 +10,9 @@ export abstract class BaseDTO<I extends BaseDTOInterface> {
 
 		if (!parsed_values.success)
 			throw new ParameterMissingError<I>(
-				parsed_values.error,
+				z.prettifyError(parsed_values.error),
 				this.constructor.name,
+				parsed_values.error.stack,
 				values,
 			);
 
