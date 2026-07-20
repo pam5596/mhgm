@@ -1,5 +1,3 @@
-import { KeywordsPOSTRequestDTO } from "~~/shared/dtos/keywords.post.req.dto"
-
 export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)

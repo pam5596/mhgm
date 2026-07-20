@@ -1,6 +1,3 @@
-import { PUTBroadCastService } from "~~/server/services/put_broadcast.service"
-import { BroadcastsPUTRequestDTO } from "~~/shared/dtos/broadcasts.put.req.dto"
-
 export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)
