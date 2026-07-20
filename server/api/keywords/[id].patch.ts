@@ -1,6 +1,3 @@
-import { PATCHKeywordService } from "~~/server/services/patch_keyword.service"
-import { KeywordsPATCHRequestDTO } from "~~/shared/dtos/keywords.patch.req.dto"
-
 export default defineEventHandler(async(event) => {
   const { user } = await getUserSession(event)
   const id = getRouterParam(event, 'id')
