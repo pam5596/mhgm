@@ -1,4 +1,3 @@
-import z, { type ZodError } from "zod";
 import { BaseError } from "./base";
 
 export class ParameterMissingError<I> extends BaseError {

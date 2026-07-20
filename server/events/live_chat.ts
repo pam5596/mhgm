@@ -1,5 +1,5 @@
 import type { Socket } from "socket.io";
-import { SocketAuth } from "~~/shared/types/socket_auth";
+import type { SocketAuth } from "~~/shared/types/socket_auth";
 
 export const liveChatLister = async (socket: Socket) => {
   console.log(`Live Chat Connected: ${socket.id}`);
