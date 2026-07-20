@@ -39,6 +39,7 @@ export class SocketLiveChatConnectionService
 				});
 
 				await this.userRepository.client.$transaction(async (tx) => {
+					this.userRepository.client = tx
 					const author = await this.userRepository.upsert(
 						new UserModel({
 							channel_id: chat.author.channelId,
