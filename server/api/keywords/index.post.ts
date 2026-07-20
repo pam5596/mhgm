@@ -1,15 +1,19 @@
+import { KeywordsPOSTRequestDTO } from "~~/shared/dtos/keywords.post.req.dto"
+
 export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)
 
-  await new PATCHUserSettingsService(
-    settingRepository
+  const response = await new POSTKeywordService(
+    keywordRepository
   ).execute(
-    new UsersSettingsPATCHRequestDTO({
+    new KeywordsPOSTRequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       },
       body
     })
   )
+
+  return response.values.body
 })
