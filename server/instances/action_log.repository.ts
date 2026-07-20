@@ -1,0 +1,1 @@
+export const actionLogRepository = new ActionLogRepository(prismaClient)
