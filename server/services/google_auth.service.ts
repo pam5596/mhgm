@@ -53,7 +53,6 @@ export class GoogleAuthService
       this.constructor.name,
       channel
     )
-    console.log(channel)
 
     const finded_user = await this.userRepository.findByChannelID(channel.id!)
     if (finded_user) {
