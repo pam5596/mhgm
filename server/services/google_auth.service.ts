@@ -62,6 +62,9 @@ export class GoogleAuthService
           channel_id: finded_user.channel_id,
           name: finded_user.name,
           avatar: finded_user.avatar
+        },
+        secure: {
+          access_token
         }
       })
     } else {
@@ -105,6 +108,9 @@ export class GoogleAuthService
             channel_id: user.channel_id,
             name: user.name,
             avatar: user.avatar
+          },
+          secure: {
+            access_token
           }
         })
       })
