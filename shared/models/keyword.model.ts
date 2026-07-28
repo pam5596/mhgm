@@ -3,16 +3,9 @@ import { ActionEnum } from "../enums/action.enum";
 import { BaseModel } from "./_base";
 import type { Keyword } from "./interfaces/keyword.interface";
 
-export class KeywordModel extends BaseModel<Keyword> implements Keyword {
-	readonly id?: number;
-	readonly keyword!: string;
-	readonly action!: (typeof ActionEnum)[keyof typeof ActionEnum];
-	readonly created_at?: Date;
-	readonly user_id!: number;
-
+export class KeywordModel extends BaseModel<Keyword> {
 	constructor(keyword: Keyword) {
 		super(keyword, KeywordModel.schema());
-		Object.assign(this, keyword);
 	}
 
 	private static schema() {
@@ -27,21 +20,8 @@ export class KeywordModel extends BaseModel<Keyword> implements Keyword {
 
 	updateKeyword(keyword: string) {
 		return new KeywordModel({
-			id: this.id,
-			keyword,
-			action: this.action,
-			created_at: this.created_at,
-			user_id: this.user_id,
+			...this.values,
+			keyword
 		});
-	}
-
-	override toObject(): Keyword {
-		return {
-			id: this.id,
-			keyword: this.keyword,
-			action: this.action,
-			created_at: this.created_at,
-			user_id: this.user_id,
-		};
 	}
 }

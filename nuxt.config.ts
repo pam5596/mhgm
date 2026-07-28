@@ -19,7 +19,6 @@ export default defineNuxtConfig({
 				resolve(__dirname, "./server/repositories"),
 				resolve(__dirname, "./server/clients"),
 				resolve(__dirname, "./server/services"),
-				resolve(__dirname, "./server/events"),
 				resolve(__dirname, "./server/instances"),
 			],
 		},

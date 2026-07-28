@@ -29,10 +29,6 @@ describe("UserModelの単体テスト", () => {
 		expect(() => new UserModel({ ...values, avatar: "http" })).toThrow();
 	});
 
-	it("toObjectメソッドがobjectを返す", () => {
-		expect(new UserModel(values).toObject()).toEqual(values);
-	});
-
 	it("updateメソッドが値を更新できる", () => {
 		const model = new UserModel(values);
 		const updated_model = model.update({
@@ -40,7 +36,7 @@ describe("UserModelの単体テスト", () => {
 			name: "update_name",
 		});
 
-		expect(updated_model.avatar).toBe("https://update.com");
-		expect(updated_model.name).toBe("update_name");
+		expect(updated_model.values.avatar).toBe("https://update.com");
+		expect(updated_model.values.name).toBe("update_name");
 	});
 });

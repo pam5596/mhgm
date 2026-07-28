@@ -2,18 +2,9 @@ import z from "zod";
 import { BaseModel } from "./_base";
 import type { Broadcast } from "./interfaces/broadcast.interface";
 
-export class BroadcastModel extends BaseModel<Broadcast> implements Broadcast {
-	readonly id?: number;
-	readonly title!: string;
-	readonly thumbnail!: string;
-	readonly stream_id!: string;
-	readonly begin_at?: Date;
-	readonly end_at!: Date | null;
-	readonly user_id!: number;
-
+export class BroadcastModel extends BaseModel<Broadcast> {
 	constructor(broadcast: Broadcast) {
 		super(broadcast, BroadcastModel.schema());
-		Object.assign(this, broadcast);
 	}
 
 	private static schema() {
@@ -30,25 +21,8 @@ export class BroadcastModel extends BaseModel<Broadcast> implements Broadcast {
 
 	updateEndAt(end_at: Date) {
 		return new BroadcastModel({
-			id: this.id,
-			title: this.title,
-			thumbnail: this.thumbnail,
-			stream_id: this.stream_id,
-			begin_at: this.begin_at,
+			...this.values,
 			end_at,
-			user_id: this.user_id,
 		});
-	}
-
-	override toObject(): Broadcast {
-		return {
-			id: this.id,
-			title: this.title,
-			thumbnail: this.thumbnail,
-			stream_id: this.stream_id,
-			begin_at: this.begin_at,
-			end_at: this.end_at,
-			user_id: this.user_id,
-		};
 	}
 }
