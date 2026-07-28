@@ -1,4 +1,4 @@
-import { NotFoundError } from "~~/shared/errors/not_found";
+import { NotFoundError } from "../../shared/errors/not_found";
 import type { UsersSettingsPATCHRequestDTO } from "../../shared/dtos/users_settings.patch.req.dto";
 import type { SettingRepository } from "../repositories/setting.repository";
 import type { BaseService } from "./_base";

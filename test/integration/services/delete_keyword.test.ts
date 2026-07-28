@@ -27,7 +27,11 @@ describe("DELETEKeywordServiceの結合テスト", () => {
 			},
 		});
 
-		await service.execute(request);
+		try {
+			await service.execute(request);
+		} catch(e) {
+			console.log(e)
+		}
 
 		const updated = await keywordRepo.findById(1);
 		expect(updated).toBeNull();

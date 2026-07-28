@@ -10,6 +10,7 @@ export class SocketLiveChatConnectionDTO extends BaseDTO<SocketLiveChatConnectio
 	private static schema() {
 		return z.strictObject({
 			socket_auth: z.strictObject({
+				user_id: z.number(),
 				channel_id: z.string(),
 				stream_id: z.string(),
 				broadcast_id: z.number(),

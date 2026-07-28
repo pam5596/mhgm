@@ -33,6 +33,6 @@ describe("PATCHKeywordServiceの結合テスト", () => {
 		await service.execute(request);
 
 		const updated = await keywordRepo.findById(1);
-		expect(updated?.keyword).toBe("updated");
+		expect(updated?.values.keyword).toBe("updated");
 	});
 });

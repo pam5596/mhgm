@@ -21,7 +21,7 @@ export class SettingRepository extends BaseRepository {
 	update = async (model: SettingModel) =>
 		await this.prismaErrorHandler("update", async () => {
 			const updated_setting = await this.client.setting.update({
-				where: { user_id: model.user_id },
+				where: { user_id: model.values.user_id },
 				data: model.toIgnoreUndefinedObject(),
 			});
 			return new SettingModel(updated_setting);

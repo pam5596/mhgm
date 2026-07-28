@@ -7,5 +7,6 @@ export interface SocketLiveChatConnection {
 		channel_id: User["channel_id"];
 		stream_id: Broadcast["stream_id"];
 		broadcast_id: number;
+		user_id: number;
 	};
 }

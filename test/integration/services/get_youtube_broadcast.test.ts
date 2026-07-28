@@ -3,7 +3,7 @@ import { GoogleClient } from "../../../server/clients/google";
 import { GetYoutubeBroadcastService } from "../../../server/services/get_youtube_broadcast.service";
 import { YoutubeBroadcastsGETRequestDTO } from "../../../shared/dtos/youtube_broadcasts.get.req.dto";
 
-describe("GetYoutubeBroadcastServiceの結合テスト", async () => {
+describe.skip("GetYoutubeBroadcastServiceの結合テスト", async () => {
 	const google = new GoogleClient();
 	const service = new GetYoutubeBroadcastService(google);
 

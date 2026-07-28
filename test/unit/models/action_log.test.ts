@@ -21,8 +21,4 @@ describe("ActionLogModelの単体テスト", () => {
 	it("messageでエラーになる", () => {
 		expect(() => new ActionLogModel({ ...values, message: "" })).toThrow();
 	});
-
-	it("toObjectメソッドがobjectを返す", () => {
-		expect(new ActionLogModel(values).toObject()).toEqual(values);
-	});
 });

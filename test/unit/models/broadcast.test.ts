@@ -32,8 +32,4 @@ describe("BroadcastModelの単体テスト", () => {
 	it("stream_idでエラーになる", () => {
 		expect(() => new BroadcastModel({ ...values, stream_id: "" })).toThrow();
 	});
-
-	it("toObjectメソッドがobjectを返す", () => {
-		expect(new BroadcastModel(values).toObject()).toEqual(values);
-	});
 });

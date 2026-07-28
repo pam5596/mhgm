@@ -30,10 +30,6 @@ describe("KeywordModelの単体テスト", () => {
 
 	it("keywordを更新できる", () => {
 		const model = new KeywordModel(values);
-		expect(model.updateKeyword("update").keyword).toBe("update");
-	});
-
-	it("toObjectメソッドがobjectを返す", () => {
-		expect(new KeywordModel(values).toObject()).toEqual(values);
+		expect(model.updateKeyword("update").values.keyword).toBe("update");
 	});
 });

@@ -5,8 +5,8 @@ export class UserRepository extends BaseRepository {
 	upsert = async (model: UserModel) =>
 		await this.prismaErrorHandler("create", async () => {
 			const upserted_user = await this.client.user.upsert({
-				where: { channel_id: model.channel_id },
-				update: { name: model.name, avatar: model.avatar },
+				where: { channel_id: model.values.channel_id },
+				update: { name: model.values.name, avatar: model.values.avatar },
 				create: model.toIgnoreUndefinedObject(),
 			});
 

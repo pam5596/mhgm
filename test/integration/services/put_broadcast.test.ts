@@ -32,8 +32,8 @@ describe("PUTBroadCastServiceの結合テスト", () => {
 		const saved = await broadcastRepo.findByStreamId("stream_id_1");
 
 		expect(result.values.body.id).toBeTruthy();
-		expect(saved?.title).toBe("live title");
-		expect(saved?.thumbnail).toBe("https://example.com/thumb.jpg");
-		expect(saved?.user_id).toBe(1);
+		expect(saved?.values.title).toBe("live title");
+		expect(saved?.values.thumbnail).toBe("https://example.com/thumb.jpg");
+		expect(saved?.values.user_id).toBe(1);
 	});
 });

@@ -1,4 +1,4 @@
-import { NotFoundError } from "~~/shared/errors/not_found";
+import { NotFoundError } from "../../shared/errors/not_found";
 import type { KeywordsPATCHRequestDTO } from "../../shared/dtos/keywords.patch.req.dto";
 import { ForbiddenError } from "../../shared/errors/forbidden";
 import type { KeywordRepository } from "../repositories/keyword.repository";
@@ -16,7 +16,7 @@ export class PATCHKeywordService
 		const keyword = await this.keywordRepository.findById(id);
 		if (!keyword)
 			throw new NotFoundError(this.constructor.name, request.values);
-		if (keyword.user_id !== user_id)
+		if (keyword.values.user_id !== user_id)
 			throw new ForbiddenError(this.constructor.name, request.values);
 
 		await this.keywordRepository.update(

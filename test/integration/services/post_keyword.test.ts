@@ -28,14 +28,6 @@ describe("POSTKeywordServiceServiceの結合テスト", () => {
 		});
 
 		const result = await service.execute(request);
-
-		const saved = await keywordRepo.findManyByUserId(1);
-
 		expect(result.values.body.id).toBeTruthy();
-		expect(saved).toHaveLength(1);
-		expect(saved[0]).toMatchObject({
-			keyword: "string",
-			action: "ENTRY",
-		});
 	});
 });

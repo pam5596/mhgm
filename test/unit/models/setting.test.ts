@@ -21,10 +21,6 @@ describe("SettingModelの単体テスト", () => {
 
 	it("モデルを更新できる", () => {
 		const model = new SettingModel(values);
-		expect(model.update({ quest_limit: 3 }).quest_limit).toBe(3);
-	});
-
-	it("toObjectメソッドがobjectを返す", () => {
-		expect(new SettingModel(values).toObject()).toEqual(values);
+		expect(model.update({ quest_limit: 3 }).values.quest_limit).toBe(3);
 	});
 });
