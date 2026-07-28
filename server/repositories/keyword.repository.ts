@@ -29,7 +29,7 @@ export class KeywordRepository extends BaseRepository {
 	update = async (model: KeywordModel) =>
 		await this.prismaErrorHandler("update", async () => {
 			const updated_keyword = await this.client.keyword.update({
-				where: { id: model.id },
+				where: { id: model.values.id },
 				data: model.toIgnoreUndefinedObject(),
 			});
 			return new KeywordModel(updated_keyword);

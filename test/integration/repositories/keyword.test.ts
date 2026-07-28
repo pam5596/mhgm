@@ -17,8 +17,8 @@ describe("KeywordRepositoryの結合テスト", () => {
 		const keyword = keywords(1);
 		const created = keyword && (await repo.create(keyword));
 
-		expect(created?.id).toBeTruthy();
-		expect(created?.keyword).toBe("keyword");
+		expect(created?.values.id).toBeTruthy();
+		expect(created?.values.keyword).toBe("keyword");
 	});
 
 	it("キーワードをidで取得できる", async () => {
@@ -29,7 +29,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 		await repo.create(keyword!);
 
 		const finded = await repo.findById(1);
-		expect(finded?.id).toBe(1);
+		expect(finded?.values.id).toBe(1);
 	});
 
 	it("キーワードをuser_idで取得できる", async () => {
@@ -40,8 +40,8 @@ describe("KeywordRepositoryの結合テスト", () => {
 		await repo.create(keyword!);
 
 		const finded = await repo.findManyByUserId(1);
-		expect(finded[0]?.user_id).toBe(1);
-		expect(finded[0]?.keyword).toBe("keyword");
+		expect(finded[0]?.values.user_id).toBe(1);
+		expect(finded[0]?.values.keyword).toBe("keyword");
 	});
 
 	it("キーワードを更新できる", async () => {
@@ -54,7 +54,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 		const updated_keyword = created?.updateKeyword("updated");
 		const updated = updated_keyword && (await repo.update(updated_keyword));
 
-		expect(updated?.keyword).toBe("updated");
+		expect(updated?.values.keyword).toBe("updated");
 	});
 
 	it("キーワードを削除できる", async () => {
@@ -63,7 +63,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 
 		const keyword = keywords(1);
 		const created = keyword && (await repo.create(keyword));
-		await repo.destroyById(created!.id!);
+		await repo.destroyById(created!.values.id!);
 
 		const finded = await repo.findManyByUserId(1);
 		expect(finded).toHaveLength(0);

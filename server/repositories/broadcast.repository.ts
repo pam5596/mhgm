@@ -6,11 +6,11 @@ export class BroadcastRepository extends BaseRepository {
 	upsert = async (model: BroadcastModel) =>
 		await this.prismaErrorHandler("create", async () => {
 			const upserted_broadcast = await this.client.broadcast.upsert({
-				where: { stream_id: model.stream_id },
+				where: { stream_id: model.values.stream_id },
 				update: {
-					title: model.title,
-					thumbnail: model.thumbnail,
-					end_at: model.end_at,
+					title: model.values.title,
+					thumbnail: model.values.thumbnail,
+					end_at: model.values.end_at,
 				},
 				create: model.toIgnoreUndefinedObject(),
 			});

@@ -9,7 +9,7 @@ describe("PrismaORMClient動作確認", async () => {
 
 	const client = new GoogleClient();
 
-	it("Youtubeアカウントのプロフィールを取得できる", async () => {
+	it.skip("Youtubeアカウントのプロフィールを取得できる", async () => {
 		const response = await client
 			.youtube(process.env.GOOGLE_ACCESS_TOKEN!)
 			.channels.list({

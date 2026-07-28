@@ -19,6 +19,6 @@ export class PUTBroadCastService
 			}),
 		);
 
-		return new BroadcastsPUTResponseDTO({ body: { id: broadcast.id } });
+		return new BroadcastsPUTResponseDTO({ body: { id: broadcast.values.id } });
 	}
 }

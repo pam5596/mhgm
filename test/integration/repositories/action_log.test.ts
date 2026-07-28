@@ -27,9 +27,9 @@ describe("ActionLogRepositoryの結合テスト", () => {
 		const action_log_model = action_log(1);
 		const created = action_log_model && (await repo.create(action_log_model));
 
-		expect(created?.id).toBeTruthy();
-		expect(created?.created_at).toBeTruthy();
-		expect(created?.message).toBe("message");
+		expect(created?.values.id).toBeTruthy();
+		expect(created?.values.created_at).toBeTruthy();
+		expect(created?.values.message).toBe("message");
 	});
 
 	it("アクションログを削除できる", async () => {
@@ -44,12 +44,12 @@ describe("ActionLogRepositoryの結合テスト", () => {
 
 		const action_log_model = action_log(1);
 		const created = action_log_model && (await repo.create(action_log_model));
-		await repo.destroyById(created!.id!);
+		await repo.destroyById(created!.values.id!);
 
 		const deleted =
-			created?.id &&
+			created?.values.id &&
 			(await prisma.actionLog.findUnique({
-				where: { id: created.id },
+				where: { id: created.values.id },
 			}));
 		expect(deleted).toBeNull();
 	});

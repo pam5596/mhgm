@@ -30,6 +30,6 @@ describe("PATCHUserSettingsService", () => {
 		await service.execute(request);
 
 		const updated = await settingRepo.findByUserId(1);
-		expect(updated?.quest_limit).toBe(5);
+		expect(updated?.values.quest_limit).toBe(5);
 	});
 });

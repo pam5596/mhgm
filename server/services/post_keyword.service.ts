@@ -17,7 +17,7 @@ export class POSTKeywordService
 
 		return new KeywordsPOSTResponseDTO({
 			body: {
-				id: keyword.id,
+				id: keyword.values.id,
 			},
 		});
 	}

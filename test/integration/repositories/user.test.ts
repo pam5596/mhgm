@@ -11,15 +11,15 @@ describe("UserRepositoryの結合テスト", () => {
 	it("ユーザーをupsertできる", async () => {
 		const user = users(1);
 		const inserted = user && (await repo.upsert(user));
-		expect(inserted?.id).toBe(1);
-		expect(inserted?.created_at).toBeTruthy();
+		expect(inserted?.values.id).toBe(1);
+		expect(inserted?.values.created_at).toBeTruthy();
 
 		const updated_user = user?.update({
 			name: "update_name",
 			avatar: "https://update.avatar.com",
 		});
 		const updated = updated_user && (await repo.upsert(updated_user));
-		expect(updated?.name).toBe("update_name");
+		expect(updated?.values.name).toBe("update_name");
 	});
 
 	it("ユーザーをidで取得できる", async () => {
@@ -27,7 +27,7 @@ describe("UserRepositoryの結合テスト", () => {
 		const inserted = user && (await repo.upsert(user));
 
 		const finded = await repo.findByID(1);
-		expect(finded?.id).toBe(inserted?.id);
+		expect(finded?.values.id).toBe(inserted?.values.id);
 	});
 
 	it("ユーザーをchannel_idで取得できる", async () => {
@@ -35,14 +35,14 @@ describe("UserRepositoryの結合テスト", () => {
 		const inserted = user && (await repo.upsert(user));
 
 		const finded = await repo.findByChannelID("channel_id_of_user_id=01");
-		expect(finded?.channel_id).toBe(inserted?.channel_id);
+		expect(finded?.values.channel_id).toBe(inserted?.values.channel_id);
 	});
 
 	it("ユーザーを削除できる", async () => {
 		const user = users(1);
 		const inserted = user && (await repo.upsert(user));
 		await repo.destroy(1);
-		const finded = inserted?.id && (await repo.findByID(inserted.id));
+		const finded = inserted?.values.id && (await repo.findByID(inserted.values.id));
 
 		expect(finded).toBeNull();
 	});

@@ -1,4 +1,4 @@
-import { NotFoundError } from "~~/shared/errors/not_found";
+import { NotFoundError } from "../../shared/errors/not_found";
 import type { UsersSettingsGETRequestDTO } from "../../shared/dtos/users_settings.get.req.dto";
 import { UsersSettingsGETResponseDTO } from "../../shared/dtos/users_settings.get.res.dto";
 import type { KeywordRepository } from "../repositories/keyword.repository";
@@ -25,12 +25,12 @@ export class GetUserSettingsService
 		return new UsersSettingsGETResponseDTO({
 			body: {
 				setting: {
-					quest_limit: setting.quest_limit,
+					quest_limit: setting.values.quest_limit,
 				},
 				keywords: keywords.map((k) => ({
-					id: k.id,
-					keyword: k.keyword,
-					action: k.action,
+					id: k.values.id,
+					keyword: k.values.keyword,
+					action: k.values.action,
 				})),
 			},
 		});

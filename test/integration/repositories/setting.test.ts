@@ -17,8 +17,8 @@ describe("SettingRepositoryの結合テスト", () => {
 		const setting = settings(1);
 		const created = setting && (await repo.create(setting));
 
-		expect(created?.user_id).toBe(1);
-		expect(created?.quest_limit).toBe(1);
+		expect(created?.values.user_id).toBe(1);
+		expect(created?.values.quest_limit).toBe(1);
 	});
 
 	it("設定をuser_idで取得できる", async () => {
@@ -29,7 +29,7 @@ describe("SettingRepositoryの結合テスト", () => {
 		await repo.create(setting!);
 
 		const finded = await repo.findByUserId(1);
-		expect(finded?.user_id).toBe(1);
+		expect(finded?.values.user_id).toBe(1);
 	});
 
 	it("設定を更新できる", async () => {
@@ -42,7 +42,7 @@ describe("SettingRepositoryの結合テスト", () => {
 		const updated_setting = setting?.update({ quest_limit: 5 });
 		const updated = updated_setting && (await repo.update(updated_setting));
 
-		expect(updated?.quest_limit).toBe(5);
+		expect(updated?.values.quest_limit).toBe(5);
 	});
 
 	it("設定を削除できる", async () => {

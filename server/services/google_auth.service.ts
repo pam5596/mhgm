@@ -1,4 +1,4 @@
-import type { AuthGoogleGETRequestDTO } from "~~/shared/dtos/auth_google.get.req.dto";
+import type { AuthGoogleGETRequestDTO } from "../../shared/dtos/auth_google.get.req.dto";
 import { NotFoundError } from "../../shared/errors/not_found";
 import type { GoogleClient } from "../clients/google";
 import type { BaseService } from "./_base";
@@ -58,10 +58,10 @@ export class GoogleAuthService
     if (finded_user) {
       await setUserSession(event, {
         user: {
-          user_id: finded_user.id!,
-          channel_id: finded_user.channel_id,
-          name: finded_user.name,
-          avatar: finded_user.avatar
+          user_id: finded_user.values.id!,
+          channel_id: finded_user.values.channel_id,
+          name: finded_user.values.name,
+          avatar: finded_user.values.avatar
         },
         secure: {
           access_token
@@ -81,7 +81,7 @@ export class GoogleAuthService
         this.settingRepository.client = tx
         await this.settingRepository.create(
           new SettingModel({
-            user_id: user.id!,
+            user_id: user.values.id!,
             quest_limit: 2
           })
         )
@@ -89,14 +89,14 @@ export class GoogleAuthService
         this.keywordRepository.client = tx
         await this.keywordRepository.create(
           new KeywordModel({
-            user_id: user.id!,
+            user_id: user.values.id!,
             keyword: "参加希望",
             action: "ENTRY"
           })
         )
         await this.keywordRepository.create(
           new KeywordModel({
-            user_id: user.id!,
+            user_id: user.values.id!,
             keyword: "参加辞退",
             action: "CANCEL"
           })
@@ -104,10 +104,10 @@ export class GoogleAuthService
 
         await setUserSession(event, {
           user: {
-            user_id: user.id!,
-            channel_id: user.channel_id,
-            name: user.name,
-            avatar: user.avatar
+            user_id: user.values.id!,
+            channel_id: user.values.channel_id,
+            name: user.values.name,
+            avatar: user.values.avatar
           },
           secure: {
             access_token
