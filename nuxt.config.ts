@@ -1,10 +1,5 @@
 import { resolve } from "path";
 import { searchForWorkspaceRoot } from "vite";
-import attachSocketIoEvent from "./server/utils/attach-socket-io-events";
-import {
-	initSocketIOAsHooks,
-	socketIOClient,
-} from "./server/instances/socket.io.client";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -56,13 +51,6 @@ export default defineNuxtConfig({
 	i18n: {
 		defaultLocale: "ja",
 		locales: [{ code: "ja", name: "日本語", file: "ja.json" }],
-	},
-
-	hooks: {
-		listen(server) {
-			initSocketIOAsHooks(server);
-			if(socketIOClient) attachSocketIoEvent(socketIOClient);
-		},
 	},
 
 	runtimeConfig: {
