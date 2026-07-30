@@ -3,7 +3,7 @@ export default defineEventHandler(async(event) => {
   const id = getRouterParam(event, 'id')
   const body = await readBody(event)
 
-  await new PATCHKeywordService(
+  await new AuthPublicPATCHKeywordService(
     keywordRepository
   ).execute(
     new AuthPublicKeywordsPATCHRequestDTO({

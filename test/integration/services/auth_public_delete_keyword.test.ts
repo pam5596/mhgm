@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
-import { DELETEKeywordService } from "../../../server/services/delete_keyword.service";
+import { AuthPublicDELETEKeywordService } from "../../../server/services/auth_public_delete_keyword.service";
 import { AuthPublicKeywordsDELETERequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
 
-describe("DELETEKeywordServiceの結合テスト", () => {
+describe("AuthPublicDELETEKeywordServiceの結合テスト", () => {
 	const keywordRepo = new KeywordRepository(prisma);
-	const service = new DELETEKeywordService(keywordRepo);
+	const service = new AuthPublicDELETEKeywordService(keywordRepo);
 
 	withSetupDB();
 

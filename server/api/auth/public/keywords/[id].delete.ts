@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
   const id = getRouterParam(event, 'id')
 
-  await new DELETEKeywordService(
+  await new AuthPublicDELETEKeywordService(
     keywordRepository
   ).execute(
     new AuthPublicKeywordsDELETERequestDTO({

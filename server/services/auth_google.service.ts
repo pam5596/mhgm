@@ -10,7 +10,7 @@ import { UnknownError } from "../../shared/errors/unknown";
 import { SettingModel } from "~~/shared/models/setting.model";
 import { KeywordModel } from "~~/shared/models/keyword.model";
 
-export class GoogleAuthService
+export class AuthGoogleService
   implements
     BaseService<AuthGoogleGETRequestDTO, void>
 {

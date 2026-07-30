@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { BroadcastRepository } from "../../../server/repositories/broadcast.repository";
-import { PUTBroadCastService } from "../../../server/services/put_broadcast.service";
+import { AuthPublicPUTBroadCastService } from "../../../server/services/auth_public_put_broadcast.service";
 import { AuthPublicBroadcastsPUTRequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
 
-describe("PUTBroadCastServiceの結合テスト", () => {
+describe("AuthPublicPUTBroadCastServiceの結合テスト", () => {
 	const broadcastRepo = new BroadcastRepository(prisma);
-	const service = new PUTBroadCastService(broadcastRepo);
+	const service = new AuthPublicPUTBroadCastService(broadcastRepo);
 
 	withSetupDB();
 

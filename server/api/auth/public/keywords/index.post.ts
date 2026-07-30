@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)
 
-  const response = await new POSTKeywordService(
+  const response = await new AuthPublicPOSTKeywordService(
     keywordRepository
   ).execute(
     new AuthPublicKeywordsPOSTRequestDTO({

@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
 
-  const response = await new GetUserSettingsService(
+  const response = await new AuthPublicGetUserSettingsService(
     settingRepository,
     keywordRepository
   ).execute(

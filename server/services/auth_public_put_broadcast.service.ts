@@ -3,7 +3,7 @@ import { BroadcastModel } from "../../shared/models/broadcast.model";
 import type { BroadcastRepository } from "../repositories/broadcast.repository";
 import type { BaseService } from "./_base";
 
-export class PUTBroadCastService
+export class AuthPublicPUTBroadCastService
 	implements BaseService<AuthPublicBroadcastsPUTRequestDTO, AuthPublicBroadcastsPUTResponseDTO>
 {
 	constructor(private broadcastRepository: BroadcastRepository) {}

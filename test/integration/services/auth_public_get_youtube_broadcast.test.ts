@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { GoogleClient } from "../../../server/clients/google";
-import { GetYoutubeBroadcastService } from "../../../server/services/get_youtube_broadcast.service";
+import { AuthPublicGetYoutubeBroadcastService } from "../../../server/services/auth_public_get_youtube_broadcast.service";
 import { AuthPublicYoutubeBroadcastsGETRequestDTO } from "../../../shared/dtos";
 
-describe.skip("GetYoutubeBroadcastServiceの結合テスト", async () => {
+describe.skip("AuthPublicGetYoutubeBroadcastServiceの結合テスト", async () => {
 	const google = new GoogleClient();
-	const service = new GetYoutubeBroadcastService(google);
+	const service = new AuthPublicGetYoutubeBroadcastService(google);
 
 	it("配信情報を取得できる", async () => {
 		const request = new AuthPublicYoutubeBroadcastsGETRequestDTO({

@@ -4,7 +4,7 @@ import type { KeywordRepository } from "../repositories/keyword.repository";
 import type { SettingRepository } from "../repositories/setting.repository";
 import type { BaseService } from "./_base";
 
-export class GetUserSettingsService
+export class AuthPublicGetUserSettingsService
 	implements
 		BaseService<AuthPublicUsersSettingsGETRequestDTO, AuthPublicUsersSettingsGETResponseDTO>
 {

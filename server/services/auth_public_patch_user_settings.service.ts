@@ -3,7 +3,7 @@ import type { AuthPublicUsersSettingsPATCHRequestDTO } from "../../shared/dtos";
 import type { SettingRepository } from "../repositories/setting.repository";
 import type { BaseService } from "./_base";
 
-export class PATCHUserSettingsService
+export class AuthPublicPATCHUserSettingsService
 	implements BaseService<AuthPublicUsersSettingsPATCHRequestDTO, void>
 {
 	constructor(private settingRepository: SettingRepository) {}

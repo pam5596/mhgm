@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { SettingRepository } from "../../../server/repositories/setting.repository";
-import { PATCHUserSettingsService } from "../../../server/services/patch_user_settings.service";
+import { AuthPublicPATCHUserSettingsService } from "../../../server/services/auth_public_patch_user_settings.service";
 import { AuthPublicUsersSettingsPATCHRequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
 
-describe("PATCHUserSettingsService", () => {
+describe("AuthPublicPATCHUserSettingsService", () => {
 	const settingRepo = new SettingRepository(prisma);
-	const service = new PATCHUserSettingsService(settingRepo);
+	const service = new AuthPublicPATCHUserSettingsService(settingRepo);
 
 	withSetupDB();
 

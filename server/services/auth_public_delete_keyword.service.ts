@@ -1,15 +1,13 @@
-import { NotFoundError } from "../../shared/errors/not_found";
-import type { AuthPublicKeywordsPATCHRequestDTO } from "../../shared/dtos";
-import { ForbiddenError } from "../../shared/errors/forbidden";
+import type { AuthPublicKeywordsDELETERequestDTO } from "../../shared/dtos";
 import type { KeywordRepository } from "../repositories/keyword.repository";
 import type { BaseService } from "./_base";
 
-export class PATCHKeywordService
-	implements BaseService<AuthPublicKeywordsPATCHRequestDTO, void>
+export class AuthPublicDELETEKeywordService
+	implements BaseService<AuthPublicKeywordsDELETERequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}
 
-	async execute(request: AuthPublicKeywordsPATCHRequestDTO) {
+	async execute(request: AuthPublicKeywordsDELETERequestDTO) {
 		const { user_id } = request.values.sessions;
 		const { id } = request.values.params;
 
@@ -19,8 +17,6 @@ export class PATCHKeywordService
 		if (keyword.values.user_id !== user_id)
 			throw new ForbiddenError(this.constructor.name, request.values);
 
-		await this.keywordRepository.update(
-			keyword.updateKeyword(request.values.body.keyword),
-		);
+		await this.keywordRepository.destroyById(id);
 	}
 }

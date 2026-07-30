@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const { secure } = await getUserSession(event)
 
-  const response = await new GetYoutubeBroadcastService(
+  const response = await new AuthPublicGetYoutubeBroadcastService(
     googleClient
   ).execute(
     new AuthPublicYoutubeBroadcastsGETRequestDTO({

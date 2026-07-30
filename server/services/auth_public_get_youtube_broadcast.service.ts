@@ -3,7 +3,7 @@ import { NotFoundError } from "../../shared/errors/not_found";
 import type { GoogleClient } from "../clients/google";
 import type { BaseService } from "./_base";
 
-export class GetYoutubeBroadcastService
+export class AuthPublicGetYoutubeBroadcastService
 	implements
 		BaseService<AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO>
 {

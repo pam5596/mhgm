@@ -4,7 +4,7 @@ import type { KeywordRepository } from "../repositories/keyword.repository";
 import type { BaseService } from "./_base";
 import type { Keyword } from "../../shared/models/interfaces/keyword.interface";
 
-export class POSTKeywordService
+export class AuthPublicPOSTKeywordService
 	implements BaseService<AuthPublicKeywordsPOSTRequestDTO, AuthPublicKeywordsPOSTResponseDTO>
 {
 	constructor(private keywordRepository: KeywordRepository) {}

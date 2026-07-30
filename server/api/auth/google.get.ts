@@ -16,7 +16,7 @@ export default defineOAuthGoogleEventHandler({
       email: string
     }
   }) {
-    await new GoogleAuthService(
+    await new AuthGoogleService(
       googleClient,
       userRepository,
       settingRepository,

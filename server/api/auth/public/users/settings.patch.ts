@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)
 
-  await new PATCHUserSettingsService(
+  await new AuthPublicPATCHUserSettingsService(
     settingRepository
   ).execute(
     new AuthPublicUsersSettingsPATCHRequestDTO({
