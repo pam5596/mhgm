@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { ParameterMissingError } from "../errors/parameter_missing";
-import type { BaseDTOInterface } from "./interfaces/_base";
 
-export abstract class BaseDTO<I extends BaseDTOInterface> {
+export abstract class BaseDTO<I> {
 	readonly values: I;
 
 	constructor(values: I, schema: z.ZodType<I>) {

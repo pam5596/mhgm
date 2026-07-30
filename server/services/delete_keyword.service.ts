@@ -1,14 +1,14 @@
-import type { KeywordsDELETERequestDTO } from "../../shared/dtos/keywords.delete.req.dto";
+import type { AuthPublicKeywordsDELETERequestDTO } from "../../shared/dtos";
 import type { KeywordRepository } from "../repositories/keyword.repository";
 import type { BaseService } from "./_base";
 
 export class DELETEKeywordService
-	implements BaseService<KeywordsDELETERequestDTO, void>
+	implements BaseService<AuthPublicKeywordsDELETERequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}
 
-	async execute(request: KeywordsDELETERequestDTO) {
-		const { user_id } = request.values.sessions.user;
+	async execute(request: AuthPublicKeywordsDELETERequestDTO) {
+		const { user_id } = request.values.sessions;
 		const { id } = request.values.params;
 
 		const keyword = await this.keywordRepository.findById(id);

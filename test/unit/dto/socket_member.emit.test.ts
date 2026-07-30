@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SocketMemberEmitDTO } from "../../../shared/dtos/socket_member.emit";
+import { SocketMemberEmitDTO } from "../../../shared/dtos";
 
 describe("SocketMemberEmitDTOの単体テスト", () => {
 	const values = {

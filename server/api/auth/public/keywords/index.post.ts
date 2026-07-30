@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const response = await new POSTKeywordService(
     keywordRepository
   ).execute(
-    new KeywordsPOSTRequestDTO({
+    new AuthPublicKeywordsPOSTRequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       },

@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { AuthGoogleGETRequestDTO } from "../../../shared/dtos/auth_google.get.req.dto";
+import { AuthGoogleGETRequestDTO } from "../../../shared/dtos";
 
 describe("AuthGoogleGETRequestDTOの単体テスト", () => {
 	const values = {
 		sessions: {
-			secure: {
-        access_token: "string"
-      }
+			access_token: "string"
 		},
 	};
 

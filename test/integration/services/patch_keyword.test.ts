@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { PATCHKeywordService } from "../../../server/services/patch_keyword.service";
-import { KeywordsPATCHRequestDTO } from "../../../shared/dtos/keywords.patch.req.dto";
+import { AuthPublicKeywordsPATCHRequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
@@ -16,11 +16,9 @@ describe("PATCHKeywordServiceの結合テスト", () => {
 		await create("user", 1);
 		await create("keyword", 1);
 
-		const request = new KeywordsPATCHRequestDTO({
+		const request = new AuthPublicKeywordsPATCHRequestDTO({
 			sessions: {
-				user: {
-					user_id: 1,
-				},
+				user_id: 1,
 			},
 			params: {
 				id: 1,

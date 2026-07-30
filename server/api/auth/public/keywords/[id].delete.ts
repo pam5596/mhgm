@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   await new DELETEKeywordService(
     keywordRepository
   ).execute(
-    new KeywordsDELETERequestDTO({
+    new AuthPublicKeywordsDELETERequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       },

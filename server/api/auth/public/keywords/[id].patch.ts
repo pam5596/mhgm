@@ -6,7 +6,7 @@ export default defineEventHandler(async(event) => {
   await new PATCHKeywordService(
     keywordRepository
   ).execute(
-    new KeywordsPATCHRequestDTO({
+    new AuthPublicKeywordsPATCHRequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       },

@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { WebhooksMemberPOSTRequestDTO } from "../../../shared/dtos/webhooks_member.post.req.dto";
+import { AuthPublicWebhooksMemberPOSTRequestDTO } from "../../../shared/dtos";
 
-describe("WebhooksMemberPOSTRequestDTOの単体テスト", () => {
+describe("AuthPublicWebhooksMemberPOSTRequestDTOの単体テスト", () => {
 	const values = {
 		sessions: {
-			user: {
-				channel_id: "string",
-			},
+			channel_id: "string",
 		},
 		body: {
 			users: [
@@ -23,6 +21,6 @@ describe("WebhooksMemberPOSTRequestDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new WebhooksMemberPOSTRequestDTO(values)).not.toThrow();
+		expect(() => new AuthPublicWebhooksMemberPOSTRequestDTO(values)).not.toThrow();
 	});
 });

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { YoutubeBroadcastsGETResponseDTO } from "../../../shared/dtos/youtube_broadcasts.get.res.dto";
+import { AuthPublicYoutubeBroadcastsGETResponseDTO } from "../../../shared/dtos";
 
-describe("YoutubeBroadcastsGETResponseDTOの単体テスト", () => {
+describe("AuthPublicYoutubeBroadcastsGETResponseDTOの単体テスト", () => {
 	const values = {
 		body: {
 			title: "title",
@@ -11,6 +11,6 @@ describe("YoutubeBroadcastsGETResponseDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new YoutubeBroadcastsGETResponseDTO(values)).not.toThrow();
+		expect(() => new AuthPublicYoutubeBroadcastsGETResponseDTO(values)).not.toThrow();
 	});
 });

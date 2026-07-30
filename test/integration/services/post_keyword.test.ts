@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { POSTKeywordService } from "../../../server/services/post_keyword.service";
-import { KeywordsPOSTRequestDTO } from "../../../shared/dtos/keywords.post.req.dto";
+import { AuthPublicKeywordsPOSTRequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
@@ -15,11 +15,9 @@ describe("POSTKeywordServiceServiceの結合テスト", () => {
 	it("キーワードをDBに保存してIDを返す", async () => {
 		await create("user", 1);
 
-		const request = new KeywordsPOSTRequestDTO({
+		const request = new AuthPublicKeywordsPOSTRequestDTO({
 			sessions: {
-				user: {
-					user_id: 1,
-				},
+				user_id: 1,
 			},
 			body: {
 				keyword: "string",

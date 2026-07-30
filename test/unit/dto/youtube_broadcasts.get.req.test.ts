@@ -1,16 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { YoutubeBroadcastsGETRequestDTO } from "../../../shared/dtos/youtube_broadcasts.get.req.dto";
+import { AuthPublicYoutubeBroadcastsGETRequestDTO } from "../../../shared/dtos";
 
-describe("YoutubeBroadcastsGETRequestDTOの単体テスト", () => {
+describe("AuthPublicYoutubeBroadcastsGETRequestDTOの単体テスト", () => {
 	const values = {
 		sessions: {
-			secure: {
-				access_token: "string",
-			},
+			access_token: "string",
 		},
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new YoutubeBroadcastsGETRequestDTO(values)).not.toThrow();
+		expect(() => new AuthPublicYoutubeBroadcastsGETRequestDTO(values)).not.toThrow();
 	});
 });

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { BroadcastsPUTResponseDTO } from "../../../shared/dtos/broadcasts.put.res.dto";
+import { AuthPublicBroadcastsPUTResponseDTO } from "../../../shared/dtos";
 
-describe("BroadcastsPUTResponseDTOの単体テスト", () => {
+describe("AuthPublicBroadcastsPUTResponseDTOの単体テスト", () => {
 	const values = {
 		body: {
 			id: 1,
@@ -9,6 +9,6 @@ describe("BroadcastsPUTResponseDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new BroadcastsPUTResponseDTO(values)).not.toThrow();
+		expect(() => new AuthPublicBroadcastsPUTResponseDTO(values)).not.toThrow();
 	});
 });

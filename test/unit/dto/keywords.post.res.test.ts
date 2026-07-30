@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { KeywordsPOSTResponseDTO } from "../../../shared/dtos/keywords.post.res.dto";
+import { AuthPublicKeywordsPOSTResponseDTO } from "../../../shared/dtos";
 
-describe("KeywordsPOSTResponseDTOの単体テスト", () => {
+describe("AuthPublicKeywordsPOSTResponseDTOの単体テスト", () => {
 	const values = {
 		body: {
 			id: 1,
@@ -9,6 +9,6 @@ describe("KeywordsPOSTResponseDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new KeywordsPOSTResponseDTO(values)).not.toThrow();
+		expect(() => new AuthPublicKeywordsPOSTResponseDTO(values)).not.toThrow();
 	});
 });

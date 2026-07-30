@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { KeywordsDELETERequestDTO } from "../../../shared/dtos/keywords.delete.req.dto";
+import { AuthPublicKeywordsDELETERequestDTO } from "../../../shared/dtos";
 
-describe("KeywordsDELETERequestDTOの単体テスト", () => {
+describe("AuthPublicKeywordsDELETERequestDTOの単体テスト", () => {
 	const values = {
 		sessions: {
-			user: {
-				user_id: 1,
-			},
+			user_id: 1,
 		},
 		params: {
 			id: "1",
@@ -14,6 +12,6 @@ describe("KeywordsDELETERequestDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new KeywordsDELETERequestDTO(values)).not.toThrow();
+		expect(() => new AuthPublicKeywordsDELETERequestDTO(values)).not.toThrow();
 	});
 });

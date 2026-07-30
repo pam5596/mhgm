@@ -1,4 +1,4 @@
-import type { AuthGoogleGETRequestDTO } from "../../shared/dtos/auth_google.get.req.dto";
+import type { AuthGoogleGETRequestDTO } from "../../shared/dtos";
 import { NotFoundError } from "../../shared/errors/not_found";
 import type { GoogleClient } from "../clients/google";
 import type { BaseService } from "./_base";
@@ -25,7 +25,7 @@ export class GoogleAuthService
     request: AuthGoogleGETRequestDTO, 
     event: Parameters<Parameters<typeof defineOAuthGoogleEventHandler>[0]["onSuccess"]>[0]
   ) {
-    const { access_token } = request.values.sessions.secure;
+    const { access_token } = request.values.sessions;
 
     const google_response = await this.googleClient
       .youtube(access_token)

@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { KeywordsPOSTRequestDTO } from "../../../shared/dtos/keywords.post.req.dto";
+import { AuthPublicKeywordsPOSTRequestDTO } from "../../../shared/dtos";
 
-describe("KeywordsPOSTRequestDTOの単体テスト", () => {
+describe("AuthPublicKeywordsPOSTRequestDTOの単体テスト", () => {
 	const values = {
 		sessions: {
-			user: {
-				user_id: 1,
-			},
+			user_id: 1,
 		},
 		body: {
 			keyword: "string",
@@ -15,6 +13,6 @@ describe("KeywordsPOSTRequestDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new KeywordsPOSTRequestDTO(values)).not.toThrow();
+		expect(() => new AuthPublicKeywordsPOSTRequestDTO(values)).not.toThrow();
 	});
 });

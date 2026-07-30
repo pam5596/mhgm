@@ -1,17 +1,16 @@
-import type { YoutubeBroadcastsGETRequestDTO } from "../../shared/dtos/youtube_broadcasts.get.req.dto";
-import { YoutubeBroadcastsGETResponseDTO } from "../../shared/dtos/youtube_broadcasts.get.res.dto";
+import { AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO } from "../../shared/dtos";
 import { NotFoundError } from "../../shared/errors/not_found";
 import type { GoogleClient } from "../clients/google";
 import type { BaseService } from "./_base";
 
 export class GetYoutubeBroadcastService
 	implements
-		BaseService<YoutubeBroadcastsGETRequestDTO, YoutubeBroadcastsGETResponseDTO>
+		BaseService<AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO>
 {
 	constructor(private googleClient: GoogleClient) {}
 
-	async execute(request: YoutubeBroadcastsGETRequestDTO) {
-		const { access_token } = request.values.sessions.secure;
+	async execute(request: AuthPublicYoutubeBroadcastsGETRequestDTO) {
+		const { access_token } = request.values.sessions;
 
 		const google_response = await this.googleClient
 			.youtube(access_token)
@@ -37,11 +36,11 @@ export class GetYoutubeBroadcastService
 
 		const broadcast = google_response.data.items[0]!;
 
-		return new YoutubeBroadcastsGETResponseDTO({
+		return new AuthPublicYoutubeBroadcastsGETResponseDTO({
 			body: {
-				stream_id: broadcast.id,
-				title: broadcast.snippet?.title,
-				thumbnail: broadcast.snippet?.thumbnails?.default?.url,
+				stream_id: broadcast.id!,
+				title: broadcast.snippet?.title!,
+				thumbnail: broadcast.snippet?.thumbnails?.default?.url!,
 			},
 		});
 	}

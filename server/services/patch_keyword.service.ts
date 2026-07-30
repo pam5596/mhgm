@@ -1,16 +1,16 @@
 import { NotFoundError } from "../../shared/errors/not_found";
-import type { KeywordsPATCHRequestDTO } from "../../shared/dtos/keywords.patch.req.dto";
+import type { AuthPublicKeywordsPATCHRequestDTO } from "../../shared/dtos";
 import { ForbiddenError } from "../../shared/errors/forbidden";
 import type { KeywordRepository } from "../repositories/keyword.repository";
 import type { BaseService } from "./_base";
 
 export class PATCHKeywordService
-	implements BaseService<KeywordsPATCHRequestDTO, void>
+	implements BaseService<AuthPublicKeywordsPATCHRequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}
 
-	async execute(request: KeywordsPATCHRequestDTO) {
-		const { user_id } = request.values.sessions.user;
+	async execute(request: AuthPublicKeywordsPATCHRequestDTO) {
+		const { user_id } = request.values.sessions;
 		const { id } = request.values.params;
 
 		const keyword = await this.keywordRepository.findById(id);

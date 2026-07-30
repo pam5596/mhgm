@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   await new PATCHUserSettingsService(
     settingRepository
   ).execute(
-    new UsersSettingsPATCHRequestDTO({
+    new AuthPublicUsersSettingsPATCHRequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       },

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { UsersSettingsGETResponseDTO } from "../../../shared/dtos/users_settings.get.res.dto";
+import { AuthPublicUsersSettingsGETResponseDTO } from "../../../shared/dtos";
 
-describe("UsersSettingsGETResponseDTOの単体テスト", () => {
+describe("AuthPublicUsersSettingsGETResponseDTOの単体テスト", () => {
 	const values = {
 		body: {
 			setting: {
@@ -23,6 +23,6 @@ describe("UsersSettingsGETResponseDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new UsersSettingsGETResponseDTO(values)).not.toThrow();
+		expect(() => new AuthPublicUsersSettingsGETResponseDTO(values)).not.toThrow();
 	});
 });

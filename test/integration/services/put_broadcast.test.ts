@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { BroadcastRepository } from "../../../server/repositories/broadcast.repository";
 import { PUTBroadCastService } from "../../../server/services/put_broadcast.service";
-import { BroadcastsPUTRequestDTO } from "../../../shared/dtos/broadcasts.put.req.dto";
+import { AuthPublicBroadcastsPUTRequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
@@ -15,16 +15,15 @@ describe("PUTBroadCastServiceの結合テスト", () => {
 	it("ブロードキャストをDBに保存してIDを返す", async () => {
 		await create("user", 1);
 
-		const request = new BroadcastsPUTRequestDTO({
+		const request = new AuthPublicBroadcastsPUTRequestDTO({
 			sessions: {
-				user: {
-					user_id: 1,
-				},
+				user_id: 1,
 			},
 			body: {
 				stream_id: "stream_id_1",
 				title: "live title",
 				thumbnail: "https://example.com/thumb.jpg",
+				end_at: new Date()
 			},
 		});
 

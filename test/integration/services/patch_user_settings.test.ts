@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { SettingRepository } from "../../../server/repositories/setting.repository";
 import { PATCHUserSettingsService } from "../../../server/services/patch_user_settings.service";
-import { UsersSettingsPATCHRequestDTO } from "../../../shared/dtos/users_settings.patch.req.dto";
+import { AuthPublicUsersSettingsPATCHRequestDTO } from "../../../shared/dtos";
 import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
@@ -16,11 +16,9 @@ describe("PATCHUserSettingsService", () => {
 		await create("user", 1);
 		await create("setting", 1);
 
-		const request = new UsersSettingsPATCHRequestDTO({
+		const request = new AuthPublicUsersSettingsPATCHRequestDTO({
 			sessions: {
-				user: {
-					user_id: 1,
-				},
+				user_id: 1,
 			},
 			body: {
 				quest_limit: 5,

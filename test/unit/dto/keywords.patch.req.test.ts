@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { KeywordsPATCHRequestDTO } from "../../../shared/dtos/keywords.patch.req.dto";
+import { AuthPublicKeywordsPATCHRequestDTO } from "../../../shared/dtos";
 
-describe("KeywordsPATCHRequestDTOの単体テスト", () => {
+describe("AuthPublicKeywordsPATCHRequestDTOの単体テスト", () => {
 	const values = {
 		sessions: {
-			user: {
-				user_id: 1,
-			},
+			user_id: 1,
 		},
 		params: {
 			id: "1",
@@ -17,6 +15,6 @@ describe("KeywordsPATCHRequestDTOの単体テスト", () => {
 	};
 
 	it("DTOが作成できる", () => {
-		expect(() => new KeywordsPATCHRequestDTO(values)).not.toThrow();
+		expect(() => new AuthPublicKeywordsPATCHRequestDTO(values)).not.toThrow();
 	});
 });

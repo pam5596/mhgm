@@ -1,18 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { GoogleClient } from "../../../server/clients/google";
 import { GetYoutubeBroadcastService } from "../../../server/services/get_youtube_broadcast.service";
-import { YoutubeBroadcastsGETRequestDTO } from "../../../shared/dtos/youtube_broadcasts.get.req.dto";
+import { AuthPublicYoutubeBroadcastsGETRequestDTO } from "../../../shared/dtos";
 
 describe.skip("GetYoutubeBroadcastServiceの結合テスト", async () => {
 	const google = new GoogleClient();
 	const service = new GetYoutubeBroadcastService(google);
 
 	it("配信情報を取得できる", async () => {
-		const request = new YoutubeBroadcastsGETRequestDTO({
+		const request = new AuthPublicYoutubeBroadcastsGETRequestDTO({
 			sessions: {
-				secure: {
-					access_token: process.env.GOOGLE_ACCESS_TOKEN!,
-				},
+				access_token: process.env.GOOGLE_ACCESS_TOKEN!,
 			},
 		});
 

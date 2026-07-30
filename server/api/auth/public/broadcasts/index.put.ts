@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const response = await new PUTBroadCastService(
     broadcastRepository
   ).execute(
-    new BroadcastsPUTRequestDTO({
+    new AuthPublicBroadcastsPUTRequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       },

@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const response = await new GetYoutubeBroadcastService(
     googleClient
   ).execute(
-    new YoutubeBroadcastsGETRequestDTO({
+    new AuthPublicYoutubeBroadcastsGETRequestDTO({
       sessions: {
         secure: { access_token: secure!.access_token }
       }

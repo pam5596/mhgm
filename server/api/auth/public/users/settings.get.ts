@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
     settingRepository,
     keywordRepository
   ).execute(
-    new UsersSettingsGETRequestDTO({
+    new AuthPublicUsersSettingsGETRequestDTO({
       sessions: {
         user: { user_id: user!.user_id }
       }
