@@ -16,14 +16,14 @@ export default defineOAuthGoogleEventHandler({
       email: string
     }
   }) {
-    await new AuthGoogleService(
+    await new AuthGoogleGETService(
       googleClient,
       userRepository,
       settingRepository,
       keywordRepository
     ).execute(
       new AuthGoogleGETRequestDTO({
-        sessions: { secure: { access_token: result.tokens.access_token }}
+        sessions: { access_token: result.tokens.access_token }
       }),
       event
     )
