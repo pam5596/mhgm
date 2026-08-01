@@ -36,12 +36,21 @@ export class AuthPublicYoutubeBroadcastGETService
 			);
 
 		const broadcast = google_response.data.items[0]!;
+		const title = broadcast.snippet?.title;
+		const thumbnail = broadcast.snippet?.thumbnails?.default?.url;
+
+		if (!title || !thumbnail)
+			throw new NotFoundError(
+				this.constructor.name,
+				google_response.data,
+				"errors.not_found.youtube_broadcast",
+			);
 
 		return new AuthPublicYoutubeBroadcastsGETResponseDTO({
 			body: {
 				stream_id: broadcast.id!,
-				title: broadcast.snippet?.title!,
-				thumbnail: broadcast.snippet?.thumbnails?.default?.url!,
+				title,
+				thumbnail,
 			},
 		});
 	}
