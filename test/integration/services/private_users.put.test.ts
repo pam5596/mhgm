@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { UserRepository } from "../../../server/repositories/user.repository";
 import { PrivateUsersPUTService } from "../../../server/services/private_users.put.service";
 import { PrivateUsersPUTRequestDTO } from "../../../shared/dtos/private_users.put.req.dto";
-import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
 import { prisma } from "../prisma.client";
 
