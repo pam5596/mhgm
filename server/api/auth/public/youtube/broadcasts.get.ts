@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event) => {
+export default defineApiHandler(async (event) => {
   const { secure } = await getUserSession(event)
 
   const response = await new AuthPublicYoutubeBroadcastGETService(
