@@ -62,6 +62,9 @@ export default defineNuxtConfig({
 	i18n: {
 		defaultLocale: "ja",
 		locales: [{ code: "ja", name: "日本語", file: "ja.json" }],
+		experimental: {
+			localeDetector: 'localeDetector.ts'
+		}
 	},
 
 	runtimeConfig: {
