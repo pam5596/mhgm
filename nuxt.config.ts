@@ -23,6 +23,18 @@ export default defineNuxtConfig({
 			],
 		},
 	},
+	routeRules: {
+		'/api/private/**': {
+			cors: true,
+			headers: {
+				'access-control-allow-origin': process.env.STATERUL_API_BASE_URL,
+				'access-control-allow-credentials': 'true',
+			}
+		},
+		'/api/public/webhooks/member': {
+			proxy: `${process.env.STATERUL_API_BASE_URL}/mhgm/public/webhooks/member`
+		}
+	},
 	vite: {
 		server: {
 			fs: {
