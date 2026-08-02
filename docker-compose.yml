@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  app:
+  mhgm:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -9,7 +9,17 @@ services:
       - 3000:3000
       - 51212:51212
     volumes:
-      - .:/app
+      - .:/mhgm
+    depends_on:
+      - db
+  stateful-api:
+    build:
+      context: ../stateful-api
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5000:5000
+    volumes:
+      - ../stateful-api:/stateful-api
     depends_on:
       - db
   db:

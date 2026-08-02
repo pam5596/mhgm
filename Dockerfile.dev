@@ -1,9 +1,9 @@
 FROM node:24
 
-WORKDIR /app
-COPY . /app
+WORKDIR /mhgm
+COPY . /mhgm
 EXPOSE 3000
 
-ENTRYPOINT ["/app/entrypoint.dev.sh"]
+ENTRYPOINT ["/mhgm/entrypoint.dev.sh"]
 
 CMD ["npm", "run", "dev"]
