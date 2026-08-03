@@ -8,6 +8,7 @@ export class BaseError extends Error {
 		readonly report?: unknown,
 	) {
 		super(message);
+		if (stack) this.stack = stack;
 	}
 
 	toJson() {
