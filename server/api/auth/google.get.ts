@@ -34,17 +34,17 @@ export default defineOAuthGoogleEventHandler({
     const t = await useTranslation(event)
     if (error instanceof BaseError) {
       setResponseStatus(event, error.status_code)
-      return {
+      return send(event, JSON.stringify({
         ...error.toJson(),
         message: t(error.message)
-      } as unknown as void
+      }), 'application/json')
     } else {
       const unknown_error = new UnknownError(error, 'defineOAuthGoogleEventHandler')
       setResponseStatus(event, unknown_error.status_code)
-      return {
+      return send(event, JSON.stringify({
         ...unknown_error.toJson(),
         message: t(unknown_error.message)
-      } as unknown as void
+      }), 'application/json')
     }
   }
 })
