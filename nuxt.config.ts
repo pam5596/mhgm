@@ -5,6 +5,15 @@ import { searchForWorkspaceRoot } from "vite";
 export default defineNuxtConfig({
 	compatibilityDate: "2025-07-15",
 	devtools: { enabled: true },
+	app: {
+		head: {
+			title: 'MHGM',
+			titleTemplate: 'MHGM - %s',
+			link: [
+				{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+			]
+		},
+	},
 	nitro: {
 		experimental: {
 			websocket: true,
