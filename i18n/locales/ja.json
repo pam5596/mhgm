@@ -1,1 +1,35 @@
-{}
+{
+	"models": {
+		"user": "ユーザー",
+		"setting": "ユーザー設定",
+		"keyword": "参加・辞退キーワード",
+		"broadcast": "配信情報",
+		"action_log": "参加・辞退ログ"
+	},
+	"attributes": {
+		"quest_limit": "参加上限クエスト数",
+		"keyword": "キーワード"
+	},
+	"errors": {
+		"unknown": "不明なエラーが発生しました。",
+		"validate": {
+			"default": "データの処理中に予期せぬエラーが発生しました。",
+			"invalid_quest_limit": "@:attributes.quest_limitは1以上で設定してください。",
+			"invalid_keyword": "@:attributes.keywordは10文字以内で設定してください。"
+		},
+		"crud": {
+			"create": "データの保存に失敗しました。",
+			"read": "データの取得に失敗しました。",
+			"update": "データの更新に失敗しました。",
+			"delete": "データの削除に失敗しました。"
+		},
+		"parameter_missing": "データの受信に失敗しました。",
+		"not_found": {
+			"record": "データが見つかりませんでした。",
+			"youtube_broadcast": "配信中のライブ配信が見つかりませんでした。ライブ配信を開始してください。",
+			"youtube_channel": "Youtubeチャンネルが見つかりませんでした。Youtubeアカウントを作成してください。"
+		},
+		"forbidden": "データへのアクセス権限がありません。",
+		"invalid_api_key": "データ送信認証に失敗しました。"
+	}
+}

@@ -4,6 +4,6 @@ WORKDIR /app
 COPY . /app
 EXPOSE 3000
 
-RUN npm install
+ENTRYPOINT ["/app/entrypoint.dev.sh"]
+
 CMD ["npm", "run", "dev"]
-# CMD ["sh"]
