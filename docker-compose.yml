@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  app:
+  mhgm:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -12,6 +12,14 @@ services:
       - .:/app
     depends_on:
       - db
+  stateful-api:
+    build:
+      context: ../stateful-api
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5000:5000
+    volumes:
+      - ../stateful-api:/app
   db:
     image: postgres:17
     environment:

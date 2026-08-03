@@ -29,6 +29,7 @@
 			"youtube_broadcast": "配信中のライブ配信が見つかりませんでした。ライブ配信を開始してください。",
 			"youtube_channel": "Youtubeチャンネルが見つかりませんでした。Youtubeアカウントを作成してください。"
 		},
-		"forbidden": "データへのアクセス権限がありません。"
+		"forbidden": "データへのアクセス権限がありません。",
+		"invalid_api_key": "データ送信認証に失敗しました。"
 	}
 }

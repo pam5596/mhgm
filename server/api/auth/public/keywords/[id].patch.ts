@@ -1,4 +1,4 @@
-export default defineEventHandler(async(event) => {
+export default defineApiHandler(async(event) => {
   const { user } = await getUserSession(event)
   const id = getRouterParam(event, 'id')
   const body = await readBody(event)

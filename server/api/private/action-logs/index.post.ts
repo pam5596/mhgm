@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event) => {
+export default defineApiHandler(async (event) => {
   const body = await readBody(event)
 
   const response = await new PrivateActionlogsPOSTService(

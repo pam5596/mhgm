@@ -23,6 +23,18 @@ export default defineNuxtConfig({
 			],
 		},
 	},
+	routeRules: {
+		'/api/private/**': {
+			cors: true,
+			headers: {
+				'access-control-allow-origin': process.env.STATERUL_API_BASE_URL,
+				'access-control-allow-credentials': 'true',
+			}
+		},
+		'/api/public/webhooks/member': {
+			proxy: `${process.env.STATERUL_API_BASE_URL}/mhgm/public/webhooks/member`
+		}
+	},
 	vite: {
 		server: {
 			fs: {
@@ -50,10 +62,14 @@ export default defineNuxtConfig({
 	i18n: {
 		defaultLocale: "ja",
 		locales: [{ code: "ja", name: "日本語", file: "ja.json" }],
+		experimental: {
+			localeDetector: 'localeDetector.ts'
+		}
 	},
 
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
-		databaseUrl: process.env.DATABASE_URL
+		databaseUrl: process.env.DATABASE_URL,
+		apiKey: process.env.API_KEY
 	}
 });
