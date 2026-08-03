@@ -31,6 +31,20 @@ export default defineOAuthGoogleEventHandler({
     return sendRedirect(event, '/home')
   },
   async onError(event, error) {
-    throw new UnknownError(error, 'defineOAuthGoogleEventHandler', event.toJSON())
+    const t = await useTranslation(event)
+    if (error instanceof BaseError) {
+      setResponseStatus(event, error.status_code)
+      return {
+        ...error.toJson(),
+        message: t(error.message)
+      } as unknown as void
+    } else {
+      const unknown_error = new UnknownError(error, 'defineOAuthGoogleEventHandler')
+      setResponseStatus(event, unknown_error.status_code)
+      return {
+        ...unknown_error.toJson(),
+        message: t(unknown_error.message)
+      } as unknown as void
+    }
   }
 })
