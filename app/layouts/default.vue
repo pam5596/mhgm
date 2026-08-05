@@ -4,11 +4,11 @@
       <header class="w-full flex flex-row justify-between">
         <MolLockup />
         <div class="flex flex-row items-center gap-3">
-          <slot></slot>
+          <slot name="header" />
         </div>
       </header>
       <main class="w-full h-full flex flex-col justify-center">
-        <slot></slot>
+        <slot name="main" />
       </main>
     </div>
     <footer class="w-full flex flex-col items-center gap-2 text-xs text-default-black">

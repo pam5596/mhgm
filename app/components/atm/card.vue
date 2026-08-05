@@ -1,7 +1,7 @@
 <template>
   <div class="p-[2px] rounded-xl shadow-lg" :class="bg_gradient">
     <div class="bg-white rounded-xl p-4" :class="props.innerClass">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
