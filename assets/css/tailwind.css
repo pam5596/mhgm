@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .font-cinzel {
+    font-family: "Cinzel Decorative", serif;
+  }
+
+  .text-default-black {
+    color: #2C3E35
+  }
+
+  .bg-gradient-primary {
+    --gradient-image: linear-gradient(
+      to right,
+      #D4AF37,
+      #A37F2C
+    );
+    background-image: var(--gradient-image);
+  }
+
+  .bg-gradient-success {
+    --gradient-image: linear-gradient(
+      to right,
+      #14B8A6,
+      #0F766E
+    );
+    background-image: var(--gradient-image);
+  }
+
+  .bg-gradient-error {
+    --gradient-image: linear-gradient(
+      to right,
+      #FF7C7C,
+      #BF2626
+    );
+    background-image: var(--gradient-image);
+  }
+
+  .text-gradient-mode {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .border-gradient-mode {
+    position: relative;
+    background-image: none;
+  }
+}
