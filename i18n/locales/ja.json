@@ -1,4 +1,19 @@
 {
+	"ui": {
+		"header": {
+			"app_title": "MH GUILD MANAGER"
+		},
+		"footer": {
+			"links": {
+				"youtube_terms": "YouTube 利用規約",
+				"google_privacy": "Google プライバシーポリシー",
+				"github": "GitHub"
+			},
+			"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
+			"capcom": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED.",
+			"copyright": "© 2026 pam5596"
+		}
+	},
 	"models": {
 		"user": "ユーザー",
 		"setting": "ユーザー設定",
