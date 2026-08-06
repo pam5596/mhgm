@@ -60,11 +60,14 @@ export default defineNuxtConfig({
 		"vuetify-nuxt-module",
 		"@nuxt/test-utils/module",
 		"@nuxt/eslint",
+		"@nuxt/image"
 	],
 
 	googleFonts: {
 		families: {
-			"Cinzel Decorative": true,
+			"Cinzel Decorative": {
+				regular: 700
+			}
 		},
 	},
 
