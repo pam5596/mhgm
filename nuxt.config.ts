@@ -81,7 +81,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		serverBundle: {
-			collections: ['logos', 'ic']
+			collections: ['logos', 'ic', 'material-symbols']
 		}
 	},
 
