@@ -12,11 +12,11 @@
     </a>
   </nav>
   <p class="max-w-3xl text-center">
-    {{ $t("ui.footer.disclaimer") }}
+    {{ $t("layouts.default.disclaimer") }}
   </p>
-  <copy>
-    {{ $t("ui.footer.capcom") }} / {{ $t("ui.footer.copyright") }}
-  </copy>
+  <p>
+    {{ $t("layouts.default.capcom") }} / {{ $t("layouts.default.copyright") }}
+  </p>
 </template>
 
 <script setup lang="ts">

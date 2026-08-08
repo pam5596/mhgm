@@ -1,8 +1,6 @@
 <template>
-  <div class="p-[2px] rounded-xl shadow-lg" :class="bg_gradient">
-    <div class="bg-white rounded-xl p-4" :class="props.innerClass">
-      <slot />
-    </div>
+  <div :class="styles" class="bg-white border-gradient-mode rounded-xl shadow-lg flex">
+    <slot />
   </div>
 </template>
 
@@ -10,11 +8,18 @@
 import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<{
-  color?: 'primary' | 'success' | 'error'
+  color: 'primary' | 'success' | 'error'
   innerClass?: HTMLAttributes['class']
 }>()
 
-const bg_gradient = computed(() => `bg-gradient-${props.color}`)
+const styles = computed(() => (
+  {
+    "gradient-primary": props.color === 'primary',
+    "gradient-success": props.color === 'success',
+    "gradient-error": props.color === 'error',
+  }
+))
+
 </script>
 
 

@@ -1,9 +1,7 @@
 {
-	"ui": {
-		"header": {
-			"app_title": "MH GUILD MANAGER"
-		},
-		"footer": {
+	"layouts": {
+		"default": {
+			"app_title": "MH GUILD MANAGER",
 			"links": {
 				"youtube_terms": "YouTube 利用規約",
 				"google_privacy": "Google プライバシーポリシー",
@@ -12,6 +10,22 @@
 			"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
 			"capcom": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED.",
 			"copyright": "© 2026 pam5596"
+		}
+	},
+	"pages": {
+		"index": {
+			"app_title": {
+				"line1": "MONSTER HUNTER",
+				"line2": "GUILD MANAGER"
+			},
+			"app_description": {
+				"line1": "モンスターハンター参加型配信用",
+				"line2": "参加者管理アプリケーション"
+			},
+			"button": {
+				"login_for_google": "Googleでログイン",
+				"to_about": "MHGMとは？"
+			}
 		}
 	},
 	"models": {

@@ -79,6 +79,12 @@ export default defineNuxtConfig({
 		}
 	},
 
+	icon: {
+		serverBundle: {
+			collections: ['logos', 'ic']
+		}
+	},
+
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
 		databaseUrl: process.env.DATABASE_URL,
