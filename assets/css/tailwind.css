@@ -7,34 +7,47 @@
     font-family: "Cinzel Decorative", serif;
   }
 
-  .text-default-black {
+  .text-default {
     color: #2C3E35
   }
 
-  .bg-gradient-primary {
+  .text-primary {
+    color: #A37F2C
+  }
+
+  .text-success {
+    color: #0F766E
+  }
+
+  .text-error {
+    color: #BF2626
+  }
+
+  .gradient-primary {
     --gradient-image: linear-gradient(
       to right,
       #D4AF37,
       #A37F2C
     );
-    background-image: var(--gradient-image);
   }
 
-  .bg-gradient-success {
+  .gradient-success {
     --gradient-image: linear-gradient(
       to right,
       #14B8A6,
       #0F766E
     );
-    background-image: var(--gradient-image);
   }
 
-  .bg-gradient-error {
+  .gradient-error {
     --gradient-image: linear-gradient(
       to right,
       #FF7C7C,
       #BF2626
     );
+  }
+
+  .bg-gradient-image {
     background-image: var(--gradient-image);
   }
 
@@ -43,10 +56,16 @@
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+    background-image: var(--gradient-image);
   }
 
   .border-gradient-mode {
-    position: relative;
-    background-image: none;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background-image:
+      linear-gradient(#fff, #fff),
+      var(--gradient-image);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
   }
 }
