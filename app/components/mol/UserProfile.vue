@@ -2,7 +2,7 @@
   <div class="flex gap-4">
     <v-skeleton-loader :loading="is_loading" type="avatar" class="*:m-0">
       <v-btn icon class="gradient-primary border-gradient-mode">
-        <v-avatar :image="props.avatar" :size="40"></v-avatar>
+        <v-avatar :image="props.avatar" :size="40" />
       </v-btn>
     </v-skeleton-loader>
     <v-skeleton-loader :loading="is_loading" type="heading" class="w-1/2 *:m-0">
@@ -15,10 +15,10 @@
 const props = defineProps<{
   name?: string
   avatar?: string
-  channel_id?: string
+  channelId?: string
 }>()
 
-const is_loading = computed(() => !(props.name && props.avatar && props.channel_id))
+const is_loading = computed(() => !(props.name && props.avatar && props.channelId))
 
 </script>
 
