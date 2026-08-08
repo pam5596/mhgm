@@ -1,7 +1,7 @@
 {
 	"layouts": {
 		"default": {
-			"app_title": "MH GUILD MANAGER",
+			"app_title": "mh guild manager",
 			"links": {
 				"youtube_terms": "YouTube 利用規約",
 				"google_privacy": "Google プライバシーポリシー",
@@ -15,8 +15,8 @@
 	"pages": {
 		"index": {
 			"app_title": {
-				"line1": "MONSTER HUNTER",
-				"line2": "GUILD MANAGER"
+				"line1": "monster hunter",
+				"line2": "guild manager"
 			},
 			"app_description": {
 				"line1": "モンスターハンター参加型配信用",
@@ -25,6 +25,12 @@
 			"button": {
 				"login_for_google": "Googleでログイン",
 				"to_about": "MHGMとは？"
+			}
+		},
+		"home": {
+			"button": {
+				"logout": "ログアウト",
+				"to_manager": "参加者管理画面へ"
 			}
 		}
 	},

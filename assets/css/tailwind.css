@@ -61,7 +61,6 @@
 
   .border-gradient-mode {
     border: 2px solid transparent;
-    border-radius: 4px;
     background-image:
       linear-gradient(#fff, #fff),
       var(--gradient-image);
