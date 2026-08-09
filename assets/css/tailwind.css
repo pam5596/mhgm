@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 @layer utilities {
+  :root {
+    --default: #2C3E35;
+    --primary-thin: #FFF4DE;
+    --primary-light: #D4AF37;
+    --primary-dark: #A37F2C;
+    --success-thin: #EEFFFD;
+    --success-light: #14B8A6;
+    --success-dark: #0F766E;
+    --error-light: #FF7C7C;
+    --error-dark: #BF2626;
+  }
+
   .font-cinzel {
     font-family: "Cinzel Decorative", serif;
   }
@@ -60,9 +72,10 @@
   }
 
   .border-gradient-mode {
-    border: 2px solid transparent;
+    border-width: 2px;
+    border-color: transparent;
     background-image:
-      linear-gradient(#fff, #fff),
+      var(--bg-gradient-image, linear-gradient(#fff, #fff)),
       var(--gradient-image);
     background-origin: border-box;
     background-clip: padding-box, border-box;
