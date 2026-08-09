@@ -22,7 +22,8 @@ const props = withDefaults(
   }>(),
   {
     variant: "fill",
-    color: "primary"
+    color: "primary",
+    icon: undefined
   }
 )
 

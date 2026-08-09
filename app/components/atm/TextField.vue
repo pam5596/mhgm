@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col">
     <input
+      v-model="model"
       type="text"
       class="rounded-md p-1"
       :class="styles"
       :placeholder="props.placeholder"
-      v-model="model"
-    />
+    >
     <span v-if="props.error" class="text-error-dark">
       {{ props.error }}
     </span>
@@ -23,7 +23,9 @@ const props = withDefaults(
     error?: string
   }>(),
   {
-    color: "primary"
+    color: "primary",
+    placeholder: undefined,
+    error: undefined
   }
 )
 

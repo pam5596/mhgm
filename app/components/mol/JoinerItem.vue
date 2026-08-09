@@ -27,7 +27,7 @@
 const model = defineModel<number>()
 const props = defineProps<{
   name: string
-  channel_id: string
+  channelId: string
   avatar: string
 }>()
 

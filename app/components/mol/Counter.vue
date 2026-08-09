@@ -5,7 +5,7 @@
       type="text"
       class="rounded-md p-1 h-9 w-10 text-center"
       :class="styles"
-    />
+    >
     <AtmButton :color="props.color" variant="outlined" icon="ic:baseline-minus" />
   </div>
 </template>

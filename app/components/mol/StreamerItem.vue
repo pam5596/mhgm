@@ -22,7 +22,7 @@ const props = defineProps<{
   isStreaming?: boolean
   streamer: {
     name: string
-    channel_id: string
+    channelId: string
     avatar: string
   }
 }>()
