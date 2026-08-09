@@ -4,14 +4,14 @@
       <AtmIconButton color="success" variant="outlined">
         <v-avatar :image="props.avatar" />
       </AtmIconButton>
-      <p class="text-default font-bold max-w-56 line-clamp-2">
+      <p class=" font-bold max-w-56 line-clamp-2">
         {{ props.name }}
       </p>
     </div>
     <div class="flex items-center gap-2">
       <div class="flex flex-col items-center">
-        <span class="text-success font-bold text-xs">参加クエスト数</span>
-        <MolCounter v-model="model" />
+        <span class="text-success-dark font-bold text-xs">参加クエスト数</span>
+        <MolCounter v-model="model" color="success" />
       </div>
       <AtmButton color="success" variant="fill">
         交代

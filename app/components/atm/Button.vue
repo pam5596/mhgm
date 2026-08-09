@@ -1,11 +1,10 @@
 <template>
   <v-btn 
-    v-bind="$attrs"
     class="font-bold p-2 min-w-px"
     :class="styles"
     variant="outlined"
   >
-    <div class="flex items-center">
+    <div class="flex items-center gap-2">
       <Icon v-if="props.icon" :name="props.icon" class="size-5" />
       <span v-if="$slots.default">
         <slot />
@@ -15,31 +14,33 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ inheritAttrs: false })
-const props = defineProps<{
-  color: 'primary' | 'success' | 'error'
-  variant: 'fill' | 'outlined'
-  icon?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    variant?: 'fill' | 'outlined'
+    color?: 'primary' | 'success' | 'error'
+    icon?: string
+  }>(),
+  {
+    variant: "fill",
+    color: "primary"
+  }
+)
 
 const styles = computed(() => [
-  {
-    "gradient-primary": props.color === 'primary',
-    "gradient-success": props.color === 'success',
-    "gradient-error": props.color === 'error'
-  },
-  props.variant === 'outlined' && {
-    "text-primary": props.color === 'primary',
-    "text-success": props.color === 'success',
-    "text-error": props.color === 'error'
+  props.variant === 'fill' ? {
+    "bg-gradient-primary": props.color === "primary",
+    "bg-gradient-success": props.color === "success",
+    "bg-gradient-error": props.color === "error"
+  } : {
+    "border-gradient-primary text-primary-dark": props.color === "primary",
+    "border-gradient-success text-success-dark": props.color === "success",
+    "border-gradient-error text-error-dark": props.color === "error"
   },
   {
     "text-white": props.variant === 'fill',
-    "border-gradient-mode": props.variant === 'outlined',
-    "bg-gradient-image": props.variant === 'fill'
+    "bg-gradient-to-r": props.variant === 'fill',
   }
 ])
-
 
 </script>
 

@@ -6,7 +6,7 @@
       </AtmIconButton>
     </v-skeleton-loader>
     <v-skeleton-loader :loading="is_loading" type="heading" class="w-1/2 *:m-0">
-      <p class="text-default text-4xl">{{ props.name }}</p>
+      <p class=" text-4xl">{{ props.name }}</p>
     </v-skeleton-loader>
   </div>
 </template>

@@ -15,7 +15,7 @@
             <p>
               {{ $t("pages.index.app_title.line1") }}
             </p>
-            <p class="gradient-primary text-gradient-mode translate-x-8">
+            <p class="text-gradient-primary translate-x-8">
               {{ $t("pages.index.app_title.line2") }}
             </p>
           </div>

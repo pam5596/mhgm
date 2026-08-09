@@ -12,12 +12,12 @@
             ホームへ戻る
           </AtmButton>
         </div>
-        <AtmCard color="primary" class="p-4 text-default flex-col gap-4">
+        <AtmCard color="primary" class="p-4  flex-col gap-4">
           <div class="flex justify-between">
             <div class="flex gap-4">
               <NuxtImg class="h-14" src="favicon.svg" />
               <div class="flex h-100 flex-col">
-                <p class="text-primary font-bold text-2xl">参加者管理ボード</p>
+                <p class="text-primary-dark font-bold text-2xl">参加者管理ボード</p>
                 <p>編集内容はOBS用のブラウザソース画面と同期されます</p>
               </div>
             </div>
@@ -42,21 +42,21 @@
         <div class="flex gap-4">
           <AtmCard color="success" class="p-4 w-1/2 flex flex-col gap-4 h-[388px]">
             <div class="flex justify-between">
-              <p class="text-success font-bold text-xl">現在の参加者</p>
+              <p class="text-success-dark font-bold text-xl">現在の参加者</p>
               <AtmIconButton color="success" variant="outlined" size="32">
                 <Icon name="ic:baseline-content-copy" />
               </AtmIconButton>
             </div>
             <div class="flex flex-col gap-4">
-              <MolStreamerItem v-bind="user" />
+              <MolStreamerItem :streamer="user" />
               <MolJoinerItem v-bind="user" />
-              <MolEmptyViewerItem />
-              <MolEmptyViewerItem />
+              <MolEmptyViewerItem :player="3" />
+              <MolEmptyViewerItem :player="4" />
             </div>
           </AtmCard>
           <AtmCard color="primary" class="p-4 w-1/2 flex flex-col gap-4 h-[388px]">
             <div class="flex justify-between">
-              <p class="text-primary font-bold text-xl">待機者 - 10人</p>
+              <p class="text-primary-dark font-bold text-xl">待機者 - 10人</p>
               <AtmIconButton color="primary" variant="outlined" size="32">
                 <Icon name="ic:baseline-content-copy"/>
               </AtmIconButton>
@@ -64,10 +64,8 @@
             <div class="flex flex-col gap-4 flex-1 min-h-0 overflow-y-auto [&>*]:shrink-0">
               <MolWaiterItem v-bind="user" />
               <MolWaiterItem v-bind="user" />
-              <MolEmptyViewerItem />
-              <MolEmptyViewerItem />
-              <MolEmptyViewerItem />
-              <MolEmptyViewerItem />
+              
+
             </div>
           </AtmCard>
         </div>

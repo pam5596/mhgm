@@ -1,16 +1,31 @@
 <template>
   <div class="flex gap-1">
-    <AtmButton color="success" variant="outlined" icon="ic:baseline-plus" />
+    <AtmButton :color="props.color" variant="outlined" icon="ic:baseline-plus" />
     <input
       type="text"
-      class="gradient-success border-gradient-mode rounded-md p-1 h-9 w-10 text-center"
+      class="rounded-md p-1 h-9 w-10 text-center"
+      :class="styles"
     />
-    <AtmButton color="success" variant="outlined" icon="ic:baseline-minus" />
+    <AtmButton :color="props.color" variant="outlined" icon="ic:baseline-minus" />
   </div>
 </template>
 
 <script setup lang="ts">
-
+const props = withDefaults(
+  defineProps<{
+    color?: 'primary' | 'success' | 'error'
+  }>(),
+  {
+    color: "primary"
+  }
+)
+const styles = computed(() => [
+{
+    "border-gradient-primary": props.color === "primary",
+    "border-gradient-success": props.color === "success",
+    "border-gradient-error": props.color === "error"
+  }
+])
 
 </script>
 

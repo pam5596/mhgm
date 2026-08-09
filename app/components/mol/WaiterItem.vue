@@ -4,13 +4,13 @@
       <AtmIconButton color="primary" variant="outlined">
         <v-avatar :image="props.avatar" />
       </AtmIconButton>
-      <p class="text-default font-bold max-w-56 line-clamp-2">
+      <p class=" font-bold max-w-56 line-clamp-2">
         {{ props.name }}
       </p>
     </div>
     <div class="flex items-center gap-2">
       <div class="flex flex-col items-center">
-        <span class="text-primary font-bold text-xs">待機クエスト数</span>
+        <span class="text-primary-dark font-bold text-xs">待機クエスト数</span>
         <MolCounter v-model="model" />
       </div>
       <AtmButton color="error" variant="fill">

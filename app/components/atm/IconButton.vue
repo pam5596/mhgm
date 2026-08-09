@@ -5,26 +5,29 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  color: 'primary' | 'success' | 'error'
-  variant: 'fill' | 'outlined'
-}>()
-
-const styles = computed(() => [
+const props = withDefaults(
+  defineProps<{
+    variant?: 'fill' | 'outlined'
+    color?: 'primary' | 'success' | 'error'
+  }>(),
   {
-    "gradient-primary": props.color === 'primary',
-    "gradient-success": props.color === 'success',
-    "gradient-error": props.color === 'error'
-  },
-  props.variant === 'outlined' && {
-    "text-primary": props.color === 'primary',
-    "text-success": props.color === 'success',
-    "text-error": props.color === 'error'
+    variant: "fill",
+    color: "primary"
+  }
+)
+const styles = computed(() => [
+  props.variant === 'fill' ? {
+    "bg-gradient-primary": props.color === "primary",
+    "bg-gradient-success": props.color === "success",
+    "bg-gradient-error": props.color === "error"
+  } : {
+    "border-gradient-primary text-primary-dark": props.color === "primary",
+    "border-gradient-success text-success-dark": props.color === "success",
+    "border-gradient-error text-error-dark": props.color === "error"
   },
   {
     "text-white": props.variant === 'fill',
-    "border-gradient-mode": props.variant === 'outlined',
-    "bg-gradient-image": props.variant === 'fill'
+    "bg-gradient-to-r": props.variant === 'fill',
   }
 ])
 </script>
