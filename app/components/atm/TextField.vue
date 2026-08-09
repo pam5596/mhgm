@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <input
       type="text"
-      class="rounded-md p-2"
+      class="rounded-md p-1"
       :class="styles"
       :placeholder="props.placeholder"
       v-model="model"

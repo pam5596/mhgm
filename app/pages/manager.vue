@@ -12,7 +12,7 @@
             ホームへ戻る
           </AtmButton>
         </div>
-        <AtmCard color="primary" class="p-4  flex-col gap-4">
+        <AtmCard color="primary" class="p-4 flex-col gap-4">
           <div class="flex justify-between">
             <div class="flex gap-4">
               <NuxtImg class="h-14" src="favicon.svg" />
@@ -23,6 +23,7 @@
             </div>
             <AtmIconButton color="primary" variant="outlined">
               <Icon name="ic:baseline-settings" size="30" />
+              <MolSettingDialog v-model="dialog" />
             </AtmIconButton>
           </div>
           <AtmTextField placeholder="ロビー識別番号を入力してください" />
@@ -75,6 +76,8 @@
 </template>
 
 <script setup lang="ts">
+const dialog = ref(true)
+
 const user = {
   name: "name",
   avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
