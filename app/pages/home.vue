@@ -2,7 +2,7 @@
   <NuxtLayout>
     <template #header>
       <AtmButton color="primary" variant="outlined" icon="ic:baseline-logout">
-        {{ $t("pages.home.button.logout") }}
+        {{ $t("layouts.default.button.logout") }}
       </AtmButton>
     </template>
     <template #main>
