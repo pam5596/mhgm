@@ -3,67 +3,142 @@
 @tailwind utilities;
 
 @layer utilities {
+  :root {
+    --default: #2C3E35;
+    --primary-light: #FFF4DE;
+    --primary: #D4AF37;
+    --primary-dark: #A37F2C;
+    --success-light: #EEFFFD;
+    --success: #14B8A6;
+    --success-dark: #0F766E;
+    --error: #FF7C7C;
+    --error-dark: #BF2626;
+  }
+
   .font-cinzel {
     font-family: "Cinzel Decorative", serif;
   }
 
   .text-default {
-    color: #2C3E35
+    color: var(--default)
   }
 
-  .text-primary {
-    color: #A37F2C
+  .text-primary-dark {
+    color: var(--primary-dark)
   }
 
-  .text-success {
-    color: #0F766E
+  .text-success-dark {
+    color: var(--success-dark)
   }
 
-  .text-error {
-    color: #BF2626
+  .text-error-dark {
+    color: var(--error-dark)
   }
 
-  .gradient-primary {
-    --gradient-image: linear-gradient(
-      to right,
-      #D4AF37,
-      #A37F2C
-    );
+  .border-primary {
+    border-color: var(--primary);
   }
 
-  .gradient-success {
-    --gradient-image: linear-gradient(
-      to right,
-      #14B8A6,
-      #0F766E
-    );
+  .border-success {
+    border-color: var(--success);
   }
 
-  .gradient-error {
-    --gradient-image: linear-gradient(
-      to right,
-      #FF7C7C,
-      #BF2626
-    );
+  .border-error {
+    border-color: var(--error);
   }
 
-  .bg-gradient-image {
-    background-image: var(--gradient-image);
+  .bg-gradient-primary {
+    --tw-gradient-from: var(--primary) var(--tw-gradient-from-position);
+    --tw-gradient-to: var(--primary-dark) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
   }
 
-  .text-gradient-mode {
+  .bg-gradient-success {
+    --tw-gradient-from: var(--success) var(--tw-gradient-from-position);
+    --tw-gradient-to: var(--success-dark) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .bg-gradient-error {
+    --tw-gradient-from: var(--error) var(--tw-gradient-from-position);
+    --tw-gradient-to: var(--error-dark) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .text-gradient-primary {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    background-image: var(--gradient-image);
+    background-image: linear-gradient(
+      to right, 
+      var(--primary),
+      var(--primary-dark)
+    )
   }
 
-  .border-gradient-mode {
-    border: 2px solid transparent;
+  .text-gradient-success {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(
+      to right, 
+      var(--success),
+      var(--success-dark)
+    )
+  }
+
+  .text-gradient-error {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(
+      to right, 
+      var(--error),
+      var(--error-dark)
+    )
+  }
+
+  .border-gradient-primary {
+    border-width: 2px;
+    border-color: transparent;
     background-image:
       linear-gradient(#fff, #fff),
-      var(--gradient-image);
+      linear-gradient(
+        to right,
+        var(--primary),
+        var(--primary-dark)
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .border-gradient-success {
+    border-width: 2px;
+    border-color: transparent;
+    background-image:
+      linear-gradient(#fff, #fff),
+      linear-gradient(
+        to right,
+        var(--success),
+        var(--success-dark)
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .border-gradient-error {
+    border-width: 2px;
+    border-color: transparent;
+    background-image:
+      linear-gradient(#fff, #fff),
+      linear-gradient(
+        to right,
+        var(--error),
+        var(--error-dark)
+      );
     background-origin: border-box;
     background-clip: padding-box, border-box;
   }

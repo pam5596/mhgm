@@ -9,7 +9,10 @@
 			},
 			"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
 			"capcom": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED.",
-			"copyright": "© 2026 pam5596"
+			"copyright": "© 2026 pam5596",
+			"button": {
+				"logout": "ログアウト"
+			}
 		}
 	},
 	"pages": {
@@ -29,7 +32,6 @@
 		},
 		"home": {
 			"button": {
-				"logout": "ログアウト",
 				"to_manager": "参加者管理画面へ"
 			}
 		}

@@ -1,15 +1,6 @@
 <template>
-  <v-btn 
-    class="font-bold p-2 min-w-px"
-    :class="styles"
-    variant="outlined"
-  >
-    <div class="flex items-center gap-2">
-      <Icon v-if="props.icon" :name="props.icon" class="size-5" />
-      <span v-if="$slots.default">
-        <slot />
-      </span>
-    </div>
+  <v-btn :class="styles" icon>
+    <slot />
   </v-btn>
 </template>
 
@@ -18,15 +9,12 @@ const props = withDefaults(
   defineProps<{
     variant?: 'fill' | 'outlined'
     color?: 'primary' | 'success' | 'error'
-    icon?: string
   }>(),
   {
     variant: "fill",
-    color: "primary",
-    icon: undefined
+    color: "primary"
   }
 )
-
 const styles = computed(() => [
   props.variant === 'fill' ? {
     "bg-gradient-primary": props.color === "primary",
@@ -42,7 +30,6 @@ const styles = computed(() => [
     "bg-gradient-to-r": props.variant === 'fill',
   }
 ])
-
 </script>
 
 <style scoped>

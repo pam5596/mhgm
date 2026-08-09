@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen bg-gradient-to-b from-[#EBE5D8] to-[#FAF8F5]">
+  <div class="w-screen h-screen bg-gradient-to-b from-[#EBE5D8] to-[#FAF8F5] *:text-default">
     <div class="w-full h-full flex justify-center">
       <div class="px-8 py-4 w-full max-w-screen-xl flex flex-col gap-8">
         <div class="flex flex-col gap-8 h-full">
@@ -13,7 +13,7 @@
             <slot name="main" />
           </main>
         </div>
-        <footer class="w-full flex flex-col items-center gap-2 text-xs text-default">
+        <footer class="w-full flex flex-col items-center gap-2 text-xs">
           <MolCopyright :links="links" />
         </footer>
       </div>

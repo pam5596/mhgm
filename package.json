@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@iconify-json/ic": "^1.2.4",
 		"@iconify-json/logos": "^1.2.12",
+		"@iconify-json/material-symbols": "^1.2.88",
 		"@nuxt/eslint": "^1.16.0",
 		"@nuxt/icon": "^2.3.1",
 		"@nuxt/image": "^2.1.0",
