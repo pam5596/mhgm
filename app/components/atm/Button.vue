@@ -1,12 +1,13 @@
 <template>
   <v-btn 
     v-bind="$attrs"
-    class="font-bold p-2"
+    class="font-bold p-2 min-w-px"
     :class="styles"
+    variant="outlined"
   >
-    <div class="flex gap-2 items-center">
+    <div class="flex items-center">
       <Icon v-if="props.icon" :name="props.icon" class="size-5" />
-      <span>
+      <span v-if="$slots.default">
         <slot />
       </span>
     </div>
