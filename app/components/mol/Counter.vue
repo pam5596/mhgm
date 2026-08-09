@@ -3,7 +3,7 @@
     <AtmButton color="success" variant="outlined" icon="ic:baseline-plus" />
     <input
       type="text"
-      class="gradient-success border-gradient-mode rounded-md p-1 h-9 w-10 text-center text-default"
+      class="gradient-success border-gradient-mode rounded-md p-1 h-9 w-10 text-center"
     />
     <AtmButton color="success" variant="outlined" icon="ic:baseline-minus" />
   </div>

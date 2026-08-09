@@ -20,7 +20,7 @@
   }
 
   .text-default {
-    color: #2C3E35
+    color: var(--default)
   }
 
   .text-primary {

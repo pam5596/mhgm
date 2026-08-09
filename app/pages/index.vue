@@ -12,14 +12,14 @@
       <AtmCard color="primary" class="p-8 gap-8">
         <div class="w-1/2 flex flex-col gap-8 justify-center">
           <div class="font-cinzel text-4xl">
-            <p class="text-default">
+            <p>
               {{ $t("pages.index.app_title.line1") }}
             </p>
             <p class="gradient-primary text-gradient-mode translate-x-8">
               {{ $t("pages.index.app_title.line2") }}
             </p>
           </div>
-          <div class="text-default">
+          <div>
             <p>{{ $t("pages.index.app_description.line1") }}</p>
             <p>{{ $t("pages.index.app_description.line2") }}</p>
           </div>
