@@ -14,7 +14,7 @@
           </main>
         </div>
         <footer class="w-full flex flex-col items-center gap-2 text-xs">
-          <MolCopyright :links="links" />
+          <MolCopyright  />
         </footer>
       </div>
     </div>
@@ -22,11 +22,7 @@
 </template>
 
 <script setup lang="ts">
-const links = [
-  { label: "layouts.default.links.youtube_terms", href: "https://www.youtube.com/t/terms" },
-  { label: "layouts.default.links.google_privacy", href: "https://policies.google.com/privacy" },
-  { label: "layouts.default.links.github", href: "https://github.com/pam5596/mhgm" },
-];
+
 </script>
 
 <style scoped>
