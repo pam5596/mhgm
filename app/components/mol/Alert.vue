@@ -1,7 +1,7 @@
 <template>
   <v-alert
     v-model="model"
-    :type="props.type",
+    :type="props.type"
     :title="props.title"
     closable
   >
