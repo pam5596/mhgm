@@ -9,7 +9,7 @@
       size="64"
       width="4"
       indeterminate
-    ></v-progress-circular>
+    />
   </v-overlay>
 </template>
 
