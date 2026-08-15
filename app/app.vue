@@ -1,7 +1,9 @@
 <template>
   <NuxtLayout name="loading-overlay">
     <NuxtLayout name="alert-overlay">
-      <NuxtPage />
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </NuxtLayout>
   </NuxtLayout>
 </template>

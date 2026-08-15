@@ -1,22 +1,22 @@
 <template>
-  <NuxtLayout>
-    <template #header>
-      <AtmButton color="primary" variant="outlined" icon="ic:baseline-logout">
-        {{ $t("layouts.default.button.logout") }}
-      </AtmButton>
-    </template>
-    <template #main>
-      <AtmCard color="primary" class="p-8 gap-8 flex-col">
-        <MolUserProfile v-bind="user"/>
-        <AtmButton color="primary" variant="fill" size="large">
-            {{ $t("pages.home.button.to_manager") }}
-        </AtmButton>
-      </AtmCard>
-    </template>
-  </NuxtLayout>
+  <AtmCard color="primary" class="p-8 gap-8 flex-col">
+    <MolUserProfile v-bind="user"/>
+    <AtmButton color="primary" variant="fill" size="large">
+        {{ $t("pages.home.button.to_manager") }}
+    </AtmButton>
+  </AtmCard>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: {
+    name: "default",
+    props: {
+      headerType: "auth"
+    }
+  }
+})
+
 const user = {
   name: "name",
   avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
