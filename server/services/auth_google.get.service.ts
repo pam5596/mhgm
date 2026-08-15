@@ -9,6 +9,7 @@ import { UserModel } from "../../shared/models/user.model";
 import { UnknownError } from "../../shared/errors/unknown";
 import { SettingModel } from "~~/shared/models/setting.model";
 import { KeywordModel } from "~~/shared/models/keyword.model";
+import { PrismaORMClient } from "../clients/prisma";
 
 export class AuthGoogleGETService
   implements
@@ -16,6 +17,7 @@ export class AuthGoogleGETService
 {
   constructor(
     private googleClient: GoogleClient,
+    private prismaClient: PrismaORMClient,
     private userRepository: UserRepository,
     private settingRepository: SettingRepository,
     private keywordRepository: KeywordRepository
@@ -77,6 +79,7 @@ export class AuthGoogleGETService
             avatar: channel_props.avatar!
           })
         )
+        this.userRepository.client = prismaClient
 
         this.settingRepository.client = tx
         await this.settingRepository.create(
@@ -85,6 +88,7 @@ export class AuthGoogleGETService
             quest_limit: 2
           })
         )
+        this.settingRepository.client = prismaClient
 
         this.keywordRepository.client = tx
         await this.keywordRepository.create(
@@ -101,6 +105,7 @@ export class AuthGoogleGETService
             action: "CANCEL"
           })
         )
+        this.keywordRepository.client = prismaClient
 
         await setUserSession(event, {
           user: {
