@@ -5,6 +5,15 @@ import { searchForWorkspaceRoot } from "vite";
 export default defineNuxtConfig({
 	compatibilityDate: "2025-07-15",
 	devtools: { enabled: true },
+	app: {
+		head: {
+			title: 'MHGM',
+			titleTemplate: 'MHGM - %s',
+			link: [
+				{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+			]
+		},
+	},
 	nitro: {
 		experimental: {
 			websocket: true,
@@ -51,11 +60,14 @@ export default defineNuxtConfig({
 		"vuetify-nuxt-module",
 		"@nuxt/test-utils/module",
 		"@nuxt/eslint",
+		"@nuxt/image"
 	],
 
 	googleFonts: {
 		families: {
-			"Cinzel Decorative": true,
+			"Cinzel Decorative": {
+				regular: 700
+			}
 		},
 	},
 
@@ -67,9 +79,14 @@ export default defineNuxtConfig({
 		}
 	},
 
+	icon: {
+		serverBundle: {
+			collections: ['logos', 'ic', 'material-symbols']
+		}
+	},
+
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
 		databaseUrl: process.env.DATABASE_URL,
-		apiKey: process.env.API_KEY
 	}
 });

@@ -1,4 +1,81 @@
 {
+	"layouts": {
+		"default": {
+			"app_title": "mh guild manager",
+			"links": {
+				"youtube_terms": "YouTube 利用規約",
+				"google_privacy": "Google プライバシーポリシー",
+				"github": "GitHub"
+			},
+			"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
+			"capcom": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED.",
+			"copyright": "© 2026 pam5596",
+			"button": {
+				"logout": "ログアウト"
+			}
+		}
+	},
+	"pages": {
+		"index": {
+			"app_title": {
+				"line1": "monster hunter",
+				"line2": "guild manager"
+			},
+			"app_description": {
+				"line1": "モンスターハンター参加型配信用",
+				"line2": "参加者管理アプリケーション"
+			},
+			"button": {
+				"login_for_google": "Googleでログイン",
+				"to_about": "MHGMとは？"
+			}
+		},
+		"home": {
+			"button": {
+				"to_manager": "参加者管理画面へ"
+			}
+		},
+		"manager": {
+			"button": {
+				"to_home": "ホームへ戻る",
+				"start_recruit": "参加募集開始",
+				"stop_recruit": "参加募集締切",
+				"increase_quest": "クエスト出発or終了"
+			},
+			"main_manage_card": {
+				"title": "参加者管理ボード",
+				"description": "編集内容はOBS用のブラウザソース画面と同期されます"
+			},
+			"joiner_manage_card": {
+				"title": "現在の参加者",
+				"item": {
+					"quest_count": "参加クエスト数",
+					"change": "交代",
+					"leave": "退出",
+					"straming": "配信中",
+					"empty": "プレイヤー{player}"
+				}
+			},
+			"waiter_manage_card": {
+				"title": "待機者 - {count}人",
+				"item": {
+					"quest_count": "待機クエスト数",
+					"leave": "退出"
+				}
+			},
+			"setting_dialog": {
+				"title": "設定",
+				"change_quests": "交代クエスト数",
+				"entry_keywords": "参加希望とみなすキーワード",
+				"cancel_keywords": "参加辞退とみなすキーワード",
+				"button": {
+					"add_keyword": "追加",
+					"edit_keyword": "更新",
+					"delete_keyword": "削除"
+				}
+			}
+		}
+	},
 	"models": {
 		"user": "ユーザー",
 		"setting": "ユーザー設定",
@@ -11,6 +88,7 @@
 		"keyword": "キーワード"
 	},
 	"errors": {
+		"default": "エラーが発生しました。",
 		"unknown": "不明なエラーが発生しました。",
 		"validate": {
 			"default": "データの処理中に予期せぬエラーが発生しました。",
