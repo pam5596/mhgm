@@ -1,6 +1,5 @@
 <template>
-  <AtmLoginButton />
-  <AtmAboutButton />
+  <NuxtImg src="favicon.svg" />
 </template>
 
 <script setup lang="ts">

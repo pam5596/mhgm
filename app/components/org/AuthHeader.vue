@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <AtmButton color="primary" variant="outlined" icon="ic:baseline-logout">
-      {{ $t("layouts.default.button.logout") }}
-    </AtmButton>
-  </div>
+  <AtmButton color="primary" variant="outlined" icon="ic:baseline-logout">
+    {{ $t("layouts.default.button.logout") }}
+  </AtmButton>
 </template>
 
 <script setup lang="ts">
