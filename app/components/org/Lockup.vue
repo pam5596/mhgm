@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row items-center gap-2">
-    <NuxtImg class="size-12" src="favicon.svg" />
+    <AtmFavicon class="size-12" />
     <p class="text-4xl font-cinzel text-gradient-primary font-bold">
       {{  $t("layouts.default.app_title") }}
     </p>

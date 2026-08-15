@@ -4,17 +4,17 @@
       <div class="px-8 py-4 w-full max-w-screen-xl flex flex-col gap-8">
         <div class="flex flex-col gap-8 h-full">
           <header class="w-full flex flex-row justify-between">
-            <MolLockup />
+            <OrgLockup />
             <div class="flex flex-row items-center gap-3">
-              <slot name="header" />
+              <component :is="header" />
             </div>
           </header>
           <main class="w-full h-full flex flex-col justify-center">
-            <slot name="main" />
+            <slot />
           </main>
         </div>
         <footer class="w-full flex flex-col items-center gap-2 text-xs">
-          <MolCopyright  />
+          <OrgCopyright  />
         </footer>
       </div>
     </div>
@@ -22,6 +22,14 @@
 </template>
 
 <script setup lang="ts">
+import AuthHeader from '~/components/org/AuthHeader.vue';
+import PublicHeader from '~/components/org/PublicHeader.vue';
+
+const props = defineProps<{
+  headerType: "public" | "auth"
+}>()
+
+const header = computed(() => props.headerType === "public" ? PublicHeader : AuthHeader)
 
 </script>
 
