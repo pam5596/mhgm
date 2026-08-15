@@ -1,0 +1,20 @@
+<template>
+  <AtmCard color="primary" class="p-8 gap-8 flex-col">
+    <MolUserProfile v-bind="user"/>
+    <AtmButton color="primary" variant="fill" size="large">
+        {{ $t("pages.home.button.to_manager") }}
+    </AtmButton>
+  </AtmCard>
+</template>
+
+<script setup lang="ts">
+const user = {
+  name: "name",
+  avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
+  channelId: "channel_id"
+}
+</script>
+
+<style scoped>
+
+</style>
