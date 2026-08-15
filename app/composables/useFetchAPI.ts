@@ -42,7 +42,7 @@ export default async function (
       if (opts?.showLoading) toggleLoading()
       showAlert({ 
         type: "error", 
-        title: error?.message!, 
+        title: error?.message ?? $t("errors.default"),
         error: error && errorToString(error)
       })
     }
