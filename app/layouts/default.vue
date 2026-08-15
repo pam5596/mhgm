@@ -4,7 +4,7 @@
       <div class="px-8 py-4 w-full max-w-screen-xl flex flex-col gap-8">
         <div class="flex flex-col gap-8 h-full">
           <header class="w-full flex flex-row justify-between">
-            <MolLockup />
+            <OrgLockup />
             <div class="flex flex-row items-center gap-3">
               <component :is="header" />
             </div>
@@ -14,7 +14,7 @@
           </main>
         </div>
         <footer class="w-full flex flex-col items-center gap-2 text-xs">
-          <MolCopyright  />
+          <OrgCopyright  />
         </footer>
       </div>
     </div>
