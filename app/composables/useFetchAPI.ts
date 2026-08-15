@@ -1,0 +1,50 @@
+export default async function (
+  request: Parameters<typeof useFetch>[0], 
+  opts?: Parameters<typeof useFetch>[1] & { 
+    showLoading: boolean
+    loadingMessage?: string
+    successMessage?: string
+  }
+) {
+  const { showAlert } = useAlert()
+  const { toggleLoading } = useLoading()
+
+  return await useFetch(request, {
+    ...opts,
+    immediate: false,
+    onRequest: ({ request }) => {
+      console.debug(request)
+      if (opts?.showLoading) toggleLoading()
+      if (opts?.loadingMessage) showAlert({ 
+          type: "info", 
+          title: opts.loadingMessage
+        })
+    },
+    onRequestError: ({ error }) => {
+      console.error(error)
+      if (opts?.showLoading) toggleLoading()
+      showAlert({ 
+        type: "error", 
+        title: error.message,
+        error: error && errorToString(error)
+      })
+    },
+    onResponse: ({ response }) => {
+      console.debug(response)
+      if (opts?.showLoading) toggleLoading()
+      if (opts?.successMessage) showAlert({ 
+        type: "success", 
+        title: opts.successMessage
+      })
+    },
+    onResponseError: ({ error }) => {
+      console.error(error)
+      if (opts?.showLoading) toggleLoading()
+      showAlert({ 
+        type: "error", 
+        title: error?.message ?? $t("errors.default"),
+        error: error && errorToString(error)
+      })
+    }
+  })
+}
