@@ -1,7 +1,9 @@
 <template>
   <AtmCard color="primary" class="p-4 w-1/2 flex flex-col gap-4 h-[388px]">
     <div class="flex justify-between">
-      <p class="text-primary-dark font-bold text-xl">待機者 - 10人</p>
+      <p class="text-primary-dark font-bold text-xl">
+        {{ $t("pages.manager.waiter_manage_card.title", { count: 10 }) }}
+      </p>
       <AtmIconButton color="primary" variant="outlined" size="32">
         <Icon name="ic:baseline-content-copy"/>
       </AtmIconButton>

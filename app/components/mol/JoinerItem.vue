@@ -10,14 +10,16 @@
     </div>
     <div class="flex items-center gap-2">
       <div class="flex flex-col items-center">
-        <span class="text-success-dark font-bold text-xs">参加クエスト数</span>
+        <span class="text-success-dark font-bold text-xs">
+          {{ $t("pages.manager.joiner_manage_card.item.quest_count") }}
+        </span>
         <MolCounter v-model="model" color="success" />
       </div>
       <AtmButton color="success" variant="fill">
-        交代
+        {{ $t("pages.manager.joiner_manage_card.item.change") }}
       </AtmButton>
       <AtmButton color="error" variant="fill">
-        退出
+        {{ $t("pages.manager.joiner_manage_card.item.leave") }}
       </AtmButton>
     </div>
   </AtmCard>

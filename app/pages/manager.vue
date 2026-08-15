@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col gap-4">
     <div>
-      <AtmBackButton>ホームへ戻る</AtmBackButton>
+      <AtmBackButton>
+        {{ $t("pages.manager.button.to_home") }}
+      </AtmBackButton>
     </div>
     <OrgMainManageCard />
     <div class="flex gap-4">

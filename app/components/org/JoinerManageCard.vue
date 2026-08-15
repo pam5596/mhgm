@@ -1,7 +1,9 @@
 <template>
   <AtmCard color="success" class="p-4 w-1/2 flex flex-col gap-4 h-[388px]">
     <div class="flex justify-between">
-      <p class="text-success-dark font-bold text-xl">現在の参加者</p>
+      <p class="text-success-dark font-bold text-xl">
+        {{ $t("pages.manager.joiner_manage_card.title") }}
+      </p>
       <AtmIconButton color="success" variant="outlined" size="32">
         <Icon name="ic:baseline-content-copy" />
       </AtmIconButton>

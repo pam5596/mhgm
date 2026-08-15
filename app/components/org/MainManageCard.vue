@@ -4,8 +4,12 @@
       <div class="flex gap-4">
         <AtmFavicon class="h-14" />
         <div class="flex h-100 flex-col">
-          <p class="text-primary-dark font-bold text-2xl">参加者管理ボード</p>
-          <p>編集内容はOBS用のブラウザソース画面と同期されます</p>
+          <p class="text-primary-dark font-bold text-2xl">
+            {{ $t("pages.manager.main_manage_card.title") }}
+          </p>
+          <p>
+            {{ $t("pages.manager.main_manage_card.description") }}
+          </p>
         </div>
       </div>
       <AtmIconButton color="primary" variant="outlined">
@@ -17,12 +21,12 @@
     <div class="flex gap-4 w-full">
       <div class="w-1/2">
         <AtmButton color="success" variant="fill" class="w-full" icon="ic:baseline-play-circle">
-          参加募集開始
+          {{ $t("pages.manager.button.start_recruit") }}
         </AtmButton>
       </div>
       <div class="w-1/2">
         <AtmButton color="primary" variant="fill" class="w-full" icon="material-symbols:swords-outline">
-          クエスト出発or終了
+          {{ $t("pages.manager.button.increase_quest") }}
         </AtmButton>
       </div>
     </div>

@@ -10,11 +10,13 @@
     </div>
     <div class="flex items-center gap-2">
       <div class="flex flex-col items-center">
-        <span class="text-primary-dark font-bold text-xs">待機クエスト数</span>
+        <span class="text-primary-dark font-bold text-xs">
+          {{ $t("pages.manager.waiter_manage_card.item.quest_count") }}
+        </span>
         <MolCounter v-model="model" />
       </div>
       <AtmButton color="error" variant="fill">
-        退出
+        {{ $t("pages.manager.waiter_manage_card.item.leave") }}
       </AtmButton>
     </div>
   </AtmCard>

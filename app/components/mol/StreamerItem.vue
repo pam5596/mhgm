@@ -11,7 +11,7 @@
     <div v-if="props.isStreaming" class="flex gap-2 items-center text-error-dark">
       <Icon name="ic:baseline-fiber-manual-record" />
       <p class="font-bold">
-        配信中
+        {{ $t("pages.manager.joiner_manage_card.item.straming") }}
       </p>
     </div>
   </AtmCard>
