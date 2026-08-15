@@ -22,12 +22,6 @@ definePageMeta({
     }
   }
 })
-
-const user = {
-  name: "name",
-  avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
-  channelId: "channel_id"
-}
 </script>
 
 <style scoped>
