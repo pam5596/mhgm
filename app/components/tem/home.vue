@@ -1,7 +1,7 @@
 <template>
   <AtmCard color="primary" class="p-8 gap-8 flex-col">
     <MolUserProfile
-      :avatar="user?.avatar",
+      :avatar="user?.avatar"
       :channel-id="user?.channel_id"
       :name="user?.name"
     />

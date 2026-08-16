@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware((to) => {
+export default defineNuxtRouteMiddleware(() => {
   const { loggedIn } = useUserSession()
   const { showAlert } = useAlert()
   const { t } = useI18n()
