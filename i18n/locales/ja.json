@@ -108,6 +108,7 @@
 			"youtube_channel": "Youtubeチャンネルが見つかりませんでした。Youtubeアカウントを作成してください。"
 		},
 		"forbidden": "データへのアクセス権限がありません。",
-		"invalid_api_key": "データ送信認証に失敗しました。"
+		"invalid_api_key": "データ送信認証に失敗しました。",
+		"required_login": "セッションの有効期限が切れました。再度ログインしてください。"
 	}
 }
