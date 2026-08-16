@@ -3,12 +3,12 @@
     <p class="text-primary-dark font-bold">
       {{ $t("pages.manager.setting_dialog.change_quests") }}
     </p>
-    <MolCounter :min="0" />
+    <MolCounter :min="0" v-model="model" />
   </div>
 </template>
 
 <script setup lang="ts">
-
+const model = defineModel<number>()
 </script>
 
 <style scoped>

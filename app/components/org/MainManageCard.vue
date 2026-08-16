@@ -12,11 +12,17 @@
           </p>
         </div>
       </div>
-      <AtmIconButton color="primary" variant="outlined" @click="openDialog" :disabled="props.isRecruiting">
+      <AtmIconButton 
+        color="primary" 
+        variant="outlined" 
+        @click="openDialog" 
+        :disabled="props.isRecruiting && !settings"
+      >
         <Icon name="ic:baseline-settings" size="30" />
         <MolSettingDialog 
+          v-if="settings"
           v-model:dialog="dialog"
-          v-model:setting="settings"
+          v-model:settings="settings"
         />
       </AtmIconButton>
     </div>

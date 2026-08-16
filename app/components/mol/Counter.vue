@@ -2,10 +2,10 @@
   <div class="flex gap-1">
     <AtmButton :color="props.color" variant="outlined" icon="ic:baseline-minus" @click="decreace"/>
     <input
-    type="text"
-    class="rounded-md p-1 h-9 w-10 text-center"
-    :class="styles"
-    v-model="model"
+      type="text"
+      class="rounded-md p-1 h-9 w-10 text-center"
+      :class="styles"
+      v-model.number="model"
     >
     <AtmButton :color="props.color" variant="outlined" icon="ic:baseline-plus" @click="increace"/>
   </div>
