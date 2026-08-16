@@ -8,6 +8,7 @@ export default async function (
 ) {
   const { showAlert } = useAlert()
   const { toggleLoading } = useLoading()
+  const { t } = useI18n()
 
   return await useFetch(request, {
     ...opts,
@@ -42,7 +43,7 @@ export default async function (
       if (opts?.showLoading) toggleLoading()
       showAlert({ 
         type: "error", 
-        title: error?.message ?? $t("errors.default"),
+        title: error?.message ?? t("errors.default"),
         error: error && errorToString(error)
       })
     }
