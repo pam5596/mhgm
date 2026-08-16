@@ -12,7 +12,7 @@
         <div class="flex gap-2 flex-col">
           <MolChangeQuestsForm v-model="change_quests" />
           <MolEntryKeywordForm v-model="entry_keywords" />
-          <MolCancelKeywordForm />
+          <MolCancelKeywordForm v-model="cancel_keywords" />
         </div>
       </AtmCard>
     </div>
@@ -40,6 +40,14 @@ const entry_keywords = computed({
   get: () => settings.value.keywords.filter(keyword => keyword.action === "ENTRY"),
   set: (value: AuthPublicUsersSettingsGETResponse["body"]["keywords"]) => {
     const ignored_entry = settings.value.keywords.filter(k => k.action !== "ENTRY")
+    settings.value = { ...settings.value, keywords: [ ...ignored_entry, ...value]}
+  }
+})
+
+const cancel_keywords = computed({
+  get: () => settings.value.keywords.filter(keyword => keyword.action === "CANCEL"),
+  set: (value: AuthPublicUsersSettingsGETResponse["body"]["keywords"]) => {
+    const ignored_entry = settings.value.keywords.filter(k => k.action !== "CANCEL")
     settings.value = { ...settings.value, keywords: [ ...ignored_entry, ...value]}
   }
 })
