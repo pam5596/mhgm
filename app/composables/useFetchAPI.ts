@@ -1,3 +1,5 @@
+import type { CustomError } from "~~/shared/types/custom_error"
+
 export default function <ResT>(
   request: Parameters<typeof useFetch<ResT>>[0], 
   opts?: Parameters<typeof useFetch<ResT>>[1] & { 
@@ -38,12 +40,13 @@ export default function <ResT>(
         title: opts.successMessage
       })
     },
-    onResponseError: ({ error }) => {
-      console.error(error)
+    onResponseError: ({ response }) => {
+      console.error(response._data)
+      const error = response._data as CustomError
       if (opts?.showLoading) toggleLoading()
-      showAlert({ 
+      showAlert({
         type: "error", 
-        title: error?.message ?? t("errors.default"),
+        title: error.message || t("errors.default"),
         error: error && errorToString(error)
       })
     }

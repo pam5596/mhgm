@@ -8,7 +8,7 @@
     <p>
       {{ props.detail }}
     </p>
-    <code>
+    <code class="whitespace-pre-wrap text-xs">
       {{ props.error }}
     </code>
   </v-alert>
