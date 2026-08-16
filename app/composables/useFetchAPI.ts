@@ -1,5 +1,3 @@
-import type { CustomError } from "~~/shared/types/custom_error"
-
 export default function <ResT>(
   request: Parameters<typeof useFetch<ResT>>[0], 
   opts?: Parameters<typeof useFetch<ResT>>[1] & { 
