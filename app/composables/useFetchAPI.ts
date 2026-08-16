@@ -1,4 +1,4 @@
-export default async function <ResT>(
+export default function <ResT>(
   request: Parameters<typeof useFetch<ResT>>[0], 
   opts?: Parameters<typeof useFetch<ResT>>[1] & { 
     showLoading: boolean
@@ -10,7 +10,7 @@ export default async function <ResT>(
   const { toggleLoading } = useLoading()
   const { t } = useI18n()
 
-  return await useFetch<ResT>(request, {
+  return useFetch<ResT>(request, {
     ...opts,
     immediate: false,
     onRequest: ({ request }) => {

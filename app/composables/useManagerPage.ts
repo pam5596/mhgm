@@ -5,7 +5,7 @@ export default async function() {
 
   const is_recruiting = ref(false)
 
-  const { data: settings, execute: getUserSetting } = await useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
+  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
 
   const onStartRecruit = () => {
     is_recruiting.value = true
