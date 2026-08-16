@@ -34,9 +34,9 @@ const styles = computed(() => [
   }
 ])
 
-const increace = () => { if(model.value <= props.max) model.value++ }
+const increace = () => { if(model.value < props.max) model.value++ }
 
-const decreace = () => { if(props.min <= model.value) model.value-- }
+const decreace = () => { if(props.min < model.value) model.value-- }
 
 
 
