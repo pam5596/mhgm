@@ -66,6 +66,7 @@
 			"setting_dialog": {
 				"title": "設定",
 				"change_quests": "交代クエスト数",
+				"update_message": "設定内容を更新しました。",
 				"entry_keyword_form": {
 					"title": "参加希望とみなすキーワード",
 					"default_keyword": "参加希望",
