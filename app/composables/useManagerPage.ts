@@ -1,4 +1,5 @@
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
+import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
 
 export default async function() {
   const { user } = useUserSession()
@@ -6,9 +7,11 @@ export default async function() {
   const is_recruiting = ref(false)
 
   const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
+  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
 
-  const onStartRecruit = () => {
-    is_recruiting.value = true
+  const onStartRecruit = async () => {
+    await getBroadcast()
+    if (broadcast.value) is_recruiting.value = true
   }
 
   const onStopRecruit = () => {
