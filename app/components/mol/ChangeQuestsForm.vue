@@ -3,7 +3,7 @@
     <p class="text-primary-dark font-bold">
       {{ $t("pages.manager.setting_dialog.change_quests") }}
     </p>
-    <MolCounter :min="0" v-model="model" />
+    <MolCounter :min="1" v-model="model" />
   </div>
 </template>
 

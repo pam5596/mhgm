@@ -48,7 +48,7 @@
 import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
 
 const dialog = ref(false)
-const openDialog = () => dialog.value = !dialog.value
+const openDialog = () => dialog.value = true
 
 const settings = defineModel<AuthPublicUsersSettingsGETResponse["body"]>('settings')
 
