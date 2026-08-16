@@ -23,7 +23,7 @@ describe("AuthPublicBroadcastPUTServiceの結合テスト", () => {
 				stream_id: "stream_id_1",
 				title: "live title",
 				thumbnail: "https://example.com/thumb.jpg",
-				end_at: new Date()
+				end_at: new Date().toISOString()
 			},
 		});
 
