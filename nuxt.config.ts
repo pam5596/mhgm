@@ -50,6 +50,9 @@ export default defineNuxtConfig({
 				allow: [searchForWorkspaceRoot(process.cwd()), "/prisma/generated"],
 			},
 		},
+		optimizeDeps: {
+			include: ['socket.io-client']
+		}
 	},
 	modules: [
 		"@nuxt/icon",
@@ -88,5 +91,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
 		databaseUrl: process.env.DATABASE_URL,
+		public: {
+			statefulApiBaseUrl: process.env.STATERUL_API_BASE_URL
+		}
 	}
 });
