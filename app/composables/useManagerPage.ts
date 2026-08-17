@@ -5,7 +5,7 @@ import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/inte
 export default async function() {
   const requestAPI = useRequestAPI()
   const { user } = useUserSession()
-  const { setClient, connect } = useLiveChatSocket()
+  const { setClient, connect, disconnect } = useLiveChatSocket()
 
   const is_recruiting = ref(false)
 
@@ -23,20 +23,22 @@ export default async function() {
         }
       })
 
-      // if (data) {
-      //   setClient({
-      //     channel_id: user.value!.channel_id,
-      //     stream_id: broadcast.value.stream_id,
-      //     broadcast_id: data.id
-      //   })
-      //   connect()
-      //   is_recruiting.value = true
-      // }
+      if (data) {
+        setClient({
+          channel_id: user.value!.channel_id,
+          stream_id: broadcast.value.stream_id,
+          broadcast_id: data.id,
+          user_id: user.value!.user_id
+        })
+        connect(user.value!.channel_id)
+        is_recruiting.value = true
+      }
     }
   }
 
   const onStopRecruit = () => {
     is_recruiting.value = false
+    disconnect()
   }
 
   onMounted(async () => {
