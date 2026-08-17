@@ -28,7 +28,7 @@ const requestAPI = useRequestAPI()
 const { t } = useI18n()
 
 const onAddKeyword = async () => {
-  const { data, error } = await requestAPI<AuthPublicKeywordsPOSTResponse["body"]>(
+  const data = await requestAPI<AuthPublicKeywordsPOSTResponse["body"]>(
     `/api/auth/public/keywords`, {
     method: "POST",
     showLoading: true,
@@ -38,7 +38,6 @@ const onAddKeyword = async () => {
       action: "CANCEL"
     }
   })
-  if (error || !data) return
   keywords.value = [
     ...keywords.value,
     {
@@ -54,7 +53,7 @@ const onUpdateKeyword = async (keyword: {
   keyword: string,
   action: string
 }) => {
-  const { error } = await requestAPI(
+  await requestAPI(
     `/api/auth/public/keywords/${keyword.id}`, {
     method: "PATCH",
     showLoading: true,
@@ -63,7 +62,6 @@ const onUpdateKeyword = async (keyword: {
       keyword: keyword.keyword
     }
   })
-  if (error) return
   keywords.value = keywords.value.with(
     keywords.value.findIndex(k => k.id === keyword.id),
     keyword
@@ -73,13 +71,12 @@ const onUpdateKeyword = async (keyword: {
 const onDeleteKeyword = async (keyword: {
   id: number
 }) => {
-  const { error } = await requestAPI(
+  await requestAPI(
   `/api/auth/public/keywords/${keyword.id}`, {
     method: "DELETE",
     showLoading: true,
     successMessage: t("pages.manager.setting_dialog.cancel_keyword_form.delete_message")
   })
-  if (error) return
   keywords.value = keywords.value.filter(k => k.id !== keyword.id)
 }
 
