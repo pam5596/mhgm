@@ -46,6 +46,7 @@ export default defineNuxtConfig({
 	},
 	vite: {
 		server: {
+			allowedHosts: ["mhgm"],
 			fs: {
 				allow: [searchForWorkspaceRoot(process.cwd()), "/prisma/generated"],
 			},
