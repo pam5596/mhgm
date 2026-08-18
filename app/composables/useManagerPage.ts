@@ -1,11 +1,12 @@
 import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
 import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
+import type { SocketIOLiveChatAuth } from "~~/shared/dtos/interfaces/socker.io_live_chat.auth.dto"
 
 export default async function() {
   const requestAPI = useRequestAPI()
   const { user } = useUserSession()
-  const { setClient, connect, disconnect } = useLiveChatSocket()
+  const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
 
   const is_recruiting = ref(false)
 
@@ -30,7 +31,8 @@ export default async function() {
           broadcast_id: data.id,
           user_id: user.value!.user_id
         })
-        connect(user.value!.channel_id)
+        connect()
+        subscribeEmit(user.value!.channel_id, async (event) => {})
         is_recruiting.value = true
       }
     }
