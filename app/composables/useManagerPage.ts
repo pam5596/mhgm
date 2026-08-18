@@ -32,7 +32,9 @@ export default async function() {
           user_id: user.value!.user_id
         })
         connect()
-        subscribeEmit(user.value!.channel_id, async (event) => {})
+        subscribeEmit(user.value!.channel_id, async (event) => {
+          console.log(event)
+        })
         is_recruiting.value = true
       }
     }

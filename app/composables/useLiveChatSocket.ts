@@ -1,5 +1,5 @@
 import { io, type Socket } from "socket.io-client"
-import type { SocketAuth } from "~~/shared/types/socket_auth"
+import type { SocketIOLiveChatAuth } from "~~/shared/dtos/interfaces/socker.io_live_chat.auth.dto"
 
 export default function() {
   const config = useRuntimeConfig()
@@ -7,7 +7,7 @@ export default function() {
   const socket = ref<Socket>()
   const is_connected = ref(false)
 
-  const setClient = (auth: SocketAuth) => {
+  const setClient = (auth: SocketIOLiveChatAuth) => {
     socket.value = io(`${config.public.statefulApiBaseUrl}/live-chat`, {
       autoConnect: false,
       transports: ["polling"],
@@ -15,19 +15,24 @@ export default function() {
     })
   }
 
-  const connect = (channel_id: string) => {
+  const connect = () => {
     if (!is_connected.value && socket.value) {
       socket.value.connect()
+
       socket.value.on('connect', () => (is_connected.value = true))
       socket.value.on('disconnect', () => (is_connected.value = false))
-      socket.value.on(`emit-${channel_id}`, (event) => {
-        console.log(event)
-      })
     }
   }
 
   const disconnect = () => {
     socket.value?.disconnect()
+  }
+
+  const subscribeEmit = <Event>(
+    channel_id: string,
+    callback: (event: Event) => Promise<void>
+  ) => {
+    socket.value?.on(`emit-${channel_id}`, callback)
   }
 
 
@@ -36,6 +41,7 @@ export default function() {
     is_connected,
     setClient,
     connect,
-    disconnect
+    disconnect,
+    subscribeEmit
   }
 }
