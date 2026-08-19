@@ -1,7 +1,6 @@
 import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
 import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
-import type { SocketIOLiveChatAuth } from "~~/shared/dtos/interfaces/socker.io_live_chat.auth.dto"
 
 export default async function() {
   const requestAPI = useRequestAPI()
