@@ -12,13 +12,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  name?: string
-  avatar?: string
-  channelId?: string
-}>()
+import type { DisplayUser } from '~/types/display_user';
 
-const is_loading = computed(() => !(props.name && props.avatar && props.channelId))
+const props = defineProps<Partial<DisplayUser>>()
+
+const is_loading = computed(() => !(props.name && props.avatar && props.channel_id))
 
 </script>
 

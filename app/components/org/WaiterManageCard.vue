@@ -19,7 +19,7 @@
 const user = {
   name: "name",
   avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
-  channelId: "channel_id"
+  channel_id: "channel_id"
 }
 </script>
 

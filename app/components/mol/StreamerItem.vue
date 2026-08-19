@@ -18,13 +18,11 @@
 </template>
 
 <script setup lang="ts">
+import type { DisplayUser } from '~/types/display_user';
+
 const props = defineProps<{
   isStreaming?: boolean
-  streamer: {
-    name: string
-    channelId: string
-    avatar: string
-  }
+  streamer: DisplayUser
 }>()
 
 const color = computed(() => props.isStreaming ? "error" : "success")

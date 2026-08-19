@@ -26,12 +26,10 @@
 </template>
 
 <script setup lang="ts">
+import type { DisplayUser } from '~/types/display_user';
+
 const model = defineModel<number>()
-const props = defineProps<{
-  name: string
-  channelId: string
-  avatar: string
-}>()
+const props = defineProps<DisplayUser>()
 
 </script>
 
