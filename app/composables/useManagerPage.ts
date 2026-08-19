@@ -8,6 +8,7 @@ export default async function() {
   const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
 
   const is_recruiting = ref(false)
+  const factory = ref<PlayerFactory>()
 
   const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
   const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
@@ -45,7 +46,13 @@ export default async function() {
   }
 
   onMounted(async () => {
-    await getUserSetting()
+    if (user.value) {
+      await getUserSetting()
+      factory.value = PlayerFactory.create(
+        user.value,
+        settings.value.setting.quest_limit
+      )
+    }
   })
 
   return {

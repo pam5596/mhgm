@@ -1,7 +1,7 @@
 import type { DisplayUser } from "~/types/display_user";
 import type { FactoryPlayer } from "~/types/factory_player";
 
-export default class PlayerFactory {
+export class PlayerFactory {
   streamer: DisplayUser
   quest_limit: number
   quests: number = 0
@@ -10,6 +10,10 @@ export default class PlayerFactory {
   constructor(streamer: DisplayUser, quest_limit: number) {
     this.streamer = streamer
     this.quest_limit = quest_limit
+  }
+
+  static create(streamer: DisplayUser, quest_limit: number) {
+    return new PlayerFactory(streamer, quest_limit)
   }
 
   refresh() {
