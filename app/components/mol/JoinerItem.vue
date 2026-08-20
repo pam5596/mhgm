@@ -15,11 +15,11 @@
         </span>
         <MolCounter v-model="model" color="success" />
       </div>
-      <AtmButton color="success" variant="fill">
+      <AtmButton color="success" variant="fill" @click="$emit('on_change')">
         {{ $t("pages.manager.joiner_manage_card.item.change") }}
       </AtmButton>
-      <AtmButton color="error" variant="fill">
-        {{ $t("pages.manager.joiner_manage_card.item.leave") }}
+      <AtmButton color="error" variant="fill" @click="$emit('on_cancel')">
+        {{ $t("pages.manager.joiner_manage_card.item.cancel") }}
       </AtmButton>
     </div>
   </AtmCard>
@@ -31,6 +31,10 @@ import type { FactoryPlayer } from '~/types/factory_player';
 const model = defineModel<number>()
 const props = defineProps<{
   player: FactoryPlayer
+}>()
+const emit = defineEmits<{
+  on_change: [waiter: string],
+  on_cancel: [] 
 }>()
 
 </script>

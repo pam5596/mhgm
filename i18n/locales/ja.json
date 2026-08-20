@@ -55,7 +55,7 @@
 				"item": {
 					"quest_count": "参加クエスト数",
 					"change": "交代",
-					"leave": "退出",
+					"cancel": "退出",
 					"straming": "配信中",
 					"empty": "プレイヤー{player}"
 				}
@@ -64,7 +64,7 @@
 				"title": "待機者 - {count}人",
 				"item": {
 					"quest_count": "待機クエスト数",
-					"leave": "退出"
+					"cancel": "退出"
 				}
 			},
 			"setting_dialog": {

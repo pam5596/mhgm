@@ -15,6 +15,8 @@
           v-if="player"
           :player="player"
           v-model="joiner_quests(player).value"
+          @on_change="(waiter) => onChange(player.channel_id, waiter)"
+          @on_cancel="() => onCancel(player.channel_id)"
         />
         <MolEmptyViewerItem v-else :player="index+2" />
       </template>
@@ -33,7 +35,10 @@ const props = defineProps<{
 }>()
 
 const joiner_players = computed(
-  () => Array.from({ length: 3 }, (_, i) => props.players_factory.joiners[i] ?? null)
+  () => Array.from(
+    { length: 3 }, 
+    (_, i) => props.players_factory.joiners[i] ?? null
+  )
 )
 
 const joiner_quests = (player: FactoryPlayer) => computed({
@@ -42,6 +47,14 @@ const joiner_quests = (player: FactoryPlayer) => computed({
     props.players_factory.changePlayerQuests(player.channel_id, value)
   }
 })
+
+const onChange = (joiner: string, waiter: string) => 
+  props.players_factory.changePlayer(
+    joiner, waiter
+  )
+
+const onCancel = (channel_id: string) => 
+  props.players_factory.cancelPlayer(channel_id)
 
 </script>
 

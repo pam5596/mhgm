@@ -16,7 +16,7 @@
         <MolCounter v-model="model" />
       </div>
       <AtmButton color="error" variant="fill">
-        {{ $t("pages.manager.waiter_manage_card.item.leave") }}
+        {{ $t("pages.manager.waiter_manage_card.item.cancel") }}
       </AtmButton>
     </div>
   </AtmCard>
