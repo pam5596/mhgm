@@ -8,44 +8,7 @@ export class PlayerFactory {
 
   constructor(quest_limit: number, from_players?: FactoryPlayer[]) {
     this.quest_limit = quest_limit
-    this.players = from_players || [
-      {
-        "id": 100,
-        "channel_id": "UCuYNLA3KQFtJTBc8MoxYj8g",
-        "name": "@p3191-am",
-        "avatar": "https://yt4.ggpht.com/6PcpY0c20RjCGLYP0xSBZc58MuvO-HjyEaMWklrf_YCtKCT2PWjm_mK_3iY9wUyLIrqUESG_6B4=s64-c-k-c0x00ffffff-no-rj",
-        "join_quests": 0,
-        "wait_quests": 0,
-        "status": StatusEnum.join
-      },
-      {
-        "id": 99,
-        "channel_id": "UCp7Fsxs_3OWbOCkJUfIAxqw",
-        "name": "@rs3191-w2d",
-        "avatar": "https://yt4.ggpht.com/gNR6DqHC5V-qdzRh42_Z9clyEBjDNhJwQEwaQCkMUSVD5ctEMhPFpTcjaSPUjPi0QNyIGIRK=s64-c-k-c0x00ffffff-no-rj",
-        "join_quests": 0,
-        "status": StatusEnum.join,
-        "wait_quests": 0
-      },
-      {
-        "id": 98,
-        "channel_id": "UCp7Fsxs_3OWbOCkJUfIAxqq",
-        "name": "@rs3191-w2d",
-        "avatar": "https://picsum.photos/id/999/200/300",
-        "join_quests": 0,
-        "status": StatusEnum.join,
-        "wait_quests": 0
-      },
-      ...Array.from({length: 10}, (v, k) => ({
-        "id": k,
-        "channel_id": `UCp7Fsxs_3OWbOCkJUfIAxq${k}`,
-        "name": "@rs3191-w2d",
-        "avatar": `https://picsum.photos/id/${k*10}/200/300`,
-        "join_quests": 0,
-        "status": StatusEnum.wait,
-        "wait_quests": (Math.floor(k / 3) + 1) * 2
-      }))
-    ]
+    this.players = from_players || []
   }
 
   static create(quest_limit: number, from_players?: FactoryPlayer[]) {
