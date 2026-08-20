@@ -22,22 +22,13 @@
 <script setup lang="ts">
 import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
 
-const requestAPI = useRequestAPI()
-const { t } = useI18n()
+const { settings, patchSettings } = usePublicAPI()
 
 const dialog = defineModel<boolean>("dialog")
 const closeDialog = async () => {
   dialog.value = false
-  await requestAPI("/api/auth/public/users/settings", {
-    method: "PATCH",
-    showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.update_message"),
-    body: settings.value.setting
-  })
+  await patchSettings()
 }
-
-const settings = defineModel<AuthPublicUsersSettingsGETResponse["body"]>("settings", { required: true })
-
 const change_quests = computed({
   get: () => settings.value.setting.quest_limit,
   set: (value: number) => {

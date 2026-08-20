@@ -75,20 +75,19 @@
 			"setting_dialog": {
 				"title": "設定",
 				"change_quests": "交代クエスト数",
-				"update_message": "設定内容を更新しました。",
+				"alert": {
+					"success_update": "設定内容を更新しました。",
+					"success_keyword_create": "キーワードを登録しました。",
+					"success_keyword_update": "キーワードを更新しました。",
+					"success_keyword_delete": "キーワードを削除しました。"
+				},
 				"entry_keyword_form": {
 					"title": "参加希望とみなすキーワード",
-					"default_keyword": "参加希望",
-					"add_message": "参加判定キーワードを登録しました。",
-					"update_message": "参加判定キーワードを更新しました。",
-					"delete_message": "参加判定キーワードを削除しました"
+					"default_keyword": "参加希望"
 				},
 				"cancel_keyword_form": {
 					"title": "参加辞退とみなすキーワード",
-					"default_keyword": "参加辞退",
-					"add_message": "辞退判定キーワードを登録しました。",
-					"update_message": "辞退判定キーワードを更新しました。",
-					"delete_message": "辞退判定キーワードを削除しました"
+					"default_keyword": "参加辞退"
 				},
 				"button": {
 					"add_keyword": "追加",

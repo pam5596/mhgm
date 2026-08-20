@@ -6,7 +6,6 @@
       </AtmBackButton>
     </div>
     <OrgMainManageCard 
-      v-model:settings="settings"
       :is-recruiting="is_recruiting"
       @on-start-recruit="onStartRecruit"
       @on-stop-recruit="onStopRecruit"
@@ -28,7 +27,6 @@
 <script setup lang="ts">
 const { 
   user, 
-  settings, 
   is_recruiting,
   player_factory,
   onStartRecruit,

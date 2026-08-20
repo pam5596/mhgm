@@ -19,31 +19,21 @@
 </template>
 
 <script setup lang="ts">
-import type { AuthPublicKeywordsPOSTResponse } from '~~/shared/dtos/interfaces/auth_public_keywords.post.res.dto';
 import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
 
 const keywords = defineModel<AuthPublicUsersSettingsGETResponse["body"]["keywords"]>({ required: true })
 
-const requestAPI = useRequestAPI()
+const { postKeyword, patchKeyword, deleteKeyword } = usePublicAPI()
 const { t } = useI18n()
 
 const onAddKeyword = async () => {
-  const data = await requestAPI<AuthPublicKeywordsPOSTResponse["body"]>(
-    `/api/auth/public/keywords`, {
-    method: "POST",
-    showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.cancel_keyword_form.add_message"),
-    body: {
-      keyword: t("pages.manager.setting_dialog.cancel_keyword_form.default_keyword"),
-      action: "CANCEL"
-    }
-  })
+  const data = await postKeyword(ActionEnum.cancel)
   keywords.value = [
     ...keywords.value,
     {
       id: data.id,
       keyword: t("pages.manager.setting_dialog.cancel_keyword_form.default_keyword"),
-      action: "CANCEL"
+      action: ActionEnum.cancel
     }
   ]
 }
@@ -53,15 +43,7 @@ const onUpdateKeyword = async (keyword: {
   keyword: string,
   action: string
 }) => {
-  await requestAPI(
-    `/api/auth/public/keywords/${keyword.id}`, {
-    method: "PATCH",
-    showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.cancel_keyword_form.update_message"),
-    body: {
-      keyword: keyword.keyword
-    }
-  })
+  await patchKeyword(keyword.id, keyword.keyword)
   keywords.value = keywords.value.with(
     keywords.value.findIndex(k => k.id === keyword.id),
     keyword
@@ -71,12 +53,7 @@ const onUpdateKeyword = async (keyword: {
 const onDeleteKeyword = async (keyword: {
   id: number
 }) => {
-  await requestAPI(
-  `/api/auth/public/keywords/${keyword.id}`, {
-    method: "DELETE",
-    showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.cancel_keyword_form.delete_message")
-  })
+  await deleteKeyword(keyword.id)
   keywords.value = keywords.value.filter(k => k.id !== keyword.id)
 }
 

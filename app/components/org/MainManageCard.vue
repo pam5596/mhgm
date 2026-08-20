@@ -16,13 +16,11 @@
         color="primary" 
         variant="outlined" 
         @click="openDialog" 
-        :disabled="props.isRecruiting && !settings"
+        :disabled="props.isRecruiting"
       >
         <Icon name="ic:baseline-settings" size="30" />
         <MolSettingDialog 
-          v-if="settings"
           v-model:dialog="dialog"
-          v-model:settings="settings"
         />
       </AtmIconButton>
     </div>
@@ -49,8 +47,6 @@ import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfac
 
 const dialog = ref(false)
 const openDialog = () => dialog.value = true
-
-const settings = defineModel<AuthPublicUsersSettingsGETResponse["body"]>('settings')
 
 const props = defineProps<{
   isRecruiting: boolean
