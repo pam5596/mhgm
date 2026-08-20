@@ -1,9 +1,7 @@
 <template>
   <AtmCard color="primary" class="p-8 gap-8 flex-col">
     <MolUserProfile
-      :avatar="user?.avatar"
-      :channel-id="user?.channel_id"
-      :name="user?.name"
+      :user="user"
     />
     <AtmButton color="primary" variant="fill" size="large" href="/manager">
         {{ $t("pages.home.button.to_manager") }}
@@ -13,6 +11,7 @@
 
 <script setup lang="ts">
 const { user } = useHomePage()
+console.log(user.value)
 
 </script>
 
