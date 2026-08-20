@@ -14,7 +14,7 @@
           v-if="player"
           :player="player"
           v-model="waiter_quests(player).value"
-          @on_cancel="() => onCancel(player.channel_id)"
+          @on-cancel="() => onCancel(player.channel_id)"
           :key="player.channel_id"
         />
       </template>

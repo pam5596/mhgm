@@ -13,29 +13,44 @@
         <span class="text-success-dark font-bold text-xs">
           {{ $t("pages.manager.joiner_manage_card.item.quest_count") }}
         </span>
-        <MolCounter v-model="model" color="success" :min="0" />
+        <MolCounter v-model="quests" color="success" :min="0" />
       </div>
-      <AtmButton color="success" variant="fill">
+      <AtmButton color="success" variant="fill" @click="openDialog">
         {{ $t("pages.manager.joiner_manage_card.item.change") }}
       </AtmButton>
-      <AtmButton color="error" variant="fill" @click="$emit('on_cancel')">
+      <AtmButton color="error" variant="fill" @click="$emit('onCancel')">
         {{ $t("pages.manager.joiner_manage_card.item.cancel") }}
       </AtmButton>
+      <ChangePlayerDialog 
+        v-model="dialog" 
+        :waiters="props.waiters"
+        @on-selected="(waiter) => onSelected(waiter)"
+      />
     </div>
   </AtmCard>
 </template>
 
 <script setup lang="ts">
 import type { FactoryPlayer } from '~/types/factory_player';
+import ChangePlayerDialog from './ChangePlayerDialog.vue';
 
-const model = defineModel<number>()
+const quests = defineModel<number>()
 const props = defineProps<{
   player: FactoryPlayer
+  waiters: FactoryPlayer[]
 }>()
 const emit = defineEmits<{
-  on_change: [waiter: string],
-  on_cancel: [] 
+  onChange: [waiter: string],
+  onCancel: [] 
 }>()
+
+const dialog = ref(false)
+const openDialog = () => dialog.value = true
+
+const onSelected = (waiter: FactoryPlayer) => {
+  dialog.value = false
+  emit("onChange", waiter.channel_id)
+}
 
 </script>
 

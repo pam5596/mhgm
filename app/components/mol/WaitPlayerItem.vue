@@ -15,7 +15,7 @@
         </span>
         <MolCounter v-model="model" :min="0" />
       </div>
-      <AtmButton color="error" variant="fill" @click="$emit('on_cancel')">
+      <AtmButton color="error" variant="fill" @click="$emit('onCancel')">
         {{ $t("pages.manager.waiter_manage_card.item.cancel") }}
       </AtmButton>
     </div>
@@ -30,8 +30,7 @@ const model = defineModel<number>()
   player: FactoryPlayer
 }>()
 const emit = defineEmits<{
-  on_change: [waiter: string],
-  on_cancel: [] 
+  onCancel: [] 
 }>()
 
 </script>

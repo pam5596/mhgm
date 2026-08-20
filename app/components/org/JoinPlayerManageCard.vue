@@ -10,14 +10,15 @@
     </div>
     <div class="flex flex-col gap-4">
       <MolStreamerItem :streamer="props.streamer" :is-streaming="props.isStreaming"/>
-      <template v-for="(player, index) in joiner_players">
+      <template v-for="(player, index) in joiners">
         <MolJoinPlayerItem 
           v-if="player"
           :player="player"
-          v-model="joiner_quests(player).value"
-          @on_change="(waiter) => onChange(player.channel_id, waiter)"
-          @on_cancel="() => onCancel(player.channel_id)"
+          :waiters="waiters"
           :key="player.channel_id"
+          v-model="joiner_quests(player).value"
+          @on-change="(waiter) => onChange(player.channel_id, waiter)"
+          @on-cancel="() => onCancel(player.channel_id)"
         />
         <MolEmptyPlayerItem v-else :player="index+2" />
       </template>
@@ -35,11 +36,15 @@ const props = defineProps<{
   players_factory?: PlayerFactory
 }>()
 
-const joiner_players = computed(
+const joiners = computed(
   () => Array.from(
     { length: 3 }, 
     (_, i) => props.players_factory?.joiners[i] ?? null
   )
+)
+
+const waiters = computed(
+  () => props.players_factory?.waiters || []
 )
 
 const joiner_quests = (player: FactoryPlayer) => computed({

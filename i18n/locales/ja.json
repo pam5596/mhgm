@@ -59,6 +59,10 @@
 					"cancel": "退出",
 					"straming": "配信中",
 					"empty": "プレイヤー{player}"
+				},
+				"change_player_dialog": {
+					"title": "交代する待機者を選択してください",
+					"select_placeholder": "待機者を選択する"
 				}
 			},
 			"waiter_manage_card": {
