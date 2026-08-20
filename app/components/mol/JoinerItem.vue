@@ -2,10 +2,10 @@
   <AtmCard color="success" class="flex justify-between px-4 py-1 gap-2 h-16">
     <div class="flex gap-2 items-center">
       <AtmIconButton color="success" variant="outlined">
-        <v-avatar :image="props.avatar" />
+        <v-avatar :image="props.player.avatar" />
       </AtmIconButton>
       <p class=" font-bold max-w-56 line-clamp-2">
-        {{ props.name }}
+        {{ props.player.name }}
       </p>
     </div>
     <div class="flex items-center gap-2">
@@ -26,10 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import type { DisplayUser } from '~/types/display_user';
+import type { FactoryPlayer } from '~/types/factory_player';
 
 const model = defineModel<number>()
-const props = defineProps<DisplayUser>()
+const props = defineProps<{
+  player: FactoryPlayer
+}>()
 
 </script>
 

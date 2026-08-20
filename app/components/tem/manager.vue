@@ -12,7 +12,12 @@
       @on-stop-recruit="onStopRecruit"
     />
     <div class="flex gap-4">
-      <OrgJoinerManageCard />
+      <OrgJoinerManageCard
+        v-if="player_factory && user"
+        :streamer="user"
+        :players_factory="player_factory"
+        :is-streaming="is_recruiting"
+      />
       <OrgWaiterManageCard />
     </div>
   </div>
@@ -23,6 +28,7 @@ const {
   user, 
   settings, 
   is_recruiting,
+  player_factory,
   onStartRecruit,
   onStopRecruit
 } = await useManagerPage()

@@ -9,20 +9,39 @@
       </AtmIconButton>
     </div>
     <div class="flex flex-col gap-4">
-      <MolStreamerItem :streamer="user" />
-      <MolJoinerItem v-bind="user" />
-      <MolEmptyViewerItem :player="3" />
-      <MolEmptyViewerItem :player="4" />
+      <MolStreamerItem :streamer="props.streamer" :is-streaming="props.isStreaming"/>
+      <template v-for="(player, index) in joiner_players">
+        <MolJoinerItem 
+          v-if="player"
+          :player="player"
+          v-model="joiner_quests(player).value"
+        />
+        <MolEmptyViewerItem v-else :player="index+2" />
+      </template>
     </div>
   </AtmCard>
 </template>
 
 <script setup lang="ts">
-const user = {
-  name: "name",
-  avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
-  channel_id: "channel_id"
-}
+import type { DisplayUser } from '~/types/display_user';
+import type { FactoryPlayer } from '~/types/factory_player';
+
+const props = defineProps<{
+  isStreaming?: boolean
+  streamer: DisplayUser
+  players_factory: PlayerFactory
+}>()
+
+const joiner_players = computed(
+  () => Array.from({ length: 3 }, (_, i) => props.players_factory.joiners[i] ?? null)
+)
+
+const joiner_quests = (player: FactoryPlayer) => computed({
+  get: () => player.join_quests,
+  set: (value) => {
+    props.players_factory.changePlayerQuests(player.channel_id, value)
+  }
+})
 
 </script>
 

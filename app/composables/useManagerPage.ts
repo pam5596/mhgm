@@ -1,17 +1,30 @@
 import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
 import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
+import type { SocketIOLiveChatEmit } from "~~/shared/dtos/interfaces/socker.io_live_chat.emit.dto"
 
 export default async function() {
+  const { t } = useI18n()
   const requestAPI = useRequestAPI()
+  const { showAlert } = useAlert()
+
   const { user } = useUserSession()
   const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
 
   const is_recruiting = ref(false)
-  const factory = ref<PlayerFactory>()
+  const player_factory = ref<PlayerFactory>()
 
   const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
   const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
+
+  const onPlayerEntry = async (event: SocketIOLiveChatEmit) => {
+    console.log(event)
+    player_factory.value?.entryPlayer(event.user)
+    showAlert({
+      type: "info",
+      title: t("pages.manager.alert.info_player_entry", { name: event.user.name })
+    })
+  }
 
   const onStartRecruit = async () => {
     await getBroadcast()
@@ -32,10 +45,12 @@ export default async function() {
           user_id: user.value!.user_id
         })
         connect()
-        subscribeEmit(user.value!.channel_id, async (event) => {
-          console.log(event)
-        })
+        subscribeEmit(user.value!.channel_id, onPlayerEntry)
         is_recruiting.value = true
+        showAlert({
+          type: "success",
+          title: t("pages.manager.alert.success_start_recruit")
+        })
       }
     }
   }
@@ -48,8 +63,7 @@ export default async function() {
   onMounted(async () => {
     if (user.value) {
       await getUserSetting()
-      factory.value = PlayerFactory.create(
-        user.value,
+      player_factory.value = PlayerFactory.create(
         settings.value.setting.quest_limit
       )
     }
@@ -59,6 +73,7 @@ export default async function() {
     user,
     settings,
     is_recruiting,
+    player_factory,
     onStartRecruit,
     onStopRecruit
   }

@@ -2,18 +2,16 @@ import type { DisplayUser } from "~/types/display_user";
 import type { FactoryPlayer } from "~/types/factory_player";
 
 export class PlayerFactory {
-  streamer: DisplayUser
   quest_limit: number
   quests: number = 0
   players: FactoryPlayer[] = []
 
-  constructor(streamer: DisplayUser, quest_limit: number) {
-    this.streamer = streamer
+  constructor(quest_limit: number) {
     this.quest_limit = quest_limit
   }
 
-  static create(streamer: DisplayUser, quest_limit: number) {
-    return new PlayerFactory(streamer, quest_limit)
+  static create(quest_limit: number) {
+    return new PlayerFactory(quest_limit)
   }
 
   refresh() {
@@ -83,5 +81,13 @@ export class PlayerFactory {
       return player
     }).filter(p => p !== null)
     this.refresh()
+  }
+
+  get joiners() {
+    return this.players.filter(p => p.status === StatusEnum.join)
+  }
+
+  get waiters() {
+    return this.players.filter(p => p.status === StatusEnum.wait)
   }
 }
