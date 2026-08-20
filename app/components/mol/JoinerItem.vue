@@ -13,9 +13,9 @@
         <span class="text-success-dark font-bold text-xs">
           {{ $t("pages.manager.joiner_manage_card.item.quest_count") }}
         </span>
-        <MolCounter v-model="model" color="success" />
+        <MolCounter v-model="model" color="success" :min="0" />
       </div>
-      <AtmButton color="success" variant="fill" @click="$emit('on_change')">
+      <AtmButton color="success" variant="fill">
         {{ $t("pages.manager.joiner_manage_card.item.change") }}
       </AtmButton>
       <AtmButton color="error" variant="fill" @click="$emit('on_cancel')">

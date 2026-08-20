@@ -10,15 +10,17 @@
       :is-recruiting="is_recruiting"
       @on-start-recruit="onStartRecruit"
       @on-stop-recruit="onStopRecruit"
+      @on-increace-quest="() => player_factory?.increaceQuests()"
     />
     <div class="flex gap-4">
       <OrgJoinerManageCard
-        v-if="player_factory && user"
         :streamer="user"
         :players_factory="player_factory"
         :is-streaming="is_recruiting"
       />
-      <OrgWaiterManageCard />
+      <OrgWaiterManageCard 
+        :players_factory="player_factory"
+      />
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@ import type { FactoryPlayer } from "~/types/factory_player";
 
 export class PlayerFactory {
   quest_limit: number
-  quests: number = 0
+  joiner_limit: number = 3
   players: FactoryPlayer[] = []
 
   constructor(quest_limit: number) {
@@ -16,16 +16,16 @@ export class PlayerFactory {
 
   refresh() {
     this.players = this.players.reduce((current_players, player, index) => {
-      if(index > this.quest_limit) {
+      if(index > this.joiner_limit) {
         // 待機枠の場合
         player.join_quests = 0
         player.status = StatusEnum.wait
-        if (index > this.quest_limit * 2) {
+        if (index > this.joiner_limit * 2) {
           // 待機列2列目以降の場合
-          player.wait_quests = current_players[index - 2]!.wait_quests + this.quest_limit
+          player.wait_quests = current_players[index - (this.joiner_limit - 1)]!.wait_quests + this.quest_limit
         } else {
           // 待機列1列目の場合
-          player.wait_quests = this.quest_limit - current_players[index % 3]!.join_quests
+          player.wait_quests = this.quest_limit - current_players[index % this.joiner_limit]!.join_quests
         }
       } else {
         // 参加枠の場合
@@ -40,6 +40,7 @@ export class PlayerFactory {
     const is_duplicate = this.players.some(p => p.channel_id === user.channel_id)
     if (!is_duplicate) {
       const player = user as FactoryPlayer
+      player.join_quests = 0
       this.players = [...this.players, player]
       this.refresh()
     }
@@ -74,13 +75,14 @@ export class PlayerFactory {
       if (player.status === StatusEnum.join) {
         player.join_quests += 1
 
-        if (player.join_quests >= this.quest_limit) {
+        if (player.join_quests > this.quest_limit) {
           return null
         } 
       }
       return player
     }).filter(p => p !== null)
     this.refresh()
+    console.log(this.players)
   }
 
   get joiners() {

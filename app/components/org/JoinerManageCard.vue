@@ -17,6 +17,7 @@
           v-model="joiner_quests(player).value"
           @on_change="(waiter) => onChange(player.channel_id, waiter)"
           @on_cancel="() => onCancel(player.channel_id)"
+          :key="player.channel_id"
         />
         <MolEmptyViewerItem v-else :player="index+2" />
       </template>
@@ -30,31 +31,31 @@ import type { FactoryPlayer } from '~/types/factory_player';
 
 const props = defineProps<{
   isStreaming?: boolean
-  streamer: DisplayUser
-  players_factory: PlayerFactory
+  streamer: DisplayUser | null
+  players_factory?: PlayerFactory
 }>()
 
 const joiner_players = computed(
   () => Array.from(
     { length: 3 }, 
-    (_, i) => props.players_factory.joiners[i] ?? null
+    (_, i) => props.players_factory?.joiners[i] ?? null
   )
 )
 
 const joiner_quests = (player: FactoryPlayer) => computed({
   get: () => player.join_quests,
   set: (value) => {
-    props.players_factory.changePlayerQuests(player.channel_id, value)
+    props.players_factory?.changePlayerQuests(player.channel_id, value)
   }
 })
 
 const onChange = (joiner: string, waiter: string) => 
-  props.players_factory.changePlayer(
+  props.players_factory?.changePlayer(
     joiner, waiter
   )
 
 const onCancel = (channel_id: string) => 
-  props.players_factory.cancelPlayer(channel_id)
+  props.players_factory?.cancelPlayer(channel_id)
 
 </script>
 

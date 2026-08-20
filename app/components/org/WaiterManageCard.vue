@@ -9,18 +9,40 @@
       </AtmIconButton>
     </div>
     <div class="flex flex-col gap-4 flex-1 min-h-0 overflow-y-auto [&>*]:shrink-0">
-      <MolWaiterItem v-bind="user" />
-      <MolWaiterItem v-bind="user" />
+      <template v-for="player in waiter_players">
+        <MolWaiterItem
+          v-if="player"
+          :player="player"
+          v-model="waiter_quests(player).value"
+          @on_cancel="() => onCancel(player.channel_id)"
+          :key="player.channel_id"
+        />
+      </template>
     </div>
   </AtmCard>
 </template>
 
 <script setup lang="ts">
-const user = {
-  name: "name",
-  avatar: "https://nuxt.com/assets/design-kit/icon-green.svg",
-  channel_id: "channel_id"
-}
+import type { FactoryPlayer } from '~/types/factory_player';
+
+const props = defineProps<{
+  players_factory?: PlayerFactory
+}>()
+
+const waiter_players = computed(
+  () => props.players_factory?.waiters
+)
+
+const waiter_quests = (player: FactoryPlayer) => computed({
+  get: () => player.wait_quests,
+  set: (value) => {
+    props.players_factory?.changePlayerQuests(player.channel_id, value)
+  }
+})
+
+const onCancel = (channel_id: string) => 
+  props.players_factory?.cancelPlayer(channel_id)
+
 </script>
 
 <style scoped>

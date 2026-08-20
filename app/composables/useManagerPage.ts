@@ -7,6 +7,7 @@ export default async function() {
   const { t } = useI18n()
   const requestAPI = useRequestAPI()
   const { showAlert } = useAlert()
+  const { openLoading, closeLoading } = useLoading()
 
   const { user } = useUserSession()
   const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
@@ -17,16 +18,26 @@ export default async function() {
   const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
   const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
 
-  const onPlayerEntry = async (event: SocketIOLiveChatEmit) => {
+  const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
     console.log(event)
-    player_factory.value?.entryPlayer(event.user)
-    showAlert({
-      type: "info",
-      title: t("pages.manager.alert.info_player_entry", { name: event.user.name })
-    })
+
+    if (event.chat.action === ActionEnum.entry) {
+      player_factory.value?.entryPlayer(event.user)
+      showAlert({
+        type: "info",
+        title: t("pages.manager.alert.info_player_entry", { name: event.user.name })
+      })
+    } else if (event.chat.action === ActionEnum.cancel) {
+      player_factory.value?.cancelPlayer(event.user.channel_id)
+      showAlert({
+        type: "info",
+        title: t("pages.manager.alert.info_player_cancel", { name: event.user.name })
+      })
+    }
   }
 
   const onStartRecruit = async () => {
+    openLoading()
     await getBroadcast()
     if (broadcast.value) {
       const data = await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>("/api/auth/public/broadcasts", {
@@ -45,13 +56,14 @@ export default async function() {
           user_id: user.value!.user_id
         })
         connect()
-        subscribeEmit(user.value!.channel_id, onPlayerEntry)
+        subscribeEmit(user.value!.channel_id, emitLiveChat)
         is_recruiting.value = true
         showAlert({
           type: "success",
           title: t("pages.manager.alert.success_start_recruit")
         })
       }
+      closeLoading()
     }
   }
 

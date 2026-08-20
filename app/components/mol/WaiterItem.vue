@@ -2,10 +2,10 @@
   <AtmCard color="primary" class="flex justify-between px-4 py-1 gap-2 h-16">
     <div class="flex gap-2 items-center">
       <AtmIconButton color="primary" variant="outlined">
-        <v-avatar :image="props.avatar" />
+        <v-avatar :image="props.player.avatar" />
       </AtmIconButton>
       <p class=" font-bold max-w-56 line-clamp-2">
-        {{ props.name }}
+        {{ props.player.name }}
       </p>
     </div>
     <div class="flex items-center gap-2">
@@ -13,9 +13,9 @@
         <span class="text-primary-dark font-bold text-xs">
           {{ $t("pages.manager.waiter_manage_card.item.quest_count") }}
         </span>
-        <MolCounter v-model="model" />
+        <MolCounter v-model="model" :min="0" />
       </div>
-      <AtmButton color="error" variant="fill">
+      <AtmButton color="error" variant="fill" @click="$emit('on_cancel')">
         {{ $t("pages.manager.waiter_manage_card.item.cancel") }}
       </AtmButton>
     </div>
@@ -23,10 +23,16 @@
 </template>
 
 <script setup lang="ts">
-import type { DisplayUser } from '~/types/display_user';
+import type { FactoryPlayer } from '~/types/factory_player';
 
 const model = defineModel<number>()
-const props = defineProps<DisplayUser>()
+  const props = defineProps<{
+  player: FactoryPlayer
+}>()
+const emit = defineEmits<{
+  on_change: [waiter: string],
+  on_cancel: [] 
+}>()
 
 </script>
 
