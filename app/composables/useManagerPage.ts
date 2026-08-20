@@ -4,7 +4,9 @@ import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/inte
 import type { SocketIOLiveChatEmit } from "~~/shared/dtos/interfaces/socker.io_live_chat.emit.dto"
 
 export default async function() {
+  const config = useRuntimeConfig()
   const { t } = useI18n()
+
   const requestAPI = useRequestAPI()
   const { showAlert } = useAlert()
   const { openLoading, closeLoading } = useLoading()
@@ -19,8 +21,6 @@ export default async function() {
   const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
 
   const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
-    console.log(event)
-
     if (event.chat.action === ActionEnum.entry) {
       player_factory.value?.entryPlayer(event.user)
       showAlert({
@@ -40,13 +40,15 @@ export default async function() {
     openLoading()
     await getBroadcast()
     if (broadcast.value) {
-      const data = await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>("/api/auth/public/broadcasts", {
-        method: "PUT",
-        body: {
-          ...broadcast.value,
-          end_at: new Date().toISOString()
+      const data = await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
+        "/api/auth/public/broadcasts", {
+          method: "PUT",
+          body: {
+            ...broadcast.value,
+            end_at: new Date().toISOString()
+          }
         }
-      })
+      )
 
       if (data) {
         setClient({
@@ -80,6 +82,37 @@ export default async function() {
       )
     }
   })
+
+  watch(
+    () => player_factory.value?.players,
+    async (players) => {
+      console.log(players)
+      if (players?.length) await requestAPI(
+        `/api/public/webhooks/member`, {
+          method: "POST",
+          headers: {
+            "x-api-key": config.public.statefulApiApiKey
+          },
+          body: {
+            streamer: {
+              channel_id: user.value?.channel_id,
+              avatar: user.value?.avatar,
+              name: user.value?.name
+            },
+            users: players.map(p => ({
+              channel_id: p.channel_id,
+              avatar: p.avatar,
+              name: p.name,
+              status: p.status,
+              join_quests: p.join_quests,
+              wait_quests: p.wait_quests
+            }))
+          }
+        }
+      )
+    },
+    { deep: true }
+  )
 
   return {
     user,

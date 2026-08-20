@@ -45,12 +45,12 @@ export default defineNuxtConfig({
 		'/api/private/**': {
 			cors: true,
 			headers: {
-				'access-control-allow-origin': process.env.STATERUL_API_BASE_URL,
+				'access-control-allow-origin': process.env.STATERUL_API_INTERNAL_URL,
 				'access-control-allow-credentials': 'true',
 			}
 		},
 		'/api/public/webhooks/member': {
-			proxy: `${process.env.STATERUL_API_BASE_URL}/mhgm/public/webhooks/member`
+			proxy: `${process.env.STATERUL_API_INTERNAL_URL}/mhgm/public/webhooks/member`
 		}
 	},
 	vite: {
@@ -102,7 +102,8 @@ export default defineNuxtConfig({
 		nodeEnv: process.env.NODE_ENV,
 		databaseUrl: process.env.DATABASE_URL,
 		public: {
-			statefulApiBaseUrl: process.env.STATERUL_API_BASE_URL
+			statefulApiBaseUrl: process.env.STATERUL_API_BASE_URL,
+			statefulApiApiKey: process.env.STATEFUL_API_KEY
 		}
 	}
 });

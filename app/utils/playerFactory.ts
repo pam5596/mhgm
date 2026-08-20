@@ -16,7 +16,7 @@ export class PlayerFactory {
 
   refresh() {
     this.players = this.players.reduce((current_players, player, index) => {
-      if(index > this.joiner_limit) {
+      if(index >= this.joiner_limit) {
         // 待機枠の場合
         player.join_quests = 0
         player.status = StatusEnum.wait
@@ -82,7 +82,6 @@ export class PlayerFactory {
       return player
     }).filter(p => p !== null)
     this.refresh()
-    console.log(this.players)
   }
 
   get joiners() {
