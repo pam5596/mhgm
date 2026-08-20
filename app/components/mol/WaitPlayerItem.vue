@@ -13,7 +13,7 @@
         <span class="text-primary-dark font-bold text-xs">
           {{ $t("pages.manager.waiter_manage_card.item.quest_count") }}
         </span>
-        <MolCounter v-model="model" :min="0" />
+        <MolCounter v-model="quests" :min="0" />
       </div>
       <AtmButton color="error" variant="fill" @click="$emit('onCancel')">
         {{ $t("pages.manager.waiter_manage_card.item.cancel") }}
@@ -25,11 +25,11 @@
 <script setup lang="ts">
 import type { FactoryPlayer } from '~/types/factory_player';
 
-const model = defineModel<number>()
-  const props = defineProps<{
+const quests = defineModel<number>()
+const props = defineProps<{
   player: FactoryPlayer
 }>()
-const emit = defineEmits<{
+defineEmits<{
   onCancel: [] 
 }>()
 

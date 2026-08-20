@@ -27,7 +27,7 @@ export default function () {
         showAlert({ 
           type: "error", 
           title: error.message,
-          error: error && errorToString(error)
+          error: error && jsonFormatter(error)
         })
       },
       onResponse: ({ response }) => {
@@ -45,7 +45,7 @@ export default function () {
         showAlert({
           type: "error", 
           title: error.message || t("errors.default"),
-          error: error && errorToString(error)
+          error: error && jsonFormatter(error)
         })
       }
     })

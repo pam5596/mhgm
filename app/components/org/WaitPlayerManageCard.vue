@@ -12,10 +12,10 @@
       <template v-for="player in waiter_players">
         <MolWaitPlayerItem
           v-if="player"
-          :player="player"
-          v-model="waiter_quests(player).value"
-          @on-cancel="() => onCancel(player.channel_id)"
           :key="player.channel_id"
+          v-model="waiter_quests(player).value"
+          :player="player"
+          @on-cancel="() => onCancel(player.channel_id)"
         />
       </template>
     </div>
@@ -26,22 +26,22 @@
 import type { FactoryPlayer } from '~/types/factory_player';
 
 const props = defineProps<{
-  players_factory?: PlayerFactory
+  playersFactory?: PlayerFactory
 }>()
 
 const waiter_players = computed(
-  () => props.players_factory?.waiters
+  () => props.playersFactory?.waiters
 )
 
 const waiter_quests = (player: FactoryPlayer) => computed({
   get: () => player.wait_quests,
   set: (value) => {
-    props.players_factory?.changePlayerQuests(player.channel_id, value)
+    props.playersFactory?.changePlayerQuests(player.channel_id, value)
   }
 })
 
 const onCancel = (channel_id: string) => 
-  props.players_factory?.cancelPlayer(channel_id)
+  props.playersFactory?.cancelPlayer(channel_id)
 
 </script>
 

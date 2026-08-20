@@ -13,14 +13,14 @@
       <template v-for="(player, index) in joiners">
         <MolJoinPlayerItem 
           v-if="player"
-          :player="player"
-          :waiters="waiters"
           :key="player.channel_id"
           v-model="joiner_quests(player).value"
+          :player="player"
+          :waiters="waiters"
           @on-change="(waiter) => onChange(player.channel_id, waiter)"
           @on-cancel="() => onCancel(player.channel_id)"
         />
-        <MolEmptyPlayerItem v-else :player="index+2" />
+        <MolEmptyPlayerItem v-else :key="index" :player="index+2" />
       </template>
     </div>
   </AtmCard>
@@ -33,34 +33,34 @@ import type { FactoryPlayer } from '~/types/factory_player';
 const props = defineProps<{
   isStreaming?: boolean
   streamer: DisplayUser | null
-  players_factory?: PlayerFactory
+  playersFactory?: PlayerFactory
 }>()
 
 const joiners = computed(
   () => Array.from(
     { length: 3 }, 
-    (_, i) => props.players_factory?.joiners[i] ?? null
+    (_, i) => props.playersFactory?.joiners[i] ?? null
   )
 )
 
 const waiters = computed(
-  () => props.players_factory?.waiters || []
+  () => props.playersFactory?.waiters || []
 )
 
 const joiner_quests = (player: FactoryPlayer) => computed({
   get: () => player.join_quests,
   set: (value) => {
-    props.players_factory?.changePlayerQuests(player.channel_id, value)
+    props.playersFactory?.changePlayerQuests(player.channel_id, value)
   }
 })
 
 const onChange = (joiner: string, waiter: string) => 
-  props.players_factory?.changePlayer(
+  props.playersFactory?.changePlayer(
     joiner, waiter
   )
 
 const onCancel = (channel_id: string) => 
-  props.players_factory?.cancelPlayer(channel_id)
+  props.playersFactory?.cancelPlayer(channel_id)
 
 </script>
 

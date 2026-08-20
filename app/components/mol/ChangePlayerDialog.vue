@@ -7,21 +7,21 @@
         </p>
         <v-divider thickness="2" class="border-primary border-opacity-100" />
         <v-select
-          variant="outlined"
+          v-model="selectedDummy"
           class="text-primary-dark"
+          variant="outlined"
           :placeholder="$t('pages.manager.joiner_manage_card.change_player_dialog.select_placeholder')"
           hide-details
-          v-model="selectedDummy"
           :items="props.waiters"
           @update:model-value="(waiter) => $emit('onSelected', waiter)"
         >
-        <template v-slot:selection="{ item }">
+        <template #selection="{ item }">
           <div class="flex gap-4 items-center">
             <v-avatar :image="item.avatar" />
             <p class="font-bold text-primary-dark">{{ item.name }}</p>
           </div>
         </template>
-        <template v-slot:item="{ props: itemProps, item }">
+        <template #item="{ props: itemProps, item }">
           <v-list-item v-bind="{ ...itemProps, title: item.name }">
             <template #title>
               <div class="flex gap-4 p-1 items-center">
@@ -45,7 +45,7 @@ const props = defineProps<{
   waiters: FactoryPlayer[]
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   onSelected: [waiter: FactoryPlayer]
 }>()
 

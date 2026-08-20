@@ -15,8 +15,8 @@
       <AtmIconButton 
         color="primary" 
         variant="outlined" 
-        @click="openDialog" 
         :disabled="props.isRecruiting"
+        @click="openDialog" 
       >
         <Icon name="ic:baseline-settings" size="30" />
         <MolSettingDialog 
@@ -43,8 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
-
 const dialog = ref(false)
 const openDialog = () => dialog.value = true
 
@@ -52,7 +50,7 @@ const props = defineProps<{
   isRecruiting: boolean
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   onStartRecruit: []
   onStopRecruit: [],
   onIncreaceQuest: []

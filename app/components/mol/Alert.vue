@@ -1,6 +1,6 @@
 <template>
   <v-alert
-    v-model="model"
+    v-model="alert"
     :type="props.type"
     :title="props.title"
     closable
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-const model = defineModel<boolean>()
+const alert = defineModel<boolean>()
 const props = defineProps<{
   type: "info" | "success" | "error",
   title: string,

@@ -10,10 +10,10 @@
   <div class="flex flex-col gap-2">
     <MolKeywordField 
       v-for="keyword in keywords"
+      :key="keyword.id"
       v-model="keyword.keyword"
       @on-update="onUpdateKeyword(keyword)"
       @on-delete="onDeleteKeyword(keyword)"
-      :key="keyword.id"
     />
   </div>
 </template>

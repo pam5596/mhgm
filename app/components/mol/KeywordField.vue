@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between gap-2">
-    <AtmTextField v-model="model" class="w-full" />
+    <AtmTextField v-model="keyword" class="w-full" />
     <AtmButton color="success" @click="$emit('onUpdate')">
       {{ $t("pages.manager.setting_dialog.button.edit_keyword") }}
     </AtmButton>
@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-const model = defineModel<string>()
-const emit = defineEmits<{
+const keyword = defineModel<string>()
+defineEmits<{
   onUpdate: [],
   onDelete: []
 }>()
