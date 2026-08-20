@@ -13,12 +13,12 @@
       @on-increace-quest="() => player_factory?.increaceQuests()"
     />
     <div class="flex gap-4">
-      <OrgJoinerManageCard
+      <OrgJoinPlayerManageCard
         :streamer="user"
         :players_factory="player_factory"
         :is-streaming="is_recruiting"
       />
-      <OrgWaiterManageCard 
+      <OrgWaitPlayerManageCard
         :players_factory="player_factory"
       />
     </div>

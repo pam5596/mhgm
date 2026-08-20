@@ -11,7 +11,7 @@
     <div class="flex flex-col gap-4">
       <MolStreamerItem :streamer="props.streamer" :is-streaming="props.isStreaming"/>
       <template v-for="(player, index) in joiner_players">
-        <MolJoinerItem 
+        <MolJoinPlayerItem 
           v-if="player"
           :player="player"
           v-model="joiner_quests(player).value"
@@ -19,7 +19,7 @@
           @on_cancel="() => onCancel(player.channel_id)"
           :key="player.channel_id"
         />
-        <MolEmptyViewerItem v-else :player="index+2" />
+        <MolEmptyPlayerItem v-else :player="index+2" />
       </template>
     </div>
   </AtmCard>

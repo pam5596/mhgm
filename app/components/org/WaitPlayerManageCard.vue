@@ -10,7 +10,7 @@
     </div>
     <div class="flex flex-col gap-4 flex-1 min-h-0 overflow-y-auto [&>*]:shrink-0">
       <template v-for="player in waiter_players">
-        <MolWaiterItem
+        <MolWaitPlayerItem
           v-if="player"
           :player="player"
           v-model="waiter_quests(player).value"
