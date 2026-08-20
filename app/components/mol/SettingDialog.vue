@@ -46,17 +46,17 @@ const change_quests = computed({
 })
 
 const entry_keywords = computed({
-  get: () => settings.value.keywords.filter(keyword => keyword.action === "ENTRY"),
+  get: () => settings.value.keywords.filter(keyword => keyword.action === ActionEnum.entry),
   set: (value: AuthPublicUsersSettingsGETResponse["body"]["keywords"]) => {
-    const ignored_entry = settings.value.keywords.filter(k => k.action !== "ENTRY")
+    const ignored_entry = settings.value.keywords.filter(k => k.action !== ActionEnum.entry)
     settings.value = { ...settings.value, keywords: [ ...ignored_entry, ...value]}
   }
 })
 
 const cancel_keywords = computed({
-  get: () => settings.value.keywords.filter(keyword => keyword.action === "CANCEL"),
+  get: () => settings.value.keywords.filter(keyword => keyword.action === ActionEnum.cancel),
   set: (value: AuthPublicUsersSettingsGETResponse["body"]["keywords"]) => {
-    const ignored_entry = settings.value.keywords.filter(k => k.action !== "CANCEL")
+    const ignored_entry = settings.value.keywords.filter(k => k.action !== ActionEnum.cancel)
     settings.value = { ...settings.value, keywords: [ ...ignored_entry, ...value]}
   }
 })

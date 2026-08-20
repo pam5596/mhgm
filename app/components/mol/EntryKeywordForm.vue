@@ -35,7 +35,7 @@ const onAddKeyword = async () => {
     successMessage: t("pages.manager.setting_dialog.entry_keyword_form.add_message"),
     body: {
       keyword: t("pages.manager.setting_dialog.entry_keyword_form.default_keyword"),
-      action: "ENTRY"
+      action: ActionEnum.entry
     }
   })
   keywords.value = [
@@ -43,7 +43,7 @@ const onAddKeyword = async () => {
     {
       id: data.id,
       keyword: t("pages.manager.setting_dialog.entry_keyword_form.default_keyword"),
-      action: "ENTRY"
+      action: ActionEnum.entry
     }
   ]
 }

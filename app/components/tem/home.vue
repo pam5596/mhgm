@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 const { user } = useHomePage()
-console.log(user.value)
 
 </script>
 
