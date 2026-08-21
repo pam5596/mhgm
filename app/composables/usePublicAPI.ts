@@ -30,7 +30,7 @@ export default function () {
   // POST /api/public/webhooks/member
   const postWebhookMember = async (
     user: User,
-    players: FactoryPlayer[]
+    player_factory: PlayerFactory
   ) => await requestAPI(
     `/api/public/webhooks/member`, {
       method: "POST",
@@ -43,13 +43,22 @@ export default function () {
           avatar: user.avatar,
           name: user.name
         },
-        users: players.map(p => ({
+        join: player_factory.joiners.map(p => ({
           channel_id: p.channel_id,
           avatar: p.avatar,
           name: p.name,
-          status: p.status,
           join_quests: p.join_quests,
-          wait_quests: p.wait_quests
+        })),
+        wait: player_factory.waiters.map(p => ({
+          channel_id: p.channel_id,
+          avatar: p.avatar,
+          name: p.name,
+          wait_quests: p.wait_quests,
+        })),
+        next: player_factory.next.map(p => ({
+          channel_id: p.channel_id,
+          avatar: p.avatar,
+          name: p.name,
         }))
       }
     }

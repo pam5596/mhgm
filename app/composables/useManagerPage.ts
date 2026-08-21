@@ -72,7 +72,8 @@ export default async function() {
   watch(
     () => player_factory.value?.players,
     async (players) => {
-      if (players?.length) await postWebhookMember(user.value!, players)
+      if (players?.length)
+        await postWebhookMember(user.value!, player_factory.value!)
     },
     { deep: true }
   )

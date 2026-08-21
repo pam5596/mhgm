@@ -96,4 +96,10 @@ export class PlayerFactory {
   get waiters() {
     return this.players.filter(p => p.status === StatusEnum.wait)
   }
+
+  get next() {
+    const simulater = new PlayerFactory(this.quest_limit, this.players)
+    simulater.increaceQuests()
+    return simulater.joiners
+  }
 }
