@@ -15,7 +15,7 @@ services:
       context: ../stateful-api
       dockerfile: Dockerfile.dev
     ports:
-      - 5000:5000
+      - 8000:8000
     volumes:
       - ../stateful-api:/app
   db:
