@@ -1,11 +1,13 @@
 <template>
-  <div>
-    1
-  </div>
+  <TemObsMember />
 </template>
 
 <script setup lang="ts">
-
+definePageMeta({
+  layout: {
+    name: "obs",
+  }
+})
 </script>
 
 <style scoped>
