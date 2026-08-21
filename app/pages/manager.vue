@@ -5,10 +5,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: {
-    name: "default",
-    props: {
-      headerType: "auth"
-    }
+    name: "auth"
   },
   middleware: "auth"
 })

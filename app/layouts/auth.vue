@@ -6,7 +6,7 @@
           <header class="w-full flex flex-row justify-between">
             <OrgLockup />
             <div class="flex flex-row items-center gap-3">
-              <component :is="header" />
+              <OrgAuthHeader />
             </div>
           </header>
           <main class="w-full h-full flex flex-col justify-center">
@@ -22,14 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import AuthHeader from '~/components/org/AuthHeader.vue';
-import PublicHeader from '~/components/org/PublicHeader.vue';
 
-const props = defineProps<{
-  headerType: "public" | "auth"
-}>()
-
-const header = computed(() => props.headerType === "public" ? PublicHeader : AuthHeader)
 
 </script>
 

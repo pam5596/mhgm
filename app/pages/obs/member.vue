@@ -1,14 +1,10 @@
 <template>
-  <Tem />
+  <div>
+    1
+  </div>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: {
-    name: "public",
-  }
-})
-
 
 </script>
 
