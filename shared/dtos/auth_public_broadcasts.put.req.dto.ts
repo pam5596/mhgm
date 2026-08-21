@@ -16,7 +16,7 @@ export class AuthPublicBroadcastsPUTRequestDTO extends BaseDTO<AuthPublicBroadca
 				stream_id: z.string(),
 				title: z.string(),
 				thumbnail: z.string(),
-				end_at: z.date(),
+				end_at: z.iso.datetime(),
 			}),
 		});
 	}

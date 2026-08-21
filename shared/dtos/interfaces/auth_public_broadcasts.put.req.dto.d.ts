@@ -6,6 +6,6 @@ export interface AuthPublicBroadcastsPUTRequest {
 		stream_id: string;
 		title: string;
 		thumbnail: string;
-		end_at: Date;
+		end_at: string;
 	};
 }

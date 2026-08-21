@@ -14,6 +14,7 @@ export class AuthPublicBroadcastPUTService
 		const broadcast = await this.broadcastRepository.upsert(
 			new BroadcastModel({
 				...request.values.body,
+				end_at: new Date(request.values.body.end_at),
 				user_id
 			}),
 		);

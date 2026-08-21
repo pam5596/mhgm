@@ -36,6 +36,11 @@
 			}
 		},
 		"manager": {
+			"alert": {
+				"success_start_recruit": "配信に接続し、参加募集を開始しました。",
+				"info_player_entry": "{name}が参加希望しました。",
+				"info_player_cancel": "{name}が参加辞退しました。"
+			},
 			"button": {
 				"to_home": "ホームへ戻る",
 				"start_recruit": "参加募集開始",
@@ -51,23 +56,39 @@
 				"item": {
 					"quest_count": "参加クエスト数",
 					"change": "交代",
-					"leave": "退出",
+					"cancel": "退出",
 					"straming": "配信中",
 					"empty": "プレイヤー{player}"
+				},
+				"change_player_dialog": {
+					"title": "交代する待機者を選択してください",
+					"select_placeholder": "待機者を選択する"
 				}
 			},
 			"waiter_manage_card": {
 				"title": "待機者 - {count}人",
 				"item": {
 					"quest_count": "待機クエスト数",
-					"leave": "退出"
+					"cancel": "退出"
 				}
 			},
 			"setting_dialog": {
 				"title": "設定",
 				"change_quests": "交代クエスト数",
-				"entry_keywords": "参加希望とみなすキーワード",
-				"cancel_keywords": "参加辞退とみなすキーワード",
+				"alert": {
+					"success_update": "設定内容を更新しました。",
+					"success_keyword_create": "キーワードを登録しました。",
+					"success_keyword_update": "キーワードを更新しました。",
+					"success_keyword_delete": "キーワードを削除しました。"
+				},
+				"entry_keyword_form": {
+					"title": "参加希望とみなすキーワード",
+					"default_keyword": "参加希望"
+				},
+				"cancel_keyword_form": {
+					"title": "参加辞退とみなすキーワード",
+					"default_keyword": "参加辞退"
+				},
 				"button": {
 					"add_keyword": "追加",
 					"edit_keyword": "更新",
@@ -108,6 +129,7 @@
 			"youtube_channel": "Youtubeチャンネルが見つかりませんでした。Youtubeアカウントを作成してください。"
 		},
 		"forbidden": "データへのアクセス権限がありません。",
-		"invalid_api_key": "データ送信認証に失敗しました。"
+		"invalid_api_key": "データ送信認証に失敗しました。",
+		"required_login": "セッションの有効期限が切れました。再度ログインしてください。"
 	}
 }

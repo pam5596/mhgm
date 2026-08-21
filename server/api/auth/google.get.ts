@@ -18,6 +18,7 @@ export default defineOAuthGoogleEventHandler({
   }) {
     await new AuthGoogleGETService(
       googleClient,
+      prismaClient,
       userRepository,
       settingRepository,
       keywordRepository

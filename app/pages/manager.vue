@@ -9,7 +9,8 @@ definePageMeta({
     props: {
       headerType: "auth"
     }
-  }
+  },
+  middleware: "auth"
 })
 </script>
 
