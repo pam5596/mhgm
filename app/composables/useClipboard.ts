@@ -9,7 +9,7 @@ export default function () {
         type: "success",
         title: t("pages.manager.alert.success_copy")
       })
-    } catch (e) {
+    } catch {
       showAlert({
         type: "error",
         title: t("errors.faild_to_copy")

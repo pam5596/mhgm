@@ -1,4 +1,3 @@
-import type { FactoryPlayer } from "~/types/factory_player"
 import type { ObsMemberParams } from "~/types/obs_member.params"
 import type { ObsMemberQuerys } from "~/types/obs_member.querys"
 import type { SocketIOMemberEmit } from "~~/shared/dtos/interfaces/socker.io_member.emit.dto"

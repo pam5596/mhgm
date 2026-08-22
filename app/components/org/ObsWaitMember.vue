@@ -2,9 +2,9 @@
   <div class="flex justify-between p-4">
     <v-avatar
       v-for="player in players"
+      :key="player.channel_id"
       class="border-gradient-primary !border-[3px]"
       size="x-large"
-      :key="player.channel_id"
       :image="player.avatar"
       :badge="{
         color: '#A37F2C',
@@ -12,7 +12,7 @@
         bordered: true
       }"
     >
-      <template v-slot:badge>
+      <template #badge>
         <p class="font-bold">
           {{ $t("obs.member.badge.wait_member", { quests: player.wait_quests }) }}
         </p>
@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import type { SocketIOMemberEmit } from '~~/shared/dtos/interfaces/socker.io_member.emit.dto';
 
-const props = defineProps<{
+defineProps<{
   players: SocketIOMemberEmit["wait"]
 }>()
 

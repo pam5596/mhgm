@@ -9,12 +9,12 @@
           :text="$t('pages.manager.waiter_manage_card.tooltip.copy_next_browser_source')"
           location="start"
         >
-          <template #activator="{ props }">
+          <template #activator="{ props: activator_props }">
             <AtmIconButton 
               color="primary" 
               variant="fill" 
               size="32"
-              v-bind="props"
+              v-bind="activator_props"
               @click="$emit('onCopyNextBrowserSource')"
             >
               <Icon name="ic:baseline-content-copy"/>
@@ -25,12 +25,12 @@
           :text="$t('pages.manager.waiter_manage_card.tooltip.copy_wait_browser_source')"
           location="start"
         >
-          <template #activator="{ props }">
+          <template #activator="{ props: activator_props }">
             <AtmIconButton 
               color="primary" 
               variant="outlined" 
               size="32"
-              v-bind="props"
+              v-bind="activator_props"
               @click="$emit('onCopyWaitBrowserSource')"
             >
               <Icon name="ic:baseline-content-copy"/>

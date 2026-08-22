@@ -1,5 +1,4 @@
 import type { User } from "#auth-utils"
-import type { FactoryPlayer } from "~/types/factory_player"
 import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
 import type { AuthPublicKeywordsPOSTResponse } from "~~/shared/dtos/interfaces/auth_public_keywords.post.res.dto"
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"

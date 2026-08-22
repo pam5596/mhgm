@@ -8,12 +8,12 @@
         :text="$t('pages.manager.joiner_manage_card.tooltip.copy_join_browser_source')"
         location="start"
       >
-        <template #activator="{ props }">
+        <template #activator="{ props: activator_props }">
           <AtmIconButton 
             color="success" 
             variant="outlined" 
             size="32"
-            v-bind="props"
+            v-bind="activator_props"
             @click="$emit('onCopyBrowserSource')"
           >
             <Icon name="ic:baseline-content-copy" />
