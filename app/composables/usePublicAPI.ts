@@ -11,10 +11,10 @@ export default function () {
   const requestAPI = useRequestAPI()
 
   // GET /api/auth/public/users/settings
-  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
+  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings", { showLoading: true })
   
   // GET /api/auth/public/youtube/broadcasts
-  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
+  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts",  { showLoading: true })
 
   // PUT /api/auth/public/broadcasts
   const putBroadcast = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(

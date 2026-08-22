@@ -14,11 +14,11 @@
     <div class="flex gap-4">
       <OrgJoinPlayerManageCard
         :streamer="user"
-        :players_factory="player_factory"
+        :players-factory="player_factory"
         :is-streaming="is_recruiting"
       />
       <OrgWaitPlayerManageCard
-        :players_factory="player_factory"
+        :players-factory="player_factory"
       />
     </div>
   </div>
