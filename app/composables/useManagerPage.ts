@@ -70,18 +70,7 @@ export default async function() {
     if (user.value) {
       await getUserSetting()
       player_factory.value = PlayerFactory.create(
-        settings.value.setting.quest_limit,
-        [
-          ...Array.from({length: 10}, (_, k) => ({
-            "id": k,
-            "channel_id": `UCp7Fsxs_3OWbOCkJUfIAxq${k}`,
-            "name": "@rs3191-w2d",
-            "avatar": `https://picsum.photos/id/${k*10}/200/300`,
-            "join_quests": 0,
-            "status": k < 3 ? StatusEnum.join : StatusEnum.wait,
-            "wait_quests": Math.floor(k / 3) * 2
-          }))
-        ]
+        settings.value.setting.quest_limit
       )
     }
   })
