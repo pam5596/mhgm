@@ -1,7 +1,4 @@
-name: Deploy
-
-# .github/workflows/migrate.yml
-name: DB Migration
+name: DataBaseMigrationCI
 
 on:
   push:
