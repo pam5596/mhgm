@@ -14,7 +14,10 @@ jobs:
         with:
           node-version: 24
 
-      - run: npm ci
+      - name: Install depencendies
+        run: npm ci
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Run DB migration
         run: npx prisma migrate deploy
