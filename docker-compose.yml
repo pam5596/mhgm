@@ -1,0 +1,28 @@
+services:
+  mhgm:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+      - 51212:51212
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  stateful-api:
+    build:
+      context: ../stateful-api
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8000:8000
+    volumes:
+      - ../stateful-api:/app
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - 5432:5432
