@@ -1,0 +1,1 @@
+export const broadcastRepository = new BroadcastRepository(prismaClient)

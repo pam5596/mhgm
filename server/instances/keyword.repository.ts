@@ -1,0 +1,1 @@
+export const keywordRepository = new KeywordRepository(prismaClient)
