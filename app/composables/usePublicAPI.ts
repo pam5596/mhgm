@@ -1,5 +1,4 @@
 import type { User } from "#auth-utils"
-import type { FactoryPlayer } from "~/types/factory_player"
 import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
 import type { AuthPublicKeywordsPOSTResponse } from "~~/shared/dtos/interfaces/auth_public_keywords.post.res.dto"
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
@@ -11,10 +10,10 @@ export default function () {
   const requestAPI = useRequestAPI()
 
   // GET /api/auth/public/users/settings
-  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings")
+  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings", { showLoading: true })
   
   // GET /api/auth/public/youtube/broadcasts
-  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts")
+  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts",  { showLoading: true })
 
   // PUT /api/auth/public/broadcasts
   const putBroadcast = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
@@ -30,7 +29,7 @@ export default function () {
   // POST /api/public/webhooks/member
   const postWebhookMember = async (
     user: User,
-    players: FactoryPlayer[]
+    player_factory: PlayerFactory
   ) => await requestAPI(
     `/api/public/webhooks/member`, {
       method: "POST",
@@ -43,13 +42,22 @@ export default function () {
           avatar: user.avatar,
           name: user.name
         },
-        users: players.map(p => ({
+        join: player_factory.joiners.map(p => ({
           channel_id: p.channel_id,
           avatar: p.avatar,
           name: p.name,
-          status: p.status,
           join_quests: p.join_quests,
-          wait_quests: p.wait_quests
+        })),
+        wait: player_factory.waiters.map(p => ({
+          channel_id: p.channel_id,
+          avatar: p.avatar,
+          name: p.name,
+          wait_quests: p.wait_quests,
+        })),
+        next: player_factory.next.map(p => ({
+          channel_id: p.channel_id,
+          avatar: p.avatar,
+          name: p.name,
         }))
       }
     }

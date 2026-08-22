@@ -2,9 +2,11 @@ import type { SocketIOLiveChatEmit } from "~~/shared/dtos/interfaces/socker.io_l
 
 export default async function() {
   const { t } = useI18n()
+  const { origin } = useRequestURL()
 
   const { showAlert } = useAlert()
   const { openLoading, closeLoading } = useLoading()
+  const onCopy = useClipboard()
 
   const { user } = useUserSession()
   const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
@@ -60,6 +62,10 @@ export default async function() {
     await putBroadcast()
   }
 
+  const onCopyMemberBrowserSource = async (status: "join" | "next" | "wait") => await onCopy(
+    `${origin}/obs/${user.value?.channel_id}/member?status=${status}`
+  )
+
   onMounted(async () => {
     if (user.value) {
       await getUserSetting()
@@ -72,7 +78,9 @@ export default async function() {
   watch(
     () => player_factory.value?.players,
     async (players) => {
-      if (players?.length) await postWebhookMember(user.value!, players)
+      console.log(players)
+      if (players?.length)
+        await postWebhookMember(user.value!, player_factory.value!)
     },
     { deep: true }
   )
@@ -82,6 +90,7 @@ export default async function() {
     is_recruiting,
     player_factory,
     onStartRecruit,
-    onStopRecruit
+    onStopRecruit,
+    onCopyMemberBrowserSource
   }
 }

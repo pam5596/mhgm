@@ -14,11 +14,14 @@
     <div class="flex gap-4">
       <OrgJoinPlayerManageCard
         :streamer="user"
-        :players_factory="player_factory"
+        :players-factory="player_factory"
         :is-streaming="is_recruiting"
+        @on-copy-browser-source="() => onCopyMemberBrowserSource('join')"
       />
       <OrgWaitPlayerManageCard
-        :players_factory="player_factory"
+        :players-factory="player_factory"
+        @on-copy-next-browser-source="() => onCopyMemberBrowserSource('next')"
+        @on-copy-wait-browser-source="() => onCopyMemberBrowserSource('wait')"
       />
     </div>
   </div>
@@ -30,7 +33,8 @@ const {
   is_recruiting,
   player_factory,
   onStartRecruit,
-  onStopRecruit
+  onStopRecruit,
+  onCopyMemberBrowserSource
 } = await useManagerPage()
 
 </script>
