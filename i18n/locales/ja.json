@@ -46,7 +46,7 @@
 				"to_home": "ホームへ戻る",
 				"start_recruit": "参加募集開始",
 				"stop_recruit": "参加募集締切",
-				"increase_quest": "クエスト出発or終了"
+				"increase_quest": "クエスト出発"
 			},
 			"main_manage_card": {
 				"title": "参加者管理ボード",
@@ -102,6 +102,15 @@
 					"edit_keyword": "更新",
 					"delete_keyword": "削除"
 				}
+			}
+		}
+	},
+	"obs": {
+		"member": {
+			"badge": {
+				"streamer": "配信中",
+				"join_member": "{quests}クエスト目",
+				"wait_member": "あと{quests}クエスト"
 			}
 		}
 	},
