@@ -10,6 +10,17 @@ export class SettingRepository extends BaseRepository {
 			return new SettingModel(created_setting);
 		});
 
+	/** 既に設定が存在する場合も失敗しない冪等な作成 */
+	upsert = async (model: SettingModel) =>
+		await this.prismaErrorHandler("create", async () => {
+			const upserted_setting = await this.client.setting.upsert({
+				where: { user_id: model.values.user_id },
+				update: {},
+				create: model.toIgnoreUndefinedObject(),
+			});
+			return new SettingModel(upserted_setting);
+		});
+
 	findByUserId = async (user_id: number) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_setting = await this.client.setting.findUnique({
