@@ -56,69 +56,65 @@ export class AuthGoogleGETService
       channel
     )
 
-    const finded_user = await this.userRepository.findByChannelID(channel.id!)
-    if (finded_user) {
-      await setUserSession(event, {
-        user: {
-          user_id: finded_user.values.id!,
-          channel_id: finded_user.values.channel_id,
-          name: finded_user.values.name,
-          avatar: finded_user.values.avatar
-        },
-        secure: {
-          access_token
-        }
-      })
-    } else {
-      await this.userRepository.client.$transaction(async (tx) => {
-        this.userRepository.client = tx
-        const user = await this.userRepository.upsert(
-          new UserModel({
-            channel_id: channel_props.channel_id!,
-            name: channel_props.name!,
-            avatar: channel_props.avatar!
-          })
-        )
-        this.userRepository.client = prismaClient
-
-        this.settingRepository.client = tx
-        await this.settingRepository.create(
-          new SettingModel({
-            user_id: user.values.id!,
-            quest_limit: 2
-          })
-        )
-        this.settingRepository.client = prismaClient
-
-        this.keywordRepository.client = tx
-        await this.keywordRepository.create(
-          new KeywordModel({
-            user_id: user.values.id!,
-            keyword: "参加希望",
-            action: "ENTRY"
-          })
-        )
-        await this.keywordRepository.create(
-          new KeywordModel({
-            user_id: user.values.id!,
-            keyword: "参加辞退",
-            action: "CANCEL"
-          })
-        )
-        this.keywordRepository.client = prismaClient
-
-        await setUserSession(event, {
-          user: {
-            user_id: user.values.id!,
-            channel_id: user.values.channel_id,
-            name: user.values.name,
-            avatar: user.values.avatar
-          },
-          secure: {
-            access_token
-          }
+    // 認証コールバックは同一ユーザーで重複・並行して実行され得るため、
+    // 事前検索で分岐せず常に冪等な upsert 経路を通す
+    const user = await this.prismaClient.$transaction(async (tx) => {
+      this.userRepository.client = tx
+      const upserted_user = await this.userRepository.upsert(
+        new UserModel({
+          channel_id: channel_props.channel_id!,
+          name: channel_props.name!,
+          avatar: channel_props.avatar!
         })
-      })
-    }
+      )
+      this.userRepository.client = prismaClient
+
+      const user_id = upserted_user.values.id!
+
+      this.settingRepository.client = tx
+      await this.settingRepository.upsert(
+        new SettingModel({
+          user_id,
+          quest_limit: 2
+        })
+      )
+      this.settingRepository.client = prismaClient
+
+      this.keywordRepository.client = tx
+      const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)
+      const default_keywords = [
+        { keyword: "参加希望", action: "ENTRY" },
+        { keyword: "参加辞退", action: "CANCEL" }
+      ] as const
+      for (const default_keyword of default_keywords) {
+        if (existing_keywords.some(
+          (existing) => existing.values.action === default_keyword.action
+        )) continue
+
+        await this.keywordRepository.create(
+          new KeywordModel({
+            user_id,
+            keyword: default_keyword.keyword,
+            action: default_keyword.action
+          })
+        )
+      }
+      this.keywordRepository.client = prismaClient
+
+      return upserted_user
+    })
+
+    // セッションはロールバックできないため、コミット後に書き込む
+    await setUserSession(event, {
+      user: {
+        user_id: user.values.id!,
+        channel_id: user.values.channel_id,
+        name: user.values.name,
+        avatar: user.values.avatar
+      },
+      secure: {
+        access_token
+      }
+    })
   }
 }
