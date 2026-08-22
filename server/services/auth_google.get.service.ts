@@ -1,6 +1,7 @@
 import type { AuthGoogleGETRequestDTO } from "../../shared/dtos/auth_google.get.req.dto";
 import { NotFoundError } from "../../shared/errors/not_found";
 import type { GoogleClient } from "../clients/google";
+import type { PrismaORMClient } from "../clients/prisma";
 import type { BaseService } from "./_base";
 import type { UserRepository } from "../repositories/user.repository";
 import type { SettingRepository } from "../repositories/setting.repository";
@@ -16,6 +17,7 @@ export class AuthGoogleGETService
 {
   constructor(
     private googleClient: GoogleClient,
+    private prismaClient: PrismaORMClient,
     private userRepository: UserRepository,
     private settingRepository: SettingRepository,
     private keywordRepository: KeywordRepository
@@ -77,6 +79,7 @@ export class AuthGoogleGETService
             avatar: channel_props.avatar!
           })
         )
+        this.userRepository.client = prismaClient
 
         this.settingRepository.client = tx
         await this.settingRepository.create(
@@ -85,6 +88,7 @@ export class AuthGoogleGETService
             quest_limit: 2
           })
         )
+        this.settingRepository.client = prismaClient
 
         this.keywordRepository.client = tx
         await this.keywordRepository.create(
@@ -101,6 +105,7 @@ export class AuthGoogleGETService
             action: "CANCEL"
           })
         )
+        this.keywordRepository.client = prismaClient
 
         await setUserSession(event, {
           user: {

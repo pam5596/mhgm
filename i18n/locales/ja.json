@@ -1,4 +1,119 @@
 {
+	"layouts": {
+		"default": {
+			"app_title": "mh guild manager",
+			"links": {
+				"youtube_terms": "YouTube 利用規約",
+				"google_privacy": "Google プライバシーポリシー",
+				"github": "GitHub"
+			},
+			"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
+			"capcom": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED.",
+			"copyright": "© 2026 pam5596",
+			"button": {
+				"logout": "ログアウト"
+			}
+		}
+	},
+	"pages": {
+		"index": {
+			"app_title": {
+				"line1": "monster hunter",
+				"line2": "guild manager"
+			},
+			"app_description": {
+				"line1": "モンスターハンター参加型配信用",
+				"line2": "参加者管理アプリケーション"
+			},
+			"button": {
+				"login_for_google": "Googleでログイン",
+				"to_about": "MHGMとは？"
+			}
+		},
+		"home": {
+			"button": {
+				"to_manager": "参加者管理画面へ"
+			}
+		},
+		"manager": {
+			"alert": {
+				"success_start_recruit": "配信に接続し、参加募集を開始しました。",
+				"info_player_entry": "{name}が参加希望しました。",
+				"info_player_cancel": "{name}が参加辞退しました。",
+				"success_copy": "クリップボードにコピーしました。"
+			},
+			"button": {
+				"to_home": "ホームへ戻る",
+				"start_recruit": "参加募集開始",
+				"stop_recruit": "参加募集締切",
+				"increase_quest": "クエスト出発"
+			},
+			"main_manage_card": {
+				"title": "参加者管理ボード",
+				"description": "編集内容はOBS用のブラウザソース画面と同期されます"
+			},
+			"joiner_manage_card": {
+				"title": "現在の参加者",
+				"tooltip": {
+					"copy_join_browser_source": "参加者一覧のOBS用ブラウザソースをコピーする"
+				},
+				"item": {
+					"quest_count": "参加クエスト数",
+					"change": "交代",
+					"cancel": "退出",
+					"straming": "配信中",
+					"empty": "プレイヤー{player}"
+				},
+				"change_player_dialog": {
+					"title": "交代する待機者を選択してください",
+					"select_placeholder": "待機者を選択する"
+				}
+			},
+			"waiter_manage_card": {
+				"title": "待機者 - {count}人",
+				"tooltip": {
+					"copy_next_browser_source": "次の参加者一覧のOBS用ブラウザソースをコピーする",
+					"copy_wait_browser_source": "待機者一覧のOBS用ブラウザソースをコピーする"
+				},
+				"item": {
+					"quest_count": "待機クエスト数",
+					"cancel": "退出"
+				}
+			},
+			"setting_dialog": {
+				"title": "設定",
+				"change_quests": "交代クエスト数",
+				"alert": {
+					"success_update": "設定内容を更新しました。",
+					"success_keyword_create": "キーワードを登録しました。",
+					"success_keyword_update": "キーワードを更新しました。",
+					"success_keyword_delete": "キーワードを削除しました。"
+				},
+				"entry_keyword_form": {
+					"title": "参加希望とみなすキーワード",
+					"default_keyword": "参加希望"
+				},
+				"cancel_keyword_form": {
+					"title": "参加辞退とみなすキーワード",
+					"default_keyword": "参加辞退"
+				},
+				"button": {
+					"add_keyword": "追加",
+					"edit_keyword": "更新",
+					"delete_keyword": "削除"
+				}
+			}
+		}
+	},
+	"obs": {
+		"member": {
+			"badge": {
+				"streamer": "配信中",
+				"join_member": "{quests}クエスト目",
+				"wait_member": "あと{quests}クエスト"
+			}
+		}
+	},
 	"models": {
 		"user": "ユーザー",
 		"setting": "ユーザー設定",
@@ -11,6 +126,7 @@
 		"keyword": "キーワード"
 	},
 	"errors": {
+		"default": "エラーが発生しました。",
 		"unknown": "不明なエラーが発生しました。",
 		"validate": {
 			"default": "データの処理中に予期せぬエラーが発生しました。",
@@ -30,6 +146,8 @@
 			"youtube_channel": "Youtubeチャンネルが見つかりませんでした。Youtubeアカウントを作成してください。"
 		},
 		"forbidden": "データへのアクセス権限がありません。",
-		"invalid_api_key": "データ送信認証に失敗しました。"
+		"invalid_api_key": "データ送信認証に失敗しました。",
+		"required_login": "セッションの有効期限が切れました。再度ログインしてください。",
+		"faild_to_copy": "コピーに失敗しました。"
 	}
 }

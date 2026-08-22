@@ -5,6 +5,24 @@ import { searchForWorkspaceRoot } from "vite";
 export default defineNuxtConfig({
 	compatibilityDate: "2025-07-15",
 	devtools: { enabled: true },
+	app: {
+		head: {
+			title: 'MHGM',
+			titleTemplate: 'MHGM - %s',
+			link: [
+				{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+			]
+		},
+	},
+	imports: {
+		dirs: [
+			resolve(__dirname, "./shared/models"),
+			resolve(__dirname, "./shared/models/interfaces"),
+			resolve(__dirname, "./shared/errors"),
+			resolve(__dirname, "./shared/enums"),
+			resolve(__dirname, "./shared/dtos")
+		],
+	},
 	nitro: {
 		experimental: {
 			websocket: true,
@@ -27,20 +45,24 @@ export default defineNuxtConfig({
 		'/api/private/**': {
 			cors: true,
 			headers: {
-				'access-control-allow-origin': process.env.STATERUL_API_BASE_URL,
+				'access-control-allow-origin': process.env.STATERUL_API_INTERNAL_URL,
 				'access-control-allow-credentials': 'true',
 			}
 		},
 		'/api/public/webhooks/member': {
-			proxy: `${process.env.STATERUL_API_BASE_URL}/mhgm/public/webhooks/member`
+			proxy: `${process.env.STATERUL_API_INTERNAL_URL}/mhgm/public/webhooks/member`
 		}
 	},
 	vite: {
 		server: {
+			allowedHosts: ["mhgm"],
 			fs: {
 				allow: [searchForWorkspaceRoot(process.cwd()), "/prisma/generated"],
 			},
 		},
+		optimizeDeps: {
+			include: ['socket.io-client']
+		}
 	},
 	modules: [
 		"@nuxt/icon",
@@ -51,11 +73,14 @@ export default defineNuxtConfig({
 		"vuetify-nuxt-module",
 		"@nuxt/test-utils/module",
 		"@nuxt/eslint",
+		"@nuxt/image"
 	],
 
 	googleFonts: {
 		families: {
-			"Cinzel Decorative": true,
+			"Cinzel Decorative": {
+				regular: 700
+			}
 		},
 	},
 
@@ -67,9 +92,18 @@ export default defineNuxtConfig({
 		}
 	},
 
+	icon: {
+		serverBundle: {
+			collections: ['logos', 'ic', 'material-symbols']
+		}
+	},
+
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
 		databaseUrl: process.env.DATABASE_URL,
-		apiKey: process.env.API_KEY
+		public: {
+			statefulApiBaseUrl: process.env.STATERUL_API_BASE_URL,
+			statefulApiApiKey: process.env.STATEFUL_API_KEY
+		}
 	}
 });
