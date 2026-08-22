@@ -4,9 +4,22 @@
       <p class="text-success-dark font-bold text-xl">
         {{ $t("pages.manager.joiner_manage_card.title") }}
       </p>
-      <AtmIconButton color="success" variant="outlined" size="32">
-        <Icon name="ic:baseline-content-copy" />
-      </AtmIconButton>
+      <v-tooltip 
+        :text="$t('pages.manager.joiner_manage_card.tooltip.copy_join_browser_source')"
+        location="start"
+      >
+        <template #activator="{ props }">
+          <AtmIconButton 
+            color="success" 
+            variant="outlined" 
+            size="32"
+            v-bind="props"
+            @click="$emit('onCopyBrowserSource')"
+          >
+            <Icon name="ic:baseline-content-copy" />
+          </AtmIconButton>
+        </template>
+      </v-tooltip>
     </div>
     <div class="flex flex-col gap-4">
       <MolStreamerItem :streamer="props.streamer" :is-streaming="props.isStreaming"/>
@@ -36,6 +49,10 @@ const props = defineProps<{
   playersFactory?: PlayerFactory
 }>()
 
+defineEmits<{
+  onCopyBrowserSource: []
+}>()
+
 const joiners = computed(
   () => Array.from(
     { length: 3 }, 
@@ -61,7 +78,6 @@ const onChange = (joiner: string, waiter: string) =>
 
 const onCancel = (channel_id: string) => 
   props.playersFactory?.cancelPlayer(channel_id)
-
 </script>
 
 <style scoped>

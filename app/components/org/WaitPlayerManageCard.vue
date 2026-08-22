@@ -4,9 +4,40 @@
       <p class="text-primary-dark font-bold text-xl">
         {{ $t("pages.manager.waiter_manage_card.title", { count: 10 }) }}
       </p>
-      <AtmIconButton color="primary" variant="outlined" size="32">
-        <Icon name="ic:baseline-content-copy"/>
-      </AtmIconButton>
+      <div class="flex gap-2">
+        <v-tooltip 
+          :text="$t('pages.manager.waiter_manage_card.tooltip.copy_next_browser_source')"
+          location="start"
+        >
+          <template #activator="{ props }">
+            <AtmIconButton 
+              color="primary" 
+              variant="fill" 
+              size="32"
+              v-bind="props"
+              @click="$emit('onCopyNextBrowserSource')"
+            >
+              <Icon name="ic:baseline-content-copy"/>
+            </AtmIconButton>
+          </template>
+        </v-tooltip>
+        <v-tooltip 
+          :text="$t('pages.manager.waiter_manage_card.tooltip.copy_wait_browser_source')"
+          location="start"
+        >
+          <template #activator="{ props }">
+            <AtmIconButton 
+              color="primary" 
+              variant="outlined" 
+              size="32"
+              v-bind="props"
+              @click="$emit('onCopyWaitBrowserSource')"
+            >
+              <Icon name="ic:baseline-content-copy"/>
+            </AtmIconButton>
+          </template>
+        </v-tooltip>
+      </div>
     </div>
     <div class="flex flex-col gap-4 flex-1 min-h-0 overflow-y-auto [&>*]:shrink-0">
       <template v-for="player in waiter_players">
@@ -27,6 +58,11 @@ import type { FactoryPlayer } from '~/types/factory_player';
 
 const props = defineProps<{
   playersFactory?: PlayerFactory
+}>()
+
+defineEmits<{
+  onCopyWaitBrowserSource: []
+  onCopyNextBrowserSource: []
 }>()
 
 const waiter_players = computed(

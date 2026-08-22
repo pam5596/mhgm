@@ -53,6 +53,9 @@
 			},
 			"joiner_manage_card": {
 				"title": "現在の参加者",
+				"tooltip": {
+					"copy_join_browser_source": "参加者一覧のOBS用ブラウザソースをコピーする"
+				},
 				"item": {
 					"quest_count": "参加クエスト数",
 					"change": "交代",
@@ -67,6 +70,10 @@
 			},
 			"waiter_manage_card": {
 				"title": "待機者 - {count}人",
+				"tooltip": {
+					"copy_next_browser_source": "次の参加者一覧のOBS用ブラウザソースをコピーする",
+					"copy_wait_browser_source": "待機者一覧のOBS用ブラウザソースをコピーする"
+				},
 				"item": {
 					"quest_count": "待機クエスト数",
 					"cancel": "退出"
@@ -130,6 +137,7 @@
 		},
 		"forbidden": "データへのアクセス権限がありません。",
 		"invalid_api_key": "データ送信認証に失敗しました。",
-		"required_login": "セッションの有効期限が切れました。再度ログインしてください。"
+		"required_login": "セッションの有効期限が切れました。再度ログインしてください。",
+		"faild_to_copy": "コピーに失敗しました。"
 	}
 }
