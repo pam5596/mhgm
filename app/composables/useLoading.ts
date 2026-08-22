@@ -1,7 +1,8 @@
 export default function() {
   const is_show_loading = useState('loading-is-show', () => false)
 
-  const toggleLoading = () => is_show_loading.value = !is_show_loading.value
+  const openLoading = () => is_show_loading.value = true
+  const closeLoading = () => is_show_loading.value = false
 
-  return { is_show_loading, toggleLoading }
+  return { is_show_loading, openLoading, closeLoading }
 }

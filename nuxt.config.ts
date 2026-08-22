@@ -14,6 +14,15 @@ export default defineNuxtConfig({
 			]
 		},
 	},
+	imports: {
+		dirs: [
+			resolve(__dirname, "./shared/models"),
+			resolve(__dirname, "./shared/models/interfaces"),
+			resolve(__dirname, "./shared/errors"),
+			resolve(__dirname, "./shared/enums"),
+			resolve(__dirname, "./shared/dtos")
+		],
+	},
 	nitro: {
 		experimental: {
 			websocket: true,
@@ -36,20 +45,24 @@ export default defineNuxtConfig({
 		'/api/private/**': {
 			cors: true,
 			headers: {
-				'access-control-allow-origin': process.env.STATERUL_API_BASE_URL,
+				'access-control-allow-origin': process.env.STATERUL_API_INTERNAL_URL,
 				'access-control-allow-credentials': 'true',
 			}
 		},
 		'/api/public/webhooks/member': {
-			proxy: `${process.env.STATERUL_API_BASE_URL}/mhgm/public/webhooks/member`
+			proxy: `${process.env.STATERUL_API_INTERNAL_URL}/mhgm/public/webhooks/member`
 		}
 	},
 	vite: {
 		server: {
+			allowedHosts: ["mhgm"],
 			fs: {
 				allow: [searchForWorkspaceRoot(process.cwd()), "/prisma/generated"],
 			},
 		},
+		optimizeDeps: {
+			include: ['socket.io-client']
+		}
 	},
 	modules: [
 		"@nuxt/icon",
@@ -88,5 +101,9 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
 		databaseUrl: process.env.DATABASE_URL,
+		public: {
+			statefulApiBaseUrl: process.env.STATERUL_API_BASE_URL,
+			statefulApiApiKey: process.env.STATEFUL_API_KEY
+		}
 	}
 });

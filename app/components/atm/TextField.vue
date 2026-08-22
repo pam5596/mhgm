@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <input
-      v-model="model"
+      v-model="text"
       type="text"
       class="rounded-md p-1"
       :class="styles"
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-const model = defineModel<string>()
+const text = defineModel<string>()
 
 const props = withDefaults(
   defineProps<{
