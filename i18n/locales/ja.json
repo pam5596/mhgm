@@ -39,7 +39,8 @@
 			"alert": {
 				"success_start_recruit": "配信に接続し、参加募集を開始しました。",
 				"info_player_entry": "{name}が参加希望しました。",
-				"info_player_cancel": "{name}が参加辞退しました。"
+				"info_player_cancel": "{name}が参加辞退しました。",
+				"success_copy": "クリップボードにコピーしました。"
 			},
 			"button": {
 				"to_home": "ホームへ戻る",

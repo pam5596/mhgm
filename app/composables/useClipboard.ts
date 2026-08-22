@@ -2,12 +2,12 @@ export default function () {
   const { t } = useI18n()
   const { showAlert } = useAlert()
 
-  return async (text: string, success_message: string) => {
+  return async (text: string) => {
     try {
       await navigator.clipboard.writeText(text)
       showAlert({
         type: "success",
-        title: success_message
+        title: t("pages.manager.alert.success_copy")
       })
     } catch (e) {
       showAlert({

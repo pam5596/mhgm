@@ -2,9 +2,11 @@ import type { SocketIOLiveChatEmit } from "~~/shared/dtos/interfaces/socker.io_l
 
 export default async function() {
   const { t } = useI18n()
+  const { origin } = useRequestURL()
 
   const { showAlert } = useAlert()
   const { openLoading, closeLoading } = useLoading()
+  const onCopy = useClipboard()
 
   const { user } = useUserSession()
   const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
@@ -60,11 +62,26 @@ export default async function() {
     await putBroadcast()
   }
 
+  const onCopyMemberBrowserSource = async (status: "join" | "next" | "wait") => await onCopy(
+    `${origin}/obs/${user.value?.channel_id}/member?status=${status}`
+  )
+
   onMounted(async () => {
     if (user.value) {
       await getUserSetting()
       player_factory.value = PlayerFactory.create(
-        settings.value.setting.quest_limit
+        settings.value.setting.quest_limit,
+        [
+          ...Array.from({length: 10}, (_, k) => ({
+            "id": k,
+            "channel_id": `UCp7Fsxs_3OWbOCkJUfIAxq${k}`,
+            "name": "@rs3191-w2d",
+            "avatar": `https://picsum.photos/id/${k*10}/200/300`,
+            "join_quests": 0,
+            "status": k < 3 ? StatusEnum.join : StatusEnum.wait,
+            "wait_quests": Math.floor(k / 3) * 2
+          }))
+        ]
       )
     }
   })
@@ -72,6 +89,7 @@ export default async function() {
   watch(
     () => player_factory.value?.players,
     async (players) => {
+      console.log(players)
       if (players?.length)
         await postWebhookMember(user.value!, player_factory.value!)
     },
@@ -83,6 +101,7 @@ export default async function() {
     is_recruiting,
     player_factory,
     onStartRecruit,
-    onStopRecruit
+    onStopRecruit,
+    onCopyMemberBrowserSource
   }
 }
