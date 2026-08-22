@@ -1,9 +1,17 @@
-FROM node:24
-
+# Dockerfile.vercel
+FROM node:24-alpine AS build
 WORKDIR /app
-COPY . /app
-EXPOSE 3000
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
 
-ENTRYPOINT ["/app/entrypoint.dev.sh"]
+FROM node:24-alpine AS runtime
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app/.output ./.output
+COPY entrypoint.vercel.sh ./entrypoint.vercel.sh
+RUN chmod +x ./entrypoint.vercel.sh
 
-CMD ["npm", "run", "dev"]
+ENV PORT=80
+ENTRYPOINT ["/app/entrypoint.vercel.sh"]
