@@ -9,17 +9,18 @@ export default function () {
 
   const { connect, subscribeEmit } = useMemberSocket()
 
-  const players = ref<SocketIOMemberEmit[keyof SocketIOMemberEmit]>([])
+  const member = ref<SocketIOMemberEmit>()
 
   onMounted(() => {
     connect()
-    if (channel_id) subscribeEmit<SocketIOMemberEmit>(channel_id, async (event) => {
-      players.value = event[status]
-    })
+    if (channel_id) subscribeEmit<SocketIOMemberEmit>(
+      channel_id, 
+      async (event) => {member.value = event}
+    )
   })
 
   return {
     status,
-    players
+    member
   }
 }
