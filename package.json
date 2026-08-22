@@ -12,7 +12,7 @@
 		"db:migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare"
+		"postinstall": "prisma generate && nuxt prepare"
 	},
 	"dependencies": {
 		"@iconify-json/ic": "^1.2.4",
