@@ -1,11 +1,11 @@
 <template>
   <div>
-
+    {{ players }}
   </div>
 </template>
 
 <script setup lang="ts">
-const {} = useObsMemberPage()
+const { players, status } = useObsMemberPage()
 </script>
 
 <style scoped>
