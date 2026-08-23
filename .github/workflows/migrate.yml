@@ -2,7 +2,7 @@ name: DataBaseMigrationCI
 
 on:
   push:
-    branches: [main]
+    branches: [ stg, main ]
 
 jobs:
   migrate:
