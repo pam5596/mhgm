@@ -6,13 +6,18 @@ export default function <ResT>(
     successMessage?: string
   }
 ) {
+  const config = useRuntimeConfig()
+  const { t } = useI18n()
+
   const { showAlert } = useAlert()
   const { openLoading, closeLoading } = useLoading()
-  const { t } = useI18n()
 
   return useFetch<ResT>(request, {
     ...opts,
     immediate: false,
+    headers: {
+      "x-api-key": config.public.apiKey
+    },
     onRequest: ({ request }) => {
       console.debug(request)
       if (opts?.showLoading) openLoading()
