@@ -3,7 +3,7 @@ export interface AuthPublicYoutubeChatMessagesPOSTRequest {
     access_token: string
   },
   body: {
-    stream_id: string
+    live_chat_id: string
     message: string
   }
 }

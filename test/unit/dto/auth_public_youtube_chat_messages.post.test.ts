@@ -8,7 +8,7 @@ describe("AuthPublicYoutubeChatMessagesPOSTの単体テスト", () => {
 				access_token: "string"
 			},
 			body: {
-				stream_id: "string",
+				live_chat_id: "string",
         message: "string"
 			},
 		})).not.toThrow();

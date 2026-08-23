@@ -13,7 +13,7 @@ export class AuthPublicYoutubeChatMessagesPOSTRequestDTO extends BaseDTO<AuthPub
         access_token: z.string()
       }),
       body: z.strictObject({
-        stream_id: z.string(),
+        live_chat_id: z.string(),
         message: z.string()
       }),
     });
