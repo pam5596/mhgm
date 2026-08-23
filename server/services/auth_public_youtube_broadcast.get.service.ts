@@ -38,8 +38,9 @@ export class AuthPublicYoutubeBroadcastGETService
 		const broadcast = google_response.data.items[0]!;
 		const title = broadcast.snippet?.title;
 		const thumbnail = broadcast.snippet?.thumbnails?.default?.url;
+		const live_chat_id = broadcast.snippet?.liveChatId
 
-		if (!title || !thumbnail)
+		if (!title || !thumbnail || !live_chat_id)
 			throw new NotFoundError(
 				this.constructor.name,
 				google_response.data,
@@ -51,6 +52,7 @@ export class AuthPublicYoutubeBroadcastGETService
 				stream_id: broadcast.id!,
 				title,
 				thumbnail,
+				live_chat_id
 			},
 		});
 	}

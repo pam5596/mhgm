@@ -21,6 +21,7 @@ describe("AuthPublicBroadcastPUTServiceの結合テスト", () => {
 			},
 			body: {
 				stream_id: "stream_id_1",
+				live_chat_id: "live_chat_id",
 				title: "live title",
 				thumbnail: "https://example.com/thumb.jpg",
 				end_at: new Date().toISOString()
@@ -34,5 +35,6 @@ describe("AuthPublicBroadcastPUTServiceの結合テスト", () => {
 		expect(saved?.values.title).toBe("live title");
 		expect(saved?.values.thumbnail).toBe("https://example.com/thumb.jpg");
 		expect(saved?.values.user_id).toBe(1);
+		expect(saved?.values.live_chat_id).toBe("live_chat_id")
 	});
 });
