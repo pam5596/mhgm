@@ -4,6 +4,9 @@ import { AuthPublicYoutubeChatMessagesPOSTRequestDTO } from "../../../shared/dto
 describe("AuthPublicYoutubeChatMessagesPOSTの単体テスト", () => {
 	it("RequestDTOが作成できる", () => {
 		expect(() => new AuthPublicYoutubeChatMessagesPOSTRequestDTO({
+			sessions: {
+				access_token: "string"
+			},
 			body: {
 				stream_id: "string",
         message: "string"

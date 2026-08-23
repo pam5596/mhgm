@@ -9,6 +9,9 @@ export class AuthPublicYoutubeChatMessagesPOSTRequestDTO extends BaseDTO<AuthPub
 
   private static schema() {
     return z.strictObject({
+      sessions: z.strictObject({
+        access_token: z.string()
+      }),
       body: z.strictObject({
         stream_id: z.string(),
         message: z.string()
