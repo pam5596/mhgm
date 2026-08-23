@@ -16,7 +16,7 @@ export default function () {
     return await $fetch<ResT>(request, {
       ...opts,
       headers: {
-        "x-api-key": config.apiKey
+        "x-api-key": config.public.apiKey
       },
       onRequest: ({ request }) => {
         console.debug(request)
