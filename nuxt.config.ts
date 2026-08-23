@@ -100,6 +100,7 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
+		apiKey: process.env.API_KEY,
 		databaseUrl: process.env.DATABASE_URL,
 		databaseSchema: process.env.DATABASE_SCHEMA,
 		public: {
