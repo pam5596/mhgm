@@ -20,7 +20,8 @@ export default async function() {
     broadcast, 
     getBroadcast, 
     putBroadcast, 
-    postWebhookMember 
+    postWebhookMember,
+    postChatMessage
   } = usePublicAPI()
 
   const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
@@ -30,11 +31,30 @@ export default async function() {
         type: "info",
         title: t("pages.manager.alert.info_player_entry", { name: event.user.name })
       })
+      const player = player_factory.value?.players.find(p => p.channel_id === event.user.channel_id)
+      
+      if (player?.status === StatusEnum.join) {
+        await postChatMessage(
+          t("pages.manager.joiner_manage_card.notificate_chat_mesage.as_joiner", { 
+            name: player.name 
+          })
+        )
+      } else if (player?.status === StatusEnum.wait) {
+        await postChatMessage(
+          t("pages.manager.joiner_manage_card.notificate_chat_mesage.as_waiter", {
+            name: player.name,
+            quests: player.wait_quests
+          })
+        )
+      }
     } else if (event.chat.action === ActionEnum.cancel) {
       player_factory.value?.cancelPlayer(event.user.channel_id)
       showAlert({
         type: "info",
         title: t("pages.manager.alert.info_player_cancel", { name: event.user.name })
+      })
+      t("pages.manager.waiter_manage_card.notificate_chat_mesage", {
+        name: event.user.name
       })
     }
   }

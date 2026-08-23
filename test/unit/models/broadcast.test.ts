@@ -6,6 +6,7 @@ describe("BroadcastModelの単体テスト", () => {
 		id: 1,
 		title: "string",
 		thumbnail: "https://example.com",
+		live_chat_id: "string",
 		stream_id: "stringstrin",
 		begin_at: new Date(),
 		end_at: null,

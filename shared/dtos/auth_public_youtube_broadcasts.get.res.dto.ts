@@ -11,6 +11,7 @@ export class AuthPublicYoutubeBroadcastsGETResponseDTO extends BaseDTO<AuthPubli
 		return z.strictObject({
 			body: z.strictObject({
 				stream_id: z.string(),
+				live_chat_id: z.string(),
 				title: z.string(),
 				thumbnail: z.string(),
 			}),

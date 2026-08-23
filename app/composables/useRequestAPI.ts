@@ -14,10 +14,10 @@ export default function () {
     }
   ) {
     return await $fetch<ResT>(request, {
-      ...opts,
       headers: {
         "x-api-key": config.public.apiKey
       },
+      ...opts,
       onRequest: ({ request }) => {
         console.debug(request)
         if (opts?.showLoading) openLoading()

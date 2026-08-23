@@ -12,6 +12,7 @@ export class BroadcastModel extends BaseModel<Broadcast> {
 			id: z.int().optional(),
 			title: z.string().min(1).max(100),
 			thumbnail: z.url({ protocol: /^https?$/ }),
+			live_chat_id: z.string().min(1),
 			stream_id: z.string().length(11),
 			begin_at: z.date().optional(),
 			end_at: z.date().nullable(),

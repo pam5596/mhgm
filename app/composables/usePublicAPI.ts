@@ -3,6 +3,7 @@ import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/
 import type { AuthPublicKeywordsPOSTResponse } from "~~/shared/dtos/interfaces/auth_public_keywords.post.res.dto"
 import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
 import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
+import type { AuthPublicYoutubeChatMessagesPOSTRequest } from "~~/shared/dtos/interfaces/auth_public_youtube_chat_messages.post.req.dto"
 
 export default function () {
   const config = useRuntimeConfig()
@@ -10,10 +11,29 @@ export default function () {
   const requestAPI = useRequestAPI()
 
   // GET /api/auth/public/users/settings
-  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings", { showLoading: true })
+  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>(
+    "/api/auth/public/users/settings", { 
+      showLoading: true 
+    })
   
   // GET /api/auth/public/youtube/broadcasts
-  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts",  { showLoading: true })
+  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>(
+    "/api/auth/public/youtube/broadcasts", {
+      showLoading: true 
+    })
+
+  // POST /api/auth/public/youtube/chat-messages
+  const postChatMessage = async (
+    message: string
+  ) => await requestAPI<AuthPublicYoutubeChatMessagesPOSTRequest["body"]>(
+    "/api/auth/public/youtube/chat-messages", {
+      method: "POST",
+      body: {
+        live_chat_id: broadcast.value.live_chat_id,
+        message
+      }
+    }
+  )
 
   // PUT /api/auth/public/broadcasts
   const putBroadcast = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
@@ -111,6 +131,7 @@ export default function () {
     postKeyword,
     patchKeyword,
     deleteKeyword,
-    patchSettings
+    patchSettings,
+    postChatMessage
   }
 }
