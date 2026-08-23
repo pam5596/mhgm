@@ -14,7 +14,14 @@ export default async function() {
   const is_recruiting = ref(false)
   const player_factory = ref<PlayerFactory>()
 
-  const { settings, getUserSetting, broadcast, getBroadcast, putBroadcast, postWebhookMember } = usePublicAPI()
+  const { 
+    settings, 
+    getUserSetting, 
+    broadcast, 
+    getBroadcast, 
+    putBroadcast, 
+    postWebhookMember 
+  } = usePublicAPI()
 
   const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
     if (event.chat.action === ActionEnum.entry) {
@@ -78,9 +85,10 @@ export default async function() {
   watch(
     () => player_factory.value?.players,
     async (players) => {
-      console.log(players)
-      if (players?.length)
-        await postWebhookMember(user.value!, player_factory.value!)
+      if (players?.length) await postWebhookMember(
+        user.value!, 
+        player_factory.value!
+      )
     },
     { deep: true }
   )
