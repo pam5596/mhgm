@@ -54,6 +54,10 @@
 			},
 			"joiner_manage_card": {
 				"title": "現在の参加者",
+				"notificate_chat_mesage": {
+					"as_joiner": "{name} さんの参加希望を受け付けました！枠が空いてますのでロビーへご入室ください。",
+					"as_waiter": "{name} さんの参加希望を受け付けました！参加まであと{quests}クエスト待ちです。"
+				},
 				"tooltip": {
 					"copy_join_browser_source": "参加者一覧のOBS用ブラウザソースをコピーする"
 				},
@@ -71,6 +75,7 @@
 			},
 			"waiter_manage_card": {
 				"title": "待機者 - {count}人",
+				"notificate_chat_mesage": "{name}さんの参加辞退を受け付けました。",
 				"tooltip": {
 					"copy_next_browser_source": "次の参加者一覧のOBS用ブラウザソースをコピーする",
 					"copy_wait_browser_source": "待機者一覧のOBS用ブラウザソースをコピーする"

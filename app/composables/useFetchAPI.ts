@@ -13,11 +13,11 @@ export default function <ResT>(
   const { openLoading, closeLoading } = useLoading()
 
   return useFetch<ResT>(request, {
-    ...opts,
     immediate: false,
     headers: {
       "x-api-key": config.public.apiKey
     },
+    ...opts,
     onRequest: ({ request }) => {
       console.debug(request)
       if (opts?.showLoading) openLoading()
