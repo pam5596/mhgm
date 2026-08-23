@@ -3,7 +3,8 @@ export default defineApiHandler((event) => {
 
   if(
     event.path.startsWith("/api") &&
-    !event.path.startsWith("/api/_auth/session") &&
+    !event.path.startsWith("/api/_auth") &&
+    !event.path.startsWith("/api/_nuxt_icon") &&
     !event.path.startsWith("/api/auth/google") &&
     event.headers.get("x-api-key") !== config.apiKey
   ) {
