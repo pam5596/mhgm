@@ -14,6 +14,7 @@ export class AuthPublicBroadcastsPUTRequestDTO extends BaseDTO<AuthPublicBroadca
 			}),
 			body: z.strictObject({
 				stream_id: z.string(),
+				live_chat_id: z.string(),
 				title: z.string(),
 				thumbnail: z.string(),
 				end_at: z.iso.datetime(),

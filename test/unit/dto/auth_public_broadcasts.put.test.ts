@@ -12,6 +12,7 @@ describe("AuthPublicBroadcastsPUTの単体テスト", () => {
 				title: "title",
 				thumbnail: "https://thumbnail.com",
 				stream_id: "stream_id_1",
+				live_chat_id: "live_chat_id",
 				end_at: new Date().toISOString()
 			},
 		})).not.toThrow();

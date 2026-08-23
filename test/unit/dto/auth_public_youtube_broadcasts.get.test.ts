@@ -17,6 +17,7 @@ describe("AuthPublicYoutubeBroadcastsGETの単体テスト", () => {
 				stream_id: "stream_id_1",
 				title: "title",
 				thumbnail: "https://thumbnail.com",
+				live_chat_id: "live_chat_id"
 			},
 		})).not.toThrow();
 	});
