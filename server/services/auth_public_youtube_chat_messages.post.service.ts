@@ -1,7 +1,7 @@
 import { BaseService } from "./_base";
 import type { AuthPublicYoutubeChatMessagesPOSTRequestDTO } from "../../shared/dtos/auth_public_youtube_chat_messages.post.req.dto"
 
-export class AuthPublicYoutubeLiveMessagesPOSTService
+export class AuthPublicYoutubeChatMessagesPOSTService
   implements
     BaseService<AuthPublicYoutubeChatMessagesPOSTRequestDTO, void>
 {
