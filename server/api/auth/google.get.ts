@@ -3,7 +3,8 @@ export default defineOAuthGoogleEventHandler({
     scope: [
       "email", 
       "profile", 
-      "https://www.googleapis.com/auth/youtube.readonly"
+      "https://www.googleapis.com/auth/youtube.readonly",
+      "https://www.googleapis.com/auth/youtube.force-ssl",
     ]
   },
   async onSuccess(event, result: {
