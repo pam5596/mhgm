@@ -7,7 +7,7 @@ describe.skip("AuthPublicYoutubeLiveMessagesPOSTServiceの結合テスト", asyn
 	const google = new GoogleClient();
 	const service = new AuthPublicYoutubeChatMessagesPOSTService(google);
 
-	it("配信情報を取得できる", async () => {
+	it("コメントを送信できる", async () => {
 		const request = new AuthPublicYoutubeChatMessagesPOSTRequestDTO({
 			sessions: {
 				access_token: process.env.GOOGLE_ACCESS_TOKEN!,
@@ -18,6 +18,6 @@ describe.skip("AuthPublicYoutubeLiveMessagesPOSTServiceの結合テスト", asyn
 			}
 		});
 
-		expect(async () => await service.execute(request)).not.toThrow()
+		await service.execute(request)
 	});
 });
