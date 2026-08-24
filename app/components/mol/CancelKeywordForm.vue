@@ -1,10 +1,10 @@
 <template>
   <div class="flex justify-between items-center">
     <p class="text-primary-dark font-bold">
-      {{ $t("pages.manager.setting_dialog.entry_keyword_form.title") }}
+      {{ $t("components.molecure.cancel_keyword_form.title") }}
     </p>
     <AtmButton @click="onAddKeyword">
-      {{ $t("pages.manager.setting_dialog.button.add_keyword") }}
+      {{ $t("components.molecure.cancel_keyword_form.add_keyword_button_text") }}
     </AtmButton>
   </div>
   <div class="flex flex-col gap-2">
@@ -32,7 +32,7 @@ const onAddKeyword = async () => {
     ...keywords.value,
     {
       id: data.id,
-      keyword: t("pages.manager.setting_dialog.cancel_keyword_form.default_keyword"),
+      keyword: t("components.molecure.cancel_keyword_form.default_keyword"),
       action: ActionEnum.cancel
     }
   ]

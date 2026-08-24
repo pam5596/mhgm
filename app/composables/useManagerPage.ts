@@ -29,19 +29,19 @@ export default async function() {
       player_factory.value?.entryPlayer(event.user)
       showAlert({
         type: "info",
-        title: t("pages.manager.alert.info_player_entry", { name: event.user.name })
+        title: t("composables.use_manager_page.info_message.player_entry", { name: event.user.name })
       })
       const player = player_factory.value?.players.find(p => p.channel_id === event.user.channel_id)
       
       if (player?.status === StatusEnum.join) {
         await postChatMessage(
-          t("pages.manager.joiner_manage_card.notificate_chat_mesage.as_joiner", { 
+          t("composables.use_manager_page.chat_message.entry_as_joiner", { 
             name: player.name 
           })
         )
       } else if (player?.status === StatusEnum.wait) {
         await postChatMessage(
-          t("pages.manager.joiner_manage_card.notificate_chat_mesage.as_waiter", {
+          t("composables.use_manager_page.chat_message.entry_as_waiter", {
             name: player.name,
             quests: player.wait_quests
           })
@@ -51,9 +51,9 @@ export default async function() {
       player_factory.value?.cancelPlayer(event.user.channel_id)
       showAlert({
         type: "info",
-        title: t("pages.manager.alert.info_player_cancel", { name: event.user.name })
+        title: t("composables.use_manager_page.info_message.player_cancel", { name: event.user.name })
       })
-      t("pages.manager.waiter_manage_card.notificate_chat_mesage", {
+      t("composables.use_manager_page.chat_message.cancel", {
         name: event.user.name
       })
     }
@@ -76,7 +76,7 @@ export default async function() {
         is_recruiting.value = true
         showAlert({
           type: "success",
-          title: t("pages.manager.alert.success_start_recruit")
+          title: t("composables.use_manager_page.success_mesage.start_recruit")
         })
       }
       closeLoading()

@@ -2,10 +2,10 @@
   <div class="flex justify-between gap-2">
     <AtmTextField v-model="keyword" class="w-full" />
     <AtmButton color="success" @click="$emit('onUpdate')">
-      {{ $t("pages.manager.setting_dialog.button.edit_keyword") }}
+      {{ $t("components.molecure.keyword_field.edit_button_text") }}
     </AtmButton>
     <AtmButton color="error" @click="$emit('onDelete')">
-      {{ $t("pages.manager.setting_dialog.button.delete_keyword") }}
+      {{ $t("components.molecure.keyword_field.delete_button_text") }}
     </AtmButton>
   </div>
 </template>

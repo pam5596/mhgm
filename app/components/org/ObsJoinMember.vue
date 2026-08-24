@@ -13,7 +13,7 @@
     >
       <template #badge>
         <p class="font-bold">
-          {{ $t("obs.member.badge.streamer") }}
+          {{ $t("components.organizm.obs_join_member.streamer_badge") }}
         </p>
       </template>
     </v-avatar>
@@ -31,7 +31,7 @@
     >
       <template #badge>
         <p class="font-bold">
-          {{ $t("obs.member.badge.join_member", { quests: player.join_quests }) }}
+          {{ $t("components.organizm.obs_join_member.badge", { quests: player.join_quests }) }}
         </p>
       </template>
     </v-avatar>

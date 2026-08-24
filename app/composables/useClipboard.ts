@@ -7,7 +7,7 @@ export default function () {
       await navigator.clipboard.writeText(text)
       showAlert({
         type: "success",
-        title: t("pages.manager.alert.success_copy")
+        title: t("composables.use_clipboard.success_messages.copy")
       })
     } catch {
       showAlert({

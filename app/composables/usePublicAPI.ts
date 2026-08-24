@@ -88,9 +88,11 @@ export default function () {
     `/api/auth/public/keywords`, {
     method: "POST",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_keyword_create"),
+    successMessage: t("composables.use_public_api.success_messages.create_keyword"),
     body: {
-      keyword: t("pages.manager.setting_dialog.cancel_keyword_form.default_keyword"),
+      keyword: action === "ENTRY" ? 
+        t("components.molecure.entry_keyword_form.default_keyword") :
+        t("components.molecure.cancel_keyword_form.default_keyword"),
       action
     }
   })
@@ -100,7 +102,7 @@ export default function () {
     `/api/auth/public/keywords/${id}`, {
     method: "PATCH",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_keyword_update"),
+    successMessage: t("composables.use_public_api.success_messages.update_keyword"),
     body: { keyword }
   })
 
@@ -109,7 +111,7 @@ export default function () {
     `/api/auth/public/keywords/${id}`, {
     method: "DELETE",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_keyword_delete")
+    successMessage: t("composables.use_public_api.success_messages.delete_keyword")
   })
 
   // PATCH /api/auth/public/users/settings
@@ -117,7 +119,7 @@ export default function () {
     "/api/auth/public/users/settings", {
     method: "PATCH",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_update"),
+    successMessage: t("composables.use_public_api.success_messages.update_settings"),
     body: settings.value.setting
   })
 

@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <div>
-      <AtmBackButton href="/home">
-        {{ $t("pages.manager.button.to_home") }}
-      </AtmBackButton>
+      <AtmToHomeButton />
     </div>
     <OrgMainManageCard 
       :is-recruiting="is_recruiting"
