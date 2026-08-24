@@ -1,121 +1,114 @@
 {
-	"layouts": {
-		"default": {
-			"app_title": "mh guild manager",
-			"links": {
-				"youtube_terms": "YouTube 利用規約",
-				"google_privacy": "Google プライバシーポリシー",
-				"github": "GitHub"
+	"components": {
+		"atom": {
+			"about_button_text": "MHGMとは？",
+			"login_button_text": "Googleでログイン",
+			"logout_button_text": "ログアウト",
+			"to_home_button_text": "ホームへ戻る",
+			"to_manager_button_text": "参加者管理画面へ"
+		},
+		"molecure": {
+			"cancel_keyword_form": {
+				"title": "参加辞退とみなすキーワード",
+				"add_keyword_button_text": "追加",
+				"default_keyword": "参加辞退"
 			},
-			"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
-			"capcom": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED.",
-			"copyright": "© 2026 pam5596",
-			"button": {
-				"logout": "ログアウト"
+			"change_player_dialog": {
+				"title": "交代する待機者を選択してください",
+				"select_placeholder": "待機者を選択する"
+			},
+			"change_quests_form_label": "交代クエスト数",
+			"empty_player_item_label": "プレイヤー{player}",
+			"entry_keyword_form": {
+				"title": "参加希望とみなすキーワード",
+				"add_keyword_button_text": "追加",
+				"default_keyword": "参加希望"
+			},
+			"join_player_item": {
+				"quest_count_label": "参加クエスト数",
+				"change_button_text": "交代",
+				"cancel_button_text": "退出"
+			},
+			"keyword_field": {
+				"edit_button_text": "更新",
+				"delete_button_text": "削除"
+			},
+			"setting_dialog": {
+				"title": "設定"
+			},
+			"streamer_item_streaming_label": "配信中",
+			"wait_player_item": {
+				"quest_count_label": "待機クエスト数",
+				"cancel_button_text": "退出"
 			}
-		}
-	},
-	"pages": {
-		"index": {
+		},
+		"organizm": {
+			"app_description": "モンスターハンター参加型配信用\n参加者管理アプリケーション",
 			"app_title": {
-				"line1": "monster hunter",
-				"line2": "guild manager"
+				"default": "monster hunter",
+				"primary": "guild manager"
 			},
-			"app_description": {
-				"line1": "モンスターハンター参加型配信用",
-				"line2": "参加者管理アプリケーション"
+			"copyright": {
+				"disclaimer": "本サービスは個人が制作した非公式ツールであり、株式会社カプコンとは一切関係ありません。",
+				"organization": "©CAPCOM CO., LTD. ALL RIGHTS RESERVED. / © 2026 pam5596"
 			},
-			"button": {
-				"login_for_google": "Googleでログイン",
-				"to_about": "MHGMとは？"
-			}
-		},
-		"home": {
-			"button": {
-				"to_manager": "参加者管理画面へ"
-			}
-		},
-		"manager": {
-			"alert": {
-				"success_start_recruit": "配信に接続し、参加募集を開始しました。",
-				"info_player_entry": "{name}が参加希望しました。",
-				"info_player_cancel": "{name}が参加辞退しました。",
-				"success_copy": "クリップボードにコピーしました。"
+			"join_player_manager_card": {
+				"title": "現在の参加者",
+				"copy_join_browser_source_tooltip": "参加者一覧のOBS用ブラウザソースをコピーする"
 			},
-			"button": {
-				"to_home": "ホームへ戻る",
-				"start_recruit": "参加募集開始",
-				"stop_recruit": "参加募集締切",
-				"increase_quest": "クエスト出発"
+			"lookup": {
+				"title": "mh guild manager"
 			},
 			"main_manage_card": {
 				"title": "参加者管理ボード",
-				"description": "編集内容はOBS用のブラウザソース画面と同期されます"
+				"description": "編集内容はOBS用のブラウザソース画面と同期されます",
+				"start_recruit_button_text": "参加募集開始",
+				"stop_recruit_button_text": "参加募集締切",
+				"increase_quest_button_text": "クエスト出発"
 			},
-			"joiner_manage_card": {
-				"title": "現在の参加者",
-				"notificate_chat_mesage": {
-					"as_joiner": "{name} さんの参加希望を受け付けました！枠が空いてますのでロビーへご入室ください。",
-					"as_waiter": "{name} さんの参加希望を受け付けました！参加まであと{quests}クエスト待ちです。"
-				},
-				"tooltip": {
-					"copy_join_browser_source": "参加者一覧のOBS用ブラウザソースをコピーする"
-				},
-				"item": {
-					"quest_count": "参加クエスト数",
-					"change": "交代",
-					"cancel": "退出",
-					"straming": "配信中",
-					"empty": "プレイヤー{player}"
-				},
-				"change_player_dialog": {
-					"title": "交代する待機者を選択してください",
-					"select_placeholder": "待機者を選択する"
-				}
+			"obs_join_member": {
+				"streamer_badge": "配信中",
+				"badge": "{quests}クエスト目"
 			},
-			"waiter_manage_card": {
+			"obs_next_member": {
+				"streamer_badge": "配信中"
+			},
+			"obs_wait_member": {
+				"badge": "あと{quests}クエスト"
+			},
+			"wait_player_manage_card": {
 				"title": "待機者 - {count}人",
-				"notificate_chat_mesage": "{name}さんの参加辞退を受け付けました。",
-				"tooltip": {
-					"copy_next_browser_source": "次の参加者一覧のOBS用ブラウザソースをコピーする",
-					"copy_wait_browser_source": "待機者一覧のOBS用ブラウザソースをコピーする"
-				},
-				"item": {
-					"quest_count": "待機クエスト数",
-					"cancel": "退出"
-				}
-			},
-			"setting_dialog": {
-				"title": "設定",
-				"change_quests": "交代クエスト数",
-				"alert": {
-					"success_update": "設定内容を更新しました。",
-					"success_keyword_create": "キーワードを登録しました。",
-					"success_keyword_update": "キーワードを更新しました。",
-					"success_keyword_delete": "キーワードを削除しました。"
-				},
-				"entry_keyword_form": {
-					"title": "参加希望とみなすキーワード",
-					"default_keyword": "参加希望"
-				},
-				"cancel_keyword_form": {
-					"title": "参加辞退とみなすキーワード",
-					"default_keyword": "参加辞退"
-				},
-				"button": {
-					"add_keyword": "追加",
-					"edit_keyword": "更新",
-					"delete_keyword": "削除"
-				}
+				"copy_next_browser_source_tooltip": "次の参加者一覧のOBS用ブラウザソースをコピーする",
+				"copy_wait_browser_source_tooltip": "待機者一覧のOBS用ブラウザソースをコピーする"
 			}
 		}
 	},
-	"obs": {
-		"member": {
-			"badge": {
-				"streamer": "配信中",
-				"join_member": "{quests}クエスト目",
-				"wait_member": "あと{quests}クエスト"
+	"composables": {
+		"use_clipboard": {
+			"success_messages": {
+				"copy": "クリップボードにコピーしました。"
+			}
+		},
+		"use_public_api": {
+			"success_messages": {
+				"update_settings": "設定内容を更新しました。",
+				"create_keyword": "キーワードを登録しました。",
+				"update_keyword": "キーワードを更新しました。",
+				"delete_keyword": "キーワードを削除しました。"
+			}
+		},
+		"use_manager_page": {
+			"success_mesage": {
+				"start_recruit": "配信に接続し、参加募集を開始しました。"
+			},
+			"info_message": {
+				"player_entry": "{name}が参加希望しました。",
+				"player_cancel": "{name}が参加辞退しました。"
+			},
+			"chat_message": {
+				"entry_as_joiner": "{name} さんの参加希望を受け付けました！枠が空いてますのでロビーへご入室ください。",
+				"entry_as_waiter": "{name} さんの参加希望を受け付けました！参加まであと{quests}クエスト待ちです。",
+				"cancel": "{name}さんの参加辞退を受け付けました。"
 			}
 		}
 	},

@@ -4,7 +4,7 @@
       <AtmCard class="p-4 flex-col gap-2 w-1/2 max-h-96 overflow-y-scroll">
         <div class="flex justify-between">
           <p class="text-primary-dark font-bold text-xl">
-            {{ $t("pages.manager.setting_dialog.title") }}
+            {{ $t("components.molecure.setting_dialog.title") }}
           </p>
           <Icon class="text-primary-dark cursor-pointer" name="ic:baseline-close" size="28" @click="closeDialog"/>
         </div>

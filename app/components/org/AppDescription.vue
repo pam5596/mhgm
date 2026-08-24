@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <p>{{ $t("pages.index.app_description.line1") }}</p>
-    <p>{{ $t("pages.index.app_description.line2") }}</p>
-  </div>
+  <p class="whitespace-pre-wrap">{{ $t("components.organizm.app_description") }}</p>
 </template>
 
 <script setup lang="ts">

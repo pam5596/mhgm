@@ -3,14 +3,14 @@
     <div class="w-full flex justify-center">
       <AtmCard class="p-4 flex-col gap-2 w-1/2">
         <p class="text-primary-dark font-bold text-xl">
-          {{ $t("pages.manager.joiner_manage_card.change_player_dialog.title") }}
+          {{ $t("components.molecure.change_player_dialog.title") }}
         </p>
         <v-divider thickness="2" class="border-primary border-opacity-100" />
         <v-select
           v-model="selectedDummy"
           class="text-primary-dark"
-          variant="outlined"
-          :placeholder="$t('pages.manager.joiner_manage_card.change_player_dialog.select_placeholder')"
+          variant="solo"
+          :placeholder="$t('components.molecure.change_player_dialog.select_placeholder')"
           hide-details
           :items="props.waiters"
           @update:model-value="(waiter) => $emit('onSelected', waiter)"

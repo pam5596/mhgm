@@ -1,9 +1,9 @@
 <template>
   <p class="max-w-3xl text-center">
-    {{ $t("layouts.default.disclaimer") }}
+    {{ $t("components.organizm.copyright.disclaimer") }}
   </p>
   <p>
-    {{ $t("layouts.default.capcom") }} / {{ $t("layouts.default.copyright") }}
+    {{ $t("components.organizm.copyright.organization") }}
   </p>
 </template>
 

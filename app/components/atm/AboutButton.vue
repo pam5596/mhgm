@@ -1,6 +1,6 @@
 <template>
   <AtmButton color="primary" variant="fill" icon="ic:baseline-help" href="/about">
-    {{ $t("pages.index.button.to_about") }}
+    {{ $t("components.atom.about_button_text") }}
   </AtmButton>
 </template>
 

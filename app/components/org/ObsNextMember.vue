@@ -13,7 +13,7 @@
     >
       <template #badge>
         <p class="font-bold">
-          {{ $t("obs.member.badge.streamer") }}
+          {{ $t("components.organizm.obs_next_member.streamer_badge") }}
         </p>
       </template>
     </v-avatar>
