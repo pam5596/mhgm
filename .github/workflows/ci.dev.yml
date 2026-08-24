@@ -9,6 +9,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      db:
+        image: postgres:17
+        env: 
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRESS_DB: db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,10 +36,18 @@ jobs:
       - name: Setup Nuxt
         run: npm install
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: postgresql://user:password@localhost:5432/db
 
-      - name: Unit Vitest
+      - name: Setup DB
+        run: npx prisma migrate dev
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/db
+
+      - name: Run Unit Vitest
         run: npm run test test/unit
+
+      - name: Run Integration Vitest
+        run: npm run test test/integration
 
       - name: Lint
         run: npm run lint
