@@ -39,10 +39,11 @@ describe("SettingRepositoryの結合テスト", () => {
 		const setting = settings(1);
 		await repo.create(setting!);
 
-		const updated_setting = setting?.update({ quest_limit: 5 });
+		const updated_setting = setting?.update({ quest_limit: 5, player_limit: 2 });
 		const updated = updated_setting && (await repo.update(updated_setting));
 
 		expect(updated?.values.quest_limit).toBe(5);
+		expect(updated?.values.player_limit).toBe(2)
 	});
 
 	it("設定を削除できる", async () => {
