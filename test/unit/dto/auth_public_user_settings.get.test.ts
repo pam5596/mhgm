@@ -16,6 +16,7 @@ describe("AuthPublicUsersSettingsGETの単体テスト", () => {
 			body: {
 				setting: {
 					quest_limit: 2,
+					player_limit: 1
 				},
 				keywords: [
 					{

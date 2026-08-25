@@ -55,7 +55,7 @@ defineEmits<{
 
 const joiners = computed(
   () => Array.from(
-    { length: 3 }, 
+    { length: props.playersFactory?.setting.player_limit || 0 }, 
     (_, i) => props.playersFactory?.joiners[i] ?? null
   )
 )
