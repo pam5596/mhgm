@@ -1,32 +1,42 @@
 import type { DisplayUser } from "~/types/display_user";
 import type { FactoryPlayer } from "~/types/factory_player";
+import type { Setting } from "~~/shared/models/interfaces/setting.interface";
 
 export class PlayerFactory {
-  quest_limit: number
-  joiner_limit: number = 3
+  setting: Omit<Setting, "user_id"|"created_at">
   players: FactoryPlayer[]
 
-  constructor(quest_limit: number, from_players?: FactoryPlayer[]) {
-    this.quest_limit = quest_limit
+  constructor(
+    setting: Omit<Setting, "user_id"|"created_at">, 
+    from_players?: FactoryPlayer[]
+  ) {
+    this.setting = setting
     this.players = from_players || []
   }
 
-  static create(quest_limit: number, from_players?: FactoryPlayer[]) {
-    return new PlayerFactory(quest_limit, from_players)
+  static create(
+    setting: Omit<Setting, "user_id"|"created_at">, 
+    from_players?: FactoryPlayer[]
+  ) {
+    return new PlayerFactory(setting, from_players)
   }
 
   refresh() {
     this.players = this.players.reduce((current_players, player, index) => {
-      if(index >= this.joiner_limit) {
+      if(index >= this.setting.player_limit) {
         // 待機枠の場合
         player.join_quests = 0
         player.status = StatusEnum.wait
-        if (index >= this.joiner_limit * 2) {
+        if (index >= this.setting.player_limit * 2) {
           // 待機列2列目以降の場合
-          player.wait_quests = current_players[index - this.joiner_limit]!.wait_quests + this.quest_limit
+          player.wait_quests = 
+            current_players[index - this.setting.player_limit]!.wait_quests + 
+            this.setting.quest_limit
         } else {
           // 待機列1列目の場合
-          player.wait_quests = this.quest_limit - current_players[index % this.joiner_limit]!.join_quests
+          player.wait_quests = 
+            this.setting.quest_limit - 
+            current_players[index % this.setting.player_limit]!.join_quests
         }
       } else {
         // 参加枠の場合
@@ -53,10 +63,16 @@ export class PlayerFactory {
   }
 
   changePlayer(joiner_channel_id: string, waiter_channel_id: string) {
-    const joiner_index = this.players.findIndex(p => p.channel_id === joiner_channel_id)!
-    const waiter = this.players.find(p => p.channel_id === waiter_channel_id)!
+    const joiner_index = this.players.findIndex(
+      p => p.channel_id === joiner_channel_id
+    )!
+    const waiter = this.players.find(
+      p => p.channel_id === waiter_channel_id
+    )!
 
-    this.players = this.players.filter(p => p.channel_id !== waiter_channel_id).with(joiner_index, waiter)
+    this.players = this.players.filter(
+      p => p.channel_id !== waiter_channel_id
+    ).with(joiner_index, waiter)
     this.refresh()
   }
 
@@ -80,7 +96,7 @@ export class PlayerFactory {
       if (player.status === StatusEnum.join) {
         player.join_quests += 1
 
-        if (player.join_quests > this.quest_limit) {
+        if (player.join_quests > this.setting.quest_limit) {
           return null
         } 
       }
@@ -99,7 +115,7 @@ export class PlayerFactory {
 
   get next() {
     const simulater = new PlayerFactory(
-      this.quest_limit,
+      this.setting,
       this.players.map(player => ({ ...player }))
     )
     simulater.increaceQuests()

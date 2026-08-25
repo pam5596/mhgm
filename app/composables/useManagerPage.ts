@@ -97,7 +97,7 @@ export default async function() {
     if (user.value) {
       await getUserSetting()
       player_factory.value = PlayerFactory.create(
-        settings.value.setting.quest_limit
+        settings.value.setting,
       )
     }
   })
