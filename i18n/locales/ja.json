@@ -18,6 +18,7 @@
 				"select_placeholder": "待機者を選択する"
 			},
 			"quest_limit_form_label": "交代クエスト数",
+			"player_limit_form_label": "参加プレイヤー上限",
 			"empty_player_item_label": "プレイヤー{player}",
 			"entry_keyword_form": {
 				"title": "参加希望とみなすキーワード",

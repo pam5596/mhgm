@@ -75,7 +75,8 @@ export class AuthGoogleGETService
       await this.settingRepository.upsert(
         new SettingModel({
           user_id,
-          quest_limit: 2
+          quest_limit: 2,
+          player_limit: 3
         })
       )
       this.settingRepository.client = prismaClient

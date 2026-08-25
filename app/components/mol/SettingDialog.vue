@@ -11,6 +11,7 @@
         <v-divider thickness="2" class="border-primary border-opacity-100" />
         <div class="flex gap-2 flex-col">
           <MolQuestLimitForm v-model="quest_limit" />
+          <MolPlayerLimitForm v-model="player_limit" />
           <MolEntryKeywordForm v-model="entry_keywords" />
           <MolCancelKeywordForm v-model="cancel_keywords" />
         </div>
@@ -37,6 +38,19 @@ const quest_limit = computed({
       setting: { 
         ...settings.value.setting, 
         quest_limit: value 
+      }
+    }
+  }
+})
+
+const player_limit = computed({
+  get: () => settings.value.setting.player_limit,
+  set: (value: number) => {
+    settings.value = { 
+      ...settings.value, 
+      setting: { 
+        ...settings.value.setting, 
+        player_limit: value 
       }
     }
   }
