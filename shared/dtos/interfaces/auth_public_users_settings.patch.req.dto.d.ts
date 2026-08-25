@@ -4,5 +4,6 @@ export interface AuthPublicUsersSettingsPATCHRequest {
 	};
 	body: {
 		quest_limit: number;
+		player_limit: number;
 	};
 }

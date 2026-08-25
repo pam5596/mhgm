@@ -12,6 +12,7 @@ export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUse
 			body: z.strictObject({
 				setting: z.strictObject({
 					quest_limit: z.number(),
+					player_limit: z.number()
 				}),
 				keywords: z.array(
 					z.strictObject({

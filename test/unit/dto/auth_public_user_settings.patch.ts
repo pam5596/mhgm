@@ -9,6 +9,7 @@ describe("AuthPublicUsersSettingsPATCHRequestDTOの単体テスト", () => {
 			},
 			body: {
 				quest_limit: 2,
+				player_limit: 3,
 			},
 		})).not.toThrow();
 	});

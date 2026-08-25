@@ -14,6 +14,7 @@ export class AuthPublicUsersSettingsPATCHRequestDTO extends BaseDTO<AuthPublicUs
 			}),
 			body: z.strictObject({
 				quest_limit: z.number(),
+				player_limit: z.number()
 			}),
 		});
 	}
