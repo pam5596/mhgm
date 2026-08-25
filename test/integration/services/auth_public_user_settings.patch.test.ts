@@ -22,6 +22,7 @@ describe("AuthPublicUserSettingsPATCHServiceの結合テスト", () => {
 			},
 			body: {
 				quest_limit: 5,
+				player_limit: 3
 			},
 		});
 
@@ -29,5 +30,6 @@ describe("AuthPublicUserSettingsPATCHServiceの結合テスト", () => {
 
 		const updated = await settingRepo.findByUserId(1);
 		expect(updated?.values.quest_limit).toBe(5);
+		expect(updated?.values.player_limit).toBe(3)
 	});
 });

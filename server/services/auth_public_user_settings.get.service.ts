@@ -26,6 +26,7 @@ export class AuthPublicUserSettingsGETService
 			body: {
 				setting: {
 					quest_limit: setting.values.quest_limit,
+					player_limit: setting.values.player_limit
 				},
 				keywords: keywords.map((k) => ({
 					id: k.values.id!,
