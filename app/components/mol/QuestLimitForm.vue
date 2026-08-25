@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between items-center">
     <p class="text-primary-dark font-bold">
-      {{ $t("components.molecure.change_quests_form_label") }}
+      {{ $t("components.molecure.quest_limit_form_label") }}
     </p>
     <MolCounter v-model="quests" :min="1" />
   </div>

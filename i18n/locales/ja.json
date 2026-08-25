@@ -17,7 +17,7 @@
 				"title": "交代する待機者を選択してください",
 				"select_placeholder": "待機者を選択する"
 			},
-			"change_quests_form_label": "交代クエスト数",
+			"quest_limit_form_label": "交代クエスト数",
 			"empty_player_item_label": "プレイヤー{player}",
 			"entry_keyword_form": {
 				"title": "参加希望とみなすキーワード",

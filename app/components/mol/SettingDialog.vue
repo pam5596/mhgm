@@ -10,7 +10,7 @@
         </div>
         <v-divider thickness="2" class="border-primary border-opacity-100" />
         <div class="flex gap-2 flex-col">
-          <MolChangeQuestsForm v-model="change_quests" />
+          <MolQuestLimitForm v-model="quest_limit" />
           <MolEntryKeywordForm v-model="entry_keywords" />
           <MolCancelKeywordForm v-model="cancel_keywords" />
         </div>
@@ -29,10 +29,16 @@ const closeDialog = async () => {
   dialog.value = false
   await patchSettings()
 }
-const change_quests = computed({
+const quest_limit = computed({
   get: () => settings.value.setting.quest_limit,
   set: (value: number) => {
-    settings.value = { ...settings.value, setting: { quest_limit: value }}
+    settings.value = { 
+      ...settings.value, 
+      setting: { 
+        ...settings.value.setting, 
+        quest_limit: value 
+      }
+    }
   }
 })
 
