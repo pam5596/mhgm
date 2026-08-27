@@ -18,10 +18,10 @@ export class KeywordModel extends BaseModel<Keyword> {
 		});
 	}
 
-	update(keyword: string) {
+	update(new_values: Pick<Keyword,"keyword">) {
 		return new KeywordModel({
 			...this.values,
-			keyword
+			...new_values
 		});
 	}
 }
