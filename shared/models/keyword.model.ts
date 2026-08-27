@@ -8,7 +8,7 @@ export class KeywordModel extends BaseModel<Keyword> {
 		super(keyword, KeywordModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			id: z.int().optional(),
 			keyword: z.string().min(1).max(10),
@@ -18,7 +18,7 @@ export class KeywordModel extends BaseModel<Keyword> {
 		});
 	}
 
-	updateKeyword(keyword: string) {
+	update(keyword: string) {
 		return new KeywordModel({
 			...this.values,
 			keyword

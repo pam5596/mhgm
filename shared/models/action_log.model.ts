@@ -7,7 +7,7 @@ export class ActionLogModel extends BaseModel<ActionLog> {
 		super(action_log, ActionLogModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			id: z.int().optional(),
 			message: z.string().min(1).max(200),

@@ -7,7 +7,7 @@ export class BroadcastModel extends BaseModel<Broadcast> {
 		super(broadcast, BroadcastModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			id: z.int().optional(),
 			title: z.string().min(1).max(100),
@@ -17,13 +17,6 @@ export class BroadcastModel extends BaseModel<Broadcast> {
 			begin_at: z.date().optional(),
 			end_at: z.date().nullable(),
 			user_id: z.int(),
-		});
-	}
-
-	updateEndAt(end_at: Date) {
-		return new BroadcastModel({
-			...this.values,
-			end_at,
 		});
 	}
 }

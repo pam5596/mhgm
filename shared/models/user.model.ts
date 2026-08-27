@@ -7,7 +7,7 @@ export class UserModel extends BaseModel<User> {
 		super(user, UserModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			id: z.int().optional(),
 			channel_id: z.string().length(24),

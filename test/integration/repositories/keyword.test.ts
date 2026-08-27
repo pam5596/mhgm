@@ -51,7 +51,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 		const keyword = keywords(1);
 		const created = keyword && (await repo.create(keyword));
 
-		const updated_keyword = created?.updateKeyword("updated");
+		const updated_keyword = created?.update("updated");
 		const updated = updated_keyword && (await repo.update(updated_keyword));
 
 		expect(updated?.values.keyword).toBe("updated");

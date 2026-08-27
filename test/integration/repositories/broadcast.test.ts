@@ -21,9 +21,7 @@ describe("BroadcastRepositoryの結合テスト", () => {
 		expect(inserted?.values.begin_at).toBeTruthy();
 		expect(inserted?.values.end_at).toBeNull();
 
-		const updated_broadcast = broadcast_model?.updateEndAt(
-			new Date("2026-07-15T00:00:00.000Z"),
-		);
+		const updated_broadcast = broadcast(2)
 		const updated = updated_broadcast && (await repo.upsert(updated_broadcast));
 
 		expect(updated?.values.end_at?.toISOString()).toBe("2026-07-15T00:00:00.000Z");

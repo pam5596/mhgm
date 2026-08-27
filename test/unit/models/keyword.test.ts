@@ -30,6 +30,6 @@ describe("KeywordModelの単体テスト", () => {
 
 	it("keywordを更新できる", () => {
 		const model = new KeywordModel(values);
-		expect(model.updateKeyword("update").values.keyword).toBe("update");
+		expect(model.update("update").values.keyword).toBe("update");
 	});
 });

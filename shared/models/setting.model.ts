@@ -7,7 +7,7 @@ export class SettingModel extends BaseModel<Setting> {
 		super(setting, SettingModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			user_id: z.int(),
 			player_limit: z.int().min(1).max(3),
