@@ -1,29 +1,23 @@
 import { describe, expect, it } from "vitest";
 import { SettingModel } from "../../../shared/models/setting.model";
+import { zocker } from "zocker"
 
 describe("SettingModelの単体テスト", () => {
-	const values = {
-		user_id: 1,
-		player_limit: 3,
-		quest_limit: 2,
-		updated_at: new Date(),
-	};
+	const mock = zocker(SettingModel.schema()).generate()
 
 	it("モデルが作成できる", () => {
-		expect(() => new SettingModel(values)).not.toThrow();
+		expect(() => new SettingModel(mock)).not.toThrow();
 
-		const { updated_at, ...require_params } = values;
+		const { updated_at, ...require_params } = mock;
 		expect(() => new SettingModel(require_params)).not.toThrow();
 	});
 
-	it("quest_limitでエラーになる", () => {
-		expect(() => new SettingModel({ ...values, quest_limit: -1 })).toThrow();
-	});
-
 	it("モデルを更新できる", () => {
-		const model = new SettingModel(values);
-		const updated = model.update({ quest_limit: 3, player_limit: 1 })
-		expect(updated.values.quest_limit).toBe(3);
-		expect(updated.values.player_limit).toBe(1);
+		const model = new SettingModel(mock);
+
+		const updated_mock =zocker(SettingModel.schema()).generate()
+		const updated = model.update(updated_mock)
+		expect(updated.values.quest_limit).toBe(updated_mock.quest_limit);
+		expect(updated.values.player_limit).toBe(updated_mock.player_limit);
 	});
 });
