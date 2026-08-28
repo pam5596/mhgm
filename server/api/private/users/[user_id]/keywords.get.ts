@@ -5,7 +5,7 @@ export default defineApiHandler(async (event) => {
     keywordRepository
   ).execute(
     new PrivateUsersKeywordsGETRequestDTO({ 
-      params: { user_id: Number(user_id) }
+      params: { user_id: BigInt(user_id!) }
     })
   )
 

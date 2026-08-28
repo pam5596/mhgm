@@ -1,7 +1,7 @@
 // shared/types/auth.d.ts
 declare module "#auth-utils" {
 	interface User {
-		user_id: number;
+		user_id: bigint;
 		channel_id: string;
 		name: string;
 		avatar: string;
