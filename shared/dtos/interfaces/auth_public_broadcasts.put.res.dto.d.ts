@@ -1,5 +1,5 @@
 export interface AuthPublicBroadcastsPUTResponse {
 	body: {
-		id: number;
+		id: bigint;
 	};
 }

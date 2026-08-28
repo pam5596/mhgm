@@ -12,7 +12,7 @@ export class PrivateUsersKeywordsGETResponseDTO extends BaseDTO<PrivateUsersKeyw
       body: z.strictObject({
         keywords: z.array(
           z.strictObject({
-            id: z.number(),
+            id: z.bigint().min(1n),
             keyword: z.string(),
             action: z.string()
           })

@@ -1,7 +1,7 @@
 export interface PrivateUsersKeywordsGETResponse {
   body: {
     keywords: {
-      id: number,
+      id: bigint,
       keyword: string,
       action: string
     }[]

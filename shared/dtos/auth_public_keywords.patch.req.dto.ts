@@ -10,10 +10,10 @@ export class AuthPublicKeywordsPATCHRequestDTO extends BaseDTO<AuthPublicKeyword
 	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
-				user_id: z.number(),
+				user_id: z.bigint().min(1n),
 			}),
 			params: z.strictObject({
-				id: z.coerce.number(),
+				id: z.coerce.bigint().min(1n),
 			}),
 			body: z.strictObject({
 				keyword: z.string(),

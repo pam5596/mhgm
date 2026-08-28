@@ -10,7 +10,7 @@ export class AuthPublicUsersSettingsPATCHRequestDTO extends BaseDTO<AuthPublicUs
 	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
-				user_id: z.number(),
+				user_id: z.bigint().min(1n),
 			}),
 			body: z.strictObject({
 				quest_limit: z.number(),

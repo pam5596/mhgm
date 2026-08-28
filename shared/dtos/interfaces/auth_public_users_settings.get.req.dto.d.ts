@@ -1,5 +1,5 @@
 export interface AuthPublicUsersSettingsGETRequest {
 	sessions: {
-		user_id: number;
+		user_id: bigint;
 	};
 }

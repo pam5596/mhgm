@@ -9,7 +9,7 @@ export class AuthPublicUserSettingsPATCHService
 	constructor(private settingRepository: SettingRepository) {}
 
 	async execute(request: AuthPublicUsersSettingsPATCHRequestDTO) {
-		const { user_id } = request.values.sessions;
+		const user_id = BigInt(request.values.sessions.user_id);
 		const setting = await this.settingRepository.findByUserId(user_id);
 		if (!setting)
 			throw new NotFoundError(this.constructor.name, request.values);

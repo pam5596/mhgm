@@ -1,5 +1,5 @@
 export interface PrivateUsersPUTResponse {
   body: {
-    id: number;
+    id: bigint;
   }
 }

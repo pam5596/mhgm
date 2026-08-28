@@ -10,7 +10,7 @@ export class AuthPublicBroadcastsPUTRequestDTO extends BaseDTO<AuthPublicBroadca
 	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
-				user_id: z.number(),
+				user_id: z.bigint().min(1n),
 			}),
 			body: z.strictObject({
 				stream_id: z.string(),

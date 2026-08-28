@@ -16,7 +16,7 @@ export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUse
 				}),
 				keywords: z.array(
 					z.strictObject({
-						id: z.number(),
+						id: z.bigint().min(1n),
 						keyword: z.string(),
 						action: z.string(),
 					}),

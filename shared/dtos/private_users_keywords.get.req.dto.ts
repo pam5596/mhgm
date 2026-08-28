@@ -10,7 +10,7 @@ export class PrivateUsersKeywordsGETRequestDTO extends BaseDTO<PrivateUsersKeywo
   static schema() {
     return z.strictObject({
       params: z.strictObject({
-        user_id: z.number()
+        user_id: z.bigint().min(1n)
       })
     })
   }
