@@ -7,7 +7,7 @@ export class AuthPublicKeywordsDELETERequestDTO extends BaseDTO<AuthPublicKeywor
 		super(values, AuthPublicKeywordsDELETERequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
 				user_id: z.number(),

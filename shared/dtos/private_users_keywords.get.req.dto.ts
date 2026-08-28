@@ -7,7 +7,7 @@ export class PrivateUsersKeywordsGETRequestDTO extends BaseDTO<PrivateUsersKeywo
     super(values, PrivateUsersKeywordsGETRequestDTO.schema())
   }
 
-  private static schema() {
+  static schema() {
     return z.strictObject({
       params: z.strictObject({
         user_id: z.number()

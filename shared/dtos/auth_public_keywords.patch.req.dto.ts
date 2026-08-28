@@ -7,7 +7,7 @@ export class AuthPublicKeywordsPATCHRequestDTO extends BaseDTO<AuthPublicKeyword
 		super(values, AuthPublicKeywordsPATCHRequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
 				user_id: z.number(),

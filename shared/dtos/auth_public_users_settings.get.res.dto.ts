@@ -7,7 +7,7 @@ export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUse
 		super(values, AuthPublicUsersSettingsGETResponseDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				setting: z.strictObject({

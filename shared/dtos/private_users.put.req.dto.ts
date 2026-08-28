@@ -7,7 +7,7 @@ export class PrivateUsersPUTRequestDTO extends BaseDTO<PrivateUsersPUTRequest> {
 		super(values, PrivateUsersPUTRequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				channel_id: z.string(),

@@ -7,7 +7,7 @@ export class AuthPublicYoutubeBroadcastsGETResponseDTO extends BaseDTO<AuthPubli
 		super(values, AuthPublicYoutubeBroadcastsGETResponseDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				stream_id: z.string(),
