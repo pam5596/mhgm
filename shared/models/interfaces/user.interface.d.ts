@@ -1,5 +1,5 @@
 export interface User {
-	id?: bigint;
+	id?: number;
 	channel_id: string;
 	name: string;
 	avatar: string;

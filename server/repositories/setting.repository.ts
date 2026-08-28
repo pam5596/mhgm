@@ -21,7 +21,7 @@ export class SettingRepository extends BaseRepository {
 			return new SettingModel(upserted_setting);
 		});
 
-	findByUserId = async (user_id: bigint) =>
+	findByUserId = async (user_id: number) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_setting = await this.client.setting.findUnique({
 				where: { user_id },
@@ -38,7 +38,7 @@ export class SettingRepository extends BaseRepository {
 			return new SettingModel(updated_setting);
 		});
 
-	destroyByUserId = async (user_id: bigint) =>
+	destroyByUserId = async (user_id: number) =>
 		await this.prismaErrorHandler("delete", async () => {
 			await this.client.setting.delete({
 				where: { user_id },

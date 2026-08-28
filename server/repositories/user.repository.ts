@@ -13,7 +13,7 @@ export class UserRepository extends BaseRepository {
 			return new UserModel(upserted_user);
 		});
 
-	findByID = async (id: bigint) =>
+	findByID = async (id: number) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_user = await this.client.user.findUnique({
 				where: { id },
@@ -33,7 +33,7 @@ export class UserRepository extends BaseRepository {
 			})(channel_id),
 		);
 
-	destroy = async (id: bigint) =>
+	destroy = async (id: number) =>
 		await this.prismaErrorHandler("delete", async () => {
 			await this.client.user.delete({
 				where: { id },

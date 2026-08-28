@@ -1,7 +1,7 @@
 export interface Keyword {
-	id?: bigint;
+	id?: number;
 	keyword: string;
 	action: "ENTRY" | "CANCEL";
 	created_at?: Date;
-	user_id: bigint;
+	user_id: number;
 }
