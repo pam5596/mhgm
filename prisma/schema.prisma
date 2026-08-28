@@ -13,7 +13,7 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id BigInt @id @default(autoincrement())
   channel_id String @db.Char(24) @unique
   name String
   avatar String
@@ -28,7 +28,7 @@ model User {
 }
 
 model Setting {
-  user_id Int @id
+  user_id BigInt @id
   quest_limit Int @default(2)
   player_limit Int @default(3)
   updated_at DateTime @db.Timestamptz() @updatedAt
@@ -39,11 +39,11 @@ model Setting {
 }
 
 model Keyword {
-  id Int @id @default(autoincrement())
+  id BigInt @id @default(autoincrement())
   keyword String @db.VarChar(10)
   action Action
   created_at DateTime @db.Timestamptz() @default(now())
-  user_id Int
+  user_id BigInt
 
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
   action_logs ActionLog[]
@@ -57,14 +57,14 @@ enum Action {
 }
 
 model Broadcast {
-  id Int @id @default(autoincrement())
+  id BigInt @id @default(autoincrement())
   stream_id String @db.Char(11) @unique
   live_chat_id String
   title String @db.VarChar(100)
   thumbnail String
   begin_at DateTime @db.Timestamptz() @default(now())
   end_at DateTime? @db.Timestamptz()
-  user_id Int 
+  user_id BigInt 
 
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
   action_logs ActionLog[]
@@ -73,12 +73,12 @@ model Broadcast {
 }
 
 model ActionLog {
-  id Int @id @default(autoincrement())
+  id BigInt @id @default(autoincrement())
   message String @db.VarChar(200)
   created_at DateTime @db.Timestamptz() @default(now())
-  user_id Int
-  broadcast_id Int
-  keyword_id Int
+  user_id BigInt
+  broadcast_id BigInt
+  keyword_id BigInt
 
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
   broadcase Broadcast @relation(fields: [broadcast_id], references: [id], onDelete: Cascade)
