@@ -16,10 +16,4 @@ export class SettingModel extends BaseModel<Setting> {
 		});
 	}
 
-	update(new_values: Omit<Setting, "user_id">) {
-		return new SettingModel({
-			...this.values,
-			...new_values,
-		});
-	}
 }

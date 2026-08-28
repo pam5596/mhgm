@@ -17,11 +17,4 @@ export class KeywordModel extends BaseModel<Keyword> {
 			user_id: z.int(),
 		});
 	}
-
-	update(new_values: Pick<Keyword,"keyword">) {
-		return new KeywordModel({
-			...this.values,
-			...new_values
-		});
-	}
 }

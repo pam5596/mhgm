@@ -16,11 +16,4 @@ export class UserModel extends BaseModel<User> {
 			created_at: z.date().optional(),
 		});
 	}
-
-	update(new_values: Pick<User, "name" | "avatar">) {
-		return new UserModel({
-			...this.values,
-			...new_values,
-		});
-	}
 }
