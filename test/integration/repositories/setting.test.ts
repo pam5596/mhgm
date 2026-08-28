@@ -13,7 +13,7 @@ describe("SettingRepositoryの結合テスト", () => {
 	const repo = new SettingRepository(prisma);
 	withSetupDB();
 
-	it("設定を作成できる", async () => {
+	it("設定を作成できる", errorHandler(async () => {
 		const user = await userRepo.upsert(Factory.create(UserModel));
 
 		const created = await repo.create(
@@ -23,7 +23,7 @@ describe("SettingRepositoryの結合テスト", () => {
 		);
 
 		expect(created.values.updated_at!).toBeTruthy()
-	});
+	}));
 
 	it("設定をuser_idで取得できる", errorHandler(async () => {
 		const user = await userRepo.upsert(Factory.create(UserModel));

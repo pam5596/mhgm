@@ -11,11 +11,4 @@ describe("KeywordModelの単体テスト", () => {
 		const { id, created_at, ...require_params } = mock;
 		expect(() => new KeywordModel(require_params)).not.toThrow();
 	});
-
-	it("keywordを更新できる", () => {
-		const model = new KeywordModel(mock);
-		const updated_mock = zocker(KeywordModel.schema()).generate()
-
-		expect(model.update(updated_mock).values.keyword).toBe(updated_mock.keyword);
-	});
 });

@@ -10,11 +10,11 @@ export class KeywordModel extends BaseModel<Keyword> {
 
 	static schema() {
 		return z.strictObject({
-			id: z.int().min(1).optional(),
+			id: z.int().min(1).max(2147483647).optional(),
 			keyword: z.string().min(1).max(10),
 			action: z.enum(ActionEnum),
 			created_at: z.date().optional(),
-			user_id: z.int().min(1),
+			user_id: z.int().min(1).max(2147483647),
 		});
 	}
 }

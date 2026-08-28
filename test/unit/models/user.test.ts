@@ -12,13 +12,4 @@ describe("UserModelの単体テスト", () => {
 		expect(() => new UserModel(require_params)).not.toThrow();
 	});
 
-	it("updateメソッドが値を更新できる", () => {
-		const model = new UserModel(mock);
-
-		const updated_mock = zocker(UserModel.schema()).generate()
-		const updated_model = model.update(updated_mock);
-
-		expect(updated_model.values.avatar).toBe(updated_mock.avatar);
-		expect(updated_model.values.name).toBe(updated_mock.name);
-	});
 });

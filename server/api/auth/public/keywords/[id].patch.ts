@@ -11,7 +11,7 @@ export default defineApiHandler(async(event) => {
         user_id: user!.user_id
       },
       params: {
-        id: BigInt(id!)
+        id: Number(id)
       },
       body
     })

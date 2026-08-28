@@ -9,7 +9,7 @@ export default defineApiHandler(async (event) => {
       sessions: {
         user_id: user!.user_id
       },
-      params: { id: BigInt(id!) }
+      params: { id: Number(id) }
     })
   )
 })
