@@ -10,10 +10,11 @@ export class Factory {
 		const schema = ModelClass.schema()
 
 		if (supply) {
-			const key = Object.keys(supply)[0] as keyof typeof schema.shape
-			return new ModelClass(zocker(schema).supply(
-				schema.shape[key], supply[key as string]
-			).generate() as never)
+			const generator = Object.entries(supply).reduce(
+				(current, [key, value]) => current.supply(schema.shape[key], value),
+				zocker(schema),
+			)
+			return new ModelClass(generator.generate() as never)
 		} else {
 			return new ModelClass(zocker(schema).generate() as never)
 		}
