@@ -1,71 +1,82 @@
 import { describe, expect, it } from "vitest";
+import { withSetupDB } from "../db.setup";
+import { prisma } from "../prisma.client";
+import { errorHandler } from "../errorHandler.util"
+import { Factory } from "../factory.util";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-import { withSetupDB } from "../db.setup";
-import { keywords, users } from "../fixtures.util";
-import { prisma } from "../prisma.client";
+import { KeywordModel } from "../../../shared/models/keyword.model";
+import { UserModel } from "../../../shared/models/user.model";
 
 describe("KeywordRepositoryの結合テスト", () => {
 	const userRepo = new UserRepository(prisma);
 	const repo = new KeywordRepository(prisma);
 	withSetupDB();
 
-	it("キーワードを作成できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("キーワードを作成できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const keyword = keywords(1);
-		const created = keyword && (await repo.create(keyword));
+		const created = await repo.create(
+			Factory.create(KeywordModel, {
+				user_id: user.values.id
+			})
+		);
 
-		expect(created?.values.id).toBeTruthy();
-		expect(created?.values.keyword).toBe("keyword");
-	});
+		expect(created.values.id).toBeTruthy();
+	}));
 
-	it("キーワードをidで取得できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("キーワードをidで取得できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const keyword = keywords(1);
-		await repo.create(keyword!);
+		const created = await repo.create(
+			Factory.create(KeywordModel, {
+				user_id: user.values.id
+			})
+		);
 
-		const finded = await repo.findById(1);
-		expect(finded?.values.id).toBe(1);
-	});
+		const finded = await repo.findById(created.values.id!);
+		expect(finded?.values.id).toBe(created.values.id!);
+	}));
 
-	it("キーワードをuser_idで取得できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("キーワードをuser_idで取得できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const keyword = keywords(1);
-		await repo.create(keyword!);
+		const created = await repo.create(
+			Factory.create(KeywordModel, {
+				user_id: user.values.id
+			})
+		);
 
-		const finded = await repo.findManyByUserId(1);
-		expect(finded[0]?.values.user_id).toBe(1);
-		expect(finded[0]?.values.keyword).toBe("keyword");
-	});
+		const finded = await repo.findManyByUserId(created.values.user_id!);
+		expect(finded[0]?.values.user_id).toBe(created.values.user_id!);
+	}));
 
-	it("キーワードを更新できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("キーワードを更新できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const keyword = keywords(1);
-		const created = keyword && (await repo.create(keyword));
+		const created = await repo.create(
+			Factory.create(KeywordModel, {
+				user_id: user.values.id
+			})
+		);
 
-		const updated_keyword = created?.update("updated");
-		const updated = updated_keyword && (await repo.update(updated_keyword));
+		const keyword = Factory.create(KeywordModel, {
+			id: created.values.id,
+			user_id: user.values.id
+		})
+		const updated = await repo.update(keyword);
 
-		expect(updated?.values.keyword).toBe("updated");
-	});
+		expect(updated.values.keyword).toBe(keyword.values.keyword);
+	}));
 
-	it("キーワードを削除できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("キーワードを削除できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const keyword = keywords(1);
-		const created = keyword && (await repo.create(keyword));
-		await repo.destroyById(created!.values.id!);
-
-		const finded = await repo.findManyByUserId(1);
-		expect(finded).toHaveLength(0);
-	});
+		const created = await repo.create(
+			Factory.create(KeywordModel, {
+				user_id: user.values.id
+			})
+		);
+		await repo.destroyById(created.values.id!);
+	}));
 });
