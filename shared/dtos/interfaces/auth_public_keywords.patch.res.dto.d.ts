@@ -1,5 +1,5 @@
 export interface AuthPublicKeywordsPATCHResponse {
 	body: {
-		id: bigint;
+		id: number;
 	};
 }

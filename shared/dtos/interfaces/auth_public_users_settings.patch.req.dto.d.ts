@@ -1,6 +1,6 @@
 export interface AuthPublicUsersSettingsPATCHRequest {
 	sessions: {
-		user_id: bigint;
+		user_id: number;
 	};
 	body: {
 		quest_limit: number;

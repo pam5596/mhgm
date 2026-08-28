@@ -10,10 +10,10 @@ export class AuthPublicKeywordsDELETERequestDTO extends BaseDTO<AuthPublicKeywor
 	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
-				user_id: z.bigint().min(1n),
+				user_id: z.number(),
 			}),
 			params: z.strictObject({
-				id: z.coerce.bigint().min(1n),
+				id: z.coerce.number(),
 			}),
 		});
 	}

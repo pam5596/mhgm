@@ -1,8 +1,8 @@
 export interface PrivateActionlogsPOSTRequest {
   body: {
     message: string,
-    user_id: bigint,
-    broadcast_id: bigint,
-    keyword_id: bigint
+    user_id: number,
+    broadcast_id: number,
+    keyword_id: number
   }
 }

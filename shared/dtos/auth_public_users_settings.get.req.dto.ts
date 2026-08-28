@@ -10,7 +10,7 @@ export class AuthPublicUsersSettingsGETRequestDTO extends BaseDTO<AuthPublicUser
 	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
-				user_id: z.bigint().min(1n),
+				user_id: z.number(),
 			}),
 		});
 	}

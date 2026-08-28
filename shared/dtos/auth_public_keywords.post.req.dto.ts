@@ -10,7 +10,7 @@ export class AuthPublicKeywordsPOSTRequestDTO extends BaseDTO<AuthPublicKeywords
 	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
-				user_id: z.bigint().min(1n),
+				user_id: z.number(),
 			}),
 			body: z.strictObject({
 				keyword: z.string(),

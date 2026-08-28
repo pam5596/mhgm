@@ -1,6 +1,6 @@
 export interface SocketIOLiveChatEmit {
 	user: {
-		id: bigint
+		id: number
 		channel_id: string
 		name: string
 		avatar: string

@@ -11,9 +11,9 @@ export class PrivateActionlogsPOSTRequestDTO extends BaseDTO<PrivateActionlogsPO
 		return z.strictObject({
 			body: z.strictObject({
 				message: z.string(),
-				user_id: z.bigint().min(1n),
-				broadcast_id: z.bigint().min(1n),
-				keyword_id: z.bigint().min(1n),
+				user_id: z.number(),
+				broadcast_id: z.number(),
+				keyword_id: z.number(),
 			}),
 		});
 	}

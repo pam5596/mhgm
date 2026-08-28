@@ -10,8 +10,8 @@ export class AuthPublicKeywordPATCHService
 	constructor(private keywordRepository: KeywordRepository) {}
 
 	async execute(request: AuthPublicKeywordsPATCHRequestDTO) {
-		const user_id = BigInt(request.values.sessions.user_id);
-		const id = BigInt(request.values.params.id);
+		const { user_id } = request.values.sessions;
+		const { id } = request.values.params;
 
 		const keyword = await this.keywordRepository.findById(id);
 		if (!keyword)

@@ -1,6 +1,6 @@
 export interface AuthPublicBroadcastsPUTRequest {
 	sessions: {
-		user_id: bigint;
+		user_id: number;
 	};
 	body: {
 		stream_id: string;

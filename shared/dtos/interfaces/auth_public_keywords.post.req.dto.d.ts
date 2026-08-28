@@ -1,6 +1,6 @@
 export interface AuthPublicKeywordsPOSTRequest {
 	sessions: {
-		user_id: bigint;
+		user_id: number;
 	};
 	body: {
 		keyword: string;

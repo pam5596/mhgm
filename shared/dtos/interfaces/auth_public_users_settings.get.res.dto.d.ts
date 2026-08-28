@@ -5,7 +5,7 @@ export interface AuthPublicUsersSettingsGETResponse {
 			player_limit: number;
 		};
 		keywords: {
-			id: bigint;
+			id: number;
 			keyword: string;
 			action: string;
 		}[];

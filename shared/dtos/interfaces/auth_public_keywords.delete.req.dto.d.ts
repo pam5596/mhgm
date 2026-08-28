@@ -1,8 +1,8 @@
 export interface AuthPublicKeywordsDELETERequest {
 	sessions: {
-		user_id: bigint;
+		user_id: number;
 	};
 	params: {
-		id: bigint;
+		id: number;
 	};
 }

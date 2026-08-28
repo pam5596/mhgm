@@ -1,9 +1,9 @@
 export interface AuthPublicKeywordsPATCHRequest {
 	sessions: {
-		user_id: bigint;
+		user_id: number;
 	};
 	params: {
-		id: bigint;
+		id: number;
 	};
 	body: {
 		keyword: string;

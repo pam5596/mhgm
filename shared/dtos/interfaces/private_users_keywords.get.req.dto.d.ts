@@ -1,5 +1,5 @@
 export interface PrivateUsersKeywordsGETRequest {
   params: {
-    user_id: bigint
+    user_id: number
   }
 }

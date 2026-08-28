@@ -1,5 +1,5 @@
 export interface AuthPublicKeywordsPOSTResponse {
 	body: {
-		id: bigint;
+		id: number;
 	};
 }
