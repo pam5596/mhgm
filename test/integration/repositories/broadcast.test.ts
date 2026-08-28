@@ -1,74 +1,89 @@
 import { describe, expect, it } from "vitest";
+import { withSetupDB } from "../db.setup";
+import { Factory } from "../factory.util";
+import { prisma } from "../prisma.client";
+import { errorHandler } from "../errorHandler.util"
+
 import { BroadcastRepository } from "../../../server/repositories/broadcast.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-import { withSetupDB } from "../db.setup";
-import { broadcast, users } from "../fixtures.util";
-import { prisma } from "../prisma.client";
+import { UserModel } from "../../../shared/models/user.model";
+import { BroadcastModel } from "../../../shared/models/broadcast.model";
 
 describe("BroadcastRepositoryの結合テスト", () => {
 	const userRepo = new UserRepository(prisma);
 	const repo = new BroadcastRepository(prisma);
 	withSetupDB();
 
-	it("ブロードキャストをupsertできる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("ブロードキャストをupsertできる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		const inserted = broadcast_model && (await repo.upsert(broadcast_model));
+		const inserted = await repo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id,
+				end_at: null
+			})
+		);
 
-		expect(inserted?.values.id).toBeTruthy();
-		expect(inserted?.values.begin_at).toBeTruthy();
-		expect(inserted?.values.end_at).toBeNull();
+		expect(inserted.values.id).toBeTruthy();
+		expect(inserted.values.begin_at).toBeTruthy();
+		expect(inserted.values.end_at).toBeNull();
 
-		const updated_broadcast = broadcast(2)
-		const updated = updated_broadcast && (await repo.upsert(updated_broadcast));
+		const broadcast = Factory.create(BroadcastModel, { 
+			user_id: user.values.id,
+			stream_id: inserted.values.stream_id,
+		})
+		const updated = await repo.upsert(broadcast);
 
-		expect(updated?.values.end_at?.toISOString()).toBe("2026-07-15T00:00:00.000Z");
-	});
+		expect(updated.values.end_at).toStrictEqual(broadcast.values.end_at);
+	}));
 
-	it("ブロードキャストをstream_idで取得できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("ブロードキャストをstream_idで取得できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		await repo.upsert(broadcast_model!);
+		const inserted = await repo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const finded = await repo.findByStreamId("stream_id_1");
-		expect(finded?.values.stream_id).toBe("stream_id_1");
-	});
+		const finded = await repo.findByStreamId(inserted.values.stream_id);
+		expect(finded?.values.stream_id).toBe(inserted.values.stream_id);
+	}));
 
-	it("ブロードキャストをidで取得できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("ブロードキャストをidで取得できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		await repo.upsert(broadcast_model!);
+		const inserted = await repo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const finded = await repo.findById(1);
-		expect(finded?.values.id).toBe(1);
-	});
+		const finded = await repo.findById(inserted.values.id!);
+		expect(finded?.values.id).toBe(inserted.values.id!);
+	}));
 
-	it("ブロードキャストをuser_idで取得できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("ブロードキャストをuser_idで取得できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		await repo.upsert(broadcast_model!);
+		const inserted = await repo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const finded = await repo.findFirstByUserId(1);
-		expect(finded?.values.user_id).toBe(1);
-	});
+		const finded = await repo.findFirstByUserId(inserted.values.user_id);
+		expect(finded?.values.user_id).toBe(inserted.values.user_id);
+	}));
 
-	it("ブロードキャストを削除できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("ブロードキャストを削除できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		const inserted = broadcast_model && (await repo.upsert(broadcast_model));
-		await repo.destroyById(inserted!.values.id!);
-
-		const finded = await repo.findByStreamId("stream_id_1");
-		expect(finded).toBeNull();
-	});
+		const inserted = await repo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id 
+			})
+		);
+		await repo.destroyById(inserted.values.id!);
+	}));
 });

@@ -4,6 +4,7 @@ export const errorHandler = (callback: () => Promise<void>) => {
       return await callback()
     } catch(e) {
       console.log(e)
+      throw e
     }
   }
 }

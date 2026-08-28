@@ -42,8 +42,8 @@ describe("ActionLogRepositoryの結合テスト", () => {
 		})
 		const created = await repo.create(action_log);
 
-		expect(created?.values.id).toBeTruthy();
-		expect(created?.values.created_at).toBeTruthy();
+		expect(created.values.id).toBeTruthy();
+		expect(created.values.created_at).toBeTruthy();
 	}));
 
 	it("アクションログを削除できる", errorHandler(async () => {
