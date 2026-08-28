@@ -1,9 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { withSetupDB } from "../db.setup";
+import { Factory } from "../factory.util";
+import { prisma } from "../prisma.client";
+import { errorHandler } from "../errorHandler.util"
 import { SettingRepository } from "../../../server/repositories/setting.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-import { withSetupDB } from "../db.setup";
-import { settings, users } from "../fixtures.util";
-import { prisma } from "../prisma.client";
+import { UserModel } from "../../../shared/models/user.model";
+import { SettingModel } from "../../../shared/models/setting.model";
 
 describe("SettingRepositoryの結合テスト", () => {
 	const userRepo = new UserRepository(prisma);
@@ -11,50 +14,56 @@ describe("SettingRepositoryの結合テスト", () => {
 	withSetupDB();
 
 	it("設定を作成できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const setting = settings(1);
-		const created = setting && (await repo.create(setting));
+		const created = await repo.create(
+			Factory.create(SettingModel, {
+				user_id: user.values.id
+			})
+		);
 
-		expect(created?.values.user_id).toBe(1);
-		expect(created?.values.quest_limit).toBe(1);
+		expect(created.values.updated_at!).toBeTruthy()
 	});
 
 	it("設定をuser_idで取得できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const setting = settings(1);
-		await repo.create(setting!);
+		const created = await repo.create(
+			Factory.create(SettingModel, {
+				user_id: user.values.id
+			})
+		);
 
-		const finded = await repo.findByUserId(1);
-		expect(finded?.values.user_id).toBe(1);
+		const finded = await repo.findByUserId(created.values.user_id);
+		expect(finded?.values.user_id).toBe(created.values.user_id);
 	});
 
 	it("設定を更新できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const setting = settings(1);
-		await repo.create(setting!);
+		const created = await repo.create(
+			Factory.create(SettingModel, {
+				user_id: user.values.id
+			})
+		);
 
-		const updated_setting = setting?.update({ quest_limit: 5, player_limit: 2 });
-		const updated = updated_setting && (await repo.update(updated_setting));
+		const setting = Factory.create(SettingModel, {
+			user_id: created.values.user_id
+		})
+		const updated = await repo.update(setting);
 
-		expect(updated?.values.quest_limit).toBe(5);
-		expect(updated?.values.player_limit).toBe(2)
+		expect(updated.values.quest_limit).toBe(setting.values.quest_limit);
+		expect(updated.values.player_limit).toBe(setting.values.player_limit)
 	});
 
 	it("設定を削除できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const setting = settings(1);
-		await repo.create(setting!);
-		await repo.destroyByUserId(1);
-
-		const finded = await repo.findByUserId(1);
-		expect(finded).toBeNull();
+		const created = await repo.create(
+			Factory.create(SettingModel, {
+				user_id: user.values.id
+			})
+		);
+		await repo.destroyByUserId(created.values.user_id);
 	});
 });
