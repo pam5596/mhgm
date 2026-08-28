@@ -10,7 +10,7 @@ export class KeywordRepository extends BaseRepository {
 			return new KeywordModel(created_keyword);
 		});
 
-	findById = async (id: number) =>
+	findById = async (id: bigint) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_keyword = await this.client.keyword.findUnique({
 				where: { id },
@@ -18,7 +18,7 @@ export class KeywordRepository extends BaseRepository {
 			return finded_keyword && new KeywordModel(finded_keyword);
 		});
 
-	findManyByUserId = async (user_id: number) =>
+	findManyByUserId = async (user_id: bigint) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_keywords = await this.client.keyword.findMany({
 				where: { user_id },
@@ -35,7 +35,7 @@ export class KeywordRepository extends BaseRepository {
 			return new KeywordModel(updated_keyword);
 		});
 
-	destroyById = async (id: number) =>
+	destroyById = async (id: bigint) =>
 		await this.prismaErrorHandler("delete", async () => {
 			await this.client.keyword.delete({
 				where: { id },

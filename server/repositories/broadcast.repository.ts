@@ -18,7 +18,7 @@ export class BroadcastRepository extends BaseRepository {
 			return new BroadcastModel(upserted_broadcast);
 		});
 
-	findById = async (id: number) =>
+	findById = async (id: bigint) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_broadcast = await this.client.broadcast.findUnique({
 				where: { id },
@@ -34,7 +34,7 @@ export class BroadcastRepository extends BaseRepository {
 			return finded_broadcast && new BroadcastModel(finded_broadcast);
 		});
 
-	findFirstByUserId = async (user_id: number) =>
+	findFirstByUserId = async (user_id: bigint) =>
 		await this.prismaErrorHandler("read", async () => {
 			const finded_broadcast = await this.client.broadcast.findFirst({
 				where: { user_id },
@@ -42,7 +42,7 @@ export class BroadcastRepository extends BaseRepository {
 			return finded_broadcast && new BroadcastModel(finded_broadcast);
 		});
 
-	destroyById = async (id: number) =>
+	destroyById = async (id: bigint) =>
 		await this.prismaErrorHandler("delete", async () => {
 			await this.client.broadcast.delete({
 				where: { id },

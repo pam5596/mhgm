@@ -9,12 +9,12 @@ export class ActionLogModel extends BaseModel<ActionLog> {
 
 	static schema() {
 		return z.strictObject({
-			id: z.int().min(1).optional(),
+			id: z.bigint().min(1n).optional(),
 			message: z.string().min(1).max(200),
 			created_at: z.date().optional(),
-			user_id: z.int(),
-			broadcast_id: z.int(),
-			keyword_id: z.int(),
+			user_id: z.bigint().min(1n),
+			broadcast_id: z.bigint().min(1n),
+			keyword_id: z.bigint().min(1n),
 		});
 	}
 }

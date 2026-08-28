@@ -9,7 +9,7 @@ export class SettingModel extends BaseModel<Setting> {
 
 	static schema() {
 		return z.strictObject({
-			user_id: z.int().min(1),
+			user_id: z.bigint().min(1n),
 			player_limit: z.int().min(1).max(3),
 			quest_limit: z.int().min(1),
 			updated_at: z.date().optional(),

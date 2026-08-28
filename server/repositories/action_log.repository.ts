@@ -10,7 +10,7 @@ export class ActionLogRepository extends BaseRepository {
 			return new ActionLogModel(created_action_log);
 		});
 
-	destroyById = async (id: number) =>
+	destroyById = async (id: bigint) =>
 		await this.prismaErrorHandler("delete", async () => {
 			await this.client.actionLog.delete({
 				where: { id },
