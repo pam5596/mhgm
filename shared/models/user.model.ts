@@ -9,7 +9,7 @@ export class UserModel extends BaseModel<User> {
 
 	static schema() {
 		return z.strictObject({
-			id: z.int().optional(),
+			id: z.int().min(1).optional(),
 			channel_id: z.string().length(24),
 			name: z.string().min(1),
 			avatar: z.url({ protocol: /^https?$/ }),

@@ -9,7 +9,7 @@ export class ActionLogModel extends BaseModel<ActionLog> {
 
 	static schema() {
 		return z.strictObject({
-			id: z.int().optional(),
+			id: z.int().min(1).optional(),
 			message: z.string().min(1).max(200),
 			created_at: z.date().optional(),
 			user_id: z.int(),
