@@ -3,9 +3,6 @@ import {
 	PrismaClientKnownRequestError,
 } from "@prisma/client/runtime/client";
 import type { PrismaClient } from "../../prisma/generated/client";
-import { CRUDFailedError } from "../../shared/errors/crud_failed";
-import { UnknownError } from "../../shared/errors/unknown";
-import type { PrismaORMClient } from "../clients/prisma";
 
 export abstract class BaseRepository {
 	client:

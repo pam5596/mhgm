@@ -1,0 +1,23 @@
+export class AuthPublicKeywords$ID$PATCHService
+	implements BaseService<AuthPublicKeywords$ID$PATCHRequestDTO, void>
+{
+	constructor(private keywordRepository: KeywordRepository) {}
+
+	async execute(request: AuthPublicKeywords$ID$PATCHRequestDTO) {
+		const { user_id } = request.values.sessions;
+		const { id } = request.values.params;
+
+		const keyword = await this.keywordRepository.findById(id);
+		if (!keyword)
+			throw new NotFoundError(this.constructor.name, request.values);
+		if (keyword.values.user_id !== user_id)
+			throw new ForbiddenError(this.constructor.name, request.values);
+
+		await this.keywordRepository.update(
+			keyword.update({
+				...keyword.values,
+				keyword: request.values.body.keyword,
+			}),
+		);
+	}
+}

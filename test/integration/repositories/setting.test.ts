@@ -1,13 +1,3 @@
-import { describe, expect, it } from "vitest";
-import { withSetupDB } from "../db.setup";
-import { Factory } from "../factory.util";
-import { prisma } from "../prisma.client";
-import { errorHandler } from "../errorHandler.util"
-import { SettingRepository } from "../../../server/repositories/setting.repository";
-import { UserRepository } from "../../../server/repositories/user.repository";
-import { UserModel } from "../../../shared/models/user.model";
-import { SettingModel } from "../../../shared/models/setting.model";
-
 describe("SettingRepositoryの結合テスト", () => {
 	const userRepo = new UserRepository(prisma);
 	const repo = new SettingRepository(prisma);

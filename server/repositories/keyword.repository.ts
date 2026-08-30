@@ -1,4 +1,3 @@
-import { KeywordModel } from "../../shared/models/keyword.model";
 import { BaseRepository } from "./_base";
 
 export class KeywordRepository extends BaseRepository {
