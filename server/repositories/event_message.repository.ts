@@ -1,5 +1,4 @@
 import { BaseRepository } from "./_base";
-import { EventMessageModel } from "../../shared/models/event_message.model";
 
 export class EventMessageRepository extends BaseRepository {
   create = async (model: EventMessageModel) =>
