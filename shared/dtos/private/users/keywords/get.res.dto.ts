@@ -1,6 +1,6 @@
 import z from "zod"
-import { BaseDTO } from "./_base"
-import type { PrivateUsersKeywordsGETResponse } from "./interfaces/private_users_keywords.get.res.dto"
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { PrivateUsersKeywordsGETResponse } from "./get.res.dto.d"
 
 export class PrivateUsersKeywordsGETResponseDTO extends BaseDTO<PrivateUsersKeywordsGETResponse> {
   constructor(values: PrivateUsersKeywordsGETResponse) {

@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicUsersSettingsPATCHRequest } from "./interfaces/auth_public_users_settings.patch.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicUsersSettingsPATCHRequest } from "./patch.req.dto.d";
 
 export class AuthPublicUsersSettingsPATCHRequestDTO extends BaseDTO<AuthPublicUsersSettingsPATCHRequest> {
 	constructor(values: AuthPublicUsersSettingsPATCHRequest) {

@@ -1,10 +1,3 @@
-import type { AuthPublicKeywordsPOSTRequestDTO } from "../../shared/dtos/auth_public_keywords.post.req.dto";
-import { AuthPublicKeywordsPOSTResponseDTO } from "../../shared/dtos/auth_public_keywords.post.res.dto";
-import { KeywordModel } from "../../shared/models/keyword.model";
-import type { KeywordRepository } from "../repositories/keyword.repository";
-import type { BaseService } from "./_base";
-import type { Keyword } from "../../shared/models/interfaces/keyword.interface";
-
 export class AuthPublicKeywordPOSTService
 	implements BaseService<AuthPublicKeywordsPOSTRequestDTO, AuthPublicKeywordsPOSTResponseDTO>
 {

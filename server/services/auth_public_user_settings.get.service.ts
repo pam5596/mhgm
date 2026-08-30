@@ -1,10 +1,3 @@
-import { NotFoundError } from "../../shared/errors/not_found";
-import type { AuthPublicUsersSettingsGETRequestDTO } from "../../shared/dtos/auth_public_users_settings.get.req.dto";
-import { AuthPublicUsersSettingsGETResponseDTO } from "../../shared/dtos/auth_public_users_settings.get.res.dto";
-import type { KeywordRepository } from "../repositories/keyword.repository";
-import type { SettingRepository } from "../repositories/setting.repository";
-import type { BaseService } from "./_base";
-
 export class AuthPublicUserSettingsGETService
 	implements
 		BaseService<AuthPublicUsersSettingsGETRequestDTO, AuthPublicUsersSettingsGETResponseDTO>

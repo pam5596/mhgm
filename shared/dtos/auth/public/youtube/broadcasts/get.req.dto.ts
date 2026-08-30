@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicYoutubeBroadcastsGETRequest } from "./interfaces/auth_public_youtube_broadcasts.get.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicYoutubeBroadcastsGETRequest } from "./get.req.dto.d";
 
 export class AuthPublicYoutubeBroadcastsGETRequestDTO extends BaseDTO<AuthPublicYoutubeBroadcastsGETRequest> {
 	constructor(values: AuthPublicYoutubeBroadcastsGETRequest) {

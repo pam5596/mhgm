@@ -1,16 +1,3 @@
-import type { AuthGoogleGETRequestDTO } from "../../shared/dtos/auth_google.get.req.dto";
-import { NotFoundError } from "../../shared/errors/not_found";
-import type { GoogleClient } from "../clients/google";
-import type { PrismaORMClient } from "../clients/prisma";
-import type { BaseService } from "./_base";
-import type { UserRepository } from "../repositories/user.repository";
-import type { SettingRepository } from "../repositories/setting.repository";
-import type { KeywordRepository } from "../repositories/keyword.repository";
-import { UserModel } from "../../shared/models/user.model";
-import { UnknownError } from "../../shared/errors/unknown";
-import { SettingModel } from "~~/shared/models/setting.model";
-import { KeywordModel } from "~~/shared/models/keyword.model";
-
 export class AuthGoogleGETService
   implements
     BaseService<AuthGoogleGETRequestDTO, void>

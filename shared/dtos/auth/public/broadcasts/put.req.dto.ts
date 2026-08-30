@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicBroadcastsPUTRequest } from "./interfaces/auth_public_broadcasts.put.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicBroadcastsPUTRequest } from "./put.req.dto.d";
 
 export class AuthPublicBroadcastsPUTRequestDTO extends BaseDTO<AuthPublicBroadcastsPUTRequest> {
 	constructor(values: AuthPublicBroadcastsPUTRequest) {

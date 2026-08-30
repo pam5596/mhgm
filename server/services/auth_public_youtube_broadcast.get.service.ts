@@ -1,9 +1,3 @@
-import type { AuthPublicYoutubeBroadcastsGETRequestDTO } from "../../shared/dtos/auth_public_youtube_broadcasts.get.req.dto";
-import { AuthPublicYoutubeBroadcastsGETResponseDTO } from "../../shared/dtos/auth_public_youtube_broadcasts.get.res.dto";
-import { NotFoundError } from "../../shared/errors/not_found";
-import type { GoogleClient } from "../clients/google";
-import type { BaseService } from "./_base";
-
 export class AuthPublicYoutubeBroadcastGETService
 	implements
 		BaseService<AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO>

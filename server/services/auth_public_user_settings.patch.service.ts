@@ -1,8 +1,3 @@
-import { NotFoundError } from "../../shared/errors/not_found";
-import type { AuthPublicUsersSettingsPATCHRequestDTO } from "../../shared/dtos/auth_public_users_settings.patch.req.dto";
-import type { SettingRepository } from "../repositories/setting.repository";
-import type { BaseService } from "./_base";
-
 export class AuthPublicUserSettingsPATCHService
 	implements BaseService<AuthPublicUsersSettingsPATCHRequestDTO, void>
 {

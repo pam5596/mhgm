@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicUsersSettingsGETResponse } from "./interfaces/auth_public_users_settings.get.res.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicUsersSettingsGETResponse } from "./get.res.dto.d";
 
 export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUsersSettingsGETResponse> {
 	constructor(values: AuthPublicUsersSettingsGETResponse) {

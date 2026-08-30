@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { PrivateUsersPUTRequest } from "./interfaces/private_users.put.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { PrivateUsersPUTRequest } from "./put.req.dto.d";
 
 export class PrivateUsersPUTRequestDTO extends BaseDTO<PrivateUsersPUTRequest> {
 	constructor(values: PrivateUsersPUTRequest) {

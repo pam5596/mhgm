@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicKeywordsPATCHRequest } from "./interfaces/auth_public_keywords.patch.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicKeywordsPATCHRequest } from "./patch.req.dto.d";
 
 export class AuthPublicKeywordsPATCHRequestDTO extends BaseDTO<AuthPublicKeywordsPATCHRequest> {
 	constructor(values: AuthPublicKeywordsPATCHRequest) {

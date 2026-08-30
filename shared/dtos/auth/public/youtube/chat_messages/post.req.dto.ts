@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicYoutubeChatMessagesPOSTRequest } from "./interfaces/auth_public_youtube_chat_messages.post.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicYoutubeChatMessagesPOSTRequest } from "./post.req.dto.d";
 
 export class AuthPublicYoutubeChatMessagesPOSTRequestDTO extends BaseDTO<AuthPublicYoutubeChatMessagesPOSTRequest> {
   constructor(values: AuthPublicYoutubeChatMessagesPOSTRequest) {

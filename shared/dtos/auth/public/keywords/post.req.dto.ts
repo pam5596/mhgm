@@ -1,6 +1,6 @@
 import z from "zod";
-import { BaseDTO } from "./_base";
-import type { AuthPublicKeywordsPOSTRequest } from "./interfaces/auth_public_keywords.post.req.dto";
+import { BaseDTO } from "~~/shared/dtos/_base";
+import type { AuthPublicKeywordsPOSTRequest } from "./post.req.dto.d";
 
 export class AuthPublicKeywordsPOSTRequestDTO extends BaseDTO<AuthPublicKeywordsPOSTRequest> {
 	constructor(values: AuthPublicKeywordsPOSTRequest) {

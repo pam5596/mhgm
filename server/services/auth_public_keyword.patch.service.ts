@@ -1,9 +1,3 @@
-import { NotFoundError } from "../../shared/errors/not_found";
-import type { AuthPublicKeywordsPATCHRequestDTO } from "../../shared/dtos/auth_public_keywords.patch.req.dto";
-import { ForbiddenError } from "../../shared/errors/forbidden";
-import type { KeywordRepository } from "../repositories/keyword.repository";
-import type { BaseService } from "./_base";
-
 export class AuthPublicKeywordPATCHService
 	implements BaseService<AuthPublicKeywordsPATCHRequestDTO, void>
 {
