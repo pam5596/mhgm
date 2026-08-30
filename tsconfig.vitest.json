@@ -1,0 +1,11 @@
+// tsconfig.vitest.json (新規作成、プロジェクトルート)
+{
+  "compilerOptions": {
+    "composite": true,
+    "types": ["vitest/globals", "node"]
+  },
+  "include": [
+    "test/**/*",
+    "vitest-auto-imports.d.ts" // 前回生成したファイルもここでカバーする
+  ]
+}
