@@ -1,9 +1,12 @@
 import { zocker } from "zocker"
-import { BaseModel } from "../../shared/models/_base";
-import z from "zod";
+import type { BaseModel } from "../../shared/models/_base";
+import type z from "zod";
 
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class Factory {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	static create<Model extends BaseModel<any>>(
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		ModelClass: { new (...args: any[]): Model, schema: () => z.ZodObject<any> },
 		supply?: Partial<Model["values"]>
 	) {

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 import { SettingRepository } from "../../../server/repositories/setting.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
 import { AuthPublicUserSettingsPATCHService } from "../../../server/services/auth_public_user_settings.patch.service";

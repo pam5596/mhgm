@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
 import { AuthPublicKeywordPATCHService } from "../../../server/services/auth_public_keyword.patch.service";
