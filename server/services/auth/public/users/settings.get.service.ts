@@ -1,4 +1,4 @@
-export class AuthPublicUserSettingsGETService
+export class AuthPublicUsersSettingsGETService
 	implements
 		BaseService<AuthPublicUsersSettingsGETRequestDTO, AuthPublicUsersSettingsGETResponseDTO>
 {

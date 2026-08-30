@@ -1,4 +1,4 @@
-export class AuthPublicKeywordDELETEService
+export class AuthPublicKeywords$ID$DELETEService
 	implements BaseService<AuthPublicKeywordsDELETERequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}

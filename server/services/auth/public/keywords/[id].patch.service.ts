@@ -1,4 +1,4 @@
-export class AuthPublicKeywordPATCHService
+export class AuthPublicKeywords$ID$PATCHService
 	implements BaseService<AuthPublicKeywordsPATCHRequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}

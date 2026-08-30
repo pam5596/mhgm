@@ -1,4 +1,4 @@
-export class AuthPublicUserSettingsPATCHService
+export class AuthPublicUsersSettingsPATCHService
 	implements BaseService<AuthPublicUsersSettingsPATCHRequestDTO, void>
 {
 	constructor(private settingRepository: SettingRepository) {}

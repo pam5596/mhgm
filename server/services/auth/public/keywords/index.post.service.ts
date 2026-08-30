@@ -1,4 +1,4 @@
-export class AuthPublicKeywordPOSTService
+export class AuthPublicKeywordsPOSTService
 	implements BaseService<AuthPublicKeywordsPOSTRequestDTO, AuthPublicKeywordsPOSTResponseDTO>
 {
 	constructor(private keywordRepository: KeywordRepository) {}
