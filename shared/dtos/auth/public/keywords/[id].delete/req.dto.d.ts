@@ -1,4 +1,4 @@
-export interface AuthPublicKeywordsDELETERequest {
+export interface AuthPublicKeywords$ID$DELETERequest {
 	sessions: {
 		user_id: number;
 	};

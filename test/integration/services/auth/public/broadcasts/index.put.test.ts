@@ -1,7 +1,7 @@
-describe("AuthPublicBroadcastPUTServiceの結合テスト", () => {
+describe("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
 	const broadcastRepo = new BroadcastRepository(prisma);
 	const userRepo = new UserRepository(prisma);
-	const service = new AuthPublicBroadcastPUTService(broadcastRepo);
+	const service = new AuthPublicBroadcastsPUTService(broadcastRepo);
 
 	withSetupDB();
 

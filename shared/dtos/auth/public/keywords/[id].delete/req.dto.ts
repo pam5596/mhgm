@@ -1,10 +1,10 @@
 import z from "zod";
 import { BaseDTO } from "~~/shared/dtos/_base";
-import type { AuthPublicKeywordsDELETERequest } from "./req.dto.d";
+import type { AuthPublicKeywords$ID$DELETERequest } from "./req.dto.d";
 
-export class AuthPublicKeywordsDELETERequestDTO extends BaseDTO<AuthPublicKeywordsDELETERequest> {
-	constructor(values: AuthPublicKeywordsDELETERequest) {
-		super(values, AuthPublicKeywordsDELETERequestDTO.schema());
+export class AuthPublicKeywords$ID$DELETERequestDTO extends BaseDTO<AuthPublicKeywords$ID$DELETERequest> {
+	constructor(values: AuthPublicKeywords$ID$DELETERequest) {
+		super(values, AuthPublicKeywords$ID$DELETERequestDTO.schema());
 	}
 
 	static schema() {

@@ -1,4 +1,4 @@
-export class AuthPublicYoutubeBroadcastGETService
+export class AuthPublicYoutubeBroadcastsGETService
 	implements
 		BaseService<AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO>
 {

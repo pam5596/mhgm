@@ -1,6 +1,6 @@
-describe.skip("AuthPublicYoutubeBroadcastGETServiceの結合テスト", async () => {
+describe.skip("AuthPublicYoutubeBroadcastsGETServiceの結合テスト", async () => {
 	const google = new GoogleClient();
-	const service = new AuthPublicYoutubeBroadcastGETService(google);
+	const service = new AuthPublicYoutubeBroadcastsGETService(google);
 
 	it("配信情報を取得できる", errorHandler(async () => {
 		const request = new AuthPublicYoutubeBroadcastsGETRequestDTO({

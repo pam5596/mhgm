@@ -1,4 +1,4 @@
-export interface AuthPublicKeywordsPATCHRequest {
+export interface AuthPublicKeywords$ID$PATCHRequest {
 	sessions: {
 		user_id: number;
 	};

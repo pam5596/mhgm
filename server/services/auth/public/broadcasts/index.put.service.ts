@@ -1,4 +1,4 @@
-export class AuthPublicBroadcastPUTService
+export class AuthPublicBroadcastsPUTService
 	implements BaseService<AuthPublicBroadcastsPUTRequestDTO, AuthPublicBroadcastsPUTResponseDTO>
 {
 	constructor(private broadcastRepository: BroadcastRepository) {}

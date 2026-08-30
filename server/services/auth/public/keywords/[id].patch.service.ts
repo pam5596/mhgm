@@ -1,9 +1,9 @@
 export class AuthPublicKeywords$ID$PATCHService
-	implements BaseService<AuthPublicKeywordsPATCHRequestDTO, void>
+	implements BaseService<AuthPublicKeywords$ID$PATCHRequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}
 
-	async execute(request: AuthPublicKeywordsPATCHRequestDTO) {
+	async execute(request: AuthPublicKeywords$ID$PATCHRequestDTO) {
 		const { user_id } = request.values.sessions;
 		const { id } = request.values.params;
 

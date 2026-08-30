@@ -2,7 +2,7 @@ export default defineApiHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)
 
-  await new AuthPublicUserSettingsPATCHService(
+  await new AuthPublicUsersSettingsPATCHService(
     settingRepository
   ).execute(
     new AuthPublicUsersSettingsPATCHRequestDTO({

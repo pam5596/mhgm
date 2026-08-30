@@ -1,4 +1,4 @@
-describe("AuthPublicKeywordDELETEServiceの結合テスト", () => {
+describe("AuthPublicKeywordsDELETEServiceの結合テスト", () => {
 	const keywordRepo = new KeywordRepository(prisma);
 	const userRepo = new UserRepository(prisma);
 	const service = new AuthPublicKeywords$ID$DELETEService(keywordRepo);
@@ -9,7 +9,7 @@ describe("AuthPublicKeywordDELETEServiceの結合テスト", () => {
 		const user = await userRepo.upsert(Factory.create(UserModel));
 		const keyword = await keywordRepo.create(Factory.create(KeywordModel, { user_id: user.values.id }));
 
-		const request = new AuthPublicKeywordsDELETERequestDTO({
+		const request = new AuthPublicKeywords$ID$DELETERequestDTO({
 			sessions: {
 				user_id: user.values.id!,
 			},

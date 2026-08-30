@@ -1,9 +1,9 @@
 export class AuthPublicKeywords$ID$DELETEService
-	implements BaseService<AuthPublicKeywordsDELETERequestDTO, void>
+	implements BaseService<AuthPublicKeywords$ID$DELETERequestDTO, void>
 {
 	constructor(private keywordRepository: KeywordRepository) {}
 
-	async execute(request: AuthPublicKeywordsDELETERequestDTO) {
+	async execute(request: AuthPublicKeywords$ID$DELETERequestDTO) {
 		const { user_id } = request.values.sessions;
 		const { id } = request.values.params;
 

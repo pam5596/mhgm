@@ -1,4 +1,4 @@
-describe("AuthPublicUserSettingsPATCHServiceの結合テスト", () => {
+describe("AuthPublicUsersSettingsPATCHServiceの結合テスト", () => {
 	const settingRepo = new SettingRepository(prisma);
 	const userRepo = new UserRepository(prisma);
 	const service = new AuthPublicUsersSettingsPATCHService(settingRepo);

@@ -1,4 +1,4 @@
-describe("AuthPublicKeywordPOSTServiceの結合テスト", () => {
+describe("AuthPublicKeywordsPOSTServiceの結合テスト", () => {
 	const keywordRepo = new KeywordRepository(prisma);
 	const userRepo = new UserRepository(prisma);
 	const service = new AuthPublicKeywordsPOSTService(keywordRepo);

@@ -2,8 +2,8 @@ import { zocker } from "zocker";
 
 describe("AuthPublicKeywordsPATCHRequestDTOの単体テスト", () => {
 	it("RequestDTOが作成できる", () => {
-		const mock = zocker(AuthPublicKeywordsPATCHRequestDTO.schema()).generate();
+		const mock = zocker(AuthPublicKeywords$ID$PATCHRequestDTO.schema()).generate();
 
-		expect(() => new AuthPublicKeywordsPATCHRequestDTO(mock)).not.toThrow();
+		expect(() => new AuthPublicKeywords$ID$PATCHRequestDTO(mock)).not.toThrow();
 	});
 });

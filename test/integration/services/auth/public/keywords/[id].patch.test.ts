@@ -1,4 +1,4 @@
-describe("AuthPublicKeywordPATCHServiceの結合テスト", () => {
+describe("AuthPublicKeywordsPATCHServiceの結合テスト", () => {
 	const keywordRepo = new KeywordRepository(prisma);
 	const userRepo = new UserRepository(prisma);
 	const service = new AuthPublicKeywords$ID$PATCHService(keywordRepo);
@@ -10,7 +10,7 @@ describe("AuthPublicKeywordPATCHServiceの結合テスト", () => {
 		const keyword = await keywordRepo.create(Factory.create(KeywordModel, { user_id: user.values.id }));
 		const updatedKeyword = Factory.create(KeywordModel, { user_id: user.values.id });
 
-		const request = new AuthPublicKeywordsPATCHRequestDTO({
+		const request = new AuthPublicKeywords$ID$PATCHRequestDTO({
 			sessions: {
 				user_id: user.values.id!,
 			},

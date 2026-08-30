@@ -1,7 +1,7 @@
 export default defineApiHandler(async (event) => {
   const { user } = await getUserSession(event)
 
-  const response = await new AuthPublicUserSettingsGETService(
+  const response = await new AuthPublicUsersSettingsGETService(
     settingRepository,
     keywordRepository
   ).execute(

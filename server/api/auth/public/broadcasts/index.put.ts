@@ -2,7 +2,7 @@ export default defineApiHandler(async (event) => {
   const { user } = await getUserSession(event)
   const body = await readBody(event)
 
-  const response = await new AuthPublicBroadcastPUTService(
+  const response = await new AuthPublicBroadcastsPUTService(
     broadcastRepository
   ).execute(
     new AuthPublicBroadcastsPUTRequestDTO({
