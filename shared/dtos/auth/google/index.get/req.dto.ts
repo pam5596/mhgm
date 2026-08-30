@@ -1,6 +1,5 @@
 import z from "zod";
 import { BaseDTO } from "~~/shared/dtos/_base";
-import type { AuthGoogleGETRequest } from "./get.req.dto.d";
 
 export class AuthGoogleGETRequestDTO extends BaseDTO<AuthGoogleGETRequest> {
 	constructor(values: AuthGoogleGETRequest) {

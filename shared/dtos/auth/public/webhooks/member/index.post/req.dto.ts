@@ -1,6 +1,6 @@
 import z from "zod";
 import { BaseDTO } from "~~/shared/dtos/_base";
-import type { AuthPublicWebhooksMemberPOSTRequest } from "./post.req.dto.d";
+import type { AuthPublicWebhooksMemberPOSTRequest } from "./req.dto.d";
 
 export class AuthPublicWebhooksMemberPOSTRequestDTO extends BaseDTO<AuthPublicWebhooksMemberPOSTRequest> {
 	constructor(values: AuthPublicWebhooksMemberPOSTRequest) {

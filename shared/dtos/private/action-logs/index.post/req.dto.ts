@@ -1,6 +1,6 @@
 import z from "zod";
 import { BaseDTO } from "~~/shared/dtos/_base";
-import type { PrivateActionlogsPOSTRequest } from "./post.req.dto.d";
+import type { PrivateActionlogsPOSTRequest } from "./req.dto.d";
 
 export class PrivateActionlogsPOSTRequestDTO extends BaseDTO<PrivateActionlogsPOSTRequest> {
 	constructor(values: PrivateActionlogsPOSTRequest) {
