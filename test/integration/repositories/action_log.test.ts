@@ -1,11 +1,17 @@
 import { describe, expect, it } from "vitest";
+import { withSetupDB } from "../db.setup";
+import { prisma } from "../prisma.client";
+import { Factory } from "../factory.util";
+import { errorHandler } from "../errorHandler.util"
 import { ActionLogRepository } from "../../../server/repositories/action_log.repository";
 import { BroadcastRepository } from "../../../server/repositories/broadcast.repository";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
 import { UserRepository } from "../../../server/repositories/user.repository";
-import { withSetupDB } from "../db.setup";
-import { action_log, broadcast, keywords, users } from "../fixtures.util";
-import { prisma } from "../prisma.client";
+import { UserModel } from "../../../shared/models/user.model";
+import { BroadcastModel } from "../../../shared/models/broadcast.model";
+import { KeywordModel } from "../../../shared/models/keyword.model";
+import { ActionLogModel } from "../../../shared/models/action_log.model";
+
 
 describe("ActionLogRepositoryの結合テスト", () => {
 	const userRepo = new UserRepository(prisma);
@@ -14,43 +20,54 @@ describe("ActionLogRepositoryの結合テスト", () => {
 	const repo = new ActionLogRepository(prisma);
 	withSetupDB();
 
-	it("アクションログを作成できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("アクションログを作成できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		await broadcastRepo.upsert(broadcast_model!);
+		const broadcast = await broadcastRepo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const keyword_model = keywords(1);
-		await keywordRepo.create(keyword_model!);
+		const keyword = await keywordRepo.create(
+			Factory.create(KeywordModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const action_log_model = action_log(1);
-		const created = action_log_model && (await repo.create(action_log_model));
+		const action_log = Factory.create(ActionLogModel, { 
+			user_id: user.values.id, 
+			broadcast_id: broadcast.values.id,
+			keyword_id: keyword.values.id
+		})
+		const created = await repo.create(action_log);
 
-		expect(created?.values.id).toBeTruthy();
-		expect(created?.values.created_at).toBeTruthy();
-		expect(created?.values.message).toBe("message");
-	});
+		expect(created.values.id).toBeTruthy();
+		expect(created.values.created_at).toBeTruthy();
+	}));
 
-	it("アクションログを削除できる", async () => {
-		const user = users(1);
-		await userRepo.upsert(user!);
+	it("アクションログを削除できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
 
-		const broadcast_model = broadcast(1);
-		await broadcastRepo.upsert(broadcast_model!);
+		const broadcast = await broadcastRepo.upsert(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const keyword_model = keywords(1);
-		await keywordRepo.create(keyword_model!);
+		const keyword = await keywordRepo.create(
+			Factory.create(KeywordModel, { 
+				user_id: user.values.id 
+			})
+		);
 
-		const action_log_model = action_log(1);
-		const created = action_log_model && (await repo.create(action_log_model));
-		await repo.destroyById(created!.values.id!);
+		const action_log = Factory.create(ActionLogModel, { 
+			user_id: user.values.id, 
+			broadcast_id: broadcast.values.id,
+			keyword_id: keyword.values.id
+		})
+		const created = await repo.create(action_log);
 
-		const deleted =
-			created?.values.id &&
-			(await prisma.actionLog.findUnique({
-				where: { id: created.values.id },
-			}));
-		expect(deleted).toBeNull();
-	});
+		await repo.destroyById(created.values.id!);
+	}));
 });

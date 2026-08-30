@@ -7,7 +7,7 @@ export class AuthPublicWebhooksMemberPOSTRequestDTO extends BaseDTO<AuthPublicWe
 		super(values, AuthPublicWebhooksMemberPOSTRequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
 				channel_id: z.string(),

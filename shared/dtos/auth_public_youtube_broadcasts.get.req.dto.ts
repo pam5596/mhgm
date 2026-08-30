@@ -7,7 +7,7 @@ export class AuthPublicYoutubeBroadcastsGETRequestDTO extends BaseDTO<AuthPublic
 		super(values, AuthPublicYoutubeBroadcastsGETRequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
 				access_token: z.string(),

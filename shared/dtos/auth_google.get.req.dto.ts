@@ -7,7 +7,7 @@ export class AuthGoogleGETRequestDTO extends BaseDTO<AuthGoogleGETRequest> {
 		super(values, AuthGoogleGETRequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			sessions: z.strictObject({
 				access_token: z.string(),

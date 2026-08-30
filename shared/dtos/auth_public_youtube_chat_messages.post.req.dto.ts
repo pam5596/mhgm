@@ -7,7 +7,7 @@ export class AuthPublicYoutubeChatMessagesPOSTRequestDTO extends BaseDTO<AuthPub
     super(values, AuthPublicYoutubeChatMessagesPOSTRequestDTO.schema());
   }
 
-  private static schema() {
+  static schema() {
     return z.strictObject({
       sessions: z.strictObject({
         access_token: z.string()

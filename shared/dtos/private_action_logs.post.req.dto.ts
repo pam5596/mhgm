@@ -7,7 +7,7 @@ export class PrivateActionlogsPOSTRequestDTO extends BaseDTO<PrivateActionlogsPO
 		super(values, PrivateActionlogsPOSTRequestDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				message: z.string(),

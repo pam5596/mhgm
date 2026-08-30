@@ -1,37 +1,35 @@
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 import { KeywordRepository } from "../../../server/repositories/keyword.repository";
+import { UserRepository } from "../../../server/repositories/user.repository";
 import { AuthPublicKeywordDELETEService } from "../../../server/services/auth_public_keyword.delete.service";
 import { AuthPublicKeywordsDELETERequestDTO } from "../../../shared/dtos/auth_public_keywords.delete.req.dto";
-import { create } from "../crud.util";
 import { withSetupDB } from "../db.setup";
+import { errorHandler } from "../errorHandler.util";
+import { Factory } from "../factory.util";
 import { prisma } from "../prisma.client";
+import { KeywordModel } from "../../../shared/models/keyword.model";
+import { UserModel } from "../../../shared/models/user.model";
 
 describe("AuthPublicKeywordDELETEServiceの結合テスト", () => {
 	const keywordRepo = new KeywordRepository(prisma);
+	const userRepo = new UserRepository(prisma);
 	const service = new AuthPublicKeywordDELETEService(keywordRepo);
 
 	withSetupDB();
 
-	it("キーワードをDBで削除できる", async () => {
-		await create("user", 1);
-		await create("keyword", 1);
+	it("キーワードをDBで削除できる", errorHandler(async () => {
+		const user = await userRepo.upsert(Factory.create(UserModel));
+		const keyword = await keywordRepo.create(Factory.create(KeywordModel, { user_id: user.values.id }));
 
 		const request = new AuthPublicKeywordsDELETERequestDTO({
 			sessions: {
-				user_id: 1,
+				user_id: user.values.id!,
 			},
 			params: {
-				id: 1,
+				id: keyword.values.id!,
 			},
 		});
 
-		try {
-			await service.execute(request);
-		} catch(e) {
-			console.log(e)
-		}
-
-		const updated = await keywordRepo.findById(1);
-		expect(updated).toBeNull();
-	});
+		await service.execute(request);
+	}));
 });

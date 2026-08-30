@@ -7,7 +7,7 @@ export class AuthPublicBroadcastsPUTResponseDTO extends BaseDTO<AuthPublicBroadc
 		super(values, AuthPublicBroadcastsPUTResponseDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				id: z.number(),

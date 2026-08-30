@@ -7,7 +7,7 @@ export class AuthPublicKeywordsPOSTResponseDTO extends BaseDTO<AuthPublicKeyword
 		super(values, AuthPublicKeywordsPOSTResponseDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				id: z.number(),

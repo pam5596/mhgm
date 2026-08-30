@@ -7,7 +7,7 @@ export class PrivateUsersKeywordsGETResponseDTO extends BaseDTO<PrivateUsersKeyw
     super(values, PrivateUsersKeywordsGETResponseDTO.schema())
   }
 
-  private static schema() {
+  static schema() {
     return z.strictObject({
       body: z.strictObject({
         keywords: z.array(
