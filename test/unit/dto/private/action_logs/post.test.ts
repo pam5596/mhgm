@@ -1,6 +1,3 @@
-import { describe, expect, it } from "vitest";
-import { PrivateActionlogsPOSTRequestDTO } from "../../../shared/dtos/private_action_logs.post.req.dto";
-import { PrivateActionlogsPOSTResponseDTO } from "../../../shared/dtos/private_action_logs.post.res.dto";
 import { zocker } from "zocker";
 
 describe("PrivateActionlogsPOSTの単体テスト", () => {

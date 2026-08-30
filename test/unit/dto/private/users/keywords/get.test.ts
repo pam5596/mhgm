@@ -1,6 +1,3 @@
-import { describe, expect, it } from "vitest";
-import { PrivateUsersKeywordsGETRequestDTO } from "../../../shared/dtos/private_users_keywords.get.req.dto";
-import { PrivateUsersKeywordsGETResponseDTO } from "../../../shared/dtos/private_users_keywords.get.res.dto";
 import { zocker } from "zocker";
 
 describe("PrivateUsersKeywordsGETの単体テスト", () => {

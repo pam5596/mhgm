@@ -1,5 +1,3 @@
-import { describe, expect, it } from "vitest";
-import { AuthPublicWebhooksMemberPOSTRequestDTO } from "../../../shared/dtos/auth_public_webhooks_member.post.req.dto";
 import { zocker } from "zocker";
 
 describe("AuthPublicWebhooksMemberPOSTRequestDTOの単体テスト", () => {

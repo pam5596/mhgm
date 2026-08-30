@@ -1,5 +1,3 @@
-import { describe, expect, it } from "vitest";
-import { AuthPublicKeywordsDELETERequestDTO } from "../../../shared/dtos/auth_public_keywords.delete.req.dto";
 import { zocker } from "zocker";
 
 describe("AuthPublicKeywordsDELETERequestDTOの単体テスト", () => {

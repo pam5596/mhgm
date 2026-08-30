@@ -1,6 +1,3 @@
-import { describe, expect, it } from "vitest";
-import { PrivateUsersPUTRequestDTO } from "../../../shared/dtos/private_users.put.req.dto";
-import { PrivateUsersPUTResponseDTO } from "../../../shared/dtos/private_users.put.res.dto";
 import { zocker } from "zocker";
 
 describe("PrivateUsersPUTの単体テスト", () => {
