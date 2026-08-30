@@ -9,7 +9,8 @@ export function withSetupDB() {
         "test"."settings",
         "test"."keywords",
         "test"."broadcasts",
-        "test"."action_logs"
+        "test"."action_logs",
+        "test"."event_messages"
       RESTART IDENTITY;
     `);
 	});
@@ -29,7 +30,8 @@ export function withSetupDB() {
         "test"."settings",
         "test"."keywords",
         "test"."broadcasts",
-        "test"."action_logs"
+        "test"."action_logs",
+        "test"."event_messages"
       RESTART IDENTITY;
     `);
 		await prisma.$disconnect();
