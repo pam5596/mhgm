@@ -30,6 +30,7 @@ export default defineConfig({
         resolve(__dirname, './server/clients'),
         resolve(__dirname, './server/services/**'),
         resolve(__dirname, './server/instances'),
+				resolve(__dirname, './test/integration/**'),
       ],
       dts: resolve(__dirname, './vitest-auto-imports.d.ts'),
       vueTemplate: false,
