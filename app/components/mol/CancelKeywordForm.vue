@@ -19,8 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
-
 const keywords = defineModel<AuthPublicUsersSettingsGETResponse["body"]["keywords"]>({ required: true })
 
 const { postKeyword, patchKeyword, deleteKeyword } = usePublicAPI()

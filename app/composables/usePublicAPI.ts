@@ -1,9 +1,4 @@
 import type { User } from "#auth-utils"
-import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
-import type { AuthPublicKeywordsPOSTResponse } from "~~/shared/dtos/interfaces/auth_public_keywords.post.res.dto"
-import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
-import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
-import type { AuthPublicYoutubeChatMessagesPOSTRequest } from "~~/shared/dtos/interfaces/auth_public_youtube_chat_messages.post.req.dto"
 
 export default function () {
   const config = useRuntimeConfig()

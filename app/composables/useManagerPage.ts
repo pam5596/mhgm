@@ -1,5 +1,3 @@
-import type { SocketIOLiveChatEmit } from "~~/shared/dtos/interfaces/socker.io_live_chat.emit.dto"
-
 export default async function() {
   const { t } = useI18n()
   const { origin } = useRequestURL()

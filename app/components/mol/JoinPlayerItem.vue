@@ -21,7 +21,7 @@
       <AtmButton color="error" variant="fill" @click="$emit('onCancel')">
         {{ $t("components.molecure.join_player_item.cancel_button_text") }}
       </AtmButton>
-      <ChangePlayerDialog 
+      <MolChangePlayerDialog 
         v-model="dialog" 
         :waiters="props.waiters"
         @on-selected="(waiter) => onSelected(waiter)"
@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import type { FactoryPlayer } from '~/types/factory_player';
-import ChangePlayerDialog from './ChangePlayerDialog.vue';
 
 const quests = defineModel<number>()
 const props = defineProps<{

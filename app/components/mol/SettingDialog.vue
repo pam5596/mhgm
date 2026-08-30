@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
-
 const { settings, patchSettings } = usePublicAPI()
 
 const dialog = defineModel<boolean>("dialog")
