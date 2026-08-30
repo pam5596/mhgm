@@ -19,7 +19,7 @@ describe("AuthPublicBroadcastPUTServiceの結合テスト", () => {
 
 	it("ブロードキャストをDBに保存してIDを返す", errorHandler(async () => {
 		const user = await userRepo.upsert(Factory.create(UserModel));
-		const broadcast = Factory.create(BroadcastModel)
+		const broadcast = Factory.create(BroadcastModel, { end_at: new Date() })
 
 		const request = new AuthPublicBroadcastsPUTRequestDTO({
 			sessions: {
