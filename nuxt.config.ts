@@ -16,11 +16,11 @@ export default defineNuxtConfig({
 	},
 	imports: {
 		dirs: [
-			resolve(__dirname, "./shared/models"),
+			resolve(__dirname, "./shared/models/**"),
 			resolve(__dirname, "./shared/models/interfaces"),
 			resolve(__dirname, "./shared/errors"),
 			resolve(__dirname, "./shared/enums"),
-			resolve(__dirname, "./shared/dtos")
+			resolve(__dirname, "./shared/dtos/**")
 		],
 	},
 	nitro: {
@@ -29,14 +29,13 @@ export default defineNuxtConfig({
 		},
 		imports: {
 			dirs: [
-				resolve(__dirname, "./shared/models"),
-				resolve(__dirname, "./shared/models/interfaces"),
+				resolve(__dirname, "./shared/models/**"),
 				resolve(__dirname, "./shared/errors"),
 				resolve(__dirname, "./shared/enums"),
-				resolve(__dirname, "./shared/dtos"),
+				resolve(__dirname, "./shared/dtos/**"),
 				resolve(__dirname, "./server/repositories"),
 				resolve(__dirname, "./server/clients"),
-				resolve(__dirname, "./server/services"),
+				resolve(__dirname, "./server/services/**"),
 				resolve(__dirname, "./server/instances"),
 			],
 		},

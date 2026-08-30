@@ -3,10 +3,10 @@ export default defineApiHandler(async(event) => {
   const id = getRouterParam(event, 'id')
   const body = await readBody(event)
 
-  await new AuthPublicKeywordPATCHService(
+  await new AuthPublicKeywords$ID$PATCHService(
     keywordRepository
   ).execute(
-    new AuthPublicKeywordsPATCHRequestDTO({
+    new AuthPublicKeywords$ID$PATCHRequestDTO({
       sessions: {
         user_id: user!.user_id
       },

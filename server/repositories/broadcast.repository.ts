@@ -1,5 +1,3 @@
-import type { Broadcast } from "~~/shared/models/interfaces/broadcast.interface";
-import { BroadcastModel } from "../../shared/models/broadcast.model";
 import { BaseRepository } from "./_base";
 
 export class BroadcastRepository extends BaseRepository {
