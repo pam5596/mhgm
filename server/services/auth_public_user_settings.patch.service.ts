@@ -14,6 +14,11 @@ export class AuthPublicUserSettingsPATCHService
 		if (!setting)
 			throw new NotFoundError(this.constructor.name, request.values);
 
-		await this.settingRepository.update(setting.update(request.values.body));
+		await this.settingRepository.update(
+			setting.update({
+				...setting.values,
+				...request.values.body,
+			}),
+		);
 	}
 }

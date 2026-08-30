@@ -7,7 +7,7 @@ export class PrivateUsersPUTResponseDTO extends BaseDTO<PrivateUsersPUTResponse>
 		super(values, PrivateUsersPUTResponseDTO.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
 			body: z.strictObject({
 				id: z.number(),

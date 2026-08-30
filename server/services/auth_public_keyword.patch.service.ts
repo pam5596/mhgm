@@ -20,7 +20,10 @@ export class AuthPublicKeywordPATCHService
 			throw new ForbiddenError(this.constructor.name, request.values);
 
 		await this.keywordRepository.update(
-			keyword.updateKeyword(request.values.body.keyword),
+			keyword.update({
+				...keyword.values,
+				keyword: request.values.body.keyword,
+			}),
 		);
 	}
 }
