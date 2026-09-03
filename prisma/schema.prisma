@@ -90,12 +90,11 @@ model ActionLog {
 
 model EventMessage {
   user_id Int @id
-  is_enabled Boolean @default(true)
-  entry_as_joiner String @db.VarChar(100)
-  entry_as_waiter String @db.VarChar(100)
-  duplicate_as_joiner String @db.VarChar(100)
-  duplicate_as_waiter String @db.VarChar(100)
-  cancel String @db.VarChar(100)
+  entry_as_joiner String? @db.VarChar(100)
+  entry_as_waiter String? @db.VarChar(100)
+  duplicate_as_joiner String? @db.VarChar(100)
+  duplicate_as_waiter String? @db.VarChar(100)
+  cancel String? @db.VarChar(100)
   updated_at DateTime @db.Timestamptz() @updatedAt
 
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
