@@ -9,5 +9,8 @@ export interface AuthPublicUsersSettingsGETResponse {
 			keyword: string;
 			action: string;
 		}[];
+		event_message: {
+			
+		}
 	};
 }
