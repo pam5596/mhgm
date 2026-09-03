@@ -13,6 +13,8 @@ export class EventMessageModel extends BaseModel<EventMessage> {
       is_enabled: z.boolean(),
       entry_as_joiner: z.string().min(1).max(100),
       entry_as_waiter: z.string().min(1).max(100),
+      duplicate_as_joiner: z.string().min(1).max(100),
+      duplicate_as_waiter: z.string().min(1).max(100),
       cancel: z.string().min(1).max(100),
       updated_at: z.date().optional(),
     })
