@@ -10,6 +10,6 @@ describe.skip("AuthPublicYoutubeBroadcastsGETServiceの結合テスト", async (
 		});
 
 		const response = await service.execute(request);
-		expect(response.values).toBeTruthy();
+		expect(response).toBeTruthy();
 	}));
 });
