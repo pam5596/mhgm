@@ -7,7 +7,8 @@ export class AuthGoogleGETService
     private prismaClient: PrismaORMClient,
     private userRepository: UserRepository,
     private settingRepository: SettingRepository,
-    private keywordRepository: KeywordRepository
+    private keywordRepository: KeywordRepository,
+    private eventMessageRepository: EventMessageRepository
   ) {}
 
   async execute(
@@ -68,11 +69,23 @@ export class AuthGoogleGETService
       )
       this.settingRepository.client = prismaClient
 
+      this.eventMessageRepository.client = tx
+      await this.eventMessageRepository.create(
+        new EventMessageModel({
+          user_id,
+          entry_as_joiner: null,
+          entry_as_waiter: null,
+          duplicate_as_joiner: null,
+          duplicate_as_waiter: null,
+          cancel: null
+        })
+      )
+
       this.keywordRepository.client = tx
       const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)
       const default_keywords = [
-        { keyword: "参加希望", action: "ENTRY" },
-        { keyword: "参加辞退", action: "CANCEL" }
+        { keyword: "参加希望", action: ActionEnum.entry },
+        { keyword: "参加辞退", action: ActionEnum.cancel }
       ] as const
       for (const default_keyword of default_keywords) {
         if (existing_keywords.some(
