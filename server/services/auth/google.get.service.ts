@@ -46,7 +46,9 @@ export class AuthGoogleGETService
 
     // 認証コールバックは同一ユーザーで重複・並行して実行され得るため、
     // 事前検索で分岐せず常に冪等な upsert 経路を通す
-    const user = await this.prismaClient.$transaction(async (tx) => {
+    const user = await this.userRepository.findByChannelID(
+      channel_props.channel_id!
+    ) || await this.prismaClient.$transaction(async (tx) => {
       this.userRepository.client = tx
       const upserted_user = await this.userRepository.upsert(
         new UserModel({
@@ -80,6 +82,7 @@ export class AuthGoogleGETService
           cancel: null
         })
       )
+      this.settingRepository.client = prismaClient
 
       this.keywordRepository.client = tx
       const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)

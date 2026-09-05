@@ -22,7 +22,8 @@ export default defineOAuthGoogleEventHandler({
       prismaClient,
       userRepository,
       settingRepository,
-      keywordRepository
+      keywordRepository,
+      eventMessageRepository
     ).execute(
       new AuthGoogleGETRequestDTO({
         sessions: { access_token: result.tokens.access_token }
