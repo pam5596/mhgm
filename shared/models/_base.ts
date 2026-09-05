@@ -38,7 +38,7 @@ export abstract class BaseModel<I extends Record<string, any>> {
 
 	toIgnoreUndefinedObject() {
 		return Object.fromEntries(
-			Object.entries(this._values).filter(([_, v]) => v != undefined),
+			Object.entries(this._values).filter(([_, v]) => v !== undefined),
 		) as {
 			[K in keyof I as undefined extends I[K] ? never : K]: I[K];
 		};

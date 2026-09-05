@@ -32,7 +32,6 @@ export class AuthPublicUsersSettingsGETService
 					action: k.values.action,
 				})),
 				event_message: {
-					id: event_message.values.id!,
 					cancel: event_message.values.cancel,
 					entry_as_joiner: event_message.values.entry_as_joiner,
 					entry_as_waiter: event_message.values.entry_as_waiter,
