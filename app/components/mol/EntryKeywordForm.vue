@@ -1,20 +1,22 @@
 <template>
-  <div class="flex justify-between items-center">
-    <p class="text-primary-dark font-bold">
-      {{ $t("components.molecure.entry_keyword_form.title") }}
-    </p>
-    <AtmButton @click="onAddKeyword">
-      {{ $t("components.molecure.entry_keyword_form.add_keyword_button_text") }}
-    </AtmButton>
-  </div>
   <div class="flex flex-col gap-2">
-    <MolKeywordField 
-      v-for="keyword in keywords"
-      :key="keyword.id"
-      v-model="keyword.keyword"
-      @on-update="onUpdateKeyword(keyword)"
-      @on-delete="onDeleteKeyword(keyword)"
-    />
+    <div class="flex justify-between items-center">
+      <p class="text-primary-dark font-bold">
+        {{ $t("components.molecure.entry_keyword_form.title") }}
+      </p>
+      <AtmButton @click="onAddKeyword">
+        {{ $t("components.molecure.entry_keyword_form.add_keyword_button_text") }}
+      </AtmButton>
+    </div>
+    <div class="flex flex-col gap-2">
+      <MolKeywordField 
+        v-for="keyword in keywords"
+        :key="keyword.id"
+        v-model="keyword.keyword"
+        @on-update="onUpdateKeyword(keyword)"
+        @on-delete="onDeleteKeyword(keyword)"
+      />
+    </div>
   </div>
 </template>
 
