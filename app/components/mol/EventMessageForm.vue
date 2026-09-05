@@ -3,9 +3,9 @@
     <MolEventMessageField 
       v-for="(event, index) in events"
       :key="index"
+      v-model="event.model.value"
       :title="$t(event.title)"
       :description="$t(event.description)"
-      v-model="event.model.value"
     />
   </div>
 </template>
