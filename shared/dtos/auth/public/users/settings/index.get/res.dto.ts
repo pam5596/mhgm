@@ -1,6 +1,6 @@
 import z from "zod";
 import { BaseDTO } from "~~/shared/dtos/_base";
-import type { AuthPublicUsersSettingsGETResponse } from "./get.res.dto.d";
+import type { AuthPublicUsersSettingsGETResponse } from "./res.dto.d";
 
 export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUsersSettingsGETResponse> {
 	constructor(values: AuthPublicUsersSettingsGETResponse) {
@@ -21,6 +21,13 @@ export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUse
 						action: z.string(),
 					}),
 				),
+				event_message: z.strictObject({
+					entry_as_joiner: z.string().nullable(),
+					entry_as_waiter: z.string().nullable(),
+					duplicate_as_joiner: z.string().nullable(),
+					duplicate_as_waiter: z.string().nullable(),
+					cancel: z.string().nullable()
+				})
 			}),
 		});
 	}

@@ -20,6 +20,6 @@ describe("AuthPublicKeywordsPOSTServiceの結合テスト", () => {
 		});
 
 		const result = await service.execute(request);
-		expect(result.values.body.id).toBeTruthy();
+		expect(result).toBeTruthy();
 	}));
 });

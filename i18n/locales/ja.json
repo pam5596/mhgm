@@ -17,6 +17,19 @@
 				"title": "交代する待機者を選択してください",
 				"select_placeholder": "待機者を選択する"
 			},
+			"event_message_field": {
+				"placeholder": "未設定の場合は送信されません。",
+				"entry_as_joiner_title": "参加者受付時のチャット送信メッセージ",
+				"entry_as_joiner_description": "リスナーが参加希望した時、待ちが発生しない場合に送信する固定文を設定できます。",
+				"entry_as_waiter_title": "待機者受付時のチャット送信メッセージ",
+				"entry_as_waiter_description": "リスナーが参加希望した時、待ちが発生する場合に送信する固定文を設定できます。",
+				"duplicate_as_joiner_title": "参加者重複時のチャット送信メッセージ",
+				"duplicate_as_joiner_description": "リスナーが参加希望した時、参加中として重複している時に送信する固定文を設定できます。",
+				"duplicate_as_waiter_title": "待機者重複時のチャット送信メッセージ",
+				"duplicate_as_waiter_description": "リスナーが参加希望した時、待機中として重複している時に送信する固定文を設定できます。",
+				"cancel_title": "参加辞退時のチャット送信メッセージ",
+				"cancel_description": "リスナーが参加辞退した時に送信する固定文を設定できます。"
+			},
 			"quest_limit_form_label": "交代クエスト数",
 			"player_limit_form_label": "参加プレイヤー上限",
 			"empty_player_item_label": "プレイヤー{player}",

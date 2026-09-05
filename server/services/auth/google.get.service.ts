@@ -7,7 +7,8 @@ export class AuthGoogleGETService
     private prismaClient: PrismaORMClient,
     private userRepository: UserRepository,
     private settingRepository: SettingRepository,
-    private keywordRepository: KeywordRepository
+    private keywordRepository: KeywordRepository,
+    private eventMessageRepository: EventMessageRepository
   ) {}
 
   async execute(
@@ -45,7 +46,9 @@ export class AuthGoogleGETService
 
     // 認証コールバックは同一ユーザーで重複・並行して実行され得るため、
     // 事前検索で分岐せず常に冪等な upsert 経路を通す
-    const user = await this.prismaClient.$transaction(async (tx) => {
+    const user = await this.userRepository.findByChannelID(
+      channel_props.channel_id!
+    ) || await this.prismaClient.$transaction(async (tx) => {
       this.userRepository.client = tx
       const upserted_user = await this.userRepository.upsert(
         new UserModel({
@@ -68,11 +71,24 @@ export class AuthGoogleGETService
       )
       this.settingRepository.client = prismaClient
 
+      this.eventMessageRepository.client = tx
+      await this.eventMessageRepository.create(
+        new EventMessageModel({
+          user_id,
+          entry_as_joiner: null,
+          entry_as_waiter: null,
+          duplicate_as_joiner: null,
+          duplicate_as_waiter: null,
+          cancel: null
+        })
+      )
+      this.settingRepository.client = prismaClient
+
       this.keywordRepository.client = tx
       const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)
       const default_keywords = [
-        { keyword: "参加希望", action: "ENTRY" },
-        { keyword: "参加辞退", action: "CANCEL" }
+        { keyword: "参加希望", action: ActionEnum.entry },
+        { keyword: "参加辞退", action: ActionEnum.cancel }
       ] as const
       for (const default_keyword of default_keywords) {
         if (existing_keywords.some(

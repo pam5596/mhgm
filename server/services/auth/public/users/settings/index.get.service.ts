@@ -5,6 +5,7 @@ export class AuthPublicUsersSettingsGETService
 	constructor(
 		private settingRepository: SettingRepository,
 		private keywordRepository: KeywordRepository,
+		private eventMessageRepository: EventMessageRepository
 	) {}
 
 	async execute(request: AuthPublicUsersSettingsGETRequestDTO) {
@@ -14,6 +15,10 @@ export class AuthPublicUsersSettingsGETService
 			throw new NotFoundError(this.constructor.name, request.values);
 
 		const keywords = await this.keywordRepository.findManyByUserId(user_id);
+
+		const event_message = await this.eventMessageRepository.findByUserId(user_id);
+		if (!event_message)
+			throw new NotFoundError(this.constructor.name, request.values);
 
 		return new AuthPublicUsersSettingsGETResponseDTO({
 			body: {
@@ -26,6 +31,13 @@ export class AuthPublicUsersSettingsGETService
 					keyword: k.values.keyword,
 					action: k.values.action,
 				})),
+				event_message: {
+					cancel: event_message.values.cancel,
+					entry_as_joiner: event_message.values.entry_as_joiner,
+					entry_as_waiter: event_message.values.entry_as_waiter,
+					duplicate_as_joiner: event_message.values.duplicate_as_joiner,
+					duplicate_as_waiter: event_message.values.duplicate_as_waiter,
+				}
 			},
 		});
 	}

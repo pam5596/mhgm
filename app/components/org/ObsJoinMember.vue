@@ -39,8 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import type { SocketIOMemberEmit } from '~~/shared/dtos/interfaces/socker.io_member.emit.dto';
-
 defineProps<{
   streamer: SocketIOMemberEmit["streamer"]
   players: SocketIOMemberEmit["join"]
