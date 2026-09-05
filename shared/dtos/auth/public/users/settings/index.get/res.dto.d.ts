@@ -10,6 +10,7 @@ export interface AuthPublicUsersSettingsGETResponse {
 			action: string;
 		}[];
 		event_message: {
+			id: number;
 			entry_as_joiner: string | null;
 			entry_as_waiter: string | null;
 			duplicate_as_joiner: string | null;

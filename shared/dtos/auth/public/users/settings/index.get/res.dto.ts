@@ -22,6 +22,7 @@ export class AuthPublicUsersSettingsGETResponseDTO extends BaseDTO<AuthPublicUse
 					}),
 				),
 				event_message: z.strictObject({
+					id: z.number(),
 					entry_as_joiner: z.string().nullable(),
 					entry_as_waiter: z.string().nullable(),
 					duplicate_as_joiner: z.string().nullable(),
