@@ -24,26 +24,44 @@ export default async function() {
 
   const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
     if (event.chat.action === ActionEnum.entry) {
-      player_factory.value?.entryPlayer(event.user)
-      showAlert({
-        type: "info",
-        title: t("composables.use_manager_page.info_message.player_entry", { name: event.user.name })
-      })
-      const player = player_factory.value?.players.find(p => p.channel_id === event.user.channel_id)
-      
-      if (player?.status === StatusEnum.join) {
-        await postChatMessage(
-          t("composables.use_manager_page.chat_message.entry_as_joiner", { 
-            name: player.name 
-          })
-        )
-      } else if (player?.status === StatusEnum.wait) {
-        await postChatMessage(
-          t("composables.use_manager_page.chat_message.entry_as_waiter", {
-            name: player.name,
-            quests: player.wait_quests
-          })
-        )
+      const duplicate_player = player_factory.value?.getPlayerByChannelId(event.user.channel_id)
+      if (duplicate_player) {
+        if (duplicate_player.status === StatusEnum.join && settings?.value.event_message.duplicate_as_joiner) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.duplicate_as_joiner, { 
+              name: duplicate_player.name
+            })
+          )
+        } else if (duplicate_player.status === StatusEnum.wait && settings?.value.event_message.duplicate_as_waiter) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.duplicate_as_waiter, { 
+              name: duplicate_player.name,
+              quests: duplicate_player.wait_quests
+            })
+          )
+        }
+      } else {
+        player_factory.value?.entryPlayer(event.user)
+        showAlert({
+          type: "info",
+          title: t("composables.use_manager_page.info_message.player_entry", { name: event.user.name })
+        })
+        const player = player_factory.value?.players.find(p => p.channel_id === event.user.channel_id)
+        
+        if (player?.status === StatusEnum.join && settings?.value.event_message.entry_as_joiner) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.entry_as_joiner, { 
+              name: player.name 
+            })
+          )
+        } else if (player?.status === StatusEnum.wait && settings?.value.event_message.entry_as_waiter) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.entry_as_waiter, {
+              name: player.name,
+              quests: player.wait_quests
+            })
+          )
+        }
       }
     } else if (event.chat.action === ActionEnum.cancel) {
       player_factory.value?.cancelPlayer(event.user.channel_id)
@@ -51,7 +69,7 @@ export default async function() {
         type: "info",
         title: t("composables.use_manager_page.info_message.player_cancel", { name: event.user.name })
       })
-      t("composables.use_manager_page.chat_message.cancel", {
+      if (settings?.value.event_message.cancel) interpolateEventmessage(settings.value.event_message.cancel, {
         name: event.user.name
       })
     }

@@ -47,14 +47,15 @@ export class PlayerFactory {
     }, [] as FactoryPlayer[])
   }
 
+  getPlayerByChannelId(channel_id: string) {
+    return this.players.find(p => p.channel_id === channel_id)
+  }
+
   entryPlayer(user: DisplayUser) {
-    const is_duplicate = this.players.some(p => p.channel_id === user.channel_id)
-    if (!is_duplicate) {
-      const player = user as FactoryPlayer
-      player.join_quests = 0
-      this.players = [...this.players, player]
-      this.refresh()
-    }
+    const player = user as FactoryPlayer
+    player.join_quests = 0
+    this.players = [...this.players, player]
+    this.refresh()
   }
 
   cancelPlayer(channel_id: string) {
@@ -66,9 +67,7 @@ export class PlayerFactory {
     const joiner_index = this.players.findIndex(
       p => p.channel_id === joiner_channel_id
     )!
-    const waiter = this.players.find(
-      p => p.channel_id === waiter_channel_id
-    )!
+    const waiter = this.getPlayerByChannelId(waiter_channel_id)!
 
     this.players = this.players.filter(
       p => p.channel_id !== waiter_channel_id
@@ -77,7 +76,7 @@ export class PlayerFactory {
   }
 
   changePlayerQuests(channel_id: string, quests: number) {
-    const player = this.players.find(p => p.channel_id === channel_id)!
+    const player = this.getPlayerByChannelId(channel_id)!
     const player_index = this.players.findIndex(p => p.channel_id === channel_id)!
 
     if (player.status === StatusEnum.join) {

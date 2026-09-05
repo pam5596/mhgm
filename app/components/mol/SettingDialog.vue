@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog">
     <div class="w-full flex justify-center">
-      <AtmCard class="p-4 flex-col gap-4 w-1/2 max-h-[500px] overflow-y-scroll">
+      <AtmCard class="p-4 flex-col gap-4 w-1/2 max-h-[640px] overflow-y-scroll">
         <div class="flex justify-between">
           <p class="text-primary-dark font-bold text-xl">
             {{ $t("components.molecure.setting_dialog.title") }}
@@ -22,12 +22,13 @@
 </template>
 
 <script setup lang="ts">
-const { settings, patchSettings } = usePublicAPI()
+const { settings, patchSettings, patchEventMessages } = usePublicAPI()
 
 const dialog = defineModel<boolean>("dialog")
 const closeDialog = async () => {
   dialog.value = false
   await patchSettings()
+  await patchEventMessages()
 }
 const quest_limit = computed({
   get: () => settings.value.setting.quest_limit,

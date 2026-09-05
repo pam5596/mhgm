@@ -118,6 +118,14 @@ export default function () {
     body: settings.value.setting
   })
 
+  // PATCH /api/auth/public/users/event-messages
+  const patchEventMessages = async () => await requestAPI(
+    "/api/auth/public/users/event-messages", {
+    method: "PATCH",
+    showLoading: true,
+    body: settings.value.event_message
+  })
+
   return {
     settings,
     getUserSetting,
@@ -129,6 +137,7 @@ export default function () {
     patchKeyword,
     deleteKeyword,
     patchSettings,
-    postChatMessage
+    postChatMessage,
+    patchEventMessages
   }
 }
