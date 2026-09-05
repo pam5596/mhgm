@@ -15,7 +15,7 @@
     <div v-if="props.isStreaming" class="flex gap-2 items-center text-error-dark">
       <Icon name="ic:baseline-fiber-manual-record" />
       <p class="font-bold">
-        {{ $t("pages.manager.joiner_manage_card.item.straming") }}
+        {{ $t("components.molecure.streamer_item_streaming_label") }}
       </p>
     </div>
   </AtmCard>

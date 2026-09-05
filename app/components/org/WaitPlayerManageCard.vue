@@ -2,11 +2,11 @@
   <AtmCard color="primary" class="p-4 w-1/2 flex flex-col gap-4 h-[388px]">
     <div class="flex justify-between">
       <p class="text-primary-dark font-bold text-xl">
-        {{ $t("pages.manager.waiter_manage_card.title", { count: 10 }) }}
+        {{ $t("components.organizm.wait_player_manage_card.title", { count: 10 }) }}
       </p>
       <div class="flex gap-2">
         <v-tooltip 
-          :text="$t('pages.manager.waiter_manage_card.tooltip.copy_next_browser_source')"
+          :text="$t('components.organizm.wait_player_manage_card.copy_next_browser_source_tooltip')"
           location="start"
         >
           <template #activator="{ props: activator_props }">
@@ -22,7 +22,7 @@
           </template>
         </v-tooltip>
         <v-tooltip 
-          :text="$t('pages.manager.waiter_manage_card.tooltip.copy_wait_browser_source')"
+          :text="$t('components.organizm.wait_player_manage_card.copy_wait_browser_source_tooltip')"
           location="start"
         >
           <template #activator="{ props: activator_props }">

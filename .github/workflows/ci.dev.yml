@@ -9,6 +9,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      db:
+        image: postgres:17
+        env: 
+          POSTGRES_USER: ${{ vars.CI_POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ vars.CI_POSTGRES_PASSWORD }}
+          POSTGRESS_DB: ${{ vars.CI_POSTGRES_DB }}
+        ports:
+          - ${{ vars.CI_DB_PORT }}:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,9 +35,21 @@ jobs:
 
       - name: Setup Nuxt
         run: npm install
+        env:
+          DATABASE_URL: postgresql://${{ vars.CI_POSTGRES_USER }}:${{ vars.CI_POSTGRES_PASSWORD }}@localhost:${{ vars.CI_DB_PORT }}/db?schema=${{ vars.CI_DB_SCHEMA }}
 
-      - name: Unit Vitest
+      - name: Setup DB
+        run: npx prisma migrate dev
+        env:
+          DATABASE_URL: postgresql://${{ vars.CI_POSTGRES_USER }}:${{ vars.CI_POSTGRES_PASSWORD }}@localhost:${{ vars.CI_DB_PORT }}/db?schema=${{ vars.CI_DB_SCHEMA }}
+
+      - name: Run Unit Vitest
         run: npm run test test/unit
+
+      - name: Run Integration Vitest
+        run: npm run test test/integration
+        env:
+          DATABASE_URL: postgresql://${{ vars.CI_POSTGRES_USER }}:${{ vars.CI_POSTGRES_PASSWORD }}@localhost:${{ vars.CI_DB_PORT }}/db?schema=${{ vars.CI_DB_SCHEMA }}
 
       - name: Lint
         run: npm run lint

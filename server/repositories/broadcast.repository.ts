@@ -1,5 +1,3 @@
-import type { Broadcast } from "~~/shared/models/interfaces/broadcast.interface";
-import { BroadcastModel } from "../../shared/models/broadcast.model";
 import { BaseRepository } from "./_base";
 
 export class BroadcastRepository extends BaseRepository {
@@ -10,6 +8,7 @@ export class BroadcastRepository extends BaseRepository {
 				update: {
 					title: model.values.title,
 					thumbnail: model.values.thumbnail,
+					live_chat_id: model.values.live_chat_id,
 					end_at: model.values.end_at,
 				},
 				create: model.toIgnoreUndefinedObject(),

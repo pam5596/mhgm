@@ -16,11 +16,11 @@ export default defineNuxtConfig({
 	},
 	imports: {
 		dirs: [
-			resolve(__dirname, "./shared/models"),
+			resolve(__dirname, "./shared/models/**"),
 			resolve(__dirname, "./shared/models/interfaces"),
 			resolve(__dirname, "./shared/errors"),
 			resolve(__dirname, "./shared/enums"),
-			resolve(__dirname, "./shared/dtos")
+			resolve(__dirname, "./shared/dtos/**")
 		],
 	},
 	nitro: {
@@ -29,14 +29,13 @@ export default defineNuxtConfig({
 		},
 		imports: {
 			dirs: [
-				resolve(__dirname, "./shared/models"),
-				resolve(__dirname, "./shared/models/interfaces"),
+				resolve(__dirname, "./shared/models/**"),
 				resolve(__dirname, "./shared/errors"),
 				resolve(__dirname, "./shared/enums"),
-				resolve(__dirname, "./shared/dtos"),
+				resolve(__dirname, "./shared/dtos/**"),
 				resolve(__dirname, "./server/repositories"),
 				resolve(__dirname, "./server/clients"),
-				resolve(__dirname, "./server/services"),
+				resolve(__dirname, "./server/services/**"),
 				resolve(__dirname, "./server/instances"),
 			],
 		},
@@ -100,8 +99,11 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		nodeEnv: process.env.NODE_ENV,
+		apiKey: process.env.API_KEY,
 		databaseUrl: process.env.DATABASE_URL,
+		databaseSchema: process.env.DATABASE_SCHEMA,
 		public: {
+			apiKey: process.env.API_KEY,
 			statefulApiBaseUrl: process.env.STATERUL_API_BASE_URL,
 			statefulApiApiKey: process.env.STATEFUL_API_KEY
 		}

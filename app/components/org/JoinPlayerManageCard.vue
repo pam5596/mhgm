@@ -2,10 +2,10 @@
   <AtmCard color="success" class="p-4 w-1/2 flex flex-col gap-4 h-[388px]">
     <div class="flex justify-between">
       <p class="text-success-dark font-bold text-xl">
-        {{ $t("pages.manager.joiner_manage_card.title") }}
+        {{ $t("components.organizm.join_player_manager_card.title") }}
       </p>
       <v-tooltip 
-        :text="$t('pages.manager.joiner_manage_card.tooltip.copy_join_browser_source')"
+        :text="$t('components.organizm.join_player_manager_card.copy_join_browser_source_tooltip')"
         location="start"
       >
         <template #activator="{ props: activator_props }">
@@ -55,7 +55,7 @@ defineEmits<{
 
 const joiners = computed(
   () => Array.from(
-    { length: 3 }, 
+    { length: props.playersFactory?.setting.player_limit || 0 }, 
     (_, i) => props.playersFactory?.joiners[i] ?? null
   )
 )

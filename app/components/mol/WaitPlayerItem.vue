@@ -11,12 +11,12 @@
     <div class="flex items-center gap-2">
       <div class="flex flex-col items-center">
         <span class="text-primary-dark font-bold text-xs">
-          {{ $t("pages.manager.waiter_manage_card.item.quest_count") }}
+          {{ $t("components.molecure.wait_player_item.quest_count_label") }}
         </span>
         <MolCounter v-model="quests" :min="0" />
       </div>
       <AtmButton color="error" variant="fill" @click="$emit('onCancel')">
-        {{ $t("pages.manager.waiter_manage_card.item.cancel") }}
+        {{ $t("components.molecure.wait_player_item.cancel_button_text") }}
       </AtmButton>
     </div>
   </AtmCard>

@@ -1,5 +1,3 @@
-import type { SocketIOLiveChatEmit } from "~~/shared/dtos/interfaces/socker.io_live_chat.emit.dto"
-
 export default async function() {
   const { t } = useI18n()
   const { origin } = useRequestURL()
@@ -14,20 +12,65 @@ export default async function() {
   const is_recruiting = ref(false)
   const player_factory = ref<PlayerFactory>()
 
-  const { settings, getUserSetting, broadcast, getBroadcast, putBroadcast, postWebhookMember } = usePublicAPI()
+  const { 
+    settings, 
+    getUserSetting, 
+    broadcast, 
+    getBroadcast, 
+    putBroadcast, 
+    postWebhookMember,
+    postChatMessage
+  } = usePublicAPI()
 
   const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
     if (event.chat.action === ActionEnum.entry) {
-      player_factory.value?.entryPlayer(event.user)
-      showAlert({
-        type: "info",
-        title: t("pages.manager.alert.info_player_entry", { name: event.user.name })
-      })
+      const duplicate_player = player_factory.value?.getPlayerByChannelId(event.user.channel_id)
+      if (duplicate_player) {
+        if (duplicate_player.status === StatusEnum.join && settings?.value.event_message.duplicate_as_joiner) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.duplicate_as_joiner, { 
+              name: duplicate_player.name
+            })
+          )
+        } else if (duplicate_player.status === StatusEnum.wait && settings?.value.event_message.duplicate_as_waiter) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.duplicate_as_waiter, { 
+              name: duplicate_player.name,
+              quests: duplicate_player.wait_quests
+            })
+          )
+        }
+      } else {
+        player_factory.value?.entryPlayer(event.user)
+        showAlert({
+          type: "info",
+          title: t("composables.use_manager_page.info_message.player_entry", { name: event.user.name })
+        })
+        const player = player_factory.value?.players.find(p => p.channel_id === event.user.channel_id)
+        
+        if (player?.status === StatusEnum.join && settings?.value.event_message.entry_as_joiner) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.entry_as_joiner, { 
+              name: player.name 
+            })
+          )
+        } else if (player?.status === StatusEnum.wait && settings?.value.event_message.entry_as_waiter) {
+          await postChatMessage(
+            interpolateEventmessage(settings.value.event_message.entry_as_waiter, {
+              name: player.name,
+              quests: player.wait_quests
+            })
+          )
+        }
+      }
     } else if (event.chat.action === ActionEnum.cancel) {
       player_factory.value?.cancelPlayer(event.user.channel_id)
       showAlert({
         type: "info",
-        title: t("pages.manager.alert.info_player_cancel", { name: event.user.name })
+        title: t("composables.use_manager_page.info_message.player_cancel", { name: event.user.name })
+      })
+      if (settings?.value.event_message.cancel) interpolateEventmessage(settings.value.event_message.cancel, {
+        name: event.user.name
       })
     }
   }
@@ -49,7 +92,7 @@ export default async function() {
         is_recruiting.value = true
         showAlert({
           type: "success",
-          title: t("pages.manager.alert.success_start_recruit")
+          title: t("composables.use_manager_page.success_mesage.start_recruit")
         })
       }
       closeLoading()
@@ -70,7 +113,7 @@ export default async function() {
     if (user.value) {
       await getUserSetting()
       player_factory.value = PlayerFactory.create(
-        settings.value.setting.quest_limit
+        settings.value.setting,
       )
     }
   })
@@ -78,9 +121,10 @@ export default async function() {
   watch(
     () => player_factory.value?.players,
     async (players) => {
-      console.log(players)
-      if (players?.length)
-        await postWebhookMember(user.value!, player_factory.value!)
+      if (players?.length) await postWebhookMember(
+        user.value!, 
+        player_factory.value!
+      )
     },
     { deep: true }
   )

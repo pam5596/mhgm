@@ -7,22 +7,16 @@ export class BroadcastModel extends BaseModel<Broadcast> {
 		super(broadcast, BroadcastModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
-			id: z.int().optional(),
+			id: z.int().min(1).max(2147483647).optional(),
 			title: z.string().min(1).max(100),
 			thumbnail: z.url({ protocol: /^https?$/ }),
+			live_chat_id: z.string().min(1),
 			stream_id: z.string().length(11),
 			begin_at: z.date().optional(),
 			end_at: z.date().nullable(),
-			user_id: z.int(),
-		});
-	}
-
-	updateEndAt(end_at: Date) {
-		return new BroadcastModel({
-			...this.values,
-			end_at,
+			user_id: z.int().min(1).max(2147483647),
 		});
 	}
 }

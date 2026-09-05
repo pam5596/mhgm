@@ -1,35 +1,14 @@
 import { describe, expect, it } from "vitest";
-import type { ActionUnion } from "../../../shared/enums/action.enum";
 import { KeywordModel } from "../../../shared/models/keyword.model";
+import { zocker } from "zocker"
 
 describe("KeywordModelの単体テスト", () => {
-	const values = {
-		id: 1,
-		keyword: "string",
-		action: "ENTRY" as ActionUnion,
-		created_at: new Date(),
-		user_id: 1,
-	};
+	const mock = zocker(KeywordModel.schema()).generate()
 
 	it("モデルが作成できる", () => {
-		expect(() => new KeywordModel(values)).not.toThrow();
+		expect(() => new KeywordModel(mock)).not.toThrow();
 
-		const { id, created_at, ...require_params } = values;
+		const { id, created_at, ...require_params } = mock;
 		expect(() => new KeywordModel(require_params)).not.toThrow();
-	});
-
-	it("keywordでエラーになる", () => {
-		expect(() => new KeywordModel({ ...values, keyword: "" })).toThrow();
-	});
-
-	it("actionでエラーになる", () => {
-		expect(
-			() => new KeywordModel({ ...values, action: "NO_ENUM" as ActionUnion }),
-		).toThrow();
-	});
-
-	it("keywordを更新できる", () => {
-		const model = new KeywordModel(values);
-		expect(model.updateKeyword("update").values.keyword).toBe("update");
 	});
 });

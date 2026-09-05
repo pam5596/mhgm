@@ -1,6 +1,6 @@
 <template>
   <AtmButton color="primary" variant="outlined" icon="logos:google-icon" href="/api/auth/google">
-    {{ $t("pages.index.button.login_for_google") }}
+    {{ $t("components.atom.login_button_text") }}
   </AtmButton>
 </template>
 
