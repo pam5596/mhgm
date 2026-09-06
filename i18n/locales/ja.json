@@ -118,11 +118,6 @@
 			"info_message": {
 				"player_entry": "{name}が参加希望しました。",
 				"player_cancel": "{name}が参加辞退しました。"
-			},
-			"chat_message": {
-				"entry_as_joiner": "{name} さんの参加希望を受け付けました！枠が空いてますのでロビーへご入室ください。",
-				"entry_as_waiter": "{name} さんの参加希望を受け付けました！参加まであと{quests}クエスト待ちです。",
-				"cancel": "{name}さんの参加辞退を受け付けました。"
 			}
 		}
 	},

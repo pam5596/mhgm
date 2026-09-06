@@ -3,6 +3,7 @@ export interface AuthPublicBroadcastsPUTRequest {
 		user_id: number;
 	};
 	body: {
+		id: number;
 		stream_id: string;
 		live_chat_id: string;
 		title: string;

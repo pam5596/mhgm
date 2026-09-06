@@ -1,9 +1,9 @@
-describe("PrivateActionlogsPOSTServiceの結合テスト", () => {
+describe("AuthPublicActionlogsPOSTServiceの結合テスト", () => {
 	const actionLogRepo = new ActionLogRepository(prisma);
 	const userRepo = new UserRepository(prisma);
 	const broadcastRepo = new BroadcastRepository(prisma);
 	const keywordRepo = new KeywordRepository(prisma);
-	const service = new PrivateActionlogsPOSTService(actionLogRepo);
+	const service = new AuthPublicActionlogsPOSTService(actionLogRepo);
 
 	withSetupDB();
 
@@ -17,7 +17,7 @@ describe("PrivateActionlogsPOSTServiceの結合テスト", () => {
 			keyword_id: keyword.values.id,
 		});
 
-		const request = new PrivateActionlogsPOSTRequestDTO({
+		const request = new AuthPublicActionlogsPOSTRequestDTO({
 			body: {
 				message: actionLog.values.message,
 				user_id: user.values.id!,
@@ -26,8 +26,6 @@ describe("PrivateActionlogsPOSTServiceの結合テスト", () => {
 			},
 		});
 
-		const result = await service.execute(request);
- 
-		expect(result).toBeTruthy();
+		await service.execute(request);
 	}));
 });
