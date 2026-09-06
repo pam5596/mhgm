@@ -93,7 +93,7 @@ export default async function() {
       })
       connect()
       onEmit(user.value!.channel_id, emitLiveChat)
-      onError(user.value!.channel_id, async (error) => showAlert({
+      onError(user.value!.channel_id, async () => showAlert({
         type: "error",
         title: t("errors.unknown")
       }))
