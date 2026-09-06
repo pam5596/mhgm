@@ -14,7 +14,7 @@
     >
       <template #badge>
         <p class="font-bold">
-          {{ $t("obs.member.badge.wait_member", { quests: player.wait_quests }) }}
+          {{ $t("components.organizm.obs_wait_member.badge", { quests: player.wait_quests }) }}
         </p>
       </template>
     </v-avatar>
@@ -22,8 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import type { SocketIOMemberEmit } from '~~/shared/dtos/interfaces/socker.io_member.emit.dto';
-
 defineProps<{
   players: SocketIOMemberEmit["wait"]
 }>()

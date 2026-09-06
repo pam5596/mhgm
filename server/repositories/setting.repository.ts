@@ -1,4 +1,3 @@
-import { SettingModel } from "../../shared/models/setting.model";
 import { BaseRepository } from "./_base";
 
 export class SettingRepository extends BaseRepository {

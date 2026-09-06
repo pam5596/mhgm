@@ -7,20 +7,13 @@ export class UserModel extends BaseModel<User> {
 		super(user, UserModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
-			id: z.int().optional(),
+			id: z.int().min(1).max(2147483647).optional(),
 			channel_id: z.string().length(24),
 			name: z.string().min(1),
 			avatar: z.url({ protocol: /^https?$/ }),
 			created_at: z.date().optional(),
-		});
-	}
-
-	update(new_values: Pick<User, "name" | "avatar">) {
-		return new UserModel({
-			...this.values,
-			...new_values,
 		});
 	}
 }

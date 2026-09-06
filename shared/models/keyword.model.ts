@@ -8,20 +8,13 @@ export class KeywordModel extends BaseModel<Keyword> {
 		super(keyword, KeywordModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
-			id: z.int().optional(),
+			id: z.int().min(1).max(2147483647).optional(),
 			keyword: z.string().min(1).max(10),
 			action: z.enum(ActionEnum),
 			created_at: z.date().optional(),
-			user_id: z.int(),
-		});
-	}
-
-	updateKeyword(keyword: string) {
-		return new KeywordModel({
-			...this.values,
-			keyword
+			user_id: z.int().min(1).max(2147483647),
 		});
 	}
 }

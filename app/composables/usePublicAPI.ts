@@ -1,8 +1,4 @@
 import type { User } from "#auth-utils"
-import type { AuthPublicBroadcastsPUTResponse } from "~~/shared/dtos/interfaces/auth_public_broadcasts.put.res.dto"
-import type { AuthPublicKeywordsPOSTResponse } from "~~/shared/dtos/interfaces/auth_public_keywords.post.res.dto"
-import type { AuthPublicUsersSettingsGETResponse } from "~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto"
-import type { AuthPublicYoutubeBroadcastsGETResponse } from "~~/shared/dtos/interfaces/auth_public_youtube_broadcasts.get.res.dto"
 
 export default function () {
   const config = useRuntimeConfig()
@@ -10,10 +6,29 @@ export default function () {
   const requestAPI = useRequestAPI()
 
   // GET /api/auth/public/users/settings
-  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>("/api/auth/public/users/settings", { showLoading: true })
+  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>(
+    "/api/auth/public/users/settings", { 
+      showLoading: true 
+    })
   
   // GET /api/auth/public/youtube/broadcasts
-  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>("/api/auth/public/youtube/broadcasts",  { showLoading: true })
+  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>(
+    "/api/auth/public/youtube/broadcasts", {
+      showLoading: true 
+    })
+
+  // POST /api/auth/public/youtube/chat-messages
+  const postChatMessage = async (
+    message: string
+  ) => await requestAPI<AuthPublicYoutubeChatMessagesPOSTRequest["body"]>(
+    "/api/auth/public/youtube/chat-messages", {
+      method: "POST",
+      body: {
+        live_chat_id: broadcast.value.live_chat_id,
+        message
+      }
+    }
+  )
 
   // PUT /api/auth/public/broadcasts
   const putBroadcast = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
@@ -68,9 +83,11 @@ export default function () {
     `/api/auth/public/keywords`, {
     method: "POST",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_keyword_create"),
+    successMessage: t("composables.use_public_api.success_messages.create_keyword"),
     body: {
-      keyword: t("pages.manager.setting_dialog.cancel_keyword_form.default_keyword"),
+      keyword: action === "ENTRY" ? 
+        t("components.molecure.entry_keyword_form.default_keyword") :
+        t("components.molecure.cancel_keyword_form.default_keyword"),
       action
     }
   })
@@ -80,7 +97,7 @@ export default function () {
     `/api/auth/public/keywords/${id}`, {
     method: "PATCH",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_keyword_update"),
+    successMessage: t("composables.use_public_api.success_messages.update_keyword"),
     body: { keyword }
   })
 
@@ -89,7 +106,7 @@ export default function () {
     `/api/auth/public/keywords/${id}`, {
     method: "DELETE",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_keyword_delete")
+    successMessage: t("composables.use_public_api.success_messages.delete_keyword")
   })
 
   // PATCH /api/auth/public/users/settings
@@ -97,8 +114,16 @@ export default function () {
     "/api/auth/public/users/settings", {
     method: "PATCH",
     showLoading: true,
-    successMessage: t("pages.manager.setting_dialog.alert.success_update"),
+    successMessage: t("composables.use_public_api.success_messages.update_settings"),
     body: settings.value.setting
+  })
+
+  // PATCH /api/auth/public/users/event-messages
+  const patchEventMessages = async () => await requestAPI(
+    "/api/auth/public/users/event-messages", {
+    method: "PATCH",
+    showLoading: true,
+    body: settings.value.event_message
   })
 
   return {
@@ -111,6 +136,8 @@ export default function () {
     postKeyword,
     patchKeyword,
     deleteKeyword,
-    patchSettings
+    patchSettings,
+    postChatMessage,
+    patchEventMessages
   }
 }

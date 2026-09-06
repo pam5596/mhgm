@@ -1,5 +1,4 @@
 import { io, type Socket } from "socket.io-client"
-import type { SocketIOLiveChatAuth } from "~~/shared/dtos/interfaces/socker.io_live_chat.auth.dto"
 
 export default function() {
   const config = useRuntimeConfig()

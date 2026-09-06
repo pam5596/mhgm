@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { ParameterMissingError } from "../errors/parameter_missing";
 
 export abstract class BaseDTO<I> {
 	readonly values: I;

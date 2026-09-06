@@ -1,18 +1,20 @@
 <template>
   <v-dialog v-model="dialog">
     <div class="w-full flex justify-center">
-      <AtmCard class="p-4 flex-col gap-2 w-1/2 max-h-96 overflow-y-scroll">
+      <AtmCard class="p-4 flex-col gap-4 w-1/2 max-h-[640px] overflow-y-scroll">
         <div class="flex justify-between">
           <p class="text-primary-dark font-bold text-xl">
-            {{ $t("pages.manager.setting_dialog.title") }}
+            {{ $t("components.molecure.setting_dialog.title") }}
           </p>
           <Icon class="text-primary-dark cursor-pointer" name="ic:baseline-close" size="28" @click="closeDialog"/>
         </div>
         <v-divider thickness="2" class="border-primary border-opacity-100" />
-        <div class="flex gap-2 flex-col">
-          <MolChangeQuestsForm v-model="change_quests" />
+        <div class="flex gap-4 flex-col">
+          <MolQuestLimitForm v-model="quest_limit" />
+          <MolPlayerLimitForm v-model="player_limit" />
           <MolEntryKeywordForm v-model="entry_keywords" />
           <MolCancelKeywordForm v-model="cancel_keywords" />
+          <MolEventMessageForm v-model="settings.event_message" />
         </div>
       </AtmCard>
     </div>
@@ -20,19 +22,37 @@
 </template>
 
 <script setup lang="ts">
-import type { AuthPublicUsersSettingsGETResponse } from '~~/shared/dtos/interfaces/auth_public_users_settings.get.res.dto';
-
-const { settings, patchSettings } = usePublicAPI()
+const { settings, patchSettings, patchEventMessages } = usePublicAPI()
 
 const dialog = defineModel<boolean>("dialog")
 const closeDialog = async () => {
   dialog.value = false
   await patchSettings()
+  await patchEventMessages()
 }
-const change_quests = computed({
+const quest_limit = computed({
   get: () => settings.value.setting.quest_limit,
   set: (value: number) => {
-    settings.value = { ...settings.value, setting: { quest_limit: value }}
+    settings.value = { 
+      ...settings.value, 
+      setting: { 
+        ...settings.value.setting, 
+        quest_limit: value 
+      }
+    }
+  }
+})
+
+const player_limit = computed({
+  get: () => settings.value.setting.player_limit,
+  set: (value: number) => {
+    settings.value = { 
+      ...settings.value, 
+      setting: { 
+        ...settings.value.setting, 
+        player_limit: value 
+      }
+    }
   }
 })
 

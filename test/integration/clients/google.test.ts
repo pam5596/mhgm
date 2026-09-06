@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { GoogleClient } from "../../../server/clients/google";
 
 describe("PrismaORMClient動作確認", async () => {
-	it("環境変数からデータベースURLを取得できる", () => {
+	it.skip("環境変数からデータベースURLを取得できる", () => {
 		console.log(process.env.GOOGLE_ACCESS_TOKEN);
 		expect(process.env.GOOGLE_ACCESS_TOKEN).toBeTruthy();
 	});

@@ -7,14 +7,14 @@ export class ActionLogModel extends BaseModel<ActionLog> {
 		super(action_log, ActionLogModel.schema());
 	}
 
-	private static schema() {
+	static schema() {
 		return z.strictObject({
-			id: z.int().optional(),
+			id: z.int().min(1).max(2147483647).optional(),
 			message: z.string().min(1).max(200),
 			created_at: z.date().optional(),
-			user_id: z.int(),
-			broadcast_id: z.int(),
-			keyword_id: z.int(),
+			user_id: z.int().min(1).max(2147483647),
+			broadcast_id: z.int().min(1).max(2147483647),
+			keyword_id: z.int().min(1).max(2147483647),
 		});
 	}
 }

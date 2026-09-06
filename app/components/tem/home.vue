@@ -3,9 +3,7 @@
     <MolUserProfile
       :user="user"
     />
-    <AtmButton color="primary" variant="fill" size="large" href="/manager">
-        {{ $t("pages.home.button.to_manager") }}
-    </AtmButton>
+    <AtmToManagerButton />
   </AtmCard>
 </template>
 

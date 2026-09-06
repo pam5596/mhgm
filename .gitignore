@@ -20,11 +20,13 @@ logs
 
 # Local env files
 .env
-.env.*
-!.env.example
+.env.test
 
+# Prisma
 prisma/generated
-.vscode
 
 # Lint
 .lint/tmp/
+
+# Vitest
+vitest-auto-imports.d.ts

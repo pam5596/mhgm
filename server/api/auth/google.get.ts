@@ -3,7 +3,8 @@ export default defineOAuthGoogleEventHandler({
     scope: [
       "email", 
       "profile", 
-      "https://www.googleapis.com/auth/youtube.readonly"
+      "https://www.googleapis.com/auth/youtube.readonly",
+      "https://www.googleapis.com/auth/youtube.force-ssl",
     ]
   },
   async onSuccess(event, result: {
@@ -21,7 +22,8 @@ export default defineOAuthGoogleEventHandler({
       prismaClient,
       userRepository,
       settingRepository,
-      keywordRepository
+      keywordRepository,
+      eventMessageRepository
     ).execute(
       new AuthGoogleGETRequestDTO({
         sessions: { access_token: result.tokens.access_token }

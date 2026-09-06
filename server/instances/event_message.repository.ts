@@ -1,0 +1,1 @@
+export const eventMessageRepository = new EventMessageRepository(prismaClient)
