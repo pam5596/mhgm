@@ -14,7 +14,7 @@
         :key="keyword.id"
         v-model="keyword.keyword"
         @on-update="onUpdateKeyword(keyword)"
-        @on-delete="onDeleteKeyword(keyword)"
+        @on-delete="ondeleteKeyword(keyword)"
       />
     </div>
   </div>
@@ -23,11 +23,11 @@
 <script setup lang="ts">
 const keywords = defineModel<AuthPublicUsersSettingsGETResponse["body"]["keywords"]>({ required: true })
 
-const { postKeyword, patchKeyword, deleteKeyword } = usePublicAPI()
+const { postKeywords, patchKeywords, deleteKeywords } = usePublicAPI()
 const { t } = useI18n()
 
 const onAddKeyword = async () => {
-  const data = await postKeyword(ActionEnum.entry)
+  const data = await postKeywords(ActionEnum.entry)
   keywords.value = [
     ...keywords.value,
     {
@@ -43,17 +43,17 @@ const onUpdateKeyword = async (keyword: {
   keyword: string,
   action: string
 }) => {
-  await patchKeyword(keyword.id, keyword.keyword)
+  await patchKeywords(keyword.id, keyword.keyword)
   keywords.value = keywords.value.with(
     keywords.value.findIndex(k => k.id === keyword.id),
     keyword
   )
 }
 
-const onDeleteKeyword = async (keyword: {
+const ondeleteKeyword = async (keyword: {
   id: number
 }) => {
-  await deleteKeyword(keyword.id)
+  await deleteKeywords(keyword.id)
   keywords.value = keywords.value.filter(k => k.id !== keyword.id)
 }
 

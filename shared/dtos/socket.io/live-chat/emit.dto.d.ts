@@ -4,10 +4,11 @@ export interface SocketIOLiveChatEmit {
 		channel_id: string
 		name: string
 		avatar: string
-	},
-	chat: {
-		message: string
-		action: string
-		keyword: string
 	}
+	keyword: {
+		id: numnber
+		action: string
+		keyword_id: number
+	}
+	message: string
 }

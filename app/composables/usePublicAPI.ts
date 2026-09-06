@@ -6,19 +6,19 @@ export default function () {
   const requestAPI = useRequestAPI()
 
   // GET /api/auth/public/users/settings
-  const { data: settings, execute: getUserSetting } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>(
+  const { data: settings, execute: getUsersSettings } = useFetchAPI<AuthPublicUsersSettingsGETResponse["body"]>(
     "/api/auth/public/users/settings", { 
       showLoading: true 
     })
   
   // GET /api/auth/public/youtube/broadcasts
-  const { data: broadcast, execute: getBroadcast } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>(
+  const { data: broadcast, execute: getBroadcasts } = useFetchAPI<AuthPublicYoutubeBroadcastsGETResponse["body"]>(
     "/api/auth/public/youtube/broadcasts", {
       showLoading: true 
     })
 
   // POST /api/auth/public/youtube/chat-messages
-  const postChatMessage = async (
+  const postChatMessages = async (
     message: string
   ) => await requestAPI<AuthPublicYoutubeChatMessagesPOSTRequest["body"]>(
     "/api/auth/public/youtube/chat-messages", {
@@ -31,7 +31,7 @@ export default function () {
   )
 
   // PUT /api/auth/public/broadcasts
-  const putBroadcast = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
+  const putBroadcasts = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
     "/api/auth/public/broadcasts", {
       method: "PUT",
       body: {
@@ -79,7 +79,7 @@ export default function () {
   )
 
   // POST /api/auth/public/keywords
-  const postKeyword = async (action: ActionUnion) => await requestAPI<AuthPublicKeywordsPOSTResponse["body"]>(
+  const postKeywords = async (action: ActionUnion) => await requestAPI<AuthPublicKeywordsPOSTResponse["body"]>(
     `/api/auth/public/keywords`, {
     method: "POST",
     showLoading: true,
@@ -93,7 +93,7 @@ export default function () {
   })
 
   // PATCH /api/auth/public/keywords/:id
-  const patchKeyword = async (id: number, keyword: string) => await requestAPI(
+  const patchKeywords = async (id: number, keyword: string) => await requestAPI(
     `/api/auth/public/keywords/${id}`, {
     method: "PATCH",
     showLoading: true,
@@ -102,7 +102,7 @@ export default function () {
   })
 
   // DELETE /api/auth/public/keywords/:id
-  const deleteKeyword = async (id: number) => await requestAPI(
+  const deleteKeywords = async (id: number) => await requestAPI(
     `/api/auth/public/keywords/${id}`, {
     method: "DELETE",
     showLoading: true,
@@ -126,18 +126,35 @@ export default function () {
     body: settings.value.event_message
   })
 
+  const postActionLogs = async (
+    message: string,
+    user_id: number,
+    keyword_id: number
+  ) => await requestAPI(
+    "/api/auth/public/action-logs", {
+      method: "POST",
+      body: {
+        message,
+        user_id,
+        keyword_id,
+        broadcast_id: broadcast.value.id
+      }
+    }
+  )
+
   return {
     settings,
-    getUserSetting,
+    getUsersSettings,
     broadcast,
-    getBroadcast,
-    putBroadcast,
+    getBroadcasts,
+    putBroadcasts,
     postWebhookMember,
-    postKeyword,
-    patchKeyword,
-    deleteKeyword,
+    postKeywords,
+    patchKeywords,
+    deleteKeywords,
     patchSettings,
-    postChatMessage,
-    patchEventMessages
+    postChatMessages,
+    patchEventMessages,
+    postActionLogs
   }
 }
