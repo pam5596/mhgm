@@ -27,11 +27,18 @@ export default function() {
     socket.value?.disconnect()
   }
 
-  const subscribeEmit = <Event>(
+  const onEmit = <Event>(
     channel_id: string,
     callback: (event: Event) => Promise<void>
   ) => {
     socket.value?.on(`emit-${channel_id}`, callback)
+  }
+
+  const onError = (
+    channel_id: string,
+    callback: (event: unknown) => Promise<void>
+  ) => {
+    socket.value?.on(`error-${channel_id}`, callback)
   }
 
 
@@ -41,6 +48,7 @@ export default function() {
     setClient,
     connect,
     disconnect,
-    subscribeEmit
+    onEmit,
+    onError
   }
 }
