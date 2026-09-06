@@ -72,9 +72,12 @@ export default async function() {
         type: "info",
         title: t("composables.use_manager_page.info_message.player_cancel", { name: event.user.name })
       })
-      if (settings?.value.event_message.cancel) interpolateEventmessage(settings.value.event_message.cancel, {
-        name: event.user.name
-      })
+      if (settings?.value.event_message.cancel) 
+        await postChatMessages(
+          interpolateEventmessage(settings.value.event_message.cancel, {
+            name: event.user.name
+          })
+        )
       await postActionLogs(event.message, event.user.id, event.keyword.id)
     }
   }
