@@ -14,6 +14,7 @@ describe("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
 				user_id: user.values.id!
 			},
 			body: {
+				id: broadcast.values.id!,
 				stream_id: broadcast.values.stream_id,
 				live_chat_id: broadcast.values.live_chat_id,
 				title: broadcast.values.title,

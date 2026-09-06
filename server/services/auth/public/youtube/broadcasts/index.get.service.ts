@@ -1,11 +1,16 @@
+import { BroadcastModel } from "~~/shared/models/broadcast.model";
+
 export class AuthPublicYoutubeBroadcastsGETService
 	implements
 		BaseService<AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO>
 {
-	constructor(private googleClient: GoogleClient) {}
+	constructor(
+		private googleClient: GoogleClient,
+		private broadcastRepository: BroadcastRepository
+	) {}
 
 	async execute(request: AuthPublicYoutubeBroadcastsGETRequestDTO) {
-		const { access_token } = request.values.sessions;
+		const { access_token, user_id } = request.values.sessions;
 
 		const google_response = await this.googleClient
 			.youtube(access_token)
@@ -29,10 +34,10 @@ export class AuthPublicYoutubeBroadcastsGETService
 				"errors.not_found.youtube_broadcast",
 			);
 
-		const broadcast = google_response.data.items[0]!;
-		const title = broadcast.snippet?.title;
-		const thumbnail = broadcast.snippet?.thumbnails?.default?.url;
-		const live_chat_id = broadcast.snippet?.liveChatId
+		const stream = google_response.data.items[0]!;
+		const title = stream.snippet?.title;
+		const thumbnail = stream.snippet?.thumbnails?.default?.url;
+		const live_chat_id = stream.snippet?.liveChatId
 
 		if (!title || !thumbnail || !live_chat_id)
 			throw new NotFoundError(
@@ -41,9 +46,21 @@ export class AuthPublicYoutubeBroadcastsGETService
 				"errors.not_found.youtube_broadcast",
 			);
 
+		const broadcast = await this.broadcastRepository.upsert(
+			new BroadcastModel({
+				user_id,
+				stream_id: stream.id!,
+				live_chat_id,
+				title,
+				thumbnail,
+				end_at: null
+			})
+		)
+
 		return new AuthPublicYoutubeBroadcastsGETResponseDTO({
 			body: {
-				stream_id: broadcast.id!,
+				id: broadcast.values.id!,
+				stream_id: stream.id!,
 				title,
 				thumbnail,
 				live_chat_id
