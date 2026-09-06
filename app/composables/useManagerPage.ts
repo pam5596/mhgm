@@ -7,7 +7,7 @@ export default async function() {
   const onCopy = useClipboard()
 
   const { user } = useUserSession()
-  const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
+  const { setClient, connect, disconnect, onEmit, onError } = useLiveChatSocket()
 
   const is_recruiting = ref(false)
   const player_factory = ref<PlayerFactory>()
@@ -92,7 +92,13 @@ export default async function() {
         user_id: user.value!.user_id
       })
       connect()
-      subscribeEmit(user.value!.channel_id, emitLiveChat)
+      onEmit(user.value!.channel_id, emitLiveChat)
+      onError(user.value!.channel_id, async (error) => showAlert({
+        type: "error",
+        title: t("errors.unknown"),
+        detail: String(error)
+      }))
+
       is_recruiting.value = true
       showAlert({
         type: "success",
