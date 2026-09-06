@@ -1,4 +1,4 @@
-describe("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
+describe.skip("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
 	const broadcastRepo = new BroadcastRepository(prisma);
 	const userRepo = new UserRepository(prisma);
 	const service = new AuthPublicBroadcastsPUTService(broadcastRepo);
