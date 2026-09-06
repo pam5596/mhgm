@@ -96,7 +96,7 @@ export default async function() {
       onError(user.value!.channel_id, async (error) => showAlert({
         type: "error",
         title: t("errors.unknown"),
-        detail: String(error)
+        error: error instanceof Error ? jsonFormatter(error) : undefined
       }))
 
       is_recruiting.value = true
