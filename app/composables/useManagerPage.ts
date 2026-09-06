@@ -83,21 +83,18 @@ export default async function() {
     openLoading()
     await getBroadcasts()
     if (broadcast.value) {
-      const data = await putBroadcasts()
-      if (data) {
-        setClient({
-          channel_id: user.value!.channel_id,
-          stream_id: broadcast.value.stream_id,
-          user_id: user.value!.user_id
-        })
-        connect()
-        subscribeEmit(user.value!.channel_id, emitLiveChat)
-        is_recruiting.value = true
-        showAlert({
-          type: "success",
-          title: t("composables.use_manager_page.success_mesage.start_recruit")
-        })
-      }
+      setClient({
+        channel_id: user.value!.channel_id,
+        stream_id: broadcast.value.stream_id,
+        user_id: user.value!.user_id
+      })
+      connect()
+      subscribeEmit(user.value!.channel_id, emitLiveChat)
+      is_recruiting.value = true
+      showAlert({
+        type: "success",
+        title: t("composables.use_manager_page.success_mesage.start_recruit")
+      })
       closeLoading()
     }
   }

@@ -13,6 +13,7 @@ export class AuthPublicBroadcastsPUTRequestDTO extends BaseDTO<AuthPublicBroadca
 				user_id: z.number(),
 			}),
 			body: z.strictObject({
+				id: z.number(),
 				stream_id: z.string(),
 				live_chat_id: z.string(),
 				title: z.string(),

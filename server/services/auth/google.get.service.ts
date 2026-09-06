@@ -44,7 +44,6 @@ export class AuthGoogleGETService
       channel
     )
 
-
     const user = await this.userRepository.findByChannelID(
       channel_props.channel_id!
     ) || await this.prismaClient.$transaction(async (tx) => {
@@ -81,7 +80,7 @@ export class AuthGoogleGETService
           cancel: null
         })
       )
-      this.settingRepository.client = prismaClient
+      this.eventMessageRepository.client = prismaClient
 
       this.keywordRepository.client = tx
       const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)
