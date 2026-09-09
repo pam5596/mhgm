@@ -22,7 +22,10 @@ export class SettingRepository extends BaseRepository {
 		await this.prismaErrorHandler("update", async () => {
 			const updated_setting = await this.client.setting.update({
 				where: { user_id: model.values.user_id },
-				data: model.toIgnoreUndefinedObject(),
+				data: {
+					quest_limit: model.values.quest_limit,
+					player_limit: model.values.player_limit
+				},
 			});
 			return new SettingModel(updated_setting);
 		});

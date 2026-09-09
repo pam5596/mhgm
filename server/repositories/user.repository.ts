@@ -1,15 +1,12 @@
 import { BaseRepository } from "./_base";
 
 export class UserRepository extends BaseRepository {
-	upsert = async (model: UserModel) =>
+	create = async (model: UserModel) =>
 		await this.prismaErrorHandler("create", async () => {
-			const upserted_user = await this.client.user.upsert({
-				where: { channel_id: model.values.channel_id },
-				update: { name: model.values.name, avatar: model.values.avatar },
-				create: model.toIgnoreUndefinedObject(),
+			const created_user = await this.client.user.create({
+				data: model.toIgnoreUndefinedObject(),
 			});
-
-			return new UserModel(upserted_user);
+			return new UserModel(created_user);
 		});
 
 	findByID = async (id: number) =>
@@ -31,6 +28,19 @@ export class UserRepository extends BaseRepository {
 				return finded_user && new UserModel(finded_user);
 			})(channel_id),
 		);
+
+	update = async (model: UserModel) =>
+		await this.prismaErrorHandler("update", async () => {
+			const updated_user = await this.client.user.update({
+				where: { channel_id: model.values.channel_id },
+				data: { 
+					name: model.values.name, 
+					avatar: model.values.avatar 
+				},
+			});
+
+			return new UserModel(updated_user);
+		});
 
 	destroy = async (id: number) =>
 		await this.prismaErrorHandler("delete", async () => {

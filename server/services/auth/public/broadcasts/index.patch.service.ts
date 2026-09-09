@@ -5,7 +5,7 @@ export class AuthPublicBroadcastsPATCHService
 
 	async execute(request: AuthPublicBroadcastsPATCHRequestDTO) {
 		const { user_id } = request.values.sessions
-		const broadcast = await this.broadcastRepository.upsert(
+		const broadcast = await this.broadcastRepository.update(
 			new BroadcastModel({
 				...request.values.body,
 				end_at: new Date(request.values.body.end_at),
