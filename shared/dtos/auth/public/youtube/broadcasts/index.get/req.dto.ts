@@ -11,6 +11,7 @@ export class AuthPublicYoutubeBroadcastsGETRequestDTO extends BaseDTO<AuthPublic
 		return z.strictObject({
 			sessions: z.strictObject({
 				access_token: z.string(),
+				user_id: z.number()
 			}),
 		});
 	}

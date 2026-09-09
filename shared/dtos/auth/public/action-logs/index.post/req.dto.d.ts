@@ -1,4 +1,4 @@
-export interface PrivateActionlogsPOSTRequest {
+export interface AuthPublicActionlogsPOSTRequest {
   body: {
     message: string,
     user_id: number,

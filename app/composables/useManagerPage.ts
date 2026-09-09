@@ -7,33 +7,34 @@ export default async function() {
   const onCopy = useClipboard()
 
   const { user } = useUserSession()
-  const { setClient, connect, disconnect, subscribeEmit } = useLiveChatSocket()
+  const { setClient, connect, disconnect, onEmit, onError } = useLiveChatSocket()
 
   const is_recruiting = ref(false)
   const player_factory = ref<PlayerFactory>()
 
   const { 
     settings, 
-    getUserSetting, 
+    getUsersSettings, 
     broadcast, 
-    getBroadcast, 
-    putBroadcast, 
+    getBroadcasts, 
+    putBroadcasts, 
     postWebhookMember,
-    postChatMessage
+    postChatMessages,
+    postActionLogs
   } = usePublicAPI()
 
   const emitLiveChat = async (event: SocketIOLiveChatEmit) => {
-    if (event.chat.action === ActionEnum.entry) {
+    if (event.keyword.action === ActionEnum.entry) {
       const duplicate_player = player_factory.value?.getPlayerByChannelId(event.user.channel_id)
       if (duplicate_player) {
         if (duplicate_player.status === StatusEnum.join && settings?.value.event_message.duplicate_as_joiner) {
-          await postChatMessage(
+          await postChatMessages(
             interpolateEventmessage(settings.value.event_message.duplicate_as_joiner, { 
               name: duplicate_player.name
             })
           )
         } else if (duplicate_player.status === StatusEnum.wait && settings?.value.event_message.duplicate_as_waiter) {
-          await postChatMessage(
+          await postChatMessages(
             interpolateEventmessage(settings.value.event_message.duplicate_as_waiter, { 
               name: duplicate_player.name,
               quests: duplicate_player.wait_quests
@@ -49,52 +50,62 @@ export default async function() {
         const player = player_factory.value?.players.find(p => p.channel_id === event.user.channel_id)
         
         if (player?.status === StatusEnum.join && settings?.value.event_message.entry_as_joiner) {
-          await postChatMessage(
+          await postChatMessages(
             interpolateEventmessage(settings.value.event_message.entry_as_joiner, { 
               name: player.name 
             })
           )
         } else if (player?.status === StatusEnum.wait && settings?.value.event_message.entry_as_waiter) {
-          await postChatMessage(
+          await postChatMessages(
             interpolateEventmessage(settings.value.event_message.entry_as_waiter, {
               name: player.name,
               quests: player.wait_quests
             })
           )
         }
+
+        await postActionLogs(event.message, event.user.id, event.keyword.id)
       }
-    } else if (event.chat.action === ActionEnum.cancel) {
+    } else if (event.keyword.action === ActionEnum.cancel) {
       player_factory.value?.cancelPlayer(event.user.channel_id)
       showAlert({
         type: "info",
         title: t("composables.use_manager_page.info_message.player_cancel", { name: event.user.name })
       })
-      if (settings?.value.event_message.cancel) interpolateEventmessage(settings.value.event_message.cancel, {
-        name: event.user.name
-      })
+      if (settings?.value.event_message.cancel) 
+        await postChatMessages(
+          interpolateEventmessage(settings.value.event_message.cancel, {
+            name: event.user.name
+          })
+        )
+      await postActionLogs(event.message, event.user.id, event.keyword.id)
     }
   }
 
   const onStartRecruit = async () => {
     openLoading()
-    await getBroadcast()
+    await getBroadcasts()
     if (broadcast.value) {
-      const data = await putBroadcast()
-      if (data) {
-        setClient({
-          channel_id: user.value!.channel_id,
-          stream_id: broadcast.value.stream_id,
-          broadcast_id: data.id,
-          user_id: user.value!.user_id
-        })
-        connect()
-        subscribeEmit(user.value!.channel_id, emitLiveChat)
-        is_recruiting.value = true
+      setClient({
+        channel_id: user.value!.channel_id,
+        stream_id: broadcast.value.stream_id,
+        user_id: user.value!.user_id
+      })
+      connect()
+      onEmit(user.value!.channel_id, emitLiveChat)
+      onError(user.value!.channel_id, async (error) => {
+        console.error(error)
         showAlert({
-          type: "success",
-          title: t("composables.use_manager_page.success_mesage.start_recruit")
+          type: "error",
+          title: t("errors.unknown")
         })
-      }
+      })
+
+      is_recruiting.value = true
+      showAlert({
+        type: "success",
+        title: t("composables.use_manager_page.success_mesage.start_recruit")
+      })
       closeLoading()
     }
   }
@@ -102,7 +113,7 @@ export default async function() {
   const onStopRecruit = async () => {
     is_recruiting.value = false
     disconnect()
-    await putBroadcast()
+    await putBroadcasts()
   }
 
   const onCopyMemberBrowserSource = async (status: "join" | "next" | "wait") => await onCopy(
@@ -111,7 +122,7 @@ export default async function() {
 
   onMounted(async () => {
     if (user.value) {
-      await getUserSetting()
+      await getUsersSettings()
       player_factory.value = PlayerFactory.create(
         settings.value.setting,
       )

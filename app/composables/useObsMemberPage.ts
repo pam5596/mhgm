@@ -1,6 +1,5 @@
 import type { ObsMemberParams } from "~/types/obs_member.params"
 import type { ObsMemberQuerys } from "~/types/obs_member.querys"
-import type { SocketIOMemberEmit } from "~~/shared/dtos/interfaces/socker.io_member.emit.dto"
 
 export default function () {
   const { channel_id } = useRoute().params as unknown as ObsMemberParams
