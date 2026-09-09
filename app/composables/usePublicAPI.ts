@@ -31,7 +31,7 @@ export default function () {
   )
 
   // PUT /api/auth/public/broadcasts
-  const putBroadcasts = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
+  const putBroadcasts = async () => await requestAPI<AuthPublicBroadcastsPATCHResponse["body"]>(
     "/api/auth/public/broadcasts", {
       method: "PUT",
       body: {

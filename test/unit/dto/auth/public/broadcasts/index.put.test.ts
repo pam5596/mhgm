@@ -1,15 +1,15 @@
 import { zocker } from "zocker";
 
-describe("AuthPublicBroadcastsPUTの単体テスト", () => {
+describe("AuthPublicBroadcastsPATCHの単体テスト", () => {
 	it("RequestDTOが作成できる", () => {
-		const mock = zocker(AuthPublicBroadcastsPUTRequestDTO.schema()).generate();
+		const mock = zocker(AuthPublicBroadcastsPATCHRequestDTO.schema()).generate();
 
-		expect(() => new AuthPublicBroadcastsPUTRequestDTO(mock)).not.toThrow();
+		expect(() => new AuthPublicBroadcastsPATCHRequestDTO(mock)).not.toThrow();
 	});
 
 	it("ResponseDTOが作成できる", () => {
-		const mock = zocker(AuthPublicBroadcastsPUTResponseDTO.schema()).generate();
+		const mock = zocker(AuthPublicBroadcastsPATCHResponseDTO.schema()).generate();
 
-		expect(() => new AuthPublicBroadcastsPUTResponseDTO(mock)).not.toThrow();
+		expect(() => new AuthPublicBroadcastsPATCHResponseDTO(mock)).not.toThrow();
 	});
 });

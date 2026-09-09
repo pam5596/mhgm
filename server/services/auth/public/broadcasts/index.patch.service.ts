@@ -1,9 +1,9 @@
-export class AuthPublicBroadcastsPUTService
-	implements BaseService<AuthPublicBroadcastsPUTRequestDTO, AuthPublicBroadcastsPUTResponseDTO>
+export class AuthPublicBroadcastsPATCHService
+	implements BaseService<AuthPublicBroadcastsPATCHRequestDTO, AuthPublicBroadcastsPATCHResponseDTO>
 {
 	constructor(private broadcastRepository: BroadcastRepository) {}
 
-	async execute(request: AuthPublicBroadcastsPUTRequestDTO) {
+	async execute(request: AuthPublicBroadcastsPATCHRequestDTO) {
 		const { user_id } = request.values.sessions
 		const broadcast = await this.broadcastRepository.upsert(
 			new BroadcastModel({
@@ -13,6 +13,6 @@ export class AuthPublicBroadcastsPUTService
 			}),
 		);
 
-		return new AuthPublicBroadcastsPUTResponseDTO({ body: { id: broadcast.values.id! } });
+		return new AuthPublicBroadcastsPATCHResponseDTO({ body: { id: broadcast.values.id! } });
 	}
 }
