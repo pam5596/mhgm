@@ -6,7 +6,7 @@ describe("AuthPublicUsersEventMessagesPATCHServiceの結合テスト", () => {
   withSetupDB();
 
   it("イベントメッセージを更新する", errorHandler(async () => {
-    const user = await userRepo.upsert(Factory.create(UserModel));
+    const user = await userRepo.create(Factory.create(UserModel));
     await eventMessageRepo.create(Factory.create(EventMessageModel, { user_id: user.values.id }));
 
     const updated = Factory.create(EventMessageModel, { user_id: user.values.id })

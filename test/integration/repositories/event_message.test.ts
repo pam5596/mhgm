@@ -4,7 +4,7 @@ describe("EventMessageRepositoryの結合テスト", () => {
 	withSetupDB();
 
 	it("イベントメッセージを作成できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(EventMessageModel, {
@@ -16,7 +16,7 @@ describe("EventMessageRepositoryの結合テスト", () => {
 	}));
 
 	it("イベントメッセージをuser_idで取得できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(EventMessageModel, {
@@ -29,7 +29,7 @@ describe("EventMessageRepositoryの結合テスト", () => {
 	}));
 
 	it("イベントメッセージを更新できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(EventMessageModel, {
@@ -48,7 +48,7 @@ describe("EventMessageRepositoryの結合テスト", () => {
   }));
 
 	it("イベントメッセージを削除できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(EventMessageModel, {

@@ -4,7 +4,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 	withSetupDB();
 
 	it("キーワードを作成できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(KeywordModel, {
@@ -16,7 +16,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 	}));
 
 	it("キーワードをidで取得できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(KeywordModel, {
@@ -29,7 +29,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 	}));
 
 	it("キーワードをuser_idで取得できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(KeywordModel, {
@@ -42,7 +42,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 	}));
 
 	it("キーワードを更新できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(KeywordModel, {
@@ -60,7 +60,7 @@ describe("KeywordRepositoryの結合テスト", () => {
 	}));
 
 	it("キーワードを削除できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(KeywordModel, {

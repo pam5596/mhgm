@@ -6,9 +6,9 @@ describe("ActionLogRepositoryの結合テスト", () => {
 	withSetupDB();
 
 	it("アクションログを作成できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
-		const broadcast = await broadcastRepo.upsert(
+		const broadcast = await broadcastRepo.create(
 			Factory.create(BroadcastModel, { 
 				user_id: user.values.id 
 			})
@@ -16,7 +16,7 @@ describe("ActionLogRepositoryの結合テスト", () => {
 
 		const keyword = await keywordRepo.create(
 			Factory.create(KeywordModel, { 
-				user_id: user.values.id 
+				user_id: user.values.id
 			})
 		);
 
@@ -32,16 +32,16 @@ describe("ActionLogRepositoryの結合テスト", () => {
 	}));
 
 	it("アクションログを削除できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
-		const broadcast = await broadcastRepo.upsert(
+		const broadcast = await broadcastRepo.create(
 			Factory.create(BroadcastModel, { 
 				user_id: user.values.id 
 			})
 		);
 
 		const keyword = await keywordRepo.create(
-			Factory.create(KeywordModel, { 
+			Factory.create(KeywordModel, {
 				user_id: user.values.id 
 			})
 		);

@@ -6,7 +6,7 @@ describe("AuthPublicKeywordsPATCHServiceの結合テスト", () => {
 	withSetupDB();
 
 	it("キーワードをDBで更新できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 		const keyword = await keywordRepo.create(Factory.create(KeywordModel, { user_id: user.values.id }));
 		const updatedKeyword = Factory.create(KeywordModel, { user_id: user.values.id });
 

@@ -6,7 +6,7 @@ describe("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
 	withSetupDB();
 
 	it("ブロードキャストをDBに保存してIDを返す", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 		const broadcast = Factory.create(BroadcastModel, { end_at: new Date() })
 
 		const request = new AuthPublicBroadcastsPUTRequestDTO({

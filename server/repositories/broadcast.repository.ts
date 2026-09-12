@@ -4,7 +4,13 @@ export class BroadcastRepository extends BaseRepository {
 	create = async (model: BroadcastModel) =>
 			await this.prismaErrorHandler("create", async () => {
 				const created_broadcast = await this.client.broadcast.create({
-					data: model.toIgnoreUndefinedObject(),
+					data: {
+						user_id: model.values.user_id,
+						title: model.values.title,
+						thumbnail: model.values.thumbnail,
+						stream_id: model.values.stream_id,
+						live_chat_id: model.values.live_chat_id
+					}
 				});
 				return new BroadcastModel(created_broadcast);
 			});
