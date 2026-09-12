@@ -43,11 +43,8 @@ jobs:
         env:
           DATABASE_URL: postgresql://${{ vars.CI_POSTGRES_USER }}:${{ vars.CI_POSTGRES_PASSWORD }}@localhost:${{ vars.CI_DB_PORT }}/db?schema=${{ vars.CI_DB_SCHEMA }}
 
-      - name: Run Unit Vitest
-        run: npm run test test/unit
-
-      - name: Run Integration Vitest
-        run: npm run test test/integration
+      - name: Run Vitest
+        run: npm run test
         env:
           DATABASE_URL: postgresql://${{ vars.CI_POSTGRES_USER }}:${{ vars.CI_POSTGRES_PASSWORD }}@localhost:${{ vars.CI_DB_PORT }}/db?schema=${{ vars.CI_DB_SCHEMA }}
 
