@@ -9,6 +9,8 @@ export class AuthPublicYoutubeChatMessagesGETResponseDTO extends BaseDTO<AuthPub
 
   static schema() {
     return z.strictObject({
+      next_page_token: z.string(),
+      polling_interval: z.number(),
       chat_messages: z.array(
         z.strictObject({
           user: z.strictObject({
