@@ -44,15 +44,6 @@ export default defineConfig({
 			{
 				extends: true,
 				test: {
-					name: "unit",
-					include: ["test/unit/**/*.{test,spec}.ts"],
-					environment: "node",
-					globals: true
-				},
-			},
-			{
-				extends: true,
-				test: {
 					name: "clients",
 					include: ["test/clients/**/*.{test,spec}.ts"],
 					environment: "node",
