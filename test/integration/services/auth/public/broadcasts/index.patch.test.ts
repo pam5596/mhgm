@@ -1,15 +1,20 @@
-describe("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
+describe("AuthPublicBroadcastsPATCHServiceの結合テスト", () => {
 	const broadcastRepo = new BroadcastRepository(prisma);
 	const userRepo = new UserRepository(prisma);
-	const service = new AuthPublicBroadcastsPUTService(broadcastRepo);
+	const service = new AuthPublicBroadcastsPATCHService(broadcastRepo);
 
 	withSetupDB();
 
-	it("ブロードキャストをDBに保存してIDを返す", errorHandler(async () => {
+	it("ブロードキャストを更新してIDを返す", errorHandler(async () => {
 		const user = await userRepo.create(Factory.create(UserModel));
-		const broadcast = Factory.create(BroadcastModel, { end_at: new Date() })
+		const broadcast = await broadcastRepo.create(
+			Factory.create(BroadcastModel, { 
+				user_id: user.values.id!,
+				end_at: null 
+			})
+		)
 
-		const request = new AuthPublicBroadcastsPUTRequestDTO({
+		const request = new AuthPublicBroadcastsPATCHRequestDTO({
 			sessions: {
 				user_id: user.values.id!
 			},
@@ -19,7 +24,7 @@ describe("AuthPublicBroadcastsPUTServiceの結合テスト", () => {
 				live_chat_id: broadcast.values.live_chat_id,
 				title: broadcast.values.title,
 				thumbnail: broadcast.values.thumbnail,
-				end_at: broadcast.values.end_at!.toISOString()
+				end_at: new Date().toISOString()
 			}
 		});
 
