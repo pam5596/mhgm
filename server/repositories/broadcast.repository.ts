@@ -1,20 +1,19 @@
 import { BaseRepository } from "./_base";
 
 export class BroadcastRepository extends BaseRepository {
-	upsert = async (model: BroadcastModel) =>
-		await this.prismaErrorHandler("create", async () => {
-			const upserted_broadcast = await this.client.broadcast.upsert({
-				where: { stream_id: model.values.stream_id },
-				update: {
-					title: model.values.title,
-					thumbnail: model.values.thumbnail,
-					live_chat_id: model.values.live_chat_id,
-					end_at: model.values.end_at,
-				},
-				create: model.toIgnoreUndefinedObject(),
+	create = async (model: BroadcastModel) =>
+			await this.prismaErrorHandler("create", async () => {
+				const created_broadcast = await this.client.broadcast.create({
+					data: {
+						user_id: model.values.user_id,
+						title: model.values.title,
+						thumbnail: model.values.thumbnail,
+						stream_id: model.values.stream_id,
+						live_chat_id: model.values.live_chat_id
+					}
+				});
+				return new BroadcastModel(created_broadcast);
 			});
-			return new BroadcastModel(upserted_broadcast);
-		});
 
 	findById = async (id: number) =>
 		await this.prismaErrorHandler("read", async () => {
@@ -39,6 +38,22 @@ export class BroadcastRepository extends BaseRepository {
 			});
 			return finded_broadcast && new BroadcastModel(finded_broadcast);
 		});
+
+	update = async (model: BroadcastModel) =>
+		await this.prismaErrorHandler("update", async () => {
+			const updated_broadcast = await this.client.broadcast.update({
+				where: {
+					stream_id: model.values.stream_id
+				},
+				data: {
+					title: model.values.title,
+					thumbnail: model.values.thumbnail,
+					end_at: model.values.end_at,
+				},
+			});
+			return new BroadcastModel(updated_broadcast);
+		});
+	
 
 	destroyById = async (id: number) =>
 		await this.prismaErrorHandler("delete", async () => {

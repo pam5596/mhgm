@@ -4,7 +4,7 @@ describe("SettingRepositoryの結合テスト", () => {
 	withSetupDB();
 
 	it("設定を作成できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(SettingModel, {
@@ -16,7 +16,7 @@ describe("SettingRepositoryの結合テスト", () => {
 	}));
 
 	it("設定をuser_idで取得できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(SettingModel, {
@@ -29,7 +29,7 @@ describe("SettingRepositoryの結合テスト", () => {
 	}));
 
 	it("設定を更新できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(SettingModel, {
@@ -47,7 +47,7 @@ describe("SettingRepositoryの結合テスト", () => {
 	}));
 
 	it("設定を削除できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const created = await repo.create(
 			Factory.create(SettingModel, {

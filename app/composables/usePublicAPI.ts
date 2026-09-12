@@ -30,10 +30,10 @@ export default function () {
     }
   )
 
-  // PUT /api/auth/public/broadcasts
-  const putBroadcasts = async () => await requestAPI<AuthPublicBroadcastsPUTResponse["body"]>(
+  // PATCH /api/auth/public/broadcasts
+  const putBroadcasts = async () => await requestAPI<AuthPublicBroadcastsPATCHResponse["body"]>(
     "/api/auth/public/broadcasts", {
-      method: "PUT",
+      method: "PATCH",
       body: {
         ...broadcast.value,
         end_at: new Date().toISOString()
@@ -126,6 +126,7 @@ export default function () {
     body: settings.value.event_message
   })
 
+  // POST /api/auth/public/action-logs
   const postActionLogs = async (
     message: string,
     user_id: number,

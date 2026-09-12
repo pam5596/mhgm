@@ -1,10 +1,10 @@
 import z from "zod";
 import { BaseDTO } from "~~/shared/dtos/_base";
-import type { AuthPublicBroadcastsPUTRequest } from "./req.dto.d";
+import type { AuthPublicBroadcastsPATCHRequest } from "./req.dto.d";
 
-export class AuthPublicBroadcastsPUTRequestDTO extends BaseDTO<AuthPublicBroadcastsPUTRequest> {
-	constructor(values: AuthPublicBroadcastsPUTRequest) {
-		super(values, AuthPublicBroadcastsPUTRequestDTO.schema());
+export class AuthPublicBroadcastsPATCHRequestDTO extends BaseDTO<AuthPublicBroadcastsPATCHRequest> {
+	constructor(values: AuthPublicBroadcastsPATCHRequest) {
+		super(values, AuthPublicBroadcastsPATCHRequestDTO.schema());
 	}
 
 	static schema() {

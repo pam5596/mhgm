@@ -8,7 +8,7 @@ describe("AuthPublicUsersSettingsGETServiceの結合テスト", () => {
 	withSetupDB();
 
 	it("設定とキーワードをDBから取得してDTOを返す", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 		await settingRepo.create(Factory.create(SettingModel, { user_id: user.values.id }));
 		await keywordRepo.create(Factory.create(KeywordModel, { user_id: user.values.id }));
 		await keywordRepo.create(Factory.create(KeywordModel, { user_id: user.values.id }));

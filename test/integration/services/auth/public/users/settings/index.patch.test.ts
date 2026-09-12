@@ -6,7 +6,7 @@ describe("AuthPublicUsersSettingsPATCHServiceの結合テスト", () => {
 	withSetupDB();
 
 	it("設定をDBに反映して更新できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 		await settingRepo.create(Factory.create(SettingModel, { user_id: user.values.id }));
 		const updatedSetting = Factory.create(SettingModel, { user_id: user.values.id });
 

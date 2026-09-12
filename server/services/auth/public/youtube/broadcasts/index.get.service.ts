@@ -1,5 +1,3 @@
-import { BroadcastModel } from "~~/shared/models/broadcast.model";
-
 export class AuthPublicYoutubeBroadcastsGETService
 	implements
 		BaseService<AuthPublicYoutubeBroadcastsGETRequestDTO, AuthPublicYoutubeBroadcastsGETResponseDTO>
@@ -46,7 +44,7 @@ export class AuthPublicYoutubeBroadcastsGETService
 				"errors.not_found.youtube_broadcast",
 			);
 
-		const broadcast = await this.broadcastRepository.upsert(
+		const broadcast = await this.broadcastRepository.create(
 			new BroadcastModel({
 				user_id,
 				stream_id: stream.id!,

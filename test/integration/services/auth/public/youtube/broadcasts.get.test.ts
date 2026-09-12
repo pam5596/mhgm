@@ -4,7 +4,7 @@ describe.skip("AuthPublicYoutubeBroadcastsGETServiceの結合テスト", async (
 	const service = new AuthPublicYoutubeBroadcastsGETService(google);
 
 	it("配信情報を取得できる", errorHandler(async () => {
-		const user = await userRepo.upsert(Factory.create(UserModel));
+		const user = await userRepo.create(Factory.create(UserModel));
 
 		const request = new AuthPublicYoutubeBroadcastsGETRequestDTO({
 			sessions: {

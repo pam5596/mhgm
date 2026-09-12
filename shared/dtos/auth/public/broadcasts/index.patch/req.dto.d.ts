@@ -1,4 +1,4 @@
-export interface AuthPublicBroadcastsPUTRequest {
+export interface AuthPublicBroadcastsPATCHRequest {
 	sessions: {
 		user_id: number;
 	};

@@ -46,77 +46,100 @@ export class AuthGoogleGETService
 
     const user = await this.userRepository.findByChannelID(
       channel_props.channel_id!
-    ) || await this.prismaClient.$transaction(async (tx) => {
-      this.userRepository.client = tx
-      const upserted_user = await this.userRepository.upsert(
-        new UserModel({
+    )
+
+    if (user) {
+      const updated_user = await this.userRepository.update(
+        user.update({
           channel_id: channel_props.channel_id!,
           name: channel_props.name!,
           avatar: channel_props.avatar!
         })
       )
-      this.userRepository.client = prismaClient
 
-      const user_id = upserted_user.values.id!
-
-      this.settingRepository.client = tx
-      await this.settingRepository.upsert(
-        new SettingModel({
-          user_id,
-          quest_limit: 2,
-          player_limit: 3
+      await setUserSession(event, {
+        user: {
+          user_id: updated_user.values.id!,
+          channel_id: updated_user.values.channel_id,
+          name: updated_user.values.name,
+          avatar: updated_user.values.avatar
+        },
+        secure: {
+          access_token
+        }
+      })
+    } else {
+      const created_user = await this.prismaClient.$transaction(async (tx) => {
+          this.userRepository.client = tx
+          const new_user = await this.userRepository.create(
+            new UserModel({
+              channel_id: channel_props.channel_id!,
+              name: channel_props.name!,
+              avatar: channel_props.avatar!
+            })
+          )
+          this.userRepository.client = prismaClient
+    
+          const user_id = new_user.values.id!
+    
+          this.settingRepository.client = tx
+          await this.settingRepository.create(
+            new SettingModel({
+              user_id,
+              quest_limit: 2,
+              player_limit: 3
+            })
+          )
+          this.settingRepository.client = prismaClient
+    
+          this.eventMessageRepository.client = tx
+          await this.eventMessageRepository.create(
+            new EventMessageModel({
+              user_id,
+              entry_as_joiner: null,
+              entry_as_waiter: null,
+              duplicate_as_joiner: null,
+              duplicate_as_waiter: null,
+              cancel: null
+            })
+          )
+          this.eventMessageRepository.client = prismaClient
+    
+          this.keywordRepository.client = tx
+          const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)
+          const default_keywords = [
+            { keyword: "参加希望", action: ActionEnum.entry },
+            { keyword: "参加辞退", action: ActionEnum.cancel }
+          ] as const
+          for (const default_keyword of default_keywords) {
+            if (existing_keywords.some(
+              (existing) => existing.values.action === default_keyword.action
+            )) continue
+    
+            await this.keywordRepository.create(
+              new KeywordModel({
+                user_id,
+                keyword: default_keyword.keyword,
+                action: default_keyword.action
+              })
+            )
+          }
+          this.keywordRepository.client = prismaClient
+    
+          return new_user
         })
-      )
-      this.settingRepository.client = prismaClient
 
-      this.eventMessageRepository.client = tx
-      await this.eventMessageRepository.create(
-        new EventMessageModel({
-          user_id,
-          entry_as_joiner: null,
-          entry_as_waiter: null,
-          duplicate_as_joiner: null,
-          duplicate_as_waiter: null,
-          cancel: null
-        })
-      )
-      this.eventMessageRepository.client = prismaClient
-
-      this.keywordRepository.client = tx
-      const existing_keywords = await this.keywordRepository.findManyByUserId(user_id)
-      const default_keywords = [
-        { keyword: "参加希望", action: ActionEnum.entry },
-        { keyword: "参加辞退", action: ActionEnum.cancel }
-      ] as const
-      for (const default_keyword of default_keywords) {
-        if (existing_keywords.some(
-          (existing) => existing.values.action === default_keyword.action
-        )) continue
-
-        await this.keywordRepository.create(
-          new KeywordModel({
-            user_id,
-            keyword: default_keyword.keyword,
-            action: default_keyword.action
-          })
-        )
-      }
-      this.keywordRepository.client = prismaClient
-
-      return upserted_user
-    })
-
-    // セッションはロールバックできないため、コミット後に書き込む
-    await setUserSession(event, {
-      user: {
-        user_id: user.values.id!,
-        channel_id: user.values.channel_id,
-        name: user.values.name,
-        avatar: user.values.avatar
-      },
-      secure: {
-        access_token
-      }
-    })
+      await setUserSession(event, {
+        user: {
+          user_id: created_user.values.id!,
+          channel_id: created_user.values.channel_id,
+          name: created_user.values.name,
+          avatar: created_user.values.avatar
+        },
+        secure: {
+          access_token
+        }
+      })
+    }
   }
 }
