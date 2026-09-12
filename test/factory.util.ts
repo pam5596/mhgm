@@ -1,5 +1,5 @@
 import { zocker } from "zocker"
-import type { BaseModel } from "../../shared/models/_base";
+import type { BaseModel } from "../shared/models/_base";
 import type z from "zod";
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class

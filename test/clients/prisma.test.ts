@@ -1,6 +1,3 @@
-import { afterAll, describe, expect, it } from "vitest";
-import { PrismaORMClient } from "../../../server/clients/prisma";
-
 describe("PrismaORMClient動作確認", async () => {
 	it("環境変数からデータベースURLを取得できる", () => {
 		console.log(process.env.DATABASE_URL);

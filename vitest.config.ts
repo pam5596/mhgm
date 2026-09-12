@@ -29,7 +29,7 @@ export default defineConfig({
         resolve(__dirname, './server/repositories'),
         resolve(__dirname, './server/clients'),
         resolve(__dirname, './server/services/**'),
-				resolve(__dirname, './test/integration/**'),
+				resolve(__dirname, './test/**'),
       ],
       dts: resolve(__dirname, './vitest-auto-imports.d.ts'),
       vueTemplate: false,
@@ -44,20 +44,32 @@ export default defineConfig({
 			{
 				extends: true,
 				test: {
-					name: "unit",
-					include: ["test/unit/**/*.{test,spec}.ts"],
+					name: "clients",
+					include: ["test/clients/**/*.{test,spec}.ts"],
 					environment: "node",
 					globals: true
 				},
+				
 			},
 			{
 				extends: true,
 				test: {
-					name: "integration",
-					include: ["test/integration/**/*.{test,spec}.ts"],
+					name: "repositories",
+					include: ["test/repositories/**/*.{test,spec}.ts"],
 					environment: "node",
 					globals: true
 				},
+				
+			},
+			{
+				extends: true,
+				test: {
+					name: "services",
+					include: ["test/services/**/*.{test,spec}.ts"],
+					environment: "node",
+					globals: true
+				},
+				
 			},
 			{
 				extends: true,
